@@ -1,4 +1,4 @@
-"""foraging_api URL Configuration
+"""drf_api URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -13,9 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
 
+from django.contrib import admin
+from django.urls import path, include
+from django.views.generic import RedirectView
+
+# Redirect the main entry URL ('/') to '/profiles/' to simplify initial user
+# navigation and keep the setup flexible for future changes.
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("profiles/", include("profiles.urls")),
+    path("", RedirectView.as_view(url="/profiles/", permanent=False)),
 ]
