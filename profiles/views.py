@@ -11,21 +11,26 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Profile
 from .serializers import ProfileSerializer
+from foraging_api.permissions import IsOwnerOrReadOnly
 
 
 class ProfileList(APIView):
     """
-    View for listing all of the profiles. Retrieves all the profiles from the database,
-    serializes them for JSON response, allowing for data to be easily handled on the client side.
+    View for listing all of the profiles. Retrieves all the profiles from the
+    database, serializes them for JSON response, allowing for data to be
+    easily handled on the client side.
     """
 
     def get(self, request):
         """
-        Retrieves all profiles and serializes them. Uses 'many=True' in serializer
+        Retrieves all profiles and serializes them. Uses 'many=True' in
+        serializer
         to handle multiple objects.
         """
         profiles = Profile.objects.all()
-        serializer = ProfileSerializer(profiles, many=True)
+        serializer = ProfileSerializer(
+            profiles, many=True, context={"request": request}
+        )
         return Response(serializer.data)
 
 
@@ -36,6 +41,7 @@ class ProfileDetail(APIView):
     """
 
     serializer_class = ProfileSerializer
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
         """
@@ -45,6 +51,7 @@ class ProfileDetail(APIView):
         """
         try:
             profile = Profile.objects.get(pk=pk)
+            self.check_object_permissions(self.request, profile)
             return profile
         except Profile.DoesNotExist:
             raise Http404
@@ -56,7 +63,7 @@ class ProfileDetail(APIView):
         The serialized data is then sent back to the user.
         """
         profile = self.get_object(pk)
-        serializer = ProfileSerializer(profile)
+        serializer = ProfileSerializer(profile, context={"request": request})
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -68,7 +75,9 @@ class ProfileDetail(APIView):
         error details.
         """
         profile = self.get_object(pk)
-        serializer = ProfileSerializer(profile, data=request.data)
+        serializer = ProfileSerializer(
+            profile, data=request.data, context={"request": request}
+        )
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

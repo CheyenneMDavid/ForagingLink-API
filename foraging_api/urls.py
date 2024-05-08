@@ -22,6 +22,7 @@ from django.views.generic import RedirectView
 # navigation and keep the setup flexible for future changes.
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api-auth/", include("rest_framework.urls")),
     path("profiles/", include("profiles.urls")),
     path("", RedirectView.as_view(url="/profiles/", permanent=False)),
 ]
