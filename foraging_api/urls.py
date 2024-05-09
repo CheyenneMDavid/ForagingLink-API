@@ -16,13 +16,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
 
-# Redirect the main entry URL ('/') to '/profiles/' to simplify initial user
-# navigation and keep the setup flexible for future changes.
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
-    path("profiles/", include("profiles.urls")),
-    path("", RedirectView.as_view(url="/profiles/", permanent=False)),
+    path("", include("profiles.urls")),
+    path("", include("plants_blog.urls")),
 ]
