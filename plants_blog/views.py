@@ -7,6 +7,7 @@ It handles listing all entries and adding new ones with appropriate
 permissions.
 """
 
+from django.http import Http404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -56,3 +57,66 @@ class PlantInFocusPostList(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST,
         )
+
+
+class PlantInFocusPostDetail(APIView):
+    """
+    Handles Update, Deletion of specific PlantInFocusPost instances.
+
+    Uses permissions ensure only admins can update or delete entries,
+    whilst authenticated users can retrieve and read.
+    """
+
+    permission_classes = [IsAdminUserOrReadOnly]
+    serializer_class = PlantInFocusPostSerializer
+
+    def get_object(self, pk):
+        """
+        Retrieves a PlantInFocusPost object based on its primary key.
+        And raises Http404 error if the object doesn't exist.
+        """
+        try:
+            plant_in_focus_post = PlantInFocusPost.objects.get(pk=pk)
+            self.check_object_permissions(
+                self.request,
+                plant_in_focus_post,
+            )
+            return plant_in_focus_post
+        except PlantInFocusPost.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        """
+        Handles the GET request to retrieve a specific PlantInFocusPost.
+        """
+        plant_in_focus_post = self.get_object(pk)
+        serializer = PlantInFocusPostSerializer(
+            plant_in_focus_post,
+            context={"request": request},
+        )
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        """
+        Handles the PUT request to update a specific PlantInFocusPost.
+        """
+        plant_in_focus_post = self.get_object(pk)
+        serializer = PlantInFocusPostSerializer(
+            plant_in_focus_post,
+            data=request.data,
+            context={
+                "request": request,
+            },
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        """
+        Handles the DELETE request to remove a specific PlantInFocusPost.
+        """
+        plant_in_focus_post = self.get_object(pk)
+        plant_in_focus_post.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

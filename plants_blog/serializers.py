@@ -1,9 +1,3 @@
-"""
-Serializer for the PlantInFocusPost model, serializes PlantInFocusPost
-instances to and from JSON format.
-
-"""
-
 from rest_framework import serializers
 from plants_blog.models import PlantInFocusPost
 
@@ -16,9 +10,16 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
     """
 
     owner = serializers.ReadOnlyField(source="owner.username")
-    is_owner = serializers.SerializerMethodField()
+    is_owner = serializers.SerializerMethodField()  # <-- THIS
     profile_id = serializers.ReadOnlyField(source="owner.profile.id")
     profile_image = serializers.ReadOnlyField(source="owner.profile.image.url")
+
+    def get_is_owner(self, obj):
+        """
+        Returns True if the current request user is the owner of the object.
+        """
+        request = self.context.get("request", None)
+        return request and request.user == obj.owner
 
     def validate_image(self, value, field_name):
         if value.size > 2 * 1024 * 1024:
@@ -59,6 +60,7 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "main_plant_name",
+            "main_plant_month",
             "main_plant_environment",
             "culinary_uses",
             "medicinal_uses",
