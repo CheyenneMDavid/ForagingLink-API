@@ -24,5 +24,14 @@
 	"workbench.colorTheme": "Default High Contrast",
 	"terminal.integrated.gpuAcceleration": "canvas",
 	"editor.defaultFormatter": "HookyQR.beautify",
-	"cSpell.words": ["eafopwr", "foraginglin", "lprg", "pwxuee", "wxcfy", "yrdy"]
+	"cSpell.words": [
+		"adminpassword",
+		"eafopwr",
+		"foraginglin",
+		"lprg",
+		"normalpassword",
+		"pwxuee",
+		"wxcfy",
+		"yrdy"
+	]
 }
