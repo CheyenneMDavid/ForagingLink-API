@@ -100,3 +100,39 @@ class ProfileUpdateTestCase(TestCase):
 
         # And verifies that the profile's content has been updated correctly
         self.assertEqual(self.profile.content, "Updated Content")
+
+
+class ProfileDeleteTestCase(TestCase):
+    """
+    Tests if a profile's been successfully deleted.
+
+    The test defines data and sends a deletion request to the profile delete
+    endpoint.  It then checks if it's been deleted by requesting the url we
+    just sent a deletion request to
+    """
+
+    def setUp(self):
+        """
+        Setting up the data
+        """
+        self.client = APIClient()
+        self.user = User.objects.create_user(
+            username="test_user",
+            password="test_password",
+        )
+        self.profile = Profile.objects.get(owner=self.user)
+        self.client.login(username="test_user", password="test_password")
+
+    def test_delete_profile(self):
+        """
+        Logic for the deletion.
+        We're going to get a HTTP_204_NO_CONTENT and a "DoesNotExist" in the
+        context of the profile which is equal to the pk attached to the self
+        because there isn't any due to the deletion.
+        """
+
+        url = reverse("profile-detail", kwargs={"pk": self.profile.pk})
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        with self.assertRaises(Profile.DoesNotExist):
+            Profile.objects.get(pk=self.profile.pk)
