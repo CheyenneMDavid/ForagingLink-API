@@ -39,8 +39,6 @@ ALLOWED_HOSTS = [
 ]
 
 
-# Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -51,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "cloudinary",
     "rest_framework",
+    "django_filters",
     "profiles",
     "plants_blog",
     "comments",
