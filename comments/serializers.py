@@ -71,6 +71,7 @@ class CommentSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
             "content",
+            "replies",
         ]
 
 

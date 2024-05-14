@@ -1,5 +1,7 @@
 """
 This module defines the Comments view and related functionalities.
+Using DjangoFilterBackend to enable better filtering capabilities in the API for admin's.  It will enable them to manage and moderate comments.
+
 
 Much of the code in this file is copied from the drf-api walkthrough
 project with Code Institute and the refactoring of this view is
