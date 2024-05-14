@@ -8,9 +8,10 @@ Comments
 
 ## Development Choices
 ### Dependency Management:
-Upgraded to a newer version of Django in order to use django_filter so that the admin panel could utilize advanced filtering for the comments application.  Experienced compatibility issues when using Django 5.0 which played havoc with the CSRF settings.
+Upgraded to a newer version of Django in order to use django_filter so that the admin panel could utilize advanced filtering for the comments application.
 A compromise was found by using Django 4.2 and the older version of django_filter 24.2 which provided the advanced filtering capabilities.
 The compromise of versions allowed the latest features and improvements whilst ensuring compatibility across dependencies.
+Whilst `CSRF_TRUSTED_ORIGINS = ["https://*.gitpod.io"]` was added to the settings.py as a temporary fix during development.
 ___
 ## Tests
 

@@ -38,6 +38,8 @@ ALLOWED_HOSTS = [
     "8000-cheyennemda-foraginglin-js7eafopwr9.ws-eu111.gitpod.io",
 ]
 
+CSRF_TRUSTED_ORIGINS = ["https://*.gitpod.io"]
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
