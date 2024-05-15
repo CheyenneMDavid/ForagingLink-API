@@ -11,21 +11,9 @@ from likes.models import Like
 
 
 class LikeSerializer(serializers.ModelSerializer):
-    """
-    Serializer for the Like model.
-
-    This serializer is responsible for converting Like model instances
-    into JSON format and vice versa for use in API views.
-    """
-
     owner = serializers.ReadOnlyField(source="owner.username")
 
     class Meta:
-        """
-        Stating that it's the Like model that is to be serialized.
-        States the fields that need to be included.
-        """
-
         model = Like
         fields = [
             "id",
@@ -37,9 +25,12 @@ class LikeSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """
-        Creates a new like instance upon receiving valid data and raises an
-        error if it's been duplicated.
+        Creates a new like instance upon receiving valid data.
+        Raises an error if it's a duplicate.
+
+        Changed to setting the owner of the Like to the user who's making the request. This way ensures that the owner field is already populated with the correct information before the Like instance is created in the database.  Less room errors.
         """
+        validated_data["owner"] = self.context["request"].user
         try:
             return super().create(validated_data)
         except IntegrityError:
