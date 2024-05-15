@@ -5,6 +5,7 @@ Much of the code in this file is copied from the drf-api walkthrough projects
 with Code Institute.
 """
 
+from django.db import IntegrityError
 from rest_framework import serializers
 from likes.models import Like
 
@@ -33,3 +34,13 @@ class LikeSerializer(serializers.ModelSerializer):
             "plant_in_focus_post",
             "comment",
         ]
+
+    def create(self, validated_data):
+        """
+        Creates a new like instance upon receiving valid data and raises an
+        error if it's been duplicated.
+        """
+        try:
+            return super().create(validated_data)
+        except IntegrityError:
+            raise serializers.ValidationError({"detail": "possible duplicate"})
