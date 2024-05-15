@@ -28,7 +28,10 @@ class LikeSerializer(serializers.ModelSerializer):
         Creates a new like instance upon receiving valid data.
         Raises an error if it's a duplicate.
 
-        Changed to setting the owner of the Like to the user who's making the request. This way ensures that the owner field is already populated with the correct information before the Like instance is created in the database.  Less room errors.
+        Changed to setting the owner of the Like to the user who's making the
+        request. This way ensures that the owner field is already populated
+        with the correct information before the Like instance is created in
+        the database.  Less room errors.
         """
         validated_data["owner"] = self.context["request"].user
         try:
