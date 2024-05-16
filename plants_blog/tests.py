@@ -12,7 +12,7 @@ https://www.django-rest-framework.org/api-guide/testing/
 
 from django.contrib.auth.models import User
 from rest_framework import status
-from rest_framework.test import APITestCase, APIClient
+from rest_framework.test import APITestCase
 
 
 class PlantInFocusPostListViewTests(APITestCase):
@@ -26,7 +26,7 @@ class PlantInFocusPostListViewTests(APITestCase):
         Creates an admin_user and a regular_user for their respective
         abilities to create or not create posts, according to permissions.
         """
-        self.client = APIClient()
+
         self.admin_user = User.objects.create_superuser(
             username="admin_user",
             password="admin_password",
