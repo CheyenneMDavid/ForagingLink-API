@@ -16,14 +16,31 @@ ___
 ## Tests
 
 ### Written Tests
-- Tests for Plants Blog Application:
-  Tests to verify that only an admin user can create a post `plant_in_focus_post` and that a regular user can't.
-  ![Tests for creating posts for the blog](plants_blog/tests.py)
-  ![Test Pass](https://res.cloudinary.com/cheymd/image/upload/v1715320492/forage/Foraging_API_README_images/api_blog_post_test_results_in3np5.png)
+
+- **Tests for Plants Blog Application**:
+  Tests to verify that only an admin user can create a PlantInFocusPost instance and that a regular user can't.
+  ![Plants Blog app tests](plants_blog/tests.py)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715867067/forage/Foraging_API_README_images/plants-blog-test-results_vxfyy9.png)
   All Tests Passed.
   &nbsp;
   &nbsp;
-- Tests for the Profiles Application:
-  ![Testing of Creating, Updating and Deleting Profiles](profiles/tests.py)
-  ![Tests Pass](https://res.cloudinary.com/cheymd/image/upload/v1715502789/forage/Foraging_API_README_images/api_profile_test_results_vitisr.png)
+  
+- **Tests for Profiles Application**:
+ Tests to verify Creation, Update and Deletion of a Profile instance
+  given the appropriate permissions.
+  ![Profiles app tests](profiles/tests.py)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715502789/forage/Foraging_API_README_images/api_profile_test_results_vitisr.png)
+  All tests passed.
+  &nbsp;
+  &nbsp;
+- **Tests for the Comments Application**:
+  Tests to ensure that a Like instance can be created and that same instance be associated with either a PlantInFocus instance or a Comment instance, but not both Comments and a PlantInFocus at the same time.
+  ![Comments app tests](comments/tests.py)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715868706/forage/Foraging_API_README_images/comments-test-results_rwwqxh.png)
+  All tests passed.
+  &nbsp;
+  &nbsp;
+- Tests for Creation, Deletion and Unique Constraints of a Like Instance
+  ![Tests for Likes App.](likes/tests.py)
+  ![Tests Pass](https://res.cloudinary.com/cheymd/image/upload/v1715869305/forage/Foraging_API_README_images/likes-test-results_rxw4eb.png)
   All tests passed.
