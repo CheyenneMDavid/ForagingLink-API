@@ -19,7 +19,7 @@ class Profile(models.Model):
     owner = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
-        verbose_name="User",
+        verbose_name="Owner",
         help_text="The user this profile is for.",
     )
     created_at = models.DateTimeField(

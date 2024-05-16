@@ -18,13 +18,21 @@ class Like(models.Model):
     only like each one of them, the once.
     """
 
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="Owner",
+        help_text="The User who likes the post or comment.",
+    )
+
     plant_in_focus_post = models.ForeignKey(
         PlantInFocusPost,
         related_name="likes",
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        verbose_name="Plant in Focus Post",
+        help_text="The plant in focus post that's liked.",
     )
     comment = models.ForeignKey(
         Comment,
@@ -32,8 +40,14 @@ class Like(models.Model):
         on_delete=models.CASCADE,
         null=True,
         blank=True,
+        verbose_name="Comment",
+        help_text="The comment that's liked.",
     )
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Created At",
+        help_text="The date and time when the like was created.",
+    )
 
     class Meta:
         """
