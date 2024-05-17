@@ -40,7 +40,16 @@ ___
   All tests passed.
   &nbsp;
   &nbsp;
-- Tests for Creation, Deletion and Unique Constraints of a Like Instance
-  ![Tests for Likes App.](likes/tests.py)
-  ![Tests Pass](https://res.cloudinary.com/cheymd/image/upload/v1715869305/forage/Foraging_API_README_images/likes-test-results_rxw4eb.png)
+- **Tests for the Likes Application**:
+  Tests for Creation, Deletion and Unique Constraints of a Like Instance
+  ![Likes app tests](likes/tests.py)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715869305/forage/Foraging_API_README_images/likes-test-results_rxw4eb.png)
   All tests passed.
+  &nbsp;
+  &nbsp;
+- **Tests for Follower App**:
+  Tests that a relationship of Follower and Followed can be created between two users and that the instance is unique.
+  ![Followers app tests](followers/tests.py)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715949983/forage/Foraging_API_README_images/followers-test-results_miqprj.png)
+  All tests passed.
+  
