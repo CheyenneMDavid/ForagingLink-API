@@ -36,6 +36,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "8000-cheyennemda-foraginglin-js7eafopwr9.ws-eu113.gitpod.io",
     "8000-cheyennemda-foraginglin-js7eafopwr9.ws-eu111.gitpod.io",
+    "8000-cheyennemda-foraginglin-js7eafopwr9.ws-eu114.gitpod.io",
 ]
 
 CSRF_TRUSTED_ORIGINS = ["https://*.gitpod.io"]
