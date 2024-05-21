@@ -26,6 +26,7 @@ class CourseRegistration(models.Model):
 
     course_title = models.ForeignKey(
         Course,
+        default=3,
         on_delete=models.CASCADE,
         verbose_name="Course Title",
         help_text="The course this registration is for.",
