@@ -6,11 +6,7 @@ fields to hold user information.
 
 from django.db import models
 from django.contrib.auth.models import User
-
-# Commented out on first migration because it was causing errors due to
-# the courses app and Course model not having been created yet.
-
-# from course.models import Course
+from courses.models import Course
 
 
 STATUS_CHOICES = [
@@ -28,15 +24,12 @@ class CourseRegistration(models.Model):
     admin panel.
     """
 
-    # Commented out because it was causing errors on the migration due to
-    # the courses app and Course model not having been created yet.
-
-    # course_title = models.ForeignKey(
-    #     Course,
-    #     on_delete=models.CASCADE,
-    #     verbose_name="Course Title",
-    #     help_text="The course this registration is for.",
-    # )
+    course_title = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE,
+        verbose_name="Course Title",
+        help_text="The course this registration is for.",
+    )
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
