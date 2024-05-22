@@ -3,6 +3,7 @@ Purpose of the Course model is to store information about courses offered
 within the main application.
 """
 
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -55,6 +56,21 @@ class Course(models.Model):
         verbose_name="Maximum Capacity",
         help_text="The maximum number of participants for the course.",
     )
+
+    # Logic to enforce maximum 10 capacity.
+    def clean(self):
+        print(f"Running clean() method with max_capacity: {self.max_capacity}")
+        if self.max_capacity > 10:
+            raise ValidationError(
+                "Maximum capacity cannot exceed 10.",
+            )
+
+    def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
 
     def __str__(self):
         return self.title
