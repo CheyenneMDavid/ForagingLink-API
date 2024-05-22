@@ -1,17 +1,14 @@
 """
-Purpose of the Course model is to store information about courses offered
-within the main application.
+This file defines the Course model and the fields within it.  It uses django's
+built in validator, "MaxValueValidator" to manage the maximum places available
+on a course.
 """
 
-from django.core.exceptions import ValidationError
+from django.core.validators import MaxValueValidator
 from django.db import models
 
 
 class Course(models.Model):
-    """
-    Model representing the content/details of a course.
-    """
-
     SEASON_CHOICES = [
         ("", "Select Season"),
         ("Spring", "Spring"),
@@ -52,25 +49,10 @@ class Course(models.Model):
 
     max_capacity = models.PositiveIntegerField(
         default=10,
-        editable=False,
+        validators=[MaxValueValidator(10)],
         verbose_name="Maximum Capacity",
         help_text="The maximum number of participants for the course.",
     )
-
-    # Logic to enforce maximum 10 capacity.
-    def clean(self):
-        print(f"Running clean() method with max_capacity: {self.max_capacity}")
-        if self.max_capacity > 10:
-            raise ValidationError(
-                "Maximum capacity cannot exceed 10.",
-            )
-
-    def save(self, *args, **kwargs):
-        self.clean()
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return self.title
 
     def __str__(self):
         return self.title
