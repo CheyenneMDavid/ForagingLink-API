@@ -1,5 +1,14 @@
+"""
+This file has been predominantly copied from the DRF-API walkthrough project
+with Code Institute.
+
+Serializer for the PlantInFocus model, serializes PlantInFocus instances to 
+and from JSON format.
+"""
+
 from rest_framework import serializers
 from plants_blog.models import PlantInFocusPost
+from likes.models import Like
 
 
 class PlantInFocusPostSerializer(serializers.ModelSerializer):
@@ -10,9 +19,10 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
     """
 
     owner = serializers.ReadOnlyField(source="owner.username")
-    is_owner = serializers.SerializerMethodField()  # <-- THIS
+    is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source="owner.profile.id")
     profile_image = serializers.ReadOnlyField(source="owner.profile.image.url")
+    like_id = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         """
@@ -20,6 +30,13 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
         """
         request = self.context.get("request", None)
         return request and request.user == obj.owner
+
+    def get_like_id(self, obj):
+        user = self.context["request"].user
+        if user.is_authenticated:
+            like = Like.objects.filter(owner=user, plant_in_focus_post=obj).first()
+            return like.id if like else None
+        return None
 
     def validate_image(self, value, field_name):
         if value.size > 2 * 1024 * 1024:
@@ -70,4 +87,5 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
             "confusable_plant_information",
             "confusable_plant_warnings",
             "confusable_plant_image",
+            "like_id",
         ]
