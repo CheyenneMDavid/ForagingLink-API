@@ -1,16 +1,22 @@
-"""
-This module defines the URL patterns that are associated with the 
-views in the comments app.
-
-Much of the code in this file is copied from the drf-api walkthrough projects
-with Code Institute.
-"""
-
 from django.urls import path
 from comments import views
 
-# URL patterns for post list views.
+"""
+urls for the Comments app.  Using namespaces to avoid conflicts with other
+apps within the project
+"""
+
+app_name = "comments"
+
 urlpatterns = [
-    path("comments/", views.CommentList.as_view()),
-    path("comments/<int:pk>/", views.CommentDetail.as_view()),
+    path(
+        "",
+        views.CommentList.as_view(),
+        name="comment-list",
+    ),
+    path(
+        "<int:pk>/",
+        views.CommentDetail.as_view(),
+        name="comment-detail",
+    ),
 ]

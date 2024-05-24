@@ -1,22 +1,22 @@
-"""
-This module defines the URL patterns that are associated with the views in
-the course_registrations app.
-
-Much of the code in this file is copied from the drf-api walkthrough projects
-with Code Institute.
-"""
-
 from django.urls import path
 from course_registrations import views
 
-# URL patterns for post list views
+"""
+urls for the Course Registrations app.  Using namespaces to avoid conflicts 
+with other apps within the project
+"""
+
+app_name = "course_registrations"
+
 urlpatterns = [
     path(
-        "courseregistrations/create/",
+        "create/",
         views.CourseRegistrationCreate.as_view(),
+        name="courseregistration-create",
     ),
     path(
-        "courseregistrations/<int:pk>/",
+        "<int:pk>/",
         views.CourseRegistrationDetail.as_view(),
+        name="courseregistration-detail",
     ),
 ]

@@ -16,15 +16,25 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from plants_blog.views import PlantInFocusPostList
+
+"""
+Main project's urls.py with patterns for the apps within it, using the 
+PlantInFocusPost as the home page.
+"""
+
 
 urlpatterns = [
+    path("", PlantInFocusPostList.as_view(), name="home"),
     path("admin/", admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
-    path("", include("profiles.urls")),
-    path("", include("plants_blog.urls")),
-    path("", include("comments.urls")),
-    path("", include("likes.urls")),
-    path("", include("followers.urls")),
-    path("", include("courses.urls")),
-    path("", include("course_registrations.urls")),
+    path("profiles/", include("profiles.urls", namespace="profiles")),
+    path("plants_blog/", include("plants_blog.urls", namespace="plants_blog")),
+    path("comments/", include("comments.urls", namespace="comments")),
+    path("likes/", include("likes.urls", namespace="likes")),
+    path("followers/", include("followers.urls", namespace="followers")),
+    path("courses/", include("courses.urls", namespace="courses")),
+    path(
+        "course_registrations/",
+        include("course_registrations.urls", namespace="course_registrations"),
+    ),
 ]
