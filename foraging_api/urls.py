@@ -27,6 +27,7 @@ PlantInFocusPost as the home page.
 urlpatterns = [
     path("", PlantInFocusPostList.as_view(), name="home"),
     path("admin/", admin.site.urls),
+    path("api-auth/", include("rest_framework.urls")),
     path("profiles/", include("profiles.urls", namespace="profiles")),
     path("plants_blog/", include("plants_blog.urls", namespace="plants_blog")),
     path("comments/", include("comments.urls", namespace="comments")),
