@@ -26,7 +26,7 @@ class CourseRegistrationSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "course_title",
-            "user",
+            "owner",
             "email",
             "phone",
             "registration_date",
