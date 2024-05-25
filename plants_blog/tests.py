@@ -46,7 +46,7 @@ class PlantInFocusPostListViewTests(APITestCase):
         """
         self.client.force_authenticate(user=self.admin_user)
         response = self.client.post(
-            "/plant_in_focus_posts/",
+            "/plants_blog/create/",
             # Generic plant name "Test Plant" for testing purposes.
             data={"main_plant_name": "Test Plant"},
         )
@@ -62,7 +62,7 @@ class PlantInFocusPostListViewTests(APITestCase):
         """
         self.client.force_authenticate(user=self.normal_user)
         response = self.client.post(
-            "/plant_in_focus_posts/",
+            "/plants_blog/create/",
             # Generic plant name "Test Plant" for testing purposes.
             data={"main_plant_name": "Test Plant"},
         )
