@@ -1,122 +1,61 @@
 """
-This file has been predominantly copied from the DRF-API walkthrough project
-with Code Institute.
+These views have been separated in this manner because I wanted all users,
+whether authenticated or not, to be able to read a returned list of posts.
+Initially, when using the Detail view, only authenticated users could read an
+individual instance, which wasn't what I wanted. By separating the views, I
+ensure that everyone can access both the list of posts and the details of
+individual posts, while still restricting the ability to create, update, or
+delete posts to admin users.
 
-This file defines views for interacting with PlantInFocusPost entries.
-It handles listing all entries and adding new ones with appropriate
-permissions.
+Meanwhile, any comments that get added to posts have their own permissions set
+in the `views.py` file within the comments app separately. This ensures that
+only authenticated users can read the comments.
 """
 
-from django.http import Http404
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import generics
 from .models import PlantInFocusPost
 from .serializers import PlantInFocusPostSerializer
-from foraging_api.permissions import (
-    IsAdminUserOrReadOnly,
-)
+from rest_framework.permissions import AllowAny
+from foraging_api.permissions import IsAdminUserOrReadOnly
 
 
-class PlantInFocusPostList(APIView):
+class PlantInFocusPostList(generics.ListAPIView):
     """
-    View for listing all PlantInFocusPosts and adding new posts.
-    It allows authenticated users to view posts and only admin users to add
-    new posts.
+    View for listing all PlantInFocusPosts.
+    The posts are readable by all users, irrespective of whether they are
+    authenticated or not.
     """
 
+    queryset = PlantInFocusPost.objects.all()
+    serializer_class = PlantInFocusPostSerializer
+    permission_classes = [AllowAny]
+
+
+class PlantInFocusPostCreate(generics.CreateAPIView):
+    """
+    View for creating new PlantInFocusPosts.
+    It allows only the admin users to add new posts.
+    """
+
+    queryset = PlantInFocusPost.objects.all()
     serializer_class = PlantInFocusPostSerializer
     permission_classes = [IsAdminUserOrReadOnly]
 
-    def get(self, request):
-        """
-        Retrieves all plant focus posts and serializes them for JSON response.
-        """
-        plant_in_focus_posts = PlantInFocusPost.objects.all()
-        serializer = self.serializer_class(
-            plant_in_focus_posts, many=True, context={"request": request}
-        )
-        return Response(serializer.data)
-
-    def post(self, request):
-        """
-        Allows only admin users to create a new post. If the post data
-        is valid, it saves the post and returns it; otherwise, returns an
-        error.
-        """
-        serializer = self.serializer_class(
-            data=request.data, context={"request": request}
-        )
-        if serializer.is_valid():
-            serializer.save(owner=request.user)
-            return Response(
-                serializer.data,
-                status=status.HTTP_201_CREATED,
-            )
-        return Response(
-            serializer.errors,
-            status=status.HTTP_400_BAD_REQUEST,
-        )
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
-class PlantInFocusPostDetail(APIView):
+class PlantInFocusPostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Handles Update, Deletion of specific PlantInFocusPost instances.
-
-    Uses permissions ensure only admins can update or delete entries,
-    whilst authenticated users can retrieve and read.
+    Handles retrieving, updating, and deleting a specific PlantInFocusPost.
+    Allows any user to read the post details, but only admin users can update
+    or delete posts.
     """
 
-    permission_classes = [IsAdminUserOrReadOnly]
+    queryset = PlantInFocusPost.objects.all()
     serializer_class = PlantInFocusPostSerializer
 
-    def get_object(self, pk):
-        """
-        Retrieves a PlantInFocusPost object based on its primary key.
-        And raises Http404 error if the object doesn't exist.
-        """
-        try:
-            plant_in_focus_post = PlantInFocusPost.objects.get(pk=pk)
-            self.check_object_permissions(
-                self.request,
-                plant_in_focus_post,
-            )
-            return plant_in_focus_post
-        except PlantInFocusPost.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk):
-        """
-        Handles the GET request to retrieve a specific PlantInFocusPost.
-        """
-        plant_in_focus_post = self.get_object(pk)
-        serializer = PlantInFocusPostSerializer(
-            plant_in_focus_post,
-            context={"request": request},
-        )
-        return Response(serializer.data)
-
-    def put(self, request, pk):
-        """
-        Handles the PUT request to update a specific PlantInFocusPost.
-        """
-        plant_in_focus_post = self.get_object(pk)
-        serializer = PlantInFocusPostSerializer(
-            plant_in_focus_post,
-            data=request.data,
-            context={
-                "request": request,
-            },
-        )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk):
-        """
-        Handles the DELETE request to remove a specific PlantInFocusPost.
-        """
-        plant_in_focus_post = self.get_object(pk)
-        plant_in_focus_post.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def get_permissions(self):
+        if self.request.method in ["GET", "HEAD", "OPTIONS"]:
+            return [AllowAny()]
+        return [IsAdminUserOrReadOnly()]
