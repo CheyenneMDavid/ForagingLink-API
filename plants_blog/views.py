@@ -3,9 +3,10 @@ These views have been separated in this manner because I wanted all users,
 whether authenticated or not, to be able to read a returned list of posts.
 Initially, when using the Detail view, only authenticated users could read an
 individual instance, which wasn't what I wanted. By separating the views, I
-ensure that everyone can access both the list of posts and the details of
-individual posts, while still restricting the ability to create, update, or
-delete posts to admin users.
+ensure that everyone can access both the list of posts, the details of
+individual posts, and the search functionality, while still restricting the
+ability to create, update, or delete posts to admin users.
+
 
 Meanwhile, any comments that get added to posts have their own permissions set
 in the `views.py` file within the comments app separately. This ensures that
@@ -13,7 +14,7 @@ only authenticated users can read the comments.
 """
 
 from django.db.models import Count
-from rest_framework import generics
+from rest_framework import generics, filters
 from .models import PlantInFocusPost
 from .serializers import PlantInFocusPostSerializer
 from rest_framework.permissions import AllowAny
@@ -27,12 +28,30 @@ class PlantInFocusPostList(generics.ListAPIView):
     authenticated or not.
     """
 
-    queryset = PlantInFocusPost.objects.annotate(
-        comments_count=Count("comment", distinct=True),
-    ).order_by("created_at")
-
     serializer_class = PlantInFocusPostSerializer
     permission_classes = [AllowAny]
+    queryset = PlantInFocusPost.objects.annotate(
+        comments_count=Count("comment", distinct=True),
+    ).order_by("-created_at")
+
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+    ]
+
+    search_fields = [
+        "main_plant_name",
+        "main_plant_environment",
+        "culinary_uses",
+        "medicinal_uses",
+        "folklore",
+        "main_plant_name",
+        "main_plant_environment",
+        "culinary_uses",
+        "medicinal_uses",
+        "folklore",
+        "confusable_plant_name",
+    ]
 
 
 class PlantInFocusPostCreate(generics.CreateAPIView):
@@ -58,7 +77,7 @@ class PlantInFocusPostDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = PlantInFocusPost.objects.annotate(
         comments_count=Count("comment", distinct=True),
-    ).order_by("created_at")
+    ).order_by("-created_at")
 
     serializer_class = PlantInFocusPostSerializer
 
