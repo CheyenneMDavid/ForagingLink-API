@@ -1,7 +1,3 @@
-"""
-This file contains tests for the Profiles app.
-"""
-
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.test import TestCase
@@ -21,11 +17,9 @@ class ProfileModelTestCase(TestCase):
         Creates a user and a password. Ensures a clean start for each test so
         that results aren't confused with previous tests data.
         """
-
         self.client = APIClient()
         self.test_user = User.objects.create_user(
-            username="test_user",
-            password="test_user_password",
+            username="test_user", password="test_user_password"
         )
         Profile.objects.filter(owner=self.test_user).delete()
 
@@ -33,19 +27,15 @@ class ProfileModelTestCase(TestCase):
         """
         Test logic for seeing if a profile has been created for the user.
         Initially checking the number of profiles, it tries to retrieve a
-        profile that's associated with the user.  If one doesn't exist, it
-        creates it it then checks the count again, and then checks that the
+        profile that's associated with the user. If one doesn't exist, it
+        creates it, then checks the count again, and then checks that the
         new profile is correctly associated with the user.
         """
         initial_count = Profile.objects.count()
-        profile, created = Profile.objects.get_or_create(
-            owner=self.test_user,
-        )
+        profile, created = Profile.objects.get_or_create(owner=self.test_user)
         new_count = Profile.objects.count()
         if created:
-
             self.assertEqual(new_count, initial_count + 1)
-
         self.assertEqual(profile.owner, self.test_user)
 
 
@@ -58,11 +48,9 @@ class ProfileUpdateTestCase(TestCase):
         """
         Creates a user and a password with a profile and logs the user in.
         """
-
         self.client = APIClient()
         self.user = User.objects.create_user(
-            username="test_user",
-            password="test_password",
+            username="test_user", password="test_password"
         )
         self.profile = Profile.objects.get(owner=self.user)
         self.client.login(username="test_user", password="test_password")
@@ -73,52 +61,35 @@ class ProfileUpdateTestCase(TestCase):
 
         The test defines new data and sends it to the profile update endpoint.
         It then checks the response by refreshing the database and ensures
-        that the profile's name and content
-        have been updated correctly to "Updated Name" and "Updated Content",
-        respectively.
+        that the profile's name and content have been updated correctly to
+        "Updated Name" and "Updated Content", respectively.
         """
-
-        # Prepares the URL for updating the profile using the profile's primary
-        # key (pk)
-        url = reverse("profile-detail", kwargs={"pk": self.profile.pk})
-
-        # Defines the new data we want to update the profile with
+        url = reverse("profiles:profile-detail", kwargs={"pk": self.profile.pk})
         data = {"name": "Updated Name", "content": "Updated Content"}
-
-        # Sends a PUT request to update the profile with the new data
         response = self.client.put(url, data)
-
-        # Refreshes the profile from the database to get the updated values
         self.profile.refresh_from_db()
-
-        # Checks if the server responded with a 200 OK which means that the
-        # update was successful.
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        # Verifies that the profile's name has been updated correctly.
         self.assertEqual(self.profile.name, "Updated Name")
-
-        # And verifies that the profile's content has been updated correctly
         self.assertEqual(self.profile.content, "Updated Content")
 
 
 class ProfileDeleteTestCase(TestCase):
     """
-    Tests if a profile's been successfully deleted.
+    Tests if a profile is successfully deleted.
 
-    The test defines data and sends a deletion request to the profile delete
-    endpoint.  It then checks if it's been deleted by requesting the url we
-    just sent a deletion request to
+    The tests define the data and sends a deletion request to the profile
+    delete endpoint. It then checks if it's been deleted by requesting the URL
+    we just sent a deletion request to. The "None" in the results in the cli
+    means that they weren't found.
     """
 
     def setUp(self):
         """
-        Setting up the data
+        Setting up the data.
         """
         self.client = APIClient()
         self.user = User.objects.create_user(
-            username="test_user",
-            password="test_password",
+            username="test_user", password="test_password"
         )
         self.profile = Profile.objects.get(owner=self.user)
         self.client.login(username="test_user", password="test_password")
@@ -130,8 +101,7 @@ class ProfileDeleteTestCase(TestCase):
         context of the profile which is equal to the pk attached to the self
         because there isn't any due to the deletion.
         """
-
-        url = reverse("profile-detail", kwargs={"pk": self.profile.pk})
+        url = reverse("profiles:profile-detail", kwargs={"pk": self.profile.pk})
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         with self.assertRaises(Profile.DoesNotExist):
