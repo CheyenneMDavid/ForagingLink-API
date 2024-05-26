@@ -12,6 +12,7 @@ in the `views.py` file within the comments app separately. This ensures that
 only authenticated users can read the comments.
 """
 
+from django.db.models import Count
 from rest_framework import generics
 from .models import PlantInFocusPost
 from .serializers import PlantInFocusPostSerializer
@@ -26,7 +27,10 @@ class PlantInFocusPostList(generics.ListAPIView):
     authenticated or not.
     """
 
-    queryset = PlantInFocusPost.objects.all()
+    queryset = PlantInFocusPost.objects.annotate(
+        comments_count=Count("comment", distinct=True),
+    ).order_by("created_at")
+
     serializer_class = PlantInFocusPostSerializer
     permission_classes = [AllowAny]
 
@@ -52,7 +56,10 @@ class PlantInFocusPostDetail(generics.RetrieveUpdateDestroyAPIView):
     or delete posts.
     """
 
-    queryset = PlantInFocusPost.objects.all()
+    queryset = PlantInFocusPost.objects.annotate(
+        comments_count=Count("comment", distinct=True),
+    ).order_by("created_at")
+
     serializer_class = PlantInFocusPostSerializer
 
     def get_permissions(self):
