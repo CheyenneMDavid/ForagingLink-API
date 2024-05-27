@@ -7,7 +7,6 @@ ensure that everyone can access both the list of posts, the details of
 individual posts, and the search functionality, while still restricting the
 ability to create, update, or delete posts to admin users.
 
-
 Meanwhile, any comments that get added to posts have their own permissions set
 in the `views.py` file within the comments app separately. This ensures that
 only authenticated users can read the comments.
@@ -40,11 +39,6 @@ class PlantInFocusPostList(generics.ListAPIView):
     ]
 
     search_fields = [
-        "main_plant_name",
-        "main_plant_environment",
-        "culinary_uses",
-        "medicinal_uses",
-        "folklore",
         "main_plant_name",
         "main_plant_environment",
         "culinary_uses",
