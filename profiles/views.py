@@ -22,7 +22,7 @@ class ProfileList(generics.ListAPIView):
     """
 
     queryset = Profile.objects.annotate(
-        comments_count=Count("owner__comment", distinct=True),
+        total_comments_count=Count("owner__comment", distinct=True),
         followers_count=Count("owner__followed", distinct=True),
         following_count=Count("owner__following", distinct=True),
     ).order_by("created_at")
@@ -30,7 +30,7 @@ class ProfileList(generics.ListAPIView):
     serializer_class = ProfileSerializer
     filter_backends = [filters.OrderingFilter]
     ordering_fields = [
-        "comments_count",
+        "total_comments_count",
         "followers_count",
         "following_count",
         "owner__followed__created_at",
@@ -48,7 +48,7 @@ class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
 
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Profile.objects.annotate(
-        comments_count=Count("owner__comment", distinct=True),
+        total_comments_count=Count("owner__comment", distinct=True),
         followers_count=Count("owner__followed", distinct=True),
         following_count=Count("owner__following", distinct=True),
     ).order_by("created_at")
