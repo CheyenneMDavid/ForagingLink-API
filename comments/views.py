@@ -1,16 +1,22 @@
 """
-This module defines the Comments view and related functionalities.
-Using DjangoFilterBackend to enable better filtering capabilities in the API for admin's.  It will enable them to manage and moderate comments.
+This module defines the Comment views and related functionalities.
+It uses the DjangoFilterBackend to enable better filtering capabilities
+in the API, allowing users to filter comments based on specific criteria.
 
+The "ListCreateAPIView" is for listing and creating comments, with permissions
+set to "IsAuthenticated", ensuring only authenticated users can view and
+create comments. The "RetrieveUpdateDestroyAPIView" is used for retrieving,
+updating, or deleting comments with permissions set to "IsOwnerOrReadOnly",
+ensuring only the owners of comments can update or delete them.
+Unauthenticated users cannot interact with comments unless
+they sign up.
 
-Much of the code in this file is copied from the drf-api walkthrough
-project with Code Institute and the refactoring of this view is
-specifically based on the "CommentList and CommentDetail generic views"
-lesson here:
-https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+DRF+2021_T1/courseware/601b5665c57540519a2335bfbcb46d93/10d957d204794dbf9a4410792a58f8eb/
+Much of the code in this file is copied from the DRF-API walkthrough
+project with Code Institute and adapted for my own requirements.
 """
 
-from rest_framework import generics, permissions
+from django.db.models import Count
+from rest_framework import generics, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
 from foraging_api.permissions import IsOwnerOrReadOnly
 from .models import Comment
@@ -20,22 +26,27 @@ from .serializers import CommentSerializer, CommentDetailSerializer
 class CommentList(generics.ListCreateAPIView):
     """
     This view inherits from "ListCreateAPIView", a generic view for handling
-    lists of objects. The permission class is set to
-    "IsAuthenticatedOrReadOnly", allowing both authenticated and
-    unauthenticated users to view the list of comments,
-    but only authenticated users can create any new ones.
+    lists of objects. The permission class is set to "IsAuthenticated",
+    allowing only authenticated users to view and create comments.
     """
 
-    # Serializer class to convert queryset objects to JSON.
     serializer_class = CommentSerializer
-    # Using "IsAuthenticatedOrReadOnly
-    # so that comments are read only, unless a user is authenticated.
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-    # Using queryset to list all of the profiles
-    queryset = Comment.objects.all()
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Comment.objects.annotate(
+        replies_count=Count("replies", distinct=True)
+    ).order_by("-created_at")
 
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["plant_in_focus_post", "replying_comment"]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = [
+        "plant_in_focus_post",
+        "replying_comment",
+        "owner__username",
+    ]
+    search_fields = [
+        "content",
+        "owner__username",
+        "plant_in_focus_post__main_plant_name",
+    ]
 
     def perform_create(self, serializer):
         """
@@ -50,11 +61,13 @@ class CommentList(generics.ListCreateAPIView):
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Inherits from "RetrieveUpdateDestroyAPIView"
-    Retrieves a comment, or update or delete it by id if you own it by using
-    the permission "IsOwnerOrReadOnly"
+    Inherits from "RetrieveUpdateDestroyAPIView".
+    Retrieves a comment, or updates or deletes it by id if you own it, using
+    the permission "IsOwnerOrReadOnly".
     """
 
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = CommentDetailSerializer
-    queryset = Comment.objects.all()
+    queryset = Comment.objects.annotate(
+        replies_count=Count("replies", distinct=True)
+    ).order_by("-created_at")
