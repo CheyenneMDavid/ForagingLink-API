@@ -1,6 +1,6 @@
 """
-# This module defines the CourseRegistrations view and related functionalities.
-# """
+This module defines the CourseRegistrations view and related functionalities.
+"""
 
 from rest_framework import generics, permissions
 from .models import CourseRegistration
@@ -16,7 +16,6 @@ class CourseRegistrationCreate(generics.CreateAPIView):
 
     queryset = CourseRegistration.objects.all()
     serializer_class = CourseRegistrationSerializer
-    # Access to creating a record is only available to authenticated users.
     permission_classes = [permissions.IsAuthenticated]
 
 
@@ -29,6 +28,4 @@ class CourseRegistrationDetail(generics.RetrieveUpdateDestroyAPIView):
 
     queryset = CourseRegistration.objects.all()
     serializer_class = CourseRegistrationSerializer
-    # Permission to ensure a record can only be Read, Updated or Deleted by
-    # someone who is an Admin.
     permission_classes = [permissions.IsAdminUser]
