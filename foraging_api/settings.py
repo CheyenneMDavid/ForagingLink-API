@@ -34,12 +34,15 @@ SECRET_KEY = "django-insecure-pwxuee7+9p&p3ig#=a53^=wxcfy$^lprg4hl8yrdy8%m)h)s^7
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "8000-cheyennemda-foraginglin-js7eafopwr9.ws-eu113.gitpod.io",
-    "8000-cheyennemda-foraginglin-js7eafopwr9.ws-eu111.gitpod.io",
     "8000-cheyennemda-foraginglin-js7eafopwr9.ws-eu114.gitpod.io",
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://*.gitpod.io"]
+# Using CSRF_TRUSTED_ORIGINS to specify trusted origins for cross-site
+# request forgery protection.
+# The setting was required due to stricter CSRF checks when using Django 4.2.
+# It ensures that only requests from the trusted origins that are stored in
+# environmental variables are accepted.abs
+CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS").split(",")
 
 
 INSTALLED_APPS = [
