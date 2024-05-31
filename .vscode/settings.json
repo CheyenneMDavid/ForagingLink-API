@@ -26,6 +26,7 @@
 	"editor.defaultFormatter": "HookyQR.beautify",
 	"cSpell.words": [
 		"adminpassword",
+		"allauth",
 		"authtoken",
 		"courseregistration",
 		"courseregistrations",
@@ -36,6 +37,7 @@
 		"normalpassword",
 		"pwxuee",
 		"referenceable",
+		"socialaccount",
 		"testpass",
 		"unauthorised",
 		"wxcfy",

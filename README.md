@@ -8,10 +8,15 @@ Comments
 
 ## Development Choices
 ### Dependency Management:
-Upgraded to a newer version of Django in order to use django_filter so that the admin panel could utilize advanced filtering for the comments application.
-A compromise was found by using Django 4.2 and the older version of django_filter 24.2 which provided the advanced filtering capabilities.
-The compromise of versions allowed the latest features and improvements whilst ensuring compatibility across dependencies.
-Whilst `CSRF_TRUSTED_ORIGINS = ["https://*.gitpod.io"]` was added to the settings.py as a temporary fix during development.
+
+
+___
+## Development Challenges & Solutions.
+
+- Upgraded to a newer version of Django in order to use django_filter so that the admin panel could utilize advanced filtering for the comments application.
+A compromise was found by using Django 4.2 and the newer version of django_filter 24.2 which provided the advanced filtering capabilities.  But this caused huge compatibility issues so finally reverted to `Django==3.2.4` and `django-filter==2.4.0`, allowing me to remove the `CSRF_TRUSTED_ORIGINS = ["https://*.gitpod.io"]` from `settings.py`.
+
+- Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 which were required by `django-allauth`.  This was resolved via tutor guidance on slack as it was becoming a commonly experienced issue.
 ___
 ## Tests
 

@@ -23,6 +23,23 @@ DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        (
+            "rest_framework.authentication.SessionAuthentication"
+            if "DEV" in os.environ
+            else "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
+        )
+    ]
+}
+REST_USE_JWT = True
+JWT_AUTH_SECURE = True
+JWT_AUTH_COOKIE = "my-app-auth"
+JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
+
+REST_AUTH_SERIALIZERS = {
+    "USER_DETAILS_SERIALIZER": "foraging_api.serializers.CurrentUserSerializer"
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -37,13 +54,6 @@ ALLOWED_HOSTS = [
     "8000-cheyennemda-foraginglin-js7eafopwr9.ws-eu114.gitpod.io",
 ]
 
-# Using CSRF_TRUSTED_ORIGINS to specify trusted origins for cross-site
-# request forgery protection.
-# The setting was required due to stricter CSRF checks when using Django 4.2.
-# It ensures that only requests from the trusted origins that are stored in
-# environmental variables are accepted.abs
-CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS").split(",")
-
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -56,6 +66,13 @@ INSTALLED_APPS = [
     "cloudinary",
     "rest_framework",
     "django_filters",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    "django.contrib.sites",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth.registration",
     "profiles",
     "plants_blog",
     "comments",
@@ -65,6 +82,7 @@ INSTALLED_APPS = [
     "course_registrations",
 ]
 
+SITE_ID = 1
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

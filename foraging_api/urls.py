@@ -19,7 +19,7 @@ from django.urls import path, include
 from plants_blog.views import PlantInFocusPostList
 
 """
-Main project's urls.py with patterns for the apps within it, using the 
+Main project's urls.py with patterns for the apps within it, using the
 PlantInFocusPost as the home page.
 """
 
@@ -28,6 +28,13 @@ urlpatterns = [
     path("", PlantInFocusPostList.as_view(), name="home"),
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
+    path("dj-rest-auth/", include("dj_rest_auth.urls")),
+    path(
+        "dj-rest-auth/registration/",
+        include(
+            "dj_rest_auth.registration.urls",
+        ),
+    ),
     path("profiles/", include("profiles.urls", namespace="profiles")),
     path("plants_blog/", include("plants_blog.urls", namespace="plants_blog")),
     path("comments/", include("comments.urls", namespace="comments")),
