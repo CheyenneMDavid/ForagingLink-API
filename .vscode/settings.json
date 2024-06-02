@@ -35,6 +35,7 @@
 		"filterset",
 		"foraginglin",
 		"gunicorn",
+		"herokuapp",
 		"lprg",
 		"makemigrations",
 		"normalpassword",

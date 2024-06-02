@@ -12,19 +12,22 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import re
 import dj_database_url
 
-
+# Import environment variables if the env.py the file exists.
 if os.path.exists("env.py"):
     import env
 
+# Cloudinary storage settings.
 CLOUDINARY_STORAGE = {"CLOUDINARY_URL": os.environ.get("CLOUDINARY_URL")}
 MEDIA_URL = "/media/"
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Base directory of the project.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# REST framework settings.
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         (
@@ -38,36 +41,50 @@ REST_FRAMEWORK = {
     "DATETIME_FORMAT": "%d %b %Y",
 }
 
+# Uses JSON renderer if not in development.
 if "DEV" not in os.environ:
     REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [
         "rest_framework.renderers.JSONRenderer",
     ]
 
 
+# JSON Web Token Settings.
 REST_USE_JWT = True
 JWT_AUTH_SECURE = True
 JWT_AUTH_COOKIE = "my-app-auth"
 JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 JWT_AUTH_SAMESITE = "None"
 
+# Custom user details serializer
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": "foraging_api.serializers.CurrentUserSerializer"
 }
 
 
-# Secret Key stored in environment variable
+# Secret Key stored in environment variable.
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-# DEBUG set to development with logic that will set it to True or
-# False depending on production or local when running.
+# DEBUG sets to True if in development.
 DEBUG = "DEV" in os.environ
 
 ALLOWED_HOSTS = [
     "localhost",
-    "https://foraging-api-5bc654d11954.herokuapp.com/",
+    "ALLOWED_HOST",
 ]
 
+# Configure CORS for Gitpod development environment.
+if "CLIENT_ORIGIN_DEV" in os.environ:
+    extracted_url = re.match(
+        r"^.+-", os.environ.get("CLIENT_ORIGIN_DEV", ""), re.IGNORECASE
+    ).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
 
+# CSRF trusted origins.
+CSRF_TRUSTED_ORIGINS = [os.environ.get("CSRF_TRUSTED_ORIGINS")]
+
+# Installed apps
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -97,6 +114,8 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+
+# Middleware configuration.
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -108,6 +127,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# CORS allowed origins for production site.
 if "CLIENT_ORIGIN" in os.environ:
     CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
 else:
@@ -116,6 +136,7 @@ else:
     ]
 
 CORS_ALLOW_CREDENTIALS = True
+
 
 ROOT_URLCONF = "foraging_api.urls"
 
@@ -138,10 +159,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "foraging_api.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-
+# Database configuration
 if "DEV" in os.environ:
     DATABASES = {
         "default": {
