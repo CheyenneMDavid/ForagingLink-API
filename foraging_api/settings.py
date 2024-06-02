@@ -69,7 +69,7 @@ DEBUG = "DEV" in os.environ
 
 ALLOWED_HOSTS = [
     "localhost",
-    "ALLOWED_HOST",
+    os.environ.get("ALLOWED_HOST"),
 ]
 
 # Configure CORS for Gitpod development environment.
