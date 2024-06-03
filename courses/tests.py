@@ -29,7 +29,7 @@ class CourseAPITest(TestCase):
         self.course = Course.objects.create(
             season="Spring",
             title="Test Course",
-            date="2024-06-01",
+            date="2028-06-01",
             description="Test Course Description",
             location="Test Course Location",
             max_capacity=10,
@@ -38,11 +38,27 @@ class CourseAPITest(TestCase):
     def test_course_list(self):
         """
         Tests the CourseList view to ensure it can return a list of courses
-        and returns a http status of 200 OK.
+        and returns a HTTP status of 200 OK.
+
+        The test asserts that the response contains at least one course.
+        If the response is empty, "Response data is empty" is printed in the
+        test output and the test fails. If the response contains courses, the
+        title of the first course in the response is compared to the title of
+        the course created in the setup method.
         """
+
         response = self.client.get("/courses/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data[0]["title"], self.course.title)
+        self.assertGreater(
+            len(response.data["results"]),
+            0,
+            "Response data is empty",
+        )
+        if len(response.data["results"]) > 0:
+            self.assertEqual(
+                response.data["results"][0]["title"],
+                self.course.title,
+            )
 
     def test_valid_course_creation(self):
         """
