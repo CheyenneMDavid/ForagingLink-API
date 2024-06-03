@@ -25,7 +25,7 @@ ___
 - **Tests for Plants Blog Application**:
   Tests to verify that only an admin user can create a PlantInFocusPost instance and that a regular user can't.
   ![Plants Blog app tests](plants_blog/tests.py)
-  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715867067/forage/Foraging_API_README_images/plants-blog-test-results_vxfyy9.png)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/plants_blog_tests_irmprb.png)
   All Tests Passed.
   &nbsp;
   &nbsp;
@@ -34,27 +34,35 @@ ___
  Tests to verify Creation, Update and Deletion of a Profile instance
   given the appropriate permissions.
   ![Profiles app tests](profiles/tests.py)
-  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715502789/forage/Foraging_API_README_images/api_profile_test_results_vitisr.png)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/profiles_tests_icrakl.png)
   All tests passed.
   &nbsp;
   &nbsp;
 - **Tests for the Comments Application**:
   Tests to ensure that a Like instance can be created and that same instance be associated with either a PlantInFocus instance or a Comment instance, but not both Comments and a PlantInFocus at the same time.
   ![Comments app tests](comments/tests.py)
-  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715868706/forage/Foraging_API_README_images/comments-test-results_rwwqxh.png)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/comments_tests_oammrb.png)
   All tests passed.
   &nbsp;
   &nbsp;
 - **Tests for the Likes Application**:
   Tests for Creation, Deletion and Unique Constraints of a Like Instance
   ![Likes app tests](likes/tests.py)
-  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715869305/forage/Foraging_API_README_images/likes-test-results_rxw4eb.png)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/likes_tests_lypugq.png)
   All tests passed.
   &nbsp;
   &nbsp;
-- **Tests for Follower App**:
-  Tests that a relationship of Follower and Followed can be created between two users and that the instance is unique.
-  ![Followers app tests](followers/tests.py)
-  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1715949983/forage/Foraging_API_README_images/followers-test-results_miqprj.png)
+- **Tests for Courses App**:
+  Tests to validate the functionality of the Course API views, including listing, creating, updating, and deleting courses, ensuring proper HTTP status codes are returned.
+  ![Courses app tests](courses/tests.py)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/courses_tests_tnodju.png)
   All tests passed.
+  &nbsp;
+  &nbsp;
+- **Tests for Course Registrations App**:
+  Tests to verify that a CourseRegistration instance can be created with all the necessary fields populated and that the default status of "Pending" is applied to new instances.
+  ![Course Registrations app tests](course_registrations/tests.py)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385040/forage/Foraging_API_README_images/course_registrations_uq9m5h.png)
+  All tests passed.
+  
   
