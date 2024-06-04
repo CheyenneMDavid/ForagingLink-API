@@ -33,7 +33,20 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
 ___
 
 ## User Stories:
+The user stories utilized in this project align with those listed in the associated frontend project. This decision was made because both frontend and backend components contribute to fulfilling these user stories, albeit in different capacities. The frontend is responsible for presenting information in the user interface, while the backend manages the storage and retrieval of data. User stories for the backend were admin related and were labeled as such. But there were stories that were equally related to users and were also related accordingly.
 
+These are a few of the admin related user stories:
+
+- As an Admin, I want to publish blog posts so that users can read
+  and engage with them through comments, increasing user interaction and participation.
+  &nbsp; 
+- As an Admin I have full CRUD capabilities over user accounts and
+  posts by users so that I can create and manage necessary accounts to cosmetically induce social interaction, with the aim of fostering real engagement so that the social interaction between users grows more organically as the number of users increase.
+  &nbsp; 
+- As an Admin, I can access the registration details submitted by
+  users who wish to attend foraging courses so that I can manage course registrations and communicate with participants.
+  
+You can find the rest of the stories [here](https://github.com/users/CheyenneMDavid/projects/38/views/1)
 ___
 
 ## Applications within Project
