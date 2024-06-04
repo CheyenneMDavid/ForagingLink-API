@@ -1,25 +1,84 @@
-# Foraging Link API
+# The Foraging API
 
-Apps in Project:
+## Introduction
+The **Foraging API** is a Django REST Framework Application Programming Interface for ["The Foraging Link"](), which serves as an online community, monthly foraging blog, and platform to promote seasonal foraging courses. It aims to connect people with nature and to one another whilst sharing information about the free edible delights available all around us.
 
-Profiles.
-Plants Blog.
-Comments
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Table of Contents](#table-of-contents)
+- [User Stories](#user-stories)
+- [Applications within Project](#applications-within-project)
+  - [Profiles](#profiles)
+  - [Plants Blog](#plants-blog)
+  - [Comments](#comments)
+  - [Likes](#likes)
+  - [Followers](#followers)
+  - [Courses](#courses)
+  - [Course Registrations](#course-registrations)
+- [Planning](#planning)
+  - [ERD Diagrams and Flowcharts](#erd-diagrams-and-flowcharts)
+  - [Wireframes](#wireframes)
+  - [Mockups](#mockups)
+- [Development Choices](#development-choices)
+  - [Dependency Management](#dependency-management)
+- [Development Challenges & Solutions](#development-challenges--solutions)
+- [Usage](#usage)
+- [Agile Development Approach](#agile-development-approach)
+- [Testing](#testing)
+  - [Written Tests](#written-tests)
+- [Future Developments](#future-developments)
+- [Forking, Improving, Contributing](#forking-improving-contributing)
+
+___
+
+## User Stories:
+
+___
+
+## Applications within Project
+### Profiles
+### Plants Blog
+### Comments
+### Likes
+### Followers
+### Courses
+### Course Registrations
+
+___
+
+## Planning
+### ERD Diagrams and Flowcharts
+
+### Wireframes
+
+### Mockups
+
+___
 
 ## Development Choices
-### Dependency Management:
-
+### Dependency Management
 
 ___
-## Development Challenges & Solutions.
 
-- Upgraded to a newer version of Django in order to use django_filter so that the admin panel could utilize advanced filtering for the comments application.
-A compromise was found by using Django 4.2 and the newer version of django_filter 24.2 which provided the advanced filtering capabilities.  But this caused huge compatibility issues so finally reverted to `Django==3.2.4` and `django-filter==2.4.0`, allowing me to remove the `CSRF_TRUSTED_ORIGINS = ["https://*.gitpod.io"]` from `settings.py`.
+## Development Challenges & Solutions
 
-- Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 which were required by `django-allauth`.  This was resolved via tutor guidance on slack as it was becoming a commonly experienced issue.
+- Upgraded to a newer version of Django to use `django_filter` so that the admin panel could utilise advanced filtering for the comments application. A compromise was found by using Django 4.2 and the newer version of `django_filter` 24.2, which provided the advanced filtering capabilities. However, this caused huge compatibility issues elsewhere, so I reverted to `Django==3.2.4` and `django-filter==2.4.0`.
+
+- Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 required by `django-allauth`. This was resolved via tutor guidance on Slack as it was becoming a commonly experienced issue.  The solution given was to install python version 3.9.19. This was a solution, but where I was using a virtual environment to isolate my dependencies, I found that I was having to reinstall the python version a fresh each time I started my venv.
+Initially I tried to add commands for older version of python in the .bashrc file To avoid repetition of console commands. Unable to make the changes I realised that lacked the permissions required.  So instead, I created a script called `setup_venv.sh` which contained the commands I needed and allowed me to enter only one command to run it. The result was no different, but it was less commands for me.
+
 ___
-## Tests
 
+## Usage
+
+___
+
+## Agile Development Approach
+
+___
+
+## Testing
 ### Written Tests
 
 - **Tests for Plants Blog Application**:
@@ -29,24 +88,22 @@ ___
   All Tests Passed.
   &nbsp;
   &nbsp;
-  
 - **Tests for Profiles Application**:
- Tests to verify Creation, Update and Deletion of a Profile instance
-  given the appropriate permissions.
+ Tests to verify Creation, Update, and Deletion of a Profile instance given the appropriate permissions.
   ![Profiles app tests](profiles/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/profiles_tests_icrakl.png)
   All tests passed.
   &nbsp;
   &nbsp;
 - **Tests for the Comments Application**:
-  Tests to ensure that a Like instance can be created and that same instance be associated with either a PlantInFocus instance or a Comment instance, but not both Comments and a PlantInFocus at the same time.
+  Tests to ensure that a Like instance can be created and that the same instance be associated with either a PlantInFocus instance or a Comment instance, but not both Comments and a PlantInFocus at the same time.
   ![Comments app tests](comments/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/comments_tests_oammrb.png)
   All tests passed.
   &nbsp;
   &nbsp;
 - **Tests for the Likes Application**:
-  Tests for Creation, Deletion and Unique Constraints of a Like Instance
+  Tests for Creation, Deletion, and Unique Constraints of a Like Instance.
   ![Likes app tests](likes/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/likes_tests_lypugq.png)
   All tests passed.
@@ -64,5 +121,10 @@ ___
   ![Course Registrations app tests](course_registrations/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385040/forage/Foraging_API_README_images/course_registrations_uq9m5h.png)
   All tests passed.
-  
-  
+___
+
+## Future Developments
+
+___
+
+## Forking, Improving, Contributing
