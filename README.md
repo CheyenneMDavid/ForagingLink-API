@@ -33,25 +33,47 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
 ___
 
 ## User Stories:
-The user stories utilized in this project align with those listed in the associated frontend project. This decision was made because both frontend and backend components contribute to fulfilling these user stories, albeit in different capacities. The frontend is responsible for presenting information in the user interface, while the backend manages the storage and retrieval of data. User stories for the backend were admin related and were labeled as such. But there were stories that were equally related to users and were also related accordingly.
+The user stories utilized in this project align with those listed in the associated frontend project. This decision was made because both frontend and backend components contribute to fulfilling these user stories, albeit in different capacities. The frontend is responsible for presenting information in the user interface, so it is repeated in the corresponding repository. Whilst the backend manages the storage and retrieval of data.
 
-These are a few of the admin related user stories:
+| Feature       | As    | I Want To                               | So That I Can                                 | Backend Functions     
+|---------------|-------|-----------------------------------------|-----------------------------------------------|-----------------------
+| Authentication| user  | sign-up for an account                  | access the application securely               | `create_user()`       |
+| Authentication| user  | sign in to my account securely          | use the application                           | `authenticate_user()` |
+| Authentication| user  | sign out of my account securely         | ensure the privacy of my data                 | `logout_user()`       |
+| Comments      | user  | edit comments                           | make corrections or updates                   | `update_comment()`    |
+| Comments      | user  | delete comments                         | remove them from visibility                   | `delete_comment()`    |
+| Likes         | user  | like posts and comments                 | show appreciation for content                 | `create_like()`       |
+| Followers     | user  | follow other users                      | stay updated on what they have to say         | `create_follower()`   |
+| Courses       | user  | register for a foraging course          | attend one                                    | `create_course_registration()`  |
+| Comments      | user  | comment on posts and other comments     | interact with other users                     | `create_comment()`, `create_reply()`, `read_comments()`            |
+| Posts         | admin | exercise full CRUD capability for posts | build community interest in site content      | `create_post()`, `read_posts()`, `update_post()`, `delete_post()`  |
+| Courses       | admin | access user's registration details for foraging courses                                 | manage course registrations and communicate with participants      |  `retrieve_course_registrations()`|
 
-- As an Admin, I want to publish blog posts so that users can read
-  and engage with them through comments, increasing user interaction and participation.
-  &nbsp; 
-- As an Admin I have full CRUD capabilities over user accounts and
-  posts by users so that I can create and manage necessary accounts to cosmetically induce social interaction, with the aim of fostering real engagement so that the social interaction between users grows more organically as the number of users increase.
-  &nbsp; 
-- As an Admin, I can access the registration details submitted by
-  users who wish to attend foraging courses so that I can manage course registrations and communicate with participants.
-  
-You can find the rest of the stories [here](https://github.com/users/CheyenneMDavid/projects/38/views/1)
+<br>
+
+You can find the Project with fuller details for the stories [here](https://github.com/users/CheyenneMDavid/projects/38/views/1)
+
 ___
 
-## Applications within Project
+## Applications in the Project
 ### Profiles
+Profiles manages the user information. It provides a platform for users to create and maintain their personal accounts. This includes storing details such as usernames, emails, and profile pictures.
+
 ### Plants Blog
+The purpose of this app is to create singular-format-focused posts with information that spans particular themes of interest.
+To this end, only an Admin of the site can create posts, which cover useful information, themes of interest, and important warnings through appropriate images when required, whilst authenticated users can comment on them.
+
+The Plants Blog application provides the landing page which displays an image of the plant that is the focus for the current month, followed by previous month's posts in a descending order with pagination ensuring a maximum of 10 items listed, with each item in the list being a link to it's detail page for that plant.
+
+**The post content covers:**
+- The environments in which they're found.
+- Culinary uses.
+- Medicinal Uses.
+- Folklore.
+- Information of confusable lookalikes.
+
+
+
 ### Comments
 ### Likes
 ### Followers
@@ -70,7 +92,25 @@ ___
 ___
 
 ## Development Choices
+
 ### Dependency Management
+
+### Explanation of Naming Decisions
+**Plants Blog App**
+The name of this app could have been "Blog" for the sake of simplicity.  As could the model which I chose to call "PlantInFocusPost" rather than "Post".
+Reasoning was that I wanted to convey the type and specific purpose of the blog and it's posts.
+I believe the naming decisions help maintain a clear and organized codebase, making it easier for future developers to not only understand the structure, but also the purpose of the different components.
+
+___
+
+## Development Challenges & Solutions
+
+- Upgraded to a newer version of Django to use `django_filter` so that the admin panel could utilize advanced filtering for the comments application. A compromise was found by using Django 4.2 and the newer version of `django_filter` 24.2, which provided the advanced filtering capabilities. However, this caused huge compatibility issues elsewhere, so I reverted to `Django==3.2.4` and `django-filter==2.4.0`.
+
+- Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 required by `django-allauth`. This was resolved via tutor guidance on Slack as it was becoming a commonly experienced issue. The solution given was to install python version 3.9.19. This was a solution, but where I was using a virtual environment to isolate my dependencies, I found that I was having to reinstall the python version afresh each time I started my venv. Initially, I tried to add commands for older versions of python in the .bashrc file to avoid repetition of console commands. Unable to make the changes I realized that I lacked the permissions required. So instead, I created a script called `setup_venv.sh` which contained the commands I needed and allowed me to enter only one command to run it. The result was no different, but it was fewer commands for me.
+
+___
+
 
 ___
 
