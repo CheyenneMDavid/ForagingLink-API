@@ -63,7 +63,7 @@ Profiles manages the user information. It provides a platform for users to creat
 The purpose of this app is to create singular-format-focused posts with information that spans particular themes of interest.
 To this end, only an Admin of the site can create posts, which cover useful information, themes of interest, and important warnings through appropriate images when required, whilst authenticated users can comment on them.
 
-The Plants Blog application provides the landing page which displays an image of the plant that is the focus for the current month, followed by previous month's posts in a descending order with pagination ensuring a maximum of 10 items listed, with each item in the list being a link to it's detail page for that plant.
+The Plants Blog application provides the landing page which displays an image of the plant that is the focus for the current month, followed by previous month's posts in a descending order with pagination ensuring a maximum of 10 items listed, with each item in the list being a link to it's detail page for that plant. Both lists and details can be read by all users, authenticated or not.
 
 **The post content covers:**
 - The environments in which they're found.
@@ -72,14 +72,20 @@ The Plants Blog application provides the landing page which displays an image of
 - Folklore.
 - Information of confusable lookalikes.
 
-
-
 ### Comments
-### Likes
-### Followers
-### Courses
-### Course Registrations
+The Comments app facilitates user engagement by allowing authenticated users to comment on posts and also other user's comments. It enables enables users to engage by asking and answering questions related to the posts. Reading and creation of comments is restricted to authenticated users only.
 
+### Likes
+Likes enable users to express their appreciation for posts and comments. By liking content, they're able to show support for valuable contribution from one another. Unauthenticated users can see likes, but only authenticated users are able to add a like posts or comments
+
+### Followers
+The Followers app enables users to stay connected with content authors, including admins who create articles and users who contribute valuable comments. Only authenticated users can follow others.
+
+### Courses
+The Courses app is used to publish and manage upcoming courses in the seasons of spring, summer, and autumn. It allows all users, whether authenticated or not, to view course listings and details, while only admins have the ability to create, update, or delete courses. Each course detail page includes essential information such as the season, title, date, description, location, and maximum number of participants.
+
+### Course Registrations
+The Course Registrations app manages user registrations for the courses offered. It allows users to register for courses and stores relevant information such as contact details, dietary restrictions, and emergency contact information. The app ensures that courses are not over-subscribed by setting the registration status to "Pending" by default, which can be managed via the admin panel.
 ___
 
 ## Planning
