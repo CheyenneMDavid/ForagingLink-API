@@ -86,10 +86,28 @@ The Courses app is used to publish and manage upcoming courses in the seasons of
 
 ### Course Registrations
 The Course Registrations app manages user registrations for the courses offered. It allows users to register for courses and stores relevant information such as contact details, dietary restrictions, and emergency contact information. The app ensures that courses are not over-subscribed by setting the registration status to "Pending" by default, which can be managed via the admin panel.
-___
+<br><br>
 
 ## Planning
-### ERD Diagrams and Flowcharts
+### Entity-Relationship Diagrams (ERDs)
+These diagrams show the structure and relationships of key components within the application that support user interaction and engagement.<br>
+
+The **User Interaction and Authentication ERD** shows the structure of the the applications's main models and their relationships within the application. It provides an overview of the models that facilitate users to engage with one another.
+![User Interaction ERD](https://res.cloudinary.com/cheymd/image/upload/v1717661021/forage/Foraging_API_README_images/user_interaction_and_authentication_erd_yll12s.png)
+
+The **Course Management ERD** details the components involved in managing course content and user registrations submitted via contact forms. These are managed by site admins through the Django Admin Panel. This part of the application operates separately from the main user interaction features but is integrated within the same framework. It focuses on the relationships between Profiles, Courses, and Course Registrations..<br>
+![Course Management ERD](https://res.cloudinary.com/cheymd/image/upload/v1717661022/forage/Foraging_API_README_images/course_management_erd_loozlc.png)
+
+### API Structure Diagrams
+These diagrams show the structure and relationships between the components in the Foraging Link API. They provide a visual representation of how users, posts, comments, likes, and followers interact within the system.
+
+The **User Interaction and Authentication Overview** illustrates the user interaction and authentication structure within the Foraging Link API. It shows how users interact with comments, likes, blog posts, and followers, and includes the authentication component.
+
+![User Interaction and Authentication](https://res.cloudinary.com/cheymd/image/upload/v1717661023/forage/Foraging_API_README_images/user_interaction_and_authentication_overview_u3v4sf.png)<br><br>
+
+The **Course Management** Overview illustrates the course management structure within the Foraging Link API. It shows how users can read upcoming courses, fill out registration forms, and how admins can create and manage courses.<br>
+![Course Management Overview](https://res.cloudinary.com/cheymd/image/upload/v1717661022/forage/Foraging_API_README_images/course_management_overview_beuash.png)
+
 
 ### Wireframes
 
