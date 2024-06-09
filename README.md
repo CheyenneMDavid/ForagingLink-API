@@ -16,6 +16,7 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
   - [Followers](#followers)
   - [Courses](#courses)
   - [Course Registrations](#course-registrations)
+  - [Models and CRUD Breakdown](#models-and-crud-breakdown)
 - [Planning](#planning)
   - [ERD Diagrams and Flowcharts](#erd-diagrams-and-flowcharts)
   - [Wireframes](#wireframes)
@@ -88,6 +89,19 @@ The Courses app is used to publish and manage upcoming courses in the seasons of
 The Course Registrations app manages user registrations for the courses offered. It allows users to register for courses and stores relevant information such as contact details, dietary restrictions, and emergency contact information. The app ensures that courses are not over-subscribed by setting the registration status to "Pending" by default, which can be managed via the admin panel.
 <br><br>
 
+### Models and CRUD Breakdown
+Although I have spoken about the individual applications within the project, the following table provides a quick reference allows a quicker understand the individual application's functionalities and their CRUD operations.
+
+| Model                 | Endpoints   | Create            | Retrieve | Update | Delete | Filter          | Text Search |
+|---------------------  |-------------|-------------------|----------|--------|--------|-----------------|--------------|
+| PlantInFocusPost      | /plants_blog/<br>/plants_blog/:id/    | Yes(Admins only)  | Yes      | Yes    | Yes    | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name |
+| Comment               | /comments/<br>/comments/:id/  | Yes    | Yes      | Yes    | Yes    | plant_in_focus_post, replying_comment, owner__username | content, owner__username, plant_in_focus_post__main_plant_name |
+| Like                  | /likes/<br>/likes/:id     | Yes  | Yes      | No     | Yes    | owner, plant_in_focus_post, comment    | None |
+| Follower              | /followers/<br>/followers/:id | Yes         | Yes      | No     | Yes    | None  | None |
+| Course                | /courses/<br>/courses/:id   | Yes    | Yes      | Yes    | Yes    | None | None  |
+| CourseRegistration    | /course_registrations/<br>/course_registrations/:id                        | Yes    | Yes      | No     | Yes    | None  | None |
+
+
 ## Planning
 ### Entity-Relationship Diagrams (ERDs)
 These diagrams show the structure and relationships of key components within the application that support user interaction and engagement.<br>
@@ -106,7 +120,7 @@ The **User Interaction and Authentication Overview** illustrates the user intera
 ![User Interaction and Authentication](https://res.cloudinary.com/cheymd/image/upload/v1717661023/forage/Foraging_API_README_images/user_interaction_and_authentication_overview_u3v4sf.png)<br><br>
 
 The **Course Management** Overview illustrates the course management structure within the Foraging Link API. It shows how users can read upcoming courses, fill out registration forms, and how admins can create and manage courses.<br>
-![Course Management Overview](https://res.cloudinary.com/cheymd/image/upload/v1717661022/forage/Foraging_API_README_images/course_management_overview_beuash.png)
+![Course Management Overview](https://res.cloudinary.com/cheymd/image/upload/v1717788223/forage/Foraging_API_README_images/course_management_overview_nnmbfc.png)
 
 
 ### Wireframes
@@ -114,8 +128,21 @@ The **Course Management** Overview illustrates the course management structure w
 ### Mockups
 
 ___
+___
+___
+___
+___
+___
 
-## Development Choices
+
+
+
+
+
+___
+___
+___
+___
 
 ### Dependency Management
 
@@ -130,24 +157,19 @@ ___
 ## Development Challenges & Solutions
 
 - Upgraded to a newer version of Django to use `django_filter` so that the admin panel could utilize advanced filtering for the comments application. A compromise was found by using Django 4.2 and the newer version of `django_filter` 24.2, which provided the advanced filtering capabilities. However, this caused huge compatibility issues elsewhere, so I reverted to `Django==3.2.4` and `django-filter==2.4.0`.
-
+&nbsp;
 - Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 required by `django-allauth`. This was resolved via tutor guidance on Slack as it was becoming a commonly experienced issue. The solution given was to install python version 3.9.19. This was a solution, but where I was using a virtual environment to isolate my dependencies, I found that I was having to reinstall the python version afresh each time I started my venv. Initially, I tried to add commands for older versions of python in the .bashrc file to avoid repetition of console commands. Unable to make the changes I realized that I lacked the permissions required. So instead, I created a script called `setup_venv.sh` which contained the commands I needed and allowed me to enter only one command to run it. The result was no different, but it was fewer commands for me.
+&nbsp;
+- Inconsistent Use of Hyphens and Underscores: When creating the [Models and CRUD Breakdown](#models-and-crud-breakdown) table for this readme file and adding the search and filter fields to it, I noticed that I had been inconsistent in my use of hyphens and underscores. I decided to standardize the use of underscores in all URLs and updated the `urls.py` files in each app and any corresponding file across the entire codebase. As a result, all URL patterns now use underscores.
+___
 
 ___
 
 
 ___
-
-## Development Challenges & Solutions
-
-- Upgraded to a newer version of Django to use `django_filter` so that the admin panel could utilise advanced filtering for the comments application. A compromise was found by using Django 4.2 and the newer version of `django_filter` 24.2, which provided the advanced filtering capabilities. However, this caused huge compatibility issues elsewhere, so I reverted to `Django==3.2.4` and `django-filter==2.4.0`.
-
-- Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 required by `django-allauth`. This was resolved via tutor guidance on Slack as it was becoming a commonly experienced issue.  The solution given was to install python version 3.9.19. This was a solution, but where I was using a virtual environment to isolate my dependencies, I found that I was having to reinstall the python version a fresh each time I started my venv.
-Initially I tried to add commands for older version of python in the .bashrc file To avoid repetition of console commands. Unable to make the changes I realised that lacked the permissions required.  So instead, I created a script called `setup_venv.sh` which contained the commands I needed and allowed me to enter only one command to run it. The result was no different, but it was less commands for me.
-
 ___
 
-## Usage
+## Use
 
 ___
 
