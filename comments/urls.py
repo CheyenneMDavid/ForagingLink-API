@@ -12,11 +12,11 @@ urlpatterns = [
     path(
         "",
         views.CommentList.as_view(),
-        name="comment-list",
+        name="comment_list",
     ),
     path(
         "<int:pk>/",
         views.CommentDetail.as_view(),
-        name="comment-detail",
+        name="comment_detail",
     ),
 ]

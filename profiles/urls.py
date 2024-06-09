@@ -12,11 +12,11 @@ urlpatterns = [
     path(
         "",
         views.ProfileList.as_view(),
-        name="profile-list",
+        name="profile_list",
     ),
     path(
         "<int:pk>/",
         views.ProfileDetail.as_view(),
-        name="profile-detail",
+        name="profile_detail",
     ),
 ]

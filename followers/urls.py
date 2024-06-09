@@ -12,11 +12,11 @@ urlpatterns = [
     path(
         "",
         views.FollowerList.as_view(),
-        name="follower-list",
+        name="follower_list",
     ),
     path(
         "<int:pk>/",
         views.FollowerDetail.as_view(),
-        name="follower-detail",
+        name="follower_detail",
     ),
 ]

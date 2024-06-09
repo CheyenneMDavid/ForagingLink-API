@@ -12,11 +12,11 @@ urlpatterns = [
     path(
         "",
         views.LikeList.as_view(),
-        name="like-list",
+        name="like_list",
     ),
     path(
         "<int:pk>/",
         views.LikeDetail.as_view(),
-        name="like-detail",
+        name="like_detail",
     ),
 ]

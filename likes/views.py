@@ -1,7 +1,7 @@
 """
 This module defines the Likes view and related functionalities.
 
-Much of the code in this file is copied and adapted from the drf-api 
+Much of the code in this file is copied and adapted from the drf-api
 walkthrough
 project with Code Institute.
 """

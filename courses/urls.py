@@ -12,16 +12,16 @@ urlpatterns = [
     path(
         "",
         views.CourseList.as_view(),
-        name="course-list",
+        name="course_list",
     ),
     path(
         "create/",
         views.CourseCreate.as_view(),
-        name="course-create",
+        name="course_create",
     ),
     path(
         "<int:pk>/",
         views.CourseUpdateDelete.as_view(),
-        name="course-update-delete",
+        name="course_update_delete",
     ),
 ]

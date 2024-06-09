@@ -12,11 +12,11 @@ urlpatterns = [
     path(
         "create/",
         views.CourseRegistrationCreate.as_view(),
-        name="courseregistration-create",
+        name="courseregistration_create",
     ),
     path(
         "<int:pk>/",
         views.CourseRegistrationDetail.as_view(),
-        name="courseregistration-detail",
+        name="courseregistration_detail",
     ),
 ]
