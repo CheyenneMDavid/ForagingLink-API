@@ -124,8 +124,9 @@ The **Course Management** Overview illustrates the course management structure w
 
 
 ### Wireframes
-
+Wireframes for the project are handled by the frontend. You can find the detailed wireframes ![here]()
 ### Mockups
+Mockups for the project are managed in the frontend repository. You can view them ![here]()
 
 ___
 ___
@@ -155,12 +156,23 @@ I believe the naming decisions help maintain a clear and organized codebase, mak
 ___
 
 ## Development Challenges & Solutions
+### Version Conflicts
 
 - Upgraded to a newer version of Django to use `django_filter` so that the admin panel could utilize advanced filtering for the comments application. A compromise was found by using Django 4.2 and the newer version of `django_filter` 24.2, which provided the advanced filtering capabilities. However, this caused huge compatibility issues elsewhere, so I reverted to `Django==3.2.4` and `django-filter==2.4.0`.
-&nbsp;
+<br>
 - Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 required by `django-allauth`. This was resolved via tutor guidance on Slack as it was becoming a commonly experienced issue. The solution given was to install python version 3.9.19. This was a solution, but where I was using a virtual environment to isolate my dependencies, I found that I was having to reinstall the python version afresh each time I started my venv. Initially, I tried to add commands for older versions of python in the .bashrc file to avoid repetition of console commands. Unable to make the changes I realized that I lacked the permissions required. So instead, I created a script called `setup_venv.sh` which contained the commands I needed and allowed me to enter only one command to run it. The result was no different, but it was fewer commands for me.
-&nbsp;
+
+### Naming Conventions
 - Inconsistent Use of Hyphens and Underscores: When creating the [Models and CRUD Breakdown](#models-and-crud-breakdown) table for this readme file and adding the search and filter fields to it, I noticed that I had been inconsistent in my use of hyphens and underscores. I decided to standardize the use of underscores in all URLs and updated the `urls.py` files in each app and any corresponding file across the entire codebase. As a result, all URL patterns now use underscores.
+
+### Pagination Conflict in Courses App
+- When initially writing the tests for the Courses app, all tests passed. However, during final testing, they started to fail. I traced the issue back to the implementation of global pagination settings in the main app's `settings.py` which I had copied from the DRF-API walkthrough project with Code Institute, because it was a good fit with the page structures. Specifically, these lines:<br>`"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,`
+    However, these settings applied pagination structure to all list views, including the CourseList view. This changed the response data structure, placing the results within a results key and expecting 10 items per page due to this being globally set.<br>
+    This conflicted with the Courses app tests, which expected a simpler list of courses. The tests failed because they didn't account for the results key in the paginated response.
+For a detailed explanation of the solution, please refer to the [Testing](#testing) section and scroll to "Tests for courses app".
+
+
 ___
 
 ___
@@ -185,36 +197,42 @@ ___
   ![Plants Blog app tests](plants_blog/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/plants_blog_tests_irmprb.png)
   All Tests Passed.
-  &nbsp;
-  &nbsp;
+  <br>
 - **Tests for Profiles Application**:
  Tests to verify Creation, Update, and Deletion of a Profile instance given the appropriate permissions.
   ![Profiles app tests](profiles/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/profiles_tests_icrakl.png)
   All tests passed.
-  &nbsp;
-  &nbsp;
+  <br>
 - **Tests for the Comments Application**:
   Tests to ensure that a Like instance can be created and that the same instance be associated with either a PlantInFocus instance or a Comment instance, but not both Comments and a PlantInFocus at the same time.
   ![Comments app tests](comments/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/comments_tests_oammrb.png)
   All tests passed.
-  &nbsp;
-  &nbsp;
+  <br>
 - **Tests for the Likes Application**:
   Tests for Creation, Deletion, and Unique Constraints of a Like Instance.
   ![Likes app tests](likes/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/likes_tests_lypugq.png)
   All tests passed.
-  &nbsp;
-  &nbsp;
+  <br>
 - **Tests for Courses App**:
-  Tests to validate the functionality of the Course API views, including listing, creating, updating, and deleting courses, ensuring proper HTTP status codes are returned.
+  Tests to validate the functionality of the Course API views, including listing, creating, updating, and deleting courses, ensuring proper HTTP status codes are returned.<br><br>
+  - **Handling Pagination in CourseList Tests**
+  During the final testing phase, the tests for the Courses app started to fail due to global pagination settings applied in `settings.py`:
+`"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+"PAGE_SIZE": 10,`
+These settings structured the response data with a results key, wrapping the list of courses and adding pagination metadata. The tests, which expected a simple list of courses, did not account for this change and failed. In reality, the test failing in this manner wasn't an indication of the application not working, but neither was it proof that it did.
+To resolve this, the CourseList view was updated to handle the pagination structure properly by moving the queryset logic to its own function called get_queryset, which applied specific filters and ordering.
+The tests were modified to work with the new paginated response. The response data now needed to be accessed within the results key. The tests were adjusted to check if there were any courses present in the results array before proceeding with further assertions. This ensured that the tests handled the paginated response structure correctly.
+<br>
+  - **Defensive Programming**
+  Initially, I thought that after creating a test course in the setup, it would always be present for the purpose of testing. I think it's a reasonable assumption. Under normal conditions, it's fair to assume that the test would pass. However, adding a check to see if the response contained a course instance before attempting to use it in the testing, swerved problems before they arose.
+  
   ![Courses app tests](courses/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/courses_tests_tnodju.png)
   All tests passed.
-  &nbsp;
-  &nbsp;
+  <br>
 - **Tests for Course Registrations App**:
   Tests to verify that a CourseRegistration instance can be created with all the necessary fields populated and that the default status of "Pending" is applied to new instances.
   ![Course Registrations app tests](course_registrations/tests.py)
