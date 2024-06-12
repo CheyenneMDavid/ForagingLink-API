@@ -1,6 +1,6 @@
 # The Foraging API
 
-## Introduction
+## Project description
 The **Foraging API** is a Django REST Framework Application Programming Interface for ["The Foraging Link"](), which serves as an online community, monthly foraging blog, and platform to promote seasonal foraging courses. It aims to connect people with nature and to one another whilst sharing information about the free edible delights available all around us.
 
 ## Table of Contents
@@ -24,7 +24,8 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
 - [Development Choices](#development-choices)
   - [Dependency Management](#dependency-management)
 - [Development Challenges & Solutions](#development-challenges--solutions)
-- [Usage](#usage)
+- [Prerequisites](#prerequisites)
+- [Deployment](#deployment)
 - [Agile Development Approach](#agile-development-approach)
 - [Testing](#testing)
   - [Written Tests](#written-tests)
@@ -124,28 +125,12 @@ The **Course Management** Overview illustrates the course management structure w
 
 
 ### Wireframes
-Wireframes for the project are handled by the frontend. You can find the detailed wireframes ![here]()
+Wireframes for the project are handled by the frontend. You can find the detailed wireframes [here]()
 ### Mockups
-Mockups for the project are managed in the frontend repository. You can view them ![here]()
-
-___
-___
-___
-___
-___
+Mockups for the project are managed in the frontend repository. You can view them [here]()
 ___
 
 
-
-
-
-
-___
-___
-___
-___
-
-### Dependency Management
 
 ### Explanation of Naming Decisions
 **Plants Blog App**
@@ -171,17 +156,92 @@ ___
     However, these settings applied pagination structure to all list views, including the CourseList view. This changed the response data structure, placing the results within a results key and expecting 10 items per page due to this being globally set.<br>
     This conflicted with the Courses app tests, which expected a simpler list of courses. The tests failed because they didn't account for the results key in the paginated response.
 For a detailed explanation of the solution, please refer to the [Testing](#testing) section and scroll to "Tests for courses app".
+___
 
+## Prerequisites
+- Python 3.9.19
+- Django 3.2.4
+- Django REST Framework 3.15.1
+- Cloudinary 1.40.0
+- PostgreSQL database
+___
+
+## Dependency Management
+**Ensure the following key libraries are installed:**
+
+- `Django==3.2.4`
+- `djangorestframework==3.15.1`
+- `dj-rest-auth==2.1.9`
+- `djangorestframework-simplejwt==4.7.2`
+- `django-cloudinary-storage==0.3.0`
+- `Pillow==8.2.0`
+- `psycopg2==2.9.9`
+- `dj-database-url==0.5.0`
+- `django-allauth==0.54.0`
+- `django-cors-headers==4.3.1`
+  
+You can find the full list of dependencies in the [requirements.txt](ForagingLink-API/requirements.txt)
 
 ___
 
-___
+## Deployment Instructions
 
+1. **Forking or Cloning a Repository:**
+   - **Forking:** Creates your own copy of the repository on your GitHub account.
+      - Navigate to the chosen repository on GitHub.
+      - Click the "Fork" button in the top-right corner.
+      - For detailed instructions, check GitHub's documentation on [forking repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+    <br>
+   - **Cloning:** Downloads a copy of the repository to your local machine.
+      - Open your Gitpod console.
+      - Use the `git clone` command followed by the URL of the repository you wish to clone.
+      - For detailed instructions, check GitHub's documentation on [cloning repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+    <br>
+2. **Cloudinary Account:**
+   - Signup for a Cloudinary account on the [Cloudinary website](https://console.cloudinary.com/pm/c-22b4346b808568adb23133ede29fc9/getting-started).
+   - Follow the instructions to sign up for an account and obtain your API key.
+   - For more detailed instructions, check [Cloudinary's documentation](https://cloudinary.com/documentation).
+  <br>
+3. **Heroku Setup:**
+   - Go to Heroku and sign up if you haven't already.
+   - Create a new app from the Heroku dashboard.
+   - Configure your app's settings, including region and environment variables.
+   - Add the necessary environment variables:
+     - CLOUDINARY_URL: Your Cloudinary URL.
+     - DATABASE_URL: Your Postgres database URL.
+     - SECRET_KEY: Generate a secret key for your Django project using a tool like [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/).
+     - ALLOWED_HOSTS: URL of your API hosted on Heroku (without 'https://').
+   - Heroku provides detailed documentation for each step of the setup process.
+  <br>
+4. **Database Configuration:**
+   - Set up a PostgreSQL database instance with an appropriate provider. Some recommended options include:
+     - [Heroku Postgres](https://www.heroku.com/postgres)
+     - [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/)
+     - [DigitalOcean Managed Databases](https://www.digitalocean.com/products/managed-databases/)
+   - Ensure the instance meets your project's requirements, including region and plan selection.
 
-___
-___
+### Note on ElephantSQL Service
 
-## Use
+Originally, this project used ElephantSQL for PostgreSQL hosting. However, ElephantSQL will discontinue its services on January 27, 2025. Due to this, an alternative PostgreSQL provider is necessary. The suggested options above should be explored further in order to find a suitable substitute.  For more information on ElephantSQL's end of service, refer to their [End of Life Announcement](https://www.elephantsql.com/blog/end-of-life-announcement.html).
+
+1. **Configuring Environment Variables:**
+   - In your Heroku app settings, navigate to the "Config Vars" section.
+   - Add the required environment variables:
+     - CLOUDINARY_URL: Your Cloudinary URL.
+     - DATABASE_URL: Your Postgres database URL from the provider you choose.
+     - SECRET_KEY: Your generated secret key.
+     - ALLOWED_HOSTS: URL of your API hosted on Heroku (without 'https://').
+   - Ensure they are correctly set with the corresponding values.
+   - [Heroku's documentation](https://devcenter.heroku.com/) provides detailed steps for managing environment variables.
+  <br>
+2. **Deployment:**
+   - Choose GitHub as the deployment option in your Heroku dashboard.
+   - Connect your repository and select the branch to deploy.
+   - You can choose, enable automatic deploys for the main branch.
+   - Once deployment is complete, you'll receive a link to your deployed site.
+   - For more information on deploying applications to Heroku from GitHub, refer to Heroku's deployment documentation.
+
+By following these steps and referring to the respective platform's documentation for detailed guidance, you should be able to successfully set up and deploy your API.
 
 ___
 
@@ -194,27 +254,23 @@ ___
 
 - **Tests for Plants Blog Application**:
   Tests to verify that only an admin user can create a PlantInFocusPost instance and that a regular user can't.
-  ![Plants Blog app tests](plants_blog/tests.py)
+  [Plants Blog app tests](plants_blog/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/plants_blog_tests_irmprb.png)
-  All Tests Passed.
   <br>
 - **Tests for Profiles Application**:
  Tests to verify Creation, Update, and Deletion of a Profile instance given the appropriate permissions.
-  ![Profiles app tests](profiles/tests.py)
+  [Profiles app tests](profiles/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/profiles_tests_icrakl.png)
-  All tests passed.
   <br>
 - **Tests for the Comments Application**:
   Tests to ensure that a Like instance can be created and that the same instance be associated with either a PlantInFocus instance or a Comment instance, but not both Comments and a PlantInFocus at the same time.
-  ![Comments app tests](comments/tests.py)
+  [Comments app tests](comments/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/comments_tests_oammrb.png)
-  All tests passed.
   <br>
 - **Tests for the Likes Application**:
   Tests for Creation, Deletion, and Unique Constraints of a Like Instance.
-  ![Likes app tests](likes/tests.py)
+  [Likes app tests](likes/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/likes_tests_lypugq.png)
-  All tests passed.
   <br>
 - **Tests for Courses App**:
   Tests to validate the functionality of the Course API views, including listing, creating, updating, and deleting courses, ensuring proper HTTP status codes are returned.<br><br>
@@ -229,15 +285,13 @@ The tests were modified to work with the new paginated response. The response da
   - **Defensive Programming**
   Initially, I thought that after creating a test course in the setup, it would always be present for the purpose of testing. I think it's a reasonable assumption. Under normal conditions, it's fair to assume that the test would pass. However, adding a check to see if the response contained a course instance before attempting to use it in the testing, swerved problems before they arose.
   
-  ![Courses app tests](courses/tests.py)
+  [Courses app tests](courses/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/courses_tests_tnodju.png)
-  All tests passed.
   <br>
 - **Tests for Course Registrations App**:
   Tests to verify that a CourseRegistration instance can be created with all the necessary fields populated and that the default status of "Pending" is applied to new instances.
-  ![Course Registrations app tests](course_registrations/tests.py)
+  [Course Registrations app tests](course_registrations/tests.py)
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385040/forage/Foraging_API_README_images/course_registrations_uq9m5h.png)
-  All tests passed.
 ___
 
 ## Future Developments
