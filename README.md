@@ -246,6 +246,56 @@ By following these steps and referring to the respective platform's documentatio
 ___
 
 ## Agile Development Approach
+### Key Practices
+
+1. **Iterative Development:**
+    Building of the backend in a methodical, step-by-step way, ensuring that functions worked as expected before committing them and moving on.
+
+2. **Regular Progress Tracking:**
+    Not having a team with which I could have daily stand-ups to ensure a steady direction of travel with the development, I would use an A4 pad to summarize the day's achievements, check off the completed tasks that I'd created the day before, and create a plan and checklist for the next day after making an assessment of work completed.
+
+3. **Task Management:**
+    Developing the applications and the functions within them in a systematic manner based on the logical flow of dependencies. For example, starting with the Profiles app because it was the foundation that everything else would relate to. Then creating the Plants Blog app, which the Comments, Likes, and Followers apps depended on. The Courses and Course Registration apps, while within the main app, were not as directly linked to the other apps, so it was reasonable to leave them for last.
+
+4. **Handling Unexpected Obstacles:**
+    Changed how things were implemented when issues arose unexpectedly. For example, the pagination issue that I have described in detail.
+
+5. **Exploring Solutions and Enhancements:**
+    Initially followed a structure similar to the DRF-API walkthrough project, which focused on posts and comments. My intent was to create a subject-focused blog where only administrators could author posts while allowing users to comment on one another's contributions. This required a deeper understanding of the requirements and how to meet them effectively.
+
+6. **Written Tests:**
+    The writing of tests to ensure applications were functioning correctly. This process helped identify and resolve issues, such as adjusting the pagination settings to meet the specific requirements of the courses app. This issue, which did not initially affect the application's functionality, highlighted an aspect of the logic that needed refinement and more nuanced handling for the courses app.
+
+7. **Reflective Development:**
+    Regularly revisiting the naming conventions used across models and endpoints to ensure consistency and clarity, which enhanced maintainability.
+
+8. **Continuous Integration and Documentation:**
+    Documenting the backend structure for clarity and future reference. The "Models and CRUD Breakdown" section of the README outlines the functionality of each API endpoint. The Entity-Relationship Diagrams (ERDs) in the "Planning" section illustrate the database structure and relationships between models. Included docstrings in the code to provide insights into the structure and purpose of models, serializers, and views. For example, in `models.py`, each model has a detailed docstring explaining its purpose and relationships. Similarly, `views.py` and `serializers.py` files contain docstrings that explain the logic and functionality of each view and serializer, ensuring the code is well-documented and understandable.
+
+### Examples of Agile Practices in Backend Development
+
+- **Task Lists and Prioritization:** Managed tasks based on logical dependencies and the order in which lessons were followed, not strictly based on importance and urgency.
+<br>
+- **Adapting to Changes:** Adjusted plans as new requirements emerged or obstacles were encountered. For example, initially focusing on enabling comments on posts, but then adapting to allow users to comment on comments, adding complexity to the model and views to support nested comments.
+<br>
+- **Enhancing the Comments App:** Developed and refined the comments app by:
+    - Allowing users to comment on posts and reply to other comments.
+    - Ensuring comments were associated with users and posts.
+    - Implementing permissions to allow only authenticated users to create comments and only comment owners to update or delete their comments.
+
+### Example Project Boards
+The project boards were used to track the status of various tasks. Below are snapshots of the board showing tasks in different stages:
+
+- **Starting State:** Most tasks in the "ToDo" column.
+![Most Tasks in the "ToDo" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264077/forage/Foraging_API_README_images/Backlog_1_oh0hlx.png)
+
+- **Midway State:** More tasks moved to the "In Progress" column.
+![More Tasks Moved to the "In Progress" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264079/forage/Foraging_API_README_images/Backlog_2_akfbey.png)
+
+- **Nearing Final State:** Majority of tasks moved to the "Done" column.
+![Majority of Tasks Moved to the "Done" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264076/forage/Foraging_API_README_images/Backlog_3_wix3ap.png)
+
+**Note (for the purpose of transparency):** These snapshots were taken when the tasks had in fact been completed and moved to the "Done" column. But to illustrate the workflow stages, the tasks were moved back into the "ToDo" and "In Progress" columns. This setup was used to visualize and manage the workflow effectively.
 
 ___
 
