@@ -346,6 +346,71 @@ ___
 
 ## Future Developments
 
+1. **User Messaging System**:
+    - Adding a private messaging system for users to communicate with onneanther directly.
+
+2. **Offline Mobile Application**:
+    - Developing a mobile app that allows users to access certain features offline.
+    - Using technologies like React Native for seamless integration with the existing React and DRF-API backend.
+
+3. **User-Sourced Plant Sightings Map**:
+    - Allowing users to mark locations on a map where they have found specific plants, along with pictures and notes.
+    - Integration with Google Maps API.
+
+*The User-Sourced Plant Sightings feature could be incorporated into the offline mobile app.*
 ___
 
 ## Forking, Improving, Contributing
+
+For detailed instructions on how to fork and clone a repository, please refer to GitHub's documentation:
+
+- [How to Fork a Repository](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo)
+- [How to Clone a Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+
+### Making Your Changes
+
+1. **Navigate to Your Project Directory:**
+
+    Ensure that you're in your project's directory:
+    - `cd path-to/your-project-directory`
+    
+
+2. **Create a New Branch:**
+
+    Create a new branch for your changes:
+    - `git checkout -b new-branch-name`
+
+3. **Edit:**
+
+    Make your changes to the code and save them.
+
+4. **Commit:**
+
+    Stage and commit your changes using:
+    - `git add .`
+    - `git commit -m "<Commit message for your changes>"`
+  
+
+5. **Push:**
+
+    Push your changes to your forked repository:
+    - `git push`
+ 
+
+### Submit Pull Request
+
+1. **Create Pull Request:**
+
+    - Go to your fork on GitHub.
+    - Click "New Pull Request."
+    - Select the branch you created for your changes.
+    - Create the pull request by providing a title and description of your changes.
+
+2. **Review:**
+
+    - Wait for response from owners of the project.
+    - Make any requested changes.
+
+3. **Merge:**
+
+    - Once your changes are approved, your changes will be merged into the main project.
