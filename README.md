@@ -414,3 +414,19 @@ For detailed instructions on how to fork and clone a repository, please refer to
 3. **Merge:**
 
     - Once your changes are approved, your changes will be merged into the main project.
+
+## Credits
+
+- **StackOverflow:**
+  - [Correctly retrieve data where date and time are greater than now](https://stackoverflow.com/questions/9549744/) for guidance on querying in Django.
+  
+- **Django Documentation:**
+  - [Django Queries](https://docs.djangoproject.com/en/5.0/topics/db/queries/) for understanding and implementing database queries.
+  
+- **Django REST Framework Documentation:**
+  - [Django REST Framework API Guide](https://www.django-rest-framework.org/api-guide) for guidance on implementing API endpoints and understanding DRF concepts.
+
+- **OpenAI's ChatGPT:**
+  - For providing explanations, guidance on structuring the project, command line usage, and planning tools like Draw.io. The assistance included explanations on how to structure the README
+  - Helped in creating virtual environments, explaining their importance, and resolving issues such as unsetting `PIP_USER` to install packages inside the virtual environment.
+  - Advised on handling package version conflicts and ensuring compatibility.
