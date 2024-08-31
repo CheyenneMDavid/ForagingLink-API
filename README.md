@@ -5,51 +5,67 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Table of Contents](#table-of-contents)
-- [User Stories](#user-stories)
-- [Applications within Project](#applications-within-project)
-  - [Profiles](#profiles)
-  - [Plants Blog](#plants-blog)
-  - [Comments](#comments)
-  - [Likes](#likes)
-  - [Followers](#followers)
-  - [Courses](#courses)
-  - [Course Registrations](#course-registrations)
-  - [Models and CRUD Breakdown](#models-and-crud-breakdown)
-- [Planning](#planning)
-  - [ERD Diagrams and Flowcharts](#erd-diagrams-and-flowcharts)
-  - [Wireframes](#wireframes)
-  - [Mockups](#mockups)
-- [Development Choices](#development-choices)
+- [The Foraging API](#the-foraging-api)
+  - [Project description](#project-description)
+  - [Table of Contents](#table-of-contents)
+  - [User Stories:](#user-stories)
+  - [Applications in the Project](#applications-in-the-project)
+    - [Profiles](#profiles)
+    - [Plants Blog](#plants-blog)
+      - [Content of Individual Blog Post](#content-of-individual-blog-post)
+    - [Comments](#comments)
+    - [Likes](#likes)
+    - [Followers](#followers)
+    - [Courses](#courses)
+    - [Course Registrations](#course-registrations)
+    - [Models and CRUD Breakdown](#models-and-crud-breakdown)
+  - [Planning](#planning)
+    - [Entity-Relationship Diagrams (ERDs)](#entity-relationship-diagrams-erds)
+    - [User Interaction and Authentication ERD](#user-interaction-and-authentication-erd)
+    - [Course Management ERD](#course-management-erd)
+    - [API Structure Diagrams](#api-structure-diagrams)
+    - [User Interaction and Authentication Overview](#user-interaction-and-authentication-overview)
+    - [Course Management](#course-management)
+    - [Wireframes and Mockups](#wireframes-and-mockups)
+  - [Explanation of Naming Decisions](#explanation-of-naming-decisions)
+  - [Development Challenges \& Solutions](#development-challenges--solutions)
+    - [Version Conflicts](#version-conflicts)
+    - [Naming Conventions](#naming-conventions)
+    - [Pagination Conflict in Courses App](#pagination-conflict-in-courses-app)
+  - [Prerequisites](#prerequisites)
   - [Dependency Management](#dependency-management)
-- [Development Challenges & Solutions](#development-challenges--solutions)
-- [Prerequisites](#prerequisites)
-- [Deployment](#deployment)
-- [Agile Development Approach](#agile-development-approach)
-- [Testing](#testing)
-  - [Written Tests](#written-tests)
-- [Future Developments](#future-developments)
-- [Forking, Improving, Contributing](#forking-improving-contributing)
+  - [Deployment Instructions](#deployment-instructions)
+    - [Note on ElephantSQL Service](#note-on-elephantsql-service)
+  - [Agile Development Approach](#agile-development-approach)
+    - [Key Practices](#key-practices)
+    - [Examples of Agile Practices in Backend Development](#examples-of-agile-practices-in-backend-development)
+    - [Example Project Boards](#example-project-boards)
+  - [Testing](#testing)
+    - [Written Tests](#written-tests)
+  - [Future Developments](#future-developments)
+  - [Forking, Improving, Contributing](#forking-improving-contributing)
+    - [Making Your Changes](#making-your-changes)
+    - [Submit Pull Request](#submit-pull-request)
+  - [Credits](#credits)
 
 ___
 
 ## User Stories:
 The user stories utilized in this project align with those listed in the associated frontend project. This decision was made because both frontend and backend components contribute to fulfilling these user stories, albeit in different capacities. The frontend is responsible for presenting information in the user interface, so it is repeated in the corresponding repository. Whilst the backend manages the storage and retrieval of data.
 
-| Feature       | As    | I Want To                               | So That I Can                                 | Backend Functions     
-|---------------|-------|-----------------------------------------|-----------------------------------------------|-----------------------
-| Authentication| user  | sign-up for an account                  | access the application securely               | `create_user()`       |
-| Authentication| user  | sign in to my account securely          | use the application                           | `authenticate_user()` |
-| Authentication| user  | sign out of my account securely         | ensure the privacy of my data                 | `logout_user()`       |
-| Comments      | user  | edit comments                           | make corrections or updates                   | `update_comment()`    |
-| Comments      | user  | delete comments                         | remove them from visibility                   | `delete_comment()`    |
-| Likes         | user  | like posts and comments                 | show appreciation for content                 | `create_like()`       |
-| Followers     | user  | follow other users                      | stay updated on what they have to say         | `create_follower()`   |
-| Courses       | user  | register for a foraging course          | attend one                                    | `create_course_registration()`  |
-| Comments      | user  | comment on posts and other comments     | interact with other users                     | `create_comment()`, `create_reply()`, `read_comments()`            |
-| Posts         | admin | exercise full CRUD capability for posts | build community interest in site content      | `create_post()`, `read_posts()`, `update_post()`, `delete_post()`  |
-| Courses       | admin | access user's registration details for foraging courses                                 | manage course registrations and communicate with participants      |  `retrieve_course_registrations()`|
+| Feature        | As    | I Want To                                               | So That I Can                                                 | Backend Functions                                                 |
+| -------------- | ----- | ------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Authentication | user  | sign-up for an account                                  | access the application securely                               | `create_user()`                                                   |
+| Authentication | user  | sign in to my account securely                          | use the application                                           | `authenticate_user()`                                             |
+| Authentication | user  | sign out of my account securely                         | ensure the privacy of my data                                 | `logout_user()`                                                   |
+| Comments       | user  | edit comments                                           | make corrections or updates                                   | `update_comment()`                                                |
+| Comments       | user  | delete comments                                         | remove them from visibility                                   | `delete_comment()`                                                |
+| Likes          | user  | like posts and comments                                 | show appreciation for content                                 | `create_like()`                                                   |
+| Followers      | user  | follow other users                                      | stay updated on what they have to say                         | `create_follower()`                                               |
+| Courses        | user  | register for a foraging course                          | attend one                                                    | `create_course_registration()`                                    |
+| Comments       | user  | comment on posts and other comments                     | interact with other users                                     | `create_comment()`, `create_reply()`, `read_comments()`           |
+| Posts          | admin | exercise full CRUD capability for posts                 | build community interest in site content                      | `create_post()`, `read_posts()`, `update_post()`, `delete_post()` |
+| Courses        | admin | access user's registration details for foraging courses | manage course registrations and communicate with participants | `retrieve_course_registrations()`                                 |
 
 <br>
 
@@ -67,7 +83,7 @@ To this end, only an Admin of the site can create posts, which cover useful info
 
 The Plants Blog application provides the landing page which displays an image of the plant that is the focus for the current month, followed by previous month's posts in a descending order with pagination ensuring a maximum of 10 items listed, with each item in the list being a link to it's detail page for that plant. Both lists and details can be read by all users, authenticated or not.
 
-**The post content covers:**
+#### Content of Individual Blog Post
 - The environments in which they're found.
 - Culinary uses.
 - Medicinal Uses.
@@ -88,51 +104,51 @@ The Courses app is used to publish and manage upcoming courses in the seasons of
 
 ### Course Registrations
 The Course Registrations app manages user registrations for the courses offered. It allows users to register for courses and stores relevant information such as contact details, dietary restrictions, and emergency contact information. The app ensures that courses are not over-subscribed by setting the registration status to "Pending" by default, which can be managed via the admin panel.
-<br><br>
+
 
 ### Models and CRUD Breakdown
 Although I have spoken about the individual applications within the project, the following table provides a quick reference allows a quicker understand the individual application's functionalities and their CRUD operations.
 
-| Model                 | Endpoints   | Create            | Retrieve | Update | Delete | Filter          | Text Search |
-|---------------------  |-------------|-------------------|----------|--------|--------|-----------------|--------------|
-| PlantInFocusPost      | /plants_blog/<br>/plants_blog/:id/    | Yes(Admins only)  | Yes      | Yes    | Yes    | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name |
-| Comment               | /comments/<br>/comments/:id/  | Yes    | Yes      | Yes    | Yes    | plant_in_focus_post, replying_comment, owner__username | content, owner__username, plant_in_focus_post__main_plant_name |
-| Like                  | /likes/<br>/likes/:id     | Yes  | Yes      | No     | Yes    | owner, plant_in_focus_post, comment    | None |
-| Follower              | /followers/<br>/followers/:id | Yes         | Yes      | No     | Yes    | None  | None |
-| Course                | /courses/<br>/courses/:id   | Yes    | Yes      | Yes    | Yes    | None | None  |
-| CourseRegistration    | /course_registrations/<br>/course_registrations/:id                        | Yes    | Yes      | No     | Yes    | None  | None |
+| Model              | Endpoints                                           | Create           | Retrieve | Update | Delete | Filter                                                                                                  | Text Search                                                                                             |
+| ------------------ | --------------------------------------------------- | ---------------- | -------- | ------ | ------ | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| PlantInFocusPost   | /plants_blog/<br>/plants_blog/:id/                  | Yes(Admins only) | Yes      | Yes    | Yes    | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name |
+| Comment            | /comments/<br>/comments/:id/                        | Yes              | Yes      | Yes    | Yes    | plant_in_focus_post, replying_comment, owner__username                                                  | content, owner__username, plant_in_focus_post__main_plant_name                                          |
+| Like               | /likes/<br>/likes/:id                               | Yes              | Yes      | No     | Yes    | owner, plant_in_focus_post, comment                                                                     | None                                                                                                    |
+| Follower           | /followers/<br>/followers/:id                       | Yes              | Yes      | No     | Yes    | None                                                                                                    | None                                                                                                    |
+| Course             | /courses/<br>/courses/:id                           | Yes              | Yes      | Yes    | Yes    | None                                                                                                    | None                                                                                                    |
+| CourseRegistration | /course_registrations/<br>/course_registrations/:id | Yes              | Yes      | No     | Yes    | None                                                                                                    | None                                                                                                    |
 
 
 ## Planning
 ### Entity-Relationship Diagrams (ERDs)
-These diagrams show the structure and relationships of key components within the application that support user interaction and engagement.<br>
+These diagrams show the structure and relationships of key components within the application that support user interaction and engagement.
 
-The **User Interaction and Authentication ERD** shows the structure of the the applications's main models and their relationships within the application. It provides an overview of the models that facilitate users to engage with one another.
+### User Interaction and Authentication ERD
+This shows the structure of the the applications's main models and their relationships within the application. It provides an overview of the models that facilitate users to engage with one another.
 ![User Interaction ERD](https://res.cloudinary.com/cheymd/image/upload/v1717661021/forage/Foraging_API_README_images/user_interaction_and_authentication_erd_yll12s.png)
 
-The **Course Management ERD** details the components involved in managing course content and user registrations submitted via contact forms. These are managed by site admins through the Django Admin Panel. This part of the application operates separately from the main user interaction features but is integrated within the same framework. It focuses on the relationships between Profiles, Courses, and Course Registrations..<br>
+### Course Management ERD
+This details the components involved in managing course content and user registrations submitted via contact forms. These are managed by site admins through the Django Admin Panel. This part of the application operates separately from the main user interaction features but is integrated within the same framework. It focuses on the relationships between Profiles, Courses, and Course Registrations.
 ![Course Management ERD](https://res.cloudinary.com/cheymd/image/upload/v1717661022/forage/Foraging_API_README_images/course_management_erd_loozlc.png)
 
 ### API Structure Diagrams
 These diagrams show the structure and relationships between the components in the Foraging Link API. They provide a visual representation of how users, posts, comments, likes, and followers interact within the system.
 
-The **User Interaction and Authentication Overview** illustrates the user interaction and authentication structure within the Foraging Link API. It shows how users interact with comments, likes, blog posts, and followers, and includes the authentication component.
+### User Interaction and Authentication Overview
+This illustrates the user interaction and authentication structure within the Foraging Link API. It shows how users interact with comments, likes, blog posts, and followers, and includes the authentication component.
+![User Interaction and Authentication](https://res.cloudinary.com/cheymd/image/upload/v1717661023/forage/Foraging_API_README_images/user_interaction_and_authentication_overview_u3v4sf.png)
 
-![User Interaction and Authentication](https://res.cloudinary.com/cheymd/image/upload/v1717661023/forage/Foraging_API_README_images/user_interaction_and_authentication_overview_u3v4sf.png)<br><br>
-
-The **Course Management** Overview illustrates the course management structure within the Foraging Link API. It shows how users can read upcoming courses, fill out registration forms, and how admins can create and manage courses.<br>
+### Course Management
+This Overview illustrates the course management structure within the Foraging Link API. It shows how users can read upcoming courses, fill out registration forms, and how admins can create and manage courses.
 ![Course Management Overview](https://res.cloudinary.com/cheymd/image/upload/v1717788223/forage/Foraging_API_README_images/course_management_overview_nnmbfc.png)
 
 
-### Wireframes
-Wireframes for the project are handled by the frontend. You can find the detailed wireframes [here]()
-### Mockups
-Mockups for the project are managed in the frontend repository. You can view them [here]()
+### Wireframes and Mockups
+Wireframes and Mockups can be found in a separate repository which handles the React based User Interface [here](https://github.com/CheyenneMDavid/foraging-link-ui)
 ___
 
+## Explanation of Naming Decisions
 
-
-### Explanation of Naming Decisions
 **Plants Blog App**
 The name of this app could have been "Blog" for the sake of simplicity.  As could the model which I chose to call "PlantInFocusPost" rather than "Post".
 Reasoning was that I wanted to convey the type and specific purpose of the blog and it's posts.
@@ -144,8 +160,39 @@ ___
 ### Version Conflicts
 
 - Upgraded to a newer version of Django to use `django_filter` so that the admin panel could utilize advanced filtering for the comments application. A compromise was found by using Django 4.2 and the newer version of `django_filter` 24.2, which provided the advanced filtering capabilities. However, this caused huge compatibility issues elsewhere, so I reverted to `Django==3.2.4` and `django-filter==2.4.0`.
+
 <br>
-- Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 required by `django-allauth`. This was resolved via tutor guidance on Slack as it was becoming a commonly experienced issue. The solution given was to install python version 3.9.19. This was a solution, but where I was using a virtual environment to isolate my dependencies, I found that I was having to reinstall the python version afresh each time I started my venv. Initially, I tried to add commands for older versions of python in the .bashrc file to avoid repetition of console commands. Unable to make the changes I realized that I lacked the permissions required. So instead, I created a script called `setup_venv.sh` which contained the commands I needed and allowed me to enter only one command to run it. The result was no different, but it was fewer commands for me.
+
+- Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 required by `django-allauth`. This was resolved via tutor guidance on Slack as it was becoming a commonly experienced issue. The solution given was to install python version 3.9.19. This was a solution, but where I was using a virtual environment to isolate my dependencies, I found that I was having to reinstall the python version afresh each time I started my venv. Initially, I tried to add commands for older versions of python in the .bashrc file to avoid repetition of console commands. Unable to make the changes I realized that I lacked the permissions required. So instead, I created a script called `setup.sh` which contained:
+
+```
+#!/bin/bash
+
+# Installs Python 3.9.19, but skips if it's already installed
+pyenv install 3.9.19 --skip-existing
+
+# Attempts to create a virtual environment, skips if it already exists and displays
+# "venv already exists, skipping creation" to the console.
+pyenv virtualenv 3.9.19 venv || echo "venv already exists, skipping creation"
+
+# Activates the venv
+source venv/bin/activate
+
+# Unsets the PIP_USER to avoid issues with any pip installations
+unset PIP_USER
+
+# Upgrades pip to the latest version within the virtual environment
+pip install --upgrade pip
+
+# Instals all dependencies
+pip install -r requirements.txt
+```
+
+This allowed me to enter a single command of: `./setup.sh` and an optional manual command of: `python manage.py runserver`, because I didn't necessarily want to run it each and every time.
+
+<br>
+
+
 
 ### Naming Conventions
 - Inconsistent Use of Hyphens and Underscores: When creating the [Models and CRUD Breakdown](#models-and-crud-breakdown) table for this readme file and adding the search and filter fields to it, I noticed that I had been inconsistent in my use of hyphens and underscores. I decided to standardize the use of underscores in all URLs and updated the `urls.py` files in each app and any corresponding file across the entire codebase. As a result, all URL patterns now use underscores.
@@ -274,25 +321,34 @@ ___
 
 ### Examples of Agile Practices in Backend Development
 
-- **Task Lists and Prioritization:** Managed tasks based on logical dependencies and the order in which lessons were followed, not strictly based on importance and urgency.
-<br>
-- **Adapting to Changes:** Adjusted plans as new requirements emerged or obstacles were encountered. For example, initially focusing on enabling comments on posts, but then adapting to allow users to comment on comments, adding complexity to the model and views to support nested comments.
-<br>
-- **Enhancing the Comments App:** Developed and refined the comments app by:
-    - Allowing users to comment on posts and reply to other comments.
-    - Ensuring comments were associated with users and posts.
-    - Implementing permissions to allow only authenticated users to create comments and only comment owners to update or delete their comments.
+#### Task Lists and Prioritization:**
+
+Managed tasks based on logical dependencies and the order in which lessons were followed, not strictly based on importance and urgency.
+#### Adapting to Changes:**
+Adjusted plans as new requirements emerged or obstacles were encountered. For example, initially focusing on enabling comments on posts, but then adapting to allow users to comment on comments, adding complexity to the model and views to support nested comments.
+
+#### Enhancing the Comments App:**
+Developed and refined the comments app by:
+- Allowing users to comment on posts and reply to other comments.
+- Ensuring comments were associated with users and posts.
+- Implementing permissions to allow only authenticated users to create comments and only comment owners to update or delete their comments.
 
 ### Example Project Boards
 The project boards were used to track the status of various tasks. Below are snapshots of the board showing tasks in different stages:
 
-- **Starting State:** Most tasks in the "ToDo" column.
+#### Starting State
+Most tasks in the "ToDo" column.
+
 ![Most Tasks in the "ToDo" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264077/forage/Foraging_API_README_images/Backlog_1_oh0hlx.png)
 
-- **Midway State:** More tasks moved to the "In Progress" column.
+#### Midway State
+More tasks moved to the "In Progress" column.
+
 ![More Tasks Moved to the "In Progress" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264079/forage/Foraging_API_README_images/Backlog_2_akfbey.png)
 
-- **Nearing Final State:** Majority of tasks moved to the "Done" column.
+#### Nearing Final State
+Majority of tasks moved to the "Done" column.
+
 ![Majority of Tasks Moved to the "Done" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264076/forage/Foraging_API_README_images/Backlog_3_wix3ap.png)
 
 **Note (for the purpose of transparency):** These snapshots were taken when the tasks had in fact been completed and moved to the "Done" column. But to illustrate the workflow stages, the tasks were moved back into the "ToDo" and "In Progress" columns. This setup was used to visualize and manage the workflow effectively.
@@ -302,45 +358,59 @@ ___
 ## Testing
 ### Written Tests
 
-- **Tests for Plants Blog Application**:
+#### Tests for Plants Blog Application
   Tests to verify that only an admin user can create a PlantInFocusPost instance and that a regular user can't.
+
   [Plants Blog app tests](plants_blog/tests.py)
+
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/plants_blog_tests_irmprb.png)
-  <br>
-- **Tests for Profiles Application**:
+
+#### Tests for Profiles Application
  Tests to verify Creation, Update, and Deletion of a Profile instance given the appropriate permissions.
+
   [Profiles app tests](profiles/tests.py)
+
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/profiles_tests_icrakl.png)
-  <br>
-- **Tests for the Comments Application**:
+
+
+#### Tests for the Comments Application
   Tests to ensure that a Like instance can be created and that the same instance be associated with either a PlantInFocus instance or a Comment instance, but not both Comments and a PlantInFocus at the same time.
+
   [Comments app tests](comments/tests.py)
+
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/comments_tests_oammrb.png)
-  <br>
-- **Tests for the Likes Application**:
+
+#### Tests for the Likes Application
   Tests for Creation, Deletion, and Unique Constraints of a Like Instance.
+  
   [Likes app tests](likes/tests.py)
+
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/likes_tests_lypugq.png)
-  <br>
-- **Tests for Courses App**:
-  Tests to validate the functionality of the Course API views, including listing, creating, updating, and deleting courses, ensuring proper HTTP status codes are returned.<br><br>
-  - **Handling Pagination in CourseList Tests**
-  During the final testing phase, the tests for the Courses app started to fail due to global pagination settings applied in `settings.py`:
+
+  
+#### Tests for Courses App
+Tests to validate the functionality of the Course API views, including listing, creating, updating, and deleting courses, ensuring proper HTTP status codes are returned.
+Handling Pagination in CourseList Tests
+During the final testing phase, the tests for the Courses app started to fail due to global pagination settings applied in `settings.py`:
 `"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
 "PAGE_SIZE": 10,`
 These settings structured the response data with a results key, wrapping the list of courses and adding pagination metadata. The tests, which expected a simple list of courses, did not account for this change and failed. In reality, the test failing in this manner wasn't an indication of the application not working, but neither was it proof that it did.
 To resolve this, the CourseList view was updated to handle the pagination structure properly by moving the queryset logic to its own function called get_queryset, which applied specific filters and ordering.
 The tests were modified to work with the new paginated response. The response data now needed to be accessed within the results key. The tests were adjusted to check if there were any courses present in the results array before proceeding with further assertions. This ensured that the tests handled the paginated response structure correctly.
-<br>
-  - **Defensive Programming**
-  Initially, I thought that after creating a test course in the setup, it would always be present for the purpose of testing. I think it's a reasonable assumption. Under normal conditions, it's fair to assume that the test would pass. However, adding a check to see if the response contained a course instance before attempting to use it in the testing, swerved problems before they arose.
-  
+
+Defensive Programming
+Initially, I thought that after creating a test course in the setup, it would always be present for the purpose of testing. I think it's a reasonable assumption. Under normal conditions, it's fair to assume that the test would pass. However, adding a check to see if the response contained a course instance before attempting to use it in the testing, swerved problems before they arose.
+
+
   [Courses app tests](courses/tests.py)
+
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/courses_tests_tnodju.png)
-  <br>
-- **Tests for Course Registrations App**:
+
+### Tests for Course Registrations App
   Tests to verify that a CourseRegistration instance can be created with all the necessary fields populated and that the default status of "Pending" is applied to new instances.
+
   [Course Registrations app tests](course_registrations/tests.py)
+
   ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385040/forage/Foraging_API_README_images/course_registrations_uq9m5h.png)
 ___
 

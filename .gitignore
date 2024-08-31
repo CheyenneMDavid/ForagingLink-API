@@ -8,6 +8,6 @@ node_modules/
 .github/
 cloudinary_python.txt
 db.sqlite3
-setup_venv.sh
 venv/
+setup.sh
 
