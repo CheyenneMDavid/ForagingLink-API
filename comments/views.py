@@ -98,3 +98,20 @@ class CommentReplyList(generics.ListAPIView):
         return Comment.objects.filter(replying_comment_id=parent_comment_id)
 
 
+class CommentReplyDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    View to retrieve, update, or delete a specific reply to a comment.
+    """
+
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = CommentDetailSerializer
+
+    def get_queryset(self):
+        """
+        Returns the specific reply for the given comment (pk) and reply (reply_pk).
+        """
+        parent_comment_id = self.kwargs["pk"]
+        reply_id = self.kwargs["reply_pk"]
+        return Comment.objects.filter(
+            replying_comment_id=parent_comment_id, id=reply_id
+        )
