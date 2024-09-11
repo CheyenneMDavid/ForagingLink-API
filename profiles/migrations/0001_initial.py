@@ -15,20 +15,73 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Profile',
+            name="Profile",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, help_text='When the profile was created.', verbose_name='Created At')),
-                ('updated_at', models.DateTimeField(auto_now=True, help_text='When the profile was last updated.', verbose_name='Updated At')),
-                ('name', models.CharField(blank=True, help_text='The user’s full name.', max_length=255, verbose_name='Name')),
-                ('content', models.TextField(blank=True, help_text='About the user.', verbose_name='Content')),
-                ('image', models.ImageField(default='../default_profile_pic_ciw1he.jpg', help_text='Profile image of the user. Defaults to generic image if one is not provided', upload_to='images/', verbose_name='Profile Image')),
-                ('owner', models.OneToOneField(help_text='The user this profile is for.', on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='User')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        help_text="When the profile was created.",
+                        verbose_name="Created At",
+                    ),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(
+                        auto_now=True,
+                        help_text="When the profile was last updated.",
+                        verbose_name="Updated At",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(
+                        blank=True,
+                        help_text="The user’s full name.",
+                        max_length=255,
+                        verbose_name="Name",
+                    ),
+                ),
+                (
+                    "content",
+                    models.TextField(
+                        blank=True,
+                        help_text="About the user.",
+                        verbose_name="Content",
+                    ),
+                ),
+                (
+                    "image",
+                    models.ImageField(
+                        default="../default_profile_pic_ciw1he.jpg",
+                        help_text="Profile image of the user. Defaults to generic image if one is not provided",
+                        upload_to="images/",
+                        verbose_name="Profile Image",
+                    ),
+                ),
+                (
+                    "owner",
+                    models.OneToOneField(
+                        help_text="The user this profile is for.",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="User",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Profile',
-                'verbose_name_plural': 'Profiles',
-                'ordering': ['-created_at'],
+                "verbose_name": "Profile",
+                "verbose_name_plural": "Profiles",
+                "ordering": ["-created_at"],
             },
         ),
     ]

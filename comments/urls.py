@@ -9,14 +9,16 @@ apps within the project
 app_name = "comments"
 
 urlpatterns = [
+    path("", views.CommentList.as_view(), name="comment_list"),
+    path("<int:pk>/", views.CommentDetail.as_view(), name="comment_detail"),
     path(
-        "",
-        views.CommentList.as_view(),
-        name="comment_list",
+        "<int:pk>/replies/",
+        views.CommentReplyList.as_view(),
+        name="comment_replies",
     ),
     path(
-        "<int:pk>/",
-        views.CommentDetail.as_view(),
-        name="comment_detail",
+        "<int:pk>/replies/<int:reply_pk>/",
+        views.CommentReplyDetail.as_view(),
+        name="comment_reply_detail",
     ),
 ]

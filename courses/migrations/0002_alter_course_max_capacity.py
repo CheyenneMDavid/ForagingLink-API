@@ -7,13 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('courses', '0001_initial'),
+        ("courses", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='course',
-            name='max_capacity',
-            field=models.PositiveIntegerField(default=10, help_text='The maximum number of participants for the course.', validators=[django.core.validators.MaxValueValidator(10)], verbose_name='Maximum Capacity'),
+            model_name="course",
+            name="max_capacity",
+            field=models.PositiveIntegerField(
+                default=10,
+                help_text="The maximum number of participants for the course.",
+                validators=[django.core.validators.MaxValueValidator(10)],
+                verbose_name="Maximum Capacity",
+            ),
         ),
     ]

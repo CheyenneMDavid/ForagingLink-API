@@ -64,7 +64,9 @@ class ProfileUpdateTestCase(TestCase):
         that the profile's name and content have been updated correctly to
         "Updated Name" and "Updated Content", respectively.
         """
-        url = reverse("profiles:profile_detail", kwargs={"pk": self.profile.pk})
+        url = reverse(
+            "profiles:profile_detail", kwargs={"pk": self.profile.pk}
+        )
         data = {"name": "Updated Name", "content": "Updated Content"}
         response = self.client.put(url, data)
         self.profile.refresh_from_db()
@@ -101,7 +103,9 @@ class ProfileDeleteTestCase(TestCase):
         context of the profile which is equal to the pk attached to the self
         because there isn't any due to the deletion.
         """
-        url = reverse("profiles:profile_detail", kwargs={"pk": self.profile.pk})
+        url = reverse(
+            "profiles:profile_detail", kwargs={"pk": self.profile.pk}
+        )
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         with self.assertRaises(Profile.DoesNotExist):

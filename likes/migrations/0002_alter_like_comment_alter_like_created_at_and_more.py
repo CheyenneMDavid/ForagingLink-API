@@ -8,31 +8,56 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('comments', '0001_initial'),
+        ("comments", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('plants_blog', '0001_initial'),
-        ('likes', '0001_initial'),
+        ("plants_blog", "0001_initial"),
+        ("likes", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='like',
-            name='comment',
-            field=models.ForeignKey(blank=True, help_text="The comment that's liked.", null=True, on_delete=django.db.models.deletion.CASCADE, related_name='likes', to='comments.comment', verbose_name='Comment'),
+            model_name="like",
+            name="comment",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="The comment that's liked.",
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="likes",
+                to="comments.comment",
+                verbose_name="Comment",
+            ),
         ),
         migrations.AlterField(
-            model_name='like',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, help_text='The date and time when the like was created.', verbose_name='Created At'),
+            model_name="like",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True,
+                help_text="The date and time when the like was created.",
+                verbose_name="Created At",
+            ),
         ),
         migrations.AlterField(
-            model_name='like',
-            name='owner',
-            field=models.ForeignKey(help_text='The User who likes the post or comment.', on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Owner'),
+            model_name="like",
+            name="owner",
+            field=models.ForeignKey(
+                help_text="The User who likes the post or comment.",
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Owner",
+            ),
         ),
         migrations.AlterField(
-            model_name='like',
-            name='plant_in_focus_post',
-            field=models.ForeignKey(blank=True, help_text="The plant in focus post that's liked.", null=True, on_delete=django.db.models.deletion.CASCADE, related_name='likes', to='plants_blog.plantinfocuspost', verbose_name='Plant in Focus Post'),
+            model_name="like",
+            name="plant_in_focus_post",
+            field=models.ForeignKey(
+                blank=True,
+                help_text="The plant in focus post that's liked.",
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="likes",
+                to="plants_blog.plantinfocuspost",
+                verbose_name="Plant in Focus Post",
+            ),
         ),
     ]

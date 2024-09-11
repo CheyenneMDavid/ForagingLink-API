@@ -87,14 +87,17 @@ class Comment(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Custom save method with an added check to ensure replies can only go two levels deep
-        overriding Django's default save method
+        Custom save method with an added check to ensure replies can only go two levels deep.
         """
+        if (
+            self.replying_comment
+        ):  # Check if this comment is a reply to another comment
+            if (
+                self.replying_comment.replying_comment
+            ):  # Check if the parent comment is itself a reply
+                raise ValueError(
+                    "You cannot reply to a reply beyond two levels."
+                )
 
-        if self.replying_comment:
-
-            if self.replying_comment.replying_comment:
-
-                raise ValueError("You cannot reply to a reply beyond two levels.")
-
+        # Call the superclass's save method to handle saving the comment
         super().save(*args, **kwargs)
