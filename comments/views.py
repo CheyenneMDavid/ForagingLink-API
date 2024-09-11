@@ -16,7 +16,7 @@ project with Code Institute and adapted for my own requirements.
 """
 
 from django.db.models import Count
-from rest_framework import generics, permissions, filters
+from rest_framework import generics, permissions, filters, serializers
 from django_filters.rest_framework import DjangoFilterBackend
 from foraging_api.permissions import IsOwnerOrReadOnly
 from .models import Comment
@@ -50,12 +50,22 @@ class CommentList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         """
-        Creates a new comment and associates it with the logged-in user.
+        Creates a new comment.  It sets the currently logged in user as the owner of the comment
 
-        This method is called when creating a new comment and ensures
-        that the comment is associated with the user who is currently logged
-        in.
+        If the comment is a reply to another comment, it ensures that replies are
+        not nested beyond one level (i.e., replies to replies are not allowed).
+        If this limit is reached, a ValidationError is raised to prevent the
+        creation of the reply.
         """
+
+        parent_comment = serializer.validated_data.get(
+            "replying_comment", None
+        )
+        if parent_comment and parent_comment.replying_comment:
+            raise serializers.ValidationError(
+                "Maximum number of replies have been reached"
+            )
+
         serializer.save(owner=self.request.user)
 
 
@@ -71,3 +81,20 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.annotate(
         replies_count=Count("replies", distinct=True)
     ).order_by("-created_at")
+
+
+class CommentReplyList(generics.ListAPIView):
+    """
+    View to list all replies to a specific comment.
+    """
+
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        """
+        Return replies for the comment.
+        """
+        parent_comment_id = self.kwargs["pk"]
+        return Comment.objects.filter(replying_comment_id=parent_comment_id)
+
+
