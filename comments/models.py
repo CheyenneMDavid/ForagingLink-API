@@ -84,3 +84,17 @@ class Comment(models.Model):
         the admin panel, making it easier to moderate.
         """
         return str(self.content)
+
+    def save(self, *args, **kwargs):
+        """
+        Custom save method with an added check to ensure replies can only go two levels deep
+        overriding Django's default save method
+        """
+
+        if self.replying_comment:
+
+            if self.replying_comment.replying_comment:
+
+                raise ValueError("You cannot reply to a reply beyond two levels.")
+
+        super().save(*args, **kwargs)
