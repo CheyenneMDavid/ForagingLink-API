@@ -30,6 +30,23 @@ class CommentSerializer(serializers.ModelSerializer):
     updated_at = serializers.SerializerMethodField()
     replies = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     replies_count = serializers.ReadOnlyField()
+    replying_comment = serializers.PrimaryKeyRelatedField(
+        queryset=Comment.objects.all(), required=False, allow_null=True
+    )
+
+    def validate_replying_comment(self, value):
+        """
+
+        Ensure that replies don't go more than 2 levels of comments.
+        """
+
+        if value and value.replying_comment:
+
+            raise serializers.ValidationError(
+                "You can't reply to a comment that's already a reply."
+            )
+
+        return value
 
     def get_is_owner(self, obj):
         """
@@ -70,6 +87,7 @@ class CommentSerializer(serializers.ModelSerializer):
             "content",
             "replies",
             "replies_count",
+            "replying_comment",
         ]
 
 
