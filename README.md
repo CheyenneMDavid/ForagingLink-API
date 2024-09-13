@@ -161,38 +161,7 @@ ___
 
 - Upgraded to a newer version of Django to use `django_filter` so that the admin panel could utilize advanced filtering for the comments application. A compromise was found by using Django 4.2 and the newer version of `django_filter` 24.2, which provided the advanced filtering capabilities. However, this caused huge compatibility issues elsewhere, so I reverted to `Django==3.2.4` and `django-filter==2.4.0`.
 
-<br>
-
-- Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 required by `django-allauth`. This was resolved via tutor guidance on Slack as it was becoming a commonly experienced issue. The solution given was to install python version 3.9.19. This was a solution, but where I was using a virtual environment to isolate my dependencies, I found that I was having to reinstall the python version afresh each time I started my venv. Initially, I tried to add commands for older versions of python in the .bashrc file to avoid repetition of console commands. Unable to make the changes I realized that I lacked the permissions required. So instead, I created a script called `setup.sh` which contained:
-
-```
-#!/bin/bash
-
-# Installs Python 3.9.19, but skips if it's already installed
-pyenv install 3.9.19 --skip-existing
-
-# Attempts to create a virtual environment, skips if it already exists and displays
-# "venv already exists, skipping creation" to the console.
-pyenv virtualenv 3.9.19 venv || echo "venv already exists, skipping creation"
-
-# Activates the venv
-source venv/bin/activate
-
-# Unsets the PIP_USER to avoid issues with any pip installations
-unset PIP_USER
-
-# Upgrades pip to the latest version within the virtual environment
-pip install --upgrade pip
-
-# Instals all dependencies
-pip install -r requirements.txt
-```
-
-This allowed me to enter a single command of: `./setup.sh` and an optional manual command of: `python manage.py runserver`, because I didn't necessarily want to run it each and every time.
-
-<br>
-
-
+- Compatibility issues between Python 3.12 and `django-allauth` due to depreciated features in Python 3.12 required by `django-allauth`. This was resolved via tutor guidance on Slack as it was becoming a commonly experienced issue. The solution given was to install python version 3.9.19. This was a solution, but where I was using a virtual environment to isolate my dependencies, I found that I was having to reinstall the python version afresh each time I started my venv. Initially, I tried to add commands for older versions of python in the .bashrc file to avoid repetition of console commands. Unable to make the changes I realized that I lacked the permissions required. So instead, I created a script called `setup.sh`, hoping that this would allow me to enter a single command of: `./setup.sh`, but unfortunately, I couldn't seem to get it to create, start the virtual environment and load the requirements.txt as I needed, so I eventually resorted to entering the commands manually, again.
 
 ### Naming Conventions
 - Inconsistent Use of Hyphens and Underscores: When creating the [Models and CRUD Breakdown](#models-and-crud-breakdown) table for this readme file and adding the search and filter fields to it, I noticed that I had been inconsistent in my use of hyphens and underscores. I decided to standardize the use of underscores in all URLs and updated the `urls.py` files in each app and any corresponding file across the entire codebase. As a result, all URL patterns now use underscores.

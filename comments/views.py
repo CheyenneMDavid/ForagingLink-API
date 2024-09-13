@@ -58,7 +58,9 @@ class CommentList(generics.ListCreateAPIView):
         creation of the reply.
         """
 
-        parent_comment = serializer.validated_data.get("replying_comment", None)
+        parent_comment = serializer.validated_data.get(
+            "replying_comment", None
+        )
         if parent_comment and parent_comment.replying_comment:
             raise serializers.ValidationError(
                 "Maximum number of replies have been reached"

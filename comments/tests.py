@@ -23,9 +23,11 @@ class CommentModelTest(TestCase):
             username="test_user",
             password="test_user_password",
         )
+
         self.post = PlantInFocusPost.objects.create(
             main_plant_name="Test Plant", owner=self.user
         )
+
         self.comment = Comment.objects.create(
             owner=self.user,
             plant_in_focus_post=self.post,
@@ -39,6 +41,7 @@ class CommentModelTest(TestCase):
         the content, owner, and plant post are correctly associated with the
         comment.
         """
+
         self.assertEqual(self.comment.content, "Test comment")
         self.assertEqual(self.comment.owner, self.user)
         self.assertEqual(self.comment.plant_in_focus_post, self.post)
@@ -50,3 +53,23 @@ class CommentModelTest(TestCase):
         comment content.
         """
         self.assertEqual(str(self.comment), "Test comment")
+
+    def test_third_level_comment_restriction(self):
+        """
+        Tests to ensure that comments can't go passed 2 levels
+        """
+
+        second_level_reply = Comment.objects.create(
+            owner=self.user,
+            plant_in_focus_post=self.post,
+            replying_comment=self.comment,
+            content="Second level reply",
+        )
+
+        with self.assertRaises(ValueError):
+            third_level_reply = Comment.objects.create(
+                owner=self.user,
+                plant_in_focus_post=self.post,
+                replying_comment=second_level_reply,
+                content="Third level reply",
+            )
