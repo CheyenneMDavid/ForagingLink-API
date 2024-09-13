@@ -172,6 +172,11 @@ ___
     However, these settings applied pagination structure to all list views, including the CourseList view. This changed the response data structure, placing the results within a results key and expecting 10 items per page due to this being globally set.<br>
     This conflicted with the Courses app tests, which expected a simpler list of courses. The tests failed because they didn't account for the results key in the paginated response.
 For a detailed explanation of the solution, please refer to the [Testing](#testing) section and scroll to "Tests for courses app".
+
+### Limiting Comment Nesting
+- It was only when I was creating wireframes for the front end that I realized I had not placed a limit on the comments. As things stood, the nesting could have gotten out of hand.  To guard against this, I added a restriction that limits comments to two levels, along with a test with the raising of a `ValueError` if a user attempts to create a third-level comment.
+
+
 ___
 
 ## Prerequisites
@@ -347,7 +352,7 @@ ___
 
   [Comments app tests](comments/tests.py)
 
-  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/comments_tests_oammrb.png)
+  ![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1726204940/forage/Foraging_API_README_images/comments_tests_getldm.png)
 
 #### Tests for the Likes Application
   Tests for Creation, Deletion, and Unique Constraints of a Like Instance.
