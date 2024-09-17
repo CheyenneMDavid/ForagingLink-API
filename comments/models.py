@@ -18,7 +18,7 @@ class Comment(models.Model):
     Using SET_NULL to ensure plant_in_focus_posts are retained when an author
     deletes their account.
     their account, setting the username to inactive user.
-    If the plant_in_focus_post it's self deleted, then comments also delete
+    If the plant_in_focus_post its self deleted, then comments also delete
     using CASCADE
     Using "main_comment" as a foreign key in order to enable commenting on
     comments.
@@ -26,6 +26,8 @@ class Comment(models.Model):
 
     owner = models.ForeignKey(
         User,
+        # If a user deletes their account, the comment remains but isn't
+        # associated with the deleted user.
         on_delete=models.SET_NULL,
         null=True,
         verbose_name="Owner",
@@ -34,6 +36,8 @@ class Comment(models.Model):
 
     plant_in_focus_post = models.ForeignKey(
         PlantInFocusPost,
+        # Ensures that the comments are also deleted when the post that
+        # they're associated to is deleted.
         on_delete=models.CASCADE,
         default=None,
         verbose_name="Plant in Focus Posts",
@@ -41,6 +45,8 @@ class Comment(models.Model):
     )
 
     replying_comment = models.ForeignKey(
+        # Using 'self' as a foreign key, allowing the comments to reference
+        # one another which enables nested replies
         "self",
         on_delete=models.CASCADE,
         null=True,
@@ -51,12 +57,14 @@ class Comment(models.Model):
     )
 
     created_at = models.DateTimeField(
+        # Sets the comment creation time to 'now'
         auto_now_add=True,
         verbose_name="Created At",
         help_text="The timestamp indicating when the comment was created.",
     )
 
     updated_at = models.DateTimeField(
+        # Sets the comment update time to 'now'
         auto_now=True,
         verbose_name="Updated At",
         help_text="The timestamp for the last update of the comment.",
@@ -87,17 +95,25 @@ class Comment(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Custom save method with an added check to ensure replies can only go two levels deep.
+        Custom save method with an added check to ensure replies can only go
+        two levels deep. Restricting the replies to this depth avoids the
+        nesting of comments becoming overly complex which would be harder to
+        display.
         """
         if (
+            # Checks if this comment is a reply to another comment
             self.replying_comment
-        ):  # Check if this comment is a reply to another comment
+        ):
             if (
+                # Checks if the parent comment is also a reply to another
+                # comment.
                 self.replying_comment.replying_comment
-            ):  # Check if the parent comment is itself a reply
+            ):  # If it's proven to be a reply to a reply, then that's the
+                # limit and a ValueError is raised.
                 raise ValueError(
                     "You cannot reply to a reply beyond two levels."
                 )
 
-        # Call the superclass's save method to handle saving the comment
+        # Call the superclass's save method to handle saving after applying
+        # the custom logic that limits comments to only 2 levels deep.
         super().save(*args, **kwargs)
