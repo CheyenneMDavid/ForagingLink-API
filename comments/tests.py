@@ -16,7 +16,7 @@ class CommentModelTest(TestCase):
 
     def setUp(self):
         """
-        Creates a user, a plant post, and a comment for the purpose of testing.
+        Creates a user, a plant post, and a comment for the purpose of testing
         """
 
         self.user = User.objects.create_user(
@@ -67,6 +67,10 @@ class CommentModelTest(TestCase):
         )
 
         with self.assertRaises(ValueError):
+            # Expecting a ValueError when trying to create a third-level
+            # reply, which should be disallowed by model validation.
+            # The variable 'third_level_comment' is used only for this purpose
+            # and shows as an error because it appears not to be used.
             third_level_reply = Comment.objects.create(
                 owner=self.user,
                 plant_in_focus_post=self.post,
