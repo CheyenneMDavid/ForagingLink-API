@@ -82,4 +82,6 @@ class CourseRegistration(models.Model):
     )
 
     def __str__(self):
-        return f"{self.owner.username}'s registration for: {self.course_title}"
+        return (
+            f"{self.owner.username}'s registration for: {self.course_title}"
+        )

@@ -69,7 +69,9 @@ class CommentList(generics.ListCreateAPIView):
         Changed from previous use of ValueError to ValidationError to provide more specific feedback.
         """
 
-        parent_comment = serializer.validated_data.get("replying_comment", None)
+        parent_comment = serializer.validated_data.get(
+            "replying_comment", None
+        )
         if parent_comment and parent_comment.replying_comment:
             raise serializers.ValidationError(
                 "You cannot reply to a reply beyond two levels."

@@ -55,7 +55,9 @@ class LikeModelTest(APITestCase):
         """
         Like.objects.create(owner=self.user, plant_in_focus_post=self.post)
         with self.assertRaises(Exception):
-            Like.objects.create(owner=self.user, plant_in_focus_post=self.post)
+            Like.objects.create(
+                owner=self.user, plant_in_focus_post=self.post
+            )
 
     def test_unique_constraint_for_comment(self):
         """

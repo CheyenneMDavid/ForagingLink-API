@@ -37,13 +37,17 @@ urlpatterns = [
         ),
     ),
     path("profiles/", include("profiles.urls", namespace="profiles")),
-    path("plants_blog/", include("plants_blog.urls", namespace="plants_blog")),
+    path(
+        "plants_blog/", include("plants_blog.urls", namespace="plants_blog")
+    ),
     path("comments/", include("comments.urls", namespace="comments")),
     path("likes/", include("likes.urls", namespace="likes")),
     path("followers/", include("followers.urls", namespace="followers")),
     path("courses/", include("courses.urls", namespace="courses")),
     path(
         "course_registrations/",
-        include("course_registrations.urls", namespace="course_registrations"),
+        include(
+            "course_registrations.urls", namespace="course_registrations"
+        ),
     ),
 ]
