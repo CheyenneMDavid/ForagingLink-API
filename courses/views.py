@@ -38,6 +38,7 @@ class CourseList(generics.ListAPIView):
     serializer_class = CourseSerializer
     permission_classes = [AllowAny]
 
+    # Only fetches courses with dates set to future, and limits the return to only 3 courses.
     def get_queryset(self):
         now = timezone.now()
         return Course.objects.filter(date__gt=now).order_by("date")[:3]
