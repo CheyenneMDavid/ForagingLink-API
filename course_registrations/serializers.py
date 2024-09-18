@@ -22,7 +22,9 @@ class CourseRegistrationSerializer(serializers.ModelSerializer):
         included
         """
 
+        # Specifies the model to serialized
         model = CourseRegistration
+        # List of fields to be included
         fields = [
             "id",
             "course_title",
