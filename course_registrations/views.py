@@ -9,9 +9,7 @@ from .serializers import CourseRegistrationSerializer
 
 class CourseRegistrationCreate(generics.CreateAPIView):
     """
-    Inherits from "CreateAPIView"
-    This view has no other purpose other than to create an instance for a User
-    who is authenticated.
+    Allows authenticated users to create a course registration.
     """
 
     queryset = CourseRegistration.objects.all()
@@ -21,9 +19,7 @@ class CourseRegistrationCreate(generics.CreateAPIView):
 
 class CourseRegistrationDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    This inherits from "RetrieveUpdateDestroyAPIView" and as such is assigned
-    the permission class of "IsAdmin" so that nobody else can make any changes
-    to the CourseRegistrations
+    Allows admin users to retrieve, update, or delete a course registration.
     """
 
     queryset = CourseRegistration.objects.all()
