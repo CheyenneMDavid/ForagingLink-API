@@ -12,20 +12,18 @@ from rest_framework import permissions
 
 class IsAdminUserOrReadOnly(permissions.BasePermission):
     """
-    Custom permission that allows only admin users to perform editing
-    operations,
-    while allowing read operations for all authenticated users.
+    Custom permission that allows only the admin users to Update and Delete, whilst allowing all other users, authenticated or not, to read.
     """
 
     def has_permission(self, request, view):
         """
         Returns a "True" if permission is granted, and a "False" if
         permissions isn't granted.
-        It allows authenticated users to read and only admins to write.
+        It allows unauthenticated users to read and only admins to write.
         """
         # Allow read-only access for any authenticated request
         if request.method in permissions.SAFE_METHODS:
-            return request.user.is_authenticated
+            return True
         # Write permissions require the user to be an admin
         return request.user.is_staff
 

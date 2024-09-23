@@ -16,6 +16,7 @@ from rest_framework import generics
 from .models import Course
 from .serializers import CourseSerializer
 from django.utils import timezone
+from foraging_api.permissions import IsAdminUserOrReadOnly
 
 
 # Assistance from StackOverflow pages here:
@@ -76,11 +77,10 @@ class CourseCreate(generics.CreateAPIView):
 class CourseUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     """
     View to retrieve, update, or delete course instances.
-    Inherits from "RetrieveUpdateDestroyAPIView" with "IsAdminUser" permission
-    class. It ensures that only Admins can modify instances while allowing
-    read-only access to course details.
+    Inherits from "RetrieveUpdateDestroyAPIView" with "IsAdminUserOrReadOnly" permission
+    class. It ensures that anyone can read course details, but only Admins can Update or Delete the course instances..
     """
 
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUserOrReadOnly]
