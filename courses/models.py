@@ -8,6 +8,7 @@ from django.core.validators import MaxValueValidator
 from django.db import models
 
 
+# Choices for the seasons a course can be setup for from the admin panel.
 class Course(models.Model):
     SEASON_CHOICES = [
         ("", "Select Season"),
@@ -25,6 +26,7 @@ class Course(models.Model):
         help_text="Select the season during which the course is offered.",
     )
 
+    # Admins can choose titles of courses to allow for more flexability
     title = models.CharField(
         max_length=255,
         verbose_name="Course Title",
@@ -47,6 +49,7 @@ class Course(models.Model):
         help_text="Enter the location where the course will take place.",
     )
 
+    # Using Django's MaxValueValidator to ensure courses don't go over the max capacity.
     max_capacity = models.PositiveIntegerField(
         default=10,
         validators=[MaxValueValidator(10)],
@@ -54,5 +57,15 @@ class Course(models.Model):
         help_text="The maximum number of participants for the course.",
     )
 
+    class Meta:
+        # Courses to be displayed in admin panel, starting with most recent, first.
+        ordering = ["-date"]
+        verbose_name = "Course"
+        # Human readable plural name
+        verbose_name_plural = "Courses"
+
     def __str__(self):
+        """
+        Returns the course title as a string representation for improved readability in the admin panel.
+        """
         return self.title
