@@ -55,19 +55,28 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
 
 The user stories utilized in this project align with those listed in the associated frontend project. This decision was made because both frontend and backend components contribute to fulfilling these user stories, albeit in different capacities. The frontend is responsible for presenting information in the user interface, so it is repeated in the corresponding repository. Whilst the backend manages the storage and retrieval of data.
 
-| Feature        | As    | I Want To                                               | So That I Can                                                 | Backend Functions                                                 |
-| -------------- | ----- | ------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Authentication | user  | sign-up for an account                                  | access the application securely                               | `create_user()`                                                   |
-| Authentication | user  | sign in to my account securely                          | use the application                                           | `authenticate_user()`                                             |
-| Authentication | user  | sign out of my account securely                         | ensure the privacy of my data                                 | `logout_user()`                                                   |
-| Comments       | user  | edit comments                                           | make corrections or updates                                   | `update_comment()`                                                |
-| Comments       | user  | delete comments                                         | remove them from visibility                                   | `delete_comment()`                                                |
-| Likes          | user  | like posts and comments                                 | show appreciation for content                                 | `create_like()`                                                   |
-| Followers      | user  | follow other users                                      | stay updated on what they have to say                         | `create_follower()`                                               |
-| Courses        | user  | register for a foraging course                          | attend one                                                    | `create_course_registration()`                                    |
-| Comments       | user  | comment on posts and other comments                     | interact with other users                                     | `create_comment()`, `create_reply()`, `read_comments()`           |
-| Posts          | admin | exercise full CRUD capability for posts                 | build community interest in site content                      | `create_post()`, `read_posts()`, `update_post()`, `delete_post()` |
-| Courses        | admin | access user's registration details for foraging courses | manage course registrations and communicate with participants | `retrieve_course_registrations()`                                 |
+| Feature              | As    | I Want To                                | So That I Can                                 | Backend Functions                                                  |
+| -------------------- | ----- | ---------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------ |
+| Authentication       | user  | sign-up for an account                   | access the application securely               | `create_user()`                                                    |
+| Authentication       | user  | sign in to my account securely           | use the application                           | `authenticate_user()`                                              |
+| Authentication       | user  | sign out of my account securely          | ensure the privacy of my data                 | `logout_user()`                                                    |
+| Comments             | user  | read comments and replies                | engage with discussions                       | `list()`, `retrieve()` (via `CommentList()`, `CommentDetail()`     |
+| Comments             | user  | create comments or replies               | ask or answer questions on posts or comments  | `create()` via `CommentLis()`                                      |
+| Comments             | user  | edit comments                            | make corrections or updates                   | `update()` via `CommentDetail()`                                   |
+| Comments             | user  | delete comments                          | remove my comments from the post              | `destroy()` via `CommentDetail()`                                  |
+| Likes                | user  | like a post or comment                   | show appreciation for what's been written     | `create()` via `LikeList()`                                        |
+| Likes                | user  | unlike a post or comment                 | unlike if I changed my mind                   | `destroy()` via `LikeDetail()`                                     |
+| Followers            | user  | follow other users                       | I can engage with content that interests me.  | `create()` via `FollowerList()`                                    |
+| Followers            | user  | unfollow other users                     | disengage from content that I no longer enjoy | `destroy()` via `FollowerDetail()`                                 |
+| Courses              | user  | view avaliable courses.                  | choose one I wish to go on.                   | `list()` via `CourseList()`, `retrieve()` via `CourseUpdateDelete` |
+| Courses              | admin | create courses                           | plan and publish future events                | `CourseCreate()`                                                   |
+| Courses              | admin | Update and Delete                        | update course details and remove old courses  | `update()`, `destroy()` via `CourseUpdateDelete()`                 |
+| Course Registrations | user  | fill out a contact form                  | register my interest in attending a course    | `CourseRegistrationCreate()`                                       |
+| Course Registrations | admin | have full CRUD ability for contact forms | manage course attendees.                      | `CourseRegistrationDetail()`                                       |
+| Plant Blog           | admin | have full CRUD capability for posts      | Manage site content                           | `PlantInFocusPostCreate()`                                         |
+| Plants Blog          | user  | read blog posts                          | learn about the plants I wish to foarage      | `PlantInFocusPostList()`                                           |
+| Profiles             | user  | read user's profiles details             | engage with my fellow users                   | `list()` via `ProfileList()`, `retrieve()` via `ProfileDetail()`   |
+| Profiles             | owner | update and delete my profile             | update my info or delete my account           | `ProfileDetail()`                                                  |
 
 <br>
 
@@ -173,6 +182,22 @@ Reasoning was that I wanted to convey the type and specific purpose of the blog 
 I believe the naming decisions help maintain a clear and organized codebase, making it easier for future developers to not only understand the structure, but also the purpose of the different components.
 
 ---
+
+## Development Process
+
+### Refining the User Story Table
+
+When going through the README.md, , I noticed some gaps in my understanding of how:
+
+- The projects repository's User Stories.
+- The written explanation of what was needed to achieve them.
+- The names of the Classes, Functions, and Methods all tied together and were called upon to achieve them.
+
+Add to this the differentiation between Classes and Functions which are designated by starting with `def`, but when writing Classes with blocks of code within them, the subordinate blocks of code, still starting with `def` were now called methods.
+
+When writing the table describing User Stories, I had made more of a generalised statement which was kind of woolly, indicating that the individual stories would be fulfilled by tasks that would be undertaken, adding a parenthesis to them to indicate that they'd be carried out by functions within the code.
+
+Realising the inaccuracy of my generalised back-end descriptions, I've since gone back through the table, breaking down it's content into a more structured form and associated the back-end functions, using their fuller and more precise names.
 
 ## Development Challenges & Solutions
 
