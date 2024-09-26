@@ -529,7 +529,13 @@ For detailed instructions on how to fork and clone a repository, please refer to
 ## Credits
 
 - **StackOverflow:**
+
   - [Correctly retrieve data where date and time are greater than now](https://stackoverflow.com/questions/9549744/) for guidance on querying in Django.
+
+- **StackOverflow**
+
+  - [How to define two fields "unique" as couple](https://stackoverflow.com/questions/2201598/how-to-define-two-fields-unique-as-couple)
+
 - **Django Documentation:**
   - [Django Queries](https://docs.djangoproject.com/en/5.0/topics/db/queries/) for understanding and implementing database queries.
 - **Django REST Framework Documentation:**

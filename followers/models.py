@@ -15,16 +15,21 @@ class Follower(models.Model):
     as followers of one another.
     """
 
+    # "Owner" is the user that is doing the following.
     owner = models.ForeignKey(
         User,
+        # If the user (owner/follower) is deleted, this follow relationship will also be deleted.
         related_name="following",
         on_delete=models.CASCADE,
         verbose_name="Owner",
         help_text="The user who is following another user.",
     )
+
+    # "Followed" is the user that is being followed by the owner.
     followed = models.ForeignKey(
         User,
         related_name="followed",
+        # If the user (being followed) is deleted, this follow relationship will also be deleted.
         on_delete=models.CASCADE,
         verbose_name="Followed",
         help_text="The user who is being followed.",
@@ -41,7 +46,10 @@ class Follower(models.Model):
         Using "unique_together" so users can't double up on following.
         """
 
+        # Ensures orderin is most recent, first.
         ordering = ["-created_at"]
+        # HELP and ADVICE
+        # Using `unique_together`, courtesy of advice from StackOverflow website, here: https://stackoverflow.com/questions/2201598/how-to-define-two-fields-unique-as-couple
         unique_together = [
             "owner",
             "followed",
