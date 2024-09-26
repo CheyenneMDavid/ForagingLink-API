@@ -26,13 +26,19 @@ class FollowerSerializer(serializers.ModelSerializer):
         that need to be included in the serialized output
         """
 
+        # Model to be serialized.
         model = Follower
 
+        # List of all fields that will be included for serialization.
         fields = [
             "id",
+            # User that follows another user.
             "owner",
+            # Time stamp for when the following relationship is created.
             "created_at",
+            # The user that is being followed.
             "followed",
+            # Name of the user that's being followed
             "followed_name",
         ]
 
@@ -42,8 +48,10 @@ class FollowerSerializer(serializers.ModelSerializer):
         messages if unsuccessful.
         """
         try:
+            # Calls the create method from serializers.ModelSerializer in order to create a new follower instance
             return super().create(validated_data)
         except IntegrityError:
+            # Returns a validation error if the follow relationship already exists.
             raise serializers.ValidationError(
                 {"detail": "possible duplicate"}
             )
