@@ -23,8 +23,11 @@ class FollowerList(generics.ListCreateAPIView):
     when it's needed.
     """
 
+    # Only authenticated users can create followers.
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # Queryset includes all Follower instances.
     queryset = Follower.objects.all()
+    # Specifies the serializer used for representing the follower data.
     serializer_class = FollowerSerializer
 
     def perform_create(self, serializer):
@@ -34,19 +37,19 @@ class FollowerList(generics.ListCreateAPIView):
         and setting them as the owner.
         """
 
+        # Saves the new Follower instance, defining the owner at the user that is currently signed in.
         serializer.save(owner=self.request.user)
 
 
 class FollowerDetail(generics.RetrieveDestroyAPIView):
     """
-    Inherits from "RetrieveDestroyAPIView" which provides the view with get,
-    put, patch and delete method handlers.
-
-    The permissions are set to "IsOwnerOrReadOnly", resulting in only the
-    owner being able to creating a new instance when the follow another user.
-    "all" in order to include all of the followers.
+    Inherits from RetrieveDestroyAPIView, providing GET and DELETE method handlers to retrieve or delete a follower instance.
+    The permissions are set to "IsOwnerOrReadOnly", so only the owner of the follower relationship can delete it, whilst anyone can view it.
     """
 
+    # Only the owner can delete the follower instance, whilst anyone can view it.
     permission_classes = [IsOwnerOrReadOnly]
+    # Queryset includes all Follower instances.
     queryset = Follower.objects.all()
+    # Specifies the serializer that's used for representing follower data.
     serializer_class = FollowerSerializer
