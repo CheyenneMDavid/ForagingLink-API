@@ -57,9 +57,9 @@ The user stories utilized in this project align with those listed in the associa
 
 | Feature              | As    | I Want To                                | So That I Can                                 | Backend Functions                                                  |
 | -------------------- | ----- | ---------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------ |
-| Authentication       | user  | sign-up for an account                   | access the application securely               | `create_user()`                                                    |
-| Authentication       | user  | sign in to my account securely           | use the application                           | `authenticate_user()`                                              |
-| Authentication       | user  | sign out of my account securely          | ensure the privacy of my data                 | `logout_user()`                                                    |
+| Authentication       | user  | sign-up for an account                   | access the application securely               | Managed by Django Allauth                                          |
+| Authentication       | user  | sign in to my account securely           | use the application                           | Managed by Django Allauth                                          |
+| Authentication       | user  | sign out of my account securely          | ensure the privacy of my data                 | Managed by Django Allauth                                          |
 | Comments             | user  | read comments and replies                | engage with discussions                       | `list()`, `retrieve()` (via `CommentList()`, `CommentDetail()`     |
 | Comments             | user  | create comments or replies               | ask or answer questions on posts or comments  | `create()` via `CommentLis()`                                      |
 | Comments             | user  | edit comments                            | make corrections or updates                   | `update()` via `CommentDetail()`                                   |
