@@ -18,13 +18,18 @@ class Like(models.Model):
     only like each one of them, the once.
     """
 
+    # Foreign key relationship to the User model to track who liked a post or comment
     owner = models.ForeignKey(
         User,
+        # Deletes the Like if the associated user is deleted
         on_delete=models.CASCADE,
+        # Using verbose_name to create a more human like description of the owner in the admin panel.
         verbose_name="Owner",
+        # Using of help_text to provide context for the admin, in the admin panel.
         help_text="The User who likes the post or comment.",
     )
 
+    # Foreign key relationship to the PlantInFocusPost model to track which post was liked
     plant_in_focus_post = models.ForeignKey(
         PlantInFocusPost,
         related_name="likes",
@@ -44,6 +49,7 @@ class Like(models.Model):
         help_text="The comment that's liked.",
     )
     created_at = models.DateTimeField(
+        # Timestamp for when the like is created, is generated autmatically.
         auto_now_add=True,
         verbose_name="Created At",
         help_text="The date and time when the like was created.",
@@ -57,6 +63,7 @@ class Like(models.Model):
         verbose names are used, enabling the pairing to be better understood.
         """
 
+        # Ensures an owner can only like a post or comment, once.
         constraints = [
             models.UniqueConstraint(
                 fields=["owner", "plant_in_focus_post"],
@@ -66,6 +73,7 @@ class Like(models.Model):
                 fields=["owner", "comment"], name="unique_like_per_comment"
             ),
         ]
+        # Most recent listed first.
         ordering = ["-created_at"]
 
     def __str__(self):
