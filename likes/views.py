@@ -20,10 +20,17 @@ class LikeList(generics.ListCreateAPIView):
     authenticated users are able to like.
     """
 
+    # Queryset that returns all Like objects
     queryset = Like.objects.all()
+
+    # Serializer handing the likes objects that are returned.
     serializer_class = LikeSerializer
+    # Read Only access to unauthenticated users, whilst authenticated can
+    # create a like.
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # Backend handling the filtering of querysets
     filter_backends = [DjangoFilterBackend]
+    # Specific fields that are used for filtering requests.
     filterset_fields = ["owner", "plant_in_focus_post", "comment"]
 
 
@@ -35,6 +42,9 @@ class LikeDetail(generics.RetrieveDestroyAPIView):
     like can delete it.
     """
 
+    # Queryset that returns all Like objects
     queryset = Like.objects.all()
+    # Serializer to handle Like objects
     serializer_class = LikeSerializer
+    # Only owners of a like object are able to destroy it.
     permission_classes = [IsOwnerOrReadOnly]

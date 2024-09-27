@@ -18,18 +18,22 @@ class Like(models.Model):
     only like each one of them, the once.
     """
 
-    # Foreign key relationship to the User model to track who liked a post or comment
+    # Foreign key relationship to the User model to track who liked a post or
+    # comment
     owner = models.ForeignKey(
         User,
         # Deletes the Like if the associated user is deleted
         on_delete=models.CASCADE,
-        # Using verbose_name to create a more human like description of the owner in the admin panel.
+        # Using verbose_name to create a more human like description of the
+        # owner in the admin panel.
         verbose_name="Owner",
-        # Using of help_text to provide context for the admin, in the admin panel.
+        # Using of help_text to provide context for the admin, in the admin
+        # panel.
         help_text="The User who likes the post or comment.",
     )
 
-    # Foreign key relationship to the PlantInFocusPost model to track which post was liked
+    # Foreign key relationship to the PlantInFocusPost model to track which
+    # post was liked
     plant_in_focus_post = models.ForeignKey(
         PlantInFocusPost,
         related_name="likes",
