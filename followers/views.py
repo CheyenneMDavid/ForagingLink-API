@@ -37,17 +37,21 @@ class FollowerList(generics.ListCreateAPIView):
         and setting them as the owner.
         """
 
-        # Saves the new Follower instance, defining the owner at the user that is currently signed in.
+        # Saves the new Follower instance, defining the owner at the user
+        # that is currently signed in.
         serializer.save(owner=self.request.user)
 
 
 class FollowerDetail(generics.RetrieveDestroyAPIView):
     """
-    Inherits from RetrieveDestroyAPIView, providing GET and DELETE method handlers to retrieve or delete a follower instance.
-    The permissions are set to "IsOwnerOrReadOnly", so only the owner of the follower relationship can delete it, whilst anyone can view it.
+    Inherits from RetrieveDestroyAPIView, providing GET and DELETE method
+    handlers to retrieve or delete a follower instance.
+    The permissions are set to "IsOwnerOrReadOnly", so only the owner of the
+    follower relationship can delete it, whilst anyone can view it.
     """
 
-    # Only the owner can delete the follower instance, whilst anyone can view it.
+    # Only the owner can delete the follower instance, whilst anyone can view
+    # it.
     permission_classes = [IsOwnerOrReadOnly]
     # Queryset includes all Follower instances.
     queryset = Follower.objects.all()

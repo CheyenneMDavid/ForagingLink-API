@@ -48,10 +48,12 @@ class FollowerSerializer(serializers.ModelSerializer):
         messages if unsuccessful.
         """
         try:
-            # Calls the create method from serializers.ModelSerializer in order to create a new follower instance
+            # Calls the create method from serializers.ModelSerializer in
+            # order to create a new follower instance
             return super().create(validated_data)
         except IntegrityError:
-            # Returns a validation error if the follow relationship already exists.
+            # Returns a validation error if the follow relationship already
+            # exists.
             raise serializers.ValidationError(
                 {"detail": "possible duplicate"}
             )
