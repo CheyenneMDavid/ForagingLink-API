@@ -44,20 +44,23 @@ class Follower(models.Model):
 
     class Meta:
         """
-        Overriding the default behavior by listing followers, newest first.
-        Using "unique_together" so users can't double up on following.
+        Using UniqueConstraint so users can't double up on following.
+        Changes from using `unique_together` due to depreciation and
+        replacement by `UniqueConstraints` as explained in
+        https://django.readthedocs.io/en/stable/ref/models/options.html,
+        under the section of unique_together - Options.unique_together
         """
 
-        # Ensures orderin is most recent, first.
-        ordering = ["-created_at"]
-        # HELP and ADVICE
-        # Using `unique_together`, courtesy of advice from StackOverflow
-        # website, here: https://stackoverflow.com/questions/2201598
-        # how-to-define-two-fields-unique-as-couple
-        unique_together = [
-            "owner",
-            "followed",
-        ]
+    # Ensures ordering is most recent, first.
+    ordering = ["-created_at"]
+
+    # Use of UniqueConstraint to enforce that a user can't follow the same
+    # user twice.
+    constraints = [
+        models.UniqueConstraint(
+            fields=["owner", "followed"], name="unique_following"
+        )
+    ]
 
     def __str__(self):
         return f"{self.owner} {self.followed}"
