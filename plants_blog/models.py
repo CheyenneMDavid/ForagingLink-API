@@ -26,6 +26,8 @@ class PlantInFocusPost(models.Model):
     details, along with necessary warnings.
     """
 
+    # Month choices in admin panel dropdown, when creating a plant in focus
+    # post for the blog
     MONTH_CHOICES = [
         (1, "January"),
         (2, "February"),
@@ -41,6 +43,8 @@ class PlantInFocusPost(models.Model):
         (12, "December"),
     ]
 
+    # Although admins create posts, it's concievable that admins can change
+    # So, PROTECT is used to ensure a post is kept if this shoudl happen
     owner = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
@@ -50,24 +54,28 @@ class PlantInFocusPost(models.Model):
         help_text="The user/admin that created the article.",
     )
 
+    # Timestamp for when the post was first created.
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Creation Date and Time",
-        help_text="Automatically sets date & time when the record is created.",
+        help_text="Automatically sets date & time when the record is created",
     )
+    # Timestamp for when a post is updated/changed
     updated_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Updated date & time.",
         help_text="Automatically adds date  time of update.",
     )
 
-    # Details for main plant which is the focus.
+    # Details for main post.
     main_plant_name = models.CharField(
         max_length=255,
         verbose_name="Main Plant Name",
         help_text="Enter the common name of the main plant.",
         default="",
     )
+
+    # Information for main plant in post
     main_plant_month = models.IntegerField(
         choices=MONTH_CHOICES,
         verbose_name="Main Plant Month",
@@ -76,8 +84,8 @@ class PlantInFocusPost(models.Model):
     )
     main_plant_environment = models.TextField(
         verbose_name="Main Plant Environment",
-        help_text="Describe the environment where the main plant is likely to "
-        "be found.",
+        help_text="Describe the environment where the main plant is likely "
+        "to be found.",
         default="",
     )
     culinary_uses = models.TextField(
@@ -103,7 +111,8 @@ class PlantInFocusPost(models.Model):
         default="",
     )
 
-    # Details of plants that may be mistaken for the main_plant of interest,
+    # Details of plants that may be mistaken for the main_plant of interest.
+    # Optional to be filled in as it maynot always be applicable.
     confusable_plant_name = models.CharField(
         max_length=255,
         verbose_name="Confusable Plant Name",
@@ -121,7 +130,7 @@ class PlantInFocusPost(models.Model):
     confusable_plant_warnings = models.TextField(
         verbose_name="warnings",
         help_text="Describe any dangers of mistaking this plant for the "
-        "main_plant of interestS",
+        "main_plant of interest",
         null=True,
         blank=True,
     )
@@ -133,5 +142,6 @@ class PlantInFocusPost(models.Model):
         blank=True,
     )
 
+    # String representation, returning the name of the main plant.
     def __str__(self):
         return self.main_plant_name
