@@ -20,6 +20,7 @@ from rest_framework.permissions import AllowAny
 from foraging_api.permissions import IsAdminUserOrReadOnly
 
 
+# View to list all PlantInFocusPosts, allowing anyone to view the list.
 class PlantInFocusPostList(generics.ListAPIView):
     """
     View for listing all PlantInFocusPosts.
@@ -28,16 +29,33 @@ class PlantInFocusPostList(generics.ListAPIView):
     """
 
     serializer_class = PlantInFocusPostSerializer
+    # Anyone can view the list of posts.
     permission_classes = [AllowAny]
+    # Annotating the queryset with a distinct count of comments for each post
+    # which can then be called forward and displayed in the front end.
     queryset = PlantInFocusPost.objects.annotate(
+        # Using `distinct=True`` to ensure a single comment is only counted
+        # the once.
         comments_count=Count("comment", distinct=True),
     ).order_by("-created_at")
 
+    # Filters for the search and ordering functionality in the backend.
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
     ]
 
+    # Fields which can be used for the order.
+    ordering_fields = [
+        # Order by creation date
+        "created_at",
+        # Order by the plant's name
+        "main_plant_name",
+        # Order by the number of comments
+        "comments_count",
+    ]
+
+    # Specifies the fields that are searchable.
     search_fields = [
         "main_plant_name",
         "main_plant_environment",
@@ -48,20 +66,26 @@ class PlantInFocusPostList(generics.ListAPIView):
     ]
 
 
+# View for creating PlantInFocusPosts, restricted to admins only.
 class PlantInFocusPostCreate(generics.CreateAPIView):
     """
     View for creating new PlantInFocusPosts.
     It allows only the admin users to add new posts.
     """
 
+    # Retrieves all PlantInFocus posts
     queryset = PlantInFocusPost.objects.all()
+    # States the name of the seriealizer to be used
     serializer_class = PlantInFocusPostSerializer
+    # Ensures that only an admin is able to create a post.
     permission_classes = [IsAdminUserOrReadOnly]
 
+    # Assigns the current user as the owner of the post
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
+# View for retrieving, updating, and deleting a specific PlantInFocusPost.
 class PlantInFocusPostDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Handles retrieving, updating, and deleting a specific PlantInFocusPost.
@@ -69,13 +93,13 @@ class PlantInFocusPostDetail(generics.RetrieveUpdateDestroyAPIView):
     or delete posts.
     """
 
+    # Fetches the post and includes a distinct count of comments.
     queryset = PlantInFocusPost.objects.annotate(
         comments_count=Count("comment", distinct=True),
     ).order_by("-created_at")
 
+    # Specifies serializer to be used.
     serializer_class = PlantInFocusPostSerializer
-
-    def get_permissions(self):
-        if self.request.method in ["GET", "HEAD", "OPTIONS"]:
-            return [AllowAny()]
-        return [IsAdminUserOrReadOnly()]
+    # Detail of the post is readable by anyone, but the update and delete are
+    # only available to an admin.
+    permission_classes = [IsAdminUserOrReadOnly]
