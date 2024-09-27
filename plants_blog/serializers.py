@@ -17,14 +17,20 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
     strings that include the field_name in a string.
     """
 
+    # Read-only field returning the owner's username
     owner = serializers.ReadOnlyField(source="owner.username")
+    # Checks if the current user is the post owner.
     is_owner = serializers.SerializerMethodField()
+    # Returns owner's profile ID
     profile_id = serializers.ReadOnlyField(source="owner.profile.id")
+    # Returns the URL for the owner's profile image.
     profile_image = serializers.ReadOnlyField(
         source="owner.profile.image.url"
     )
+    # Returns the count for comments on the post.
     comments_count = serializers.ReadOnlyField()
 
+    # Method to check if the currently logged in user is the owner of the post
     def get_is_owner(self, obj):
         """
         Returns True if the current request user is the owner of the object.
@@ -32,6 +38,9 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
         request = self.context.get("request", None)
         return request and request.user == obj.owner
 
+    # Validation for image size and dimensions with ValidationError if
+    # dimensions or image size are outside the stated dimensions and size
+    # allowed
     def validate_image(self, value, field_name):
         if value.size > 2 * 1024 * 1024:
             raise serializers.ValidationError(
@@ -50,9 +59,11 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
 
         return value
 
+    # Validates the main plant image.
     def validate_main_plant_image(self, value):
         return self.validate_image(value, "Main Plant Image")
 
+    # Validates the confusable plant image.
     def validate_confusable_plant_image(self, value):
         return self.validate_image(value, "Confusable Plant Image")
 
@@ -61,7 +72,9 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
         Specifies the model and the fields that will be serialized.
         """
 
+        # Specifies the model to be serialized
         model = PlantInFocusPost
+        # Speciifies the fields to be included in the searialization
         fields = [
             "id",
             "owner",
