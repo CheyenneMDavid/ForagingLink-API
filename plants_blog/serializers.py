@@ -2,7 +2,7 @@
 This file has been predominantly copied from the DRF-API walkthrough project
 with Code Institute.
 
-Serializer for the PlantInFocus model, serializes PlantInFocus instances to 
+Serializer for the PlantInFocus model, serializes PlantInFocus instances to
 and from JSON format.
 """
 
