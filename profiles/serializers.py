@@ -28,13 +28,28 @@ class ProfileSerializer(serializers.ModelSerializer):
         return request.user == obj.owner
 
     def get_following_id(self, obj):
+        """
+        Returns the ID of the 'Follower' object if the logged-in user follows
+        the profile's owner.  If not, it returns 'None'.
+        """
+
+        # Gets the currently logged in user.
         user = self.context["request"].user
+        # Cheks if the user is authenticated.
         if user.is_authenticated:
+            # Checks if the logged-in user follows the owner of this profile
+            # Checks the 'Follower' record where the logged-in user is
+            # following this profile's owner
             following = Follower.objects.filter(
+                # The logged in user (the follower)
                 owner=user,
+                # The owner of the profile being viewed (user being followed)
                 followed=obj.owner,
+                # Return the 'first' result
             ).first()
-            print(following)
+
+            # If a following relationship is found, return its ID; otherwise,
+            # return None
             return following.id if following else None
         return None
 
