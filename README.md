@@ -2,7 +2,7 @@
 
 ## Project description
 
-The **Foraging API** is a Django REST Framework Application Programming Interface for ["The Foraging Link"](), which serves as an online community, monthly foraging blog, and platform to promote seasonal foraging courses. It aims to connect people with nature and to one another whilst sharing information about the free edible delights available all around us.
+The **Foraging API** is a Django REST Framework Application Programming Interface for ["The Foraging Link"](https://github.com/CheyenneMDavid/foraging-link-ui), which serves as an online community, monthly foraging blog, and platform to promote seasonal foraging courses. It aims to connect people with nature and to one another whilst sharing information about the free edible delights available all around us.
 
 ## Table of Contents
 
@@ -53,7 +53,11 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
 
 ## User Stories:
 
-The user stories utilized in this project align with those listed in the associated frontend project. This decision was made because both frontend and backend components contribute to fulfilling these user stories, albeit in different capacities. The frontend is responsible for presenting information in the user interface, so it is repeated in the corresponding repository. Whilst the backend manages the storage and retrieval of data.
+The user stories utilized in this project align with those listed in the associated frontend project. This decision was made because both frontend and backend components contribute to fulfilling these user stories, albeit in different capacities. The frontend is responsible for presenting information in the user interface, while the backend manages the storage and retrieval of data.
+
+### User Stories Clarification
+
+During the development process, user stories were initially tracked in GitHub projects, but over time, the table included in this README was developed to more accurately reflect the backend functionality. This table is based on a thorough review of the actual code, ensuring it aligns with the API endpoints and how each feature was implemented. As a result, this table provides a clearer, up-to-date representation of the backend user stories.
 
 | Feature              | As    | I Want To                                | So That I Can                                 | Backend Functions                                                  |
 | -------------------- | ----- | ---------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------ |
@@ -319,29 +323,43 @@ By following these steps and referring to the respective platform's documentatio
 
 ### Key Practices
 
-1. **Iterative Development:**
-   Building of the backend in a methodical, step-by-step way, ensuring that functions worked as expected before committing them and moving on.
+#### Iterative Development
 
-2. **Regular Progress Tracking:**
-   Not having a team with which I could have daily stand-ups to ensure a steady direction of travel with the development, I would use an A4 pad to summarize the day's achievements, check off the completed tasks that I'd created the day before, and create a plan and checklist for the next day after making an assessment of work completed.
+Building of the backend in a methodical, step-by-step way, ensuring that functions worked as expected before committing them and moving on.
 
-3. **Task Management:**
-   Developing the applications and the functions within them in a systematic manner based on the logical flow of dependencies. For example, starting with the Profiles app because it was the foundation that everything else would relate to. Then creating the Plants Blog app, which the Comments, Likes, and Followers apps depended on. The Courses and Course Registration apps, while within the main app, were not as directly linked to the other apps, so it was reasonable to leave them for last.
+#### Regular Progress Tracking
 
-4. **Handling Unexpected Obstacles:**
-   Changed how things were implemented when issues arose unexpectedly. For example, the pagination issue that I have described in detail.
+Not having a team with which I could have daily stand-ups to ensure a steady direction of travel with the development, I would use an A4 pad to summarize the day's achievements, check off the completed tasks that I'd created the day before, and create a plan and checklist for the next day after making an assessment of work completed.
 
-5. **Exploring Solutions and Enhancements:**
-   Initially followed a structure similar to the DRF-API walkthrough project, which focused on posts and comments. My intent was to create a subject-focused blog where only administrators could author posts while allowing users to comment on one another's contributions. This required a deeper understanding of the requirements and how to meet them effectively.
+#### Task Management
 
-6. **Written Tests:**
-   The writing of tests to ensure applications were functioning correctly. This process helped identify and resolve issues, such as adjusting the pagination settings to meet the specific requirements of the courses app. This issue, which did not initially affect the application's functionality, highlighted an aspect of the logic that needed refinement and more nuanced handling for the courses app.
+Developing the applications and the functions within them in a systematic manner based on the logical flow of dependencies. For example, starting with the Profiles app because it was the foundation that everything else would relate to. Then creating the Plants Blog app, which the Comments, Likes, and Followers apps depended on. The Courses and Course Registration apps, while within the main app, were not as directly linked to the other apps, so it was reasonable to leave them for last.
 
-7. **Reflective Development:**
-   Regularly revisiting the naming conventions used across models and endpoints to ensure consistency and clarity, which enhanced maintainability.
+#### Handling Unexpected Obstacles
 
-8. **Continuous Integration and Documentation:**
-   Documenting the backend structure for clarity and future reference. The "Models and CRUD Breakdown" section of the README outlines the functionality of each API endpoint. The Entity-Relationship Diagrams (ERDs) in the "Planning" section illustrate the database structure and relationships between models. Included docstrings in the code to provide insights into the structure and purpose of models, serializers, and views. For example, in `models.py`, each model has a detailed docstring explaining its purpose and relationships. Similarly, `views.py` and `serializers.py` files contain docstrings that explain the logic and functionality of each view and serializer, ensuring the code is well-documented and understandable.
+Changed how things were implemented when issues arose unexpectedly. For example, the pagination issue that I have described in detail.
+
+#### Exploring Solutions and Enhancements
+
+Initially followed a structure similar to the DRF-API walkthrough project, which focused on posts and comments. My intent was to create a subject-focused blog where only administrators could author posts while allowing users to comment on one another's contributions. This required a deeper understanding of the requirements and how to meet them effectively.
+
+#### Written Tests
+
+The writing of tests to ensure applications were functioning correctly. This process helped identify and resolve issues, such as adjusting the pagination settings to meet the specific requirements of the courses app. This issue, which did not initially affect the application's functionality, highlighted an aspect of the logic that needed refinement and more nuanced handling for the courses app.
+
+#### Reflective Development
+
+Regularly revisiting the naming conventions used across models and endpoints to ensure consistency and clarity, which enhanced maintainability.
+
+#### Continuous Integration and Documentation
+
+Throughout the development process, I employed a continuous integration approach, regularly merging and testing features to ensure everything worked smoothly together. This iterative method allowed me to catch and fix issues as they arose.
+
+The **Models and CRUD Breakdown** section of this README provides detailed information about the API endpoints, while **Entity-Relationship Diagrams (ERDs)** illustrate the relationships between models. I also ensured that **docstrings** were used consistently throughout the codebase, explaining the purpose and logic behind each model, view, and serializer, making the backend easier to understand and maintain.
+
+Initially, I would have quite a lot of comments running through the code. The fulilled their purpose by explaining each bit. But also, where I myself was still learning, on one hand the comments I created explained well. But on the other hand, the lines of code that were the functional parts of the scripts where getting more and more disjointed. It was for this reason that I then opted for the comprehensive docstrings instead. This allowed me to better follow the flow and insert changes which where conditional logic, such as the issue of nested comments.
+
+It was only upon reading discussions in Slack that I realised that a balance between docstrings and comments was necessary. Hence the later addisions of comments and the sunsequent changes during the reintroduction of coments.
 
 ### Examples of Agile Practices in Backend Development
 
@@ -349,17 +367,31 @@ By following these steps and referring to the respective platform's documentatio
 
 Managed tasks based on logical dependencies and the order in which lessons were followed, not strictly based on importance and urgency.
 
-#### Adapting to Changes:
+#### Adapting to Changes and Enhancements to the Applications:
 
-Adjusted plans as new requirements emerged or obstacles were encountered. For example, initially focusing on enabling comments on posts, but then adapting to allow users to comment on comments, adding complexity to the model and views to support nested comments.
+Plans were adjusted as new requirements emerged or challenges were encountered. For instance, the initial goal was to enable users to comment on posts. However, I later expanded this functionality to allow users to comment on other comments, adding complexity to the models and views to support nested comments.
 
-#### Enhancing the Comments App:
+**In the Comments App**: One specific challenge was the unrestricted comment nesting, which initially allowed unlimited replies. After creating wireframes for the front end, I realized the need to limit nesting to two levels to maintain clarity and manageability of discussion threads. I implemented this restriction and then tested it to ensure proper functionality, raising appropriate ValidationErrors like "You cannot reply to a reply beyond two levels" to handle attempts at further nesting.
 
-Developed and refined the comments app by:
+**In the Profiles App**: Another example is the **ProfileList search feature**, which I added to improve user engagement. By allowing users to search for specific profiles, the application encourages more meaningful interaction between users. This feature was thoroughly tested to ensure it worked seamlessly with the existing system.
 
-- Allowing users to comment on posts and reply to other comments.
-- Ensuring comments were associated with users and posts.
-- Implementing permissions to allow only authenticated users to create comments and only comment owners to update or delete their comments.
+**In the Courses App**: To allow unauthenticated users to view course details. Previously, this was restricted to authenticated users, but by allowing open access to course information, the app became more user-friendly and accessible to a broader audience.
+
+#
+
+#
+
+#
+
+#
+
+PROJECT BOARDS
+
+#
+
+#
+
+#
 
 ### Example Project Boards
 
@@ -542,7 +574,22 @@ For detailed instructions on how to fork and clone a repository, please refer to
 
   - [Django REST Framework API Guide](https://www.django-rest-framework.org/api-guide) for guidance on implementing API endpoints and understanding DRF concepts.
 
-- **OpenAI's ChatGPT:**
-  - For providing explanations, guidance on structuring the project, command line usage, and planning tools like Draw.io. The assistance included explanations on how to structure the README
-  - Helped in creating virtual environments, explaining their importance, and resolving issues such as unsetting `PIP_USER` to install packages inside the virtual environment.
-  - Advised on handling package version conflicts and ensuring compatibility.
+## Acknowledgment of AI Assistance
+
+Throughout the development of this project, I utilized OpenAI's ChatGPT for various aspects of the project, including planning, structuring tasks, and code-related queries. Discussions on prioritizing tasks and explanations and guidance for using third-party software in developing the project.
+
+It proved to be a valuable resource for continuous feedback, task summarization, and resolving challenges along the way. I want to be fully transparent about how this tool was incorporated into my development process.
+
+Some specific examples of how ChatGPT contributed to this project:
+
+- **Task Summarization and Planning**: At the end of many work sessions, I used ChatGPT to summarize the day’s achievements and plan for the next steps. This helped me reflect on what was completed and prioritize the tasks for the following day. For example, we discussed how to proceed with the backend features like adding the comment nesting functionality and addressing pagination issues.
+
+- **Conceptualization and Structuring**: ChatGPT helped in conceptualizing the project and refining my approach. One example is when we worked through the logic for **limiting comment nesting to two levels**. This feature was implemented after recognizing the need for clarity in comment threads and preventing excessive nesting.
+
+- **Code Review and Problem Solving**: ChatGPT provided assistance when I encountered challenges in the code, such as the **pagination conflict** within the **Courses app**. The tool helped me identify and address the issue where global pagination settings conflicted with the app’s test cases, guiding me through the solution step by step.
+
+- **Documentation Assistance**: I frequently used ChatGPT to help structure my README and user stories. This included discussions about how to better align my user stories with the backend functionality and how to represent changes in the API endpoints. The **user stories table** in the README reflects these discussions and revisions.
+
+- **Use of Third-Party Tools**: ChatGPT provided instructions and guidance on how to utilize third-party tools like **Draw.io** for creating diagrams, such as **Entity-Relationship Diagrams (ERDs)**, which helped in planning and structuring the database models and relationships.
+
+I believe that utilizing ChatGPT has enhanced my understanding of the development process and contributed to maintaining a clear focus throughout the project. While ChatGPT provided advice and assistance, all final decisions and implementations were done by me as part of my learning process.
