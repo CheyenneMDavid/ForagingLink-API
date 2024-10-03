@@ -15,6 +15,7 @@ protected.
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 class PlantInFocusPost(models.Model):
@@ -108,12 +109,18 @@ class PlantInFocusPost(models.Model):
     main_plant_parts_used = models.TextField(
         verbose_name="Usable plant parts",
         help_text="Specify parts of the plant that are of use",
-        # Default is set to avoid migration issues, but it's kept after
-        # migration and Validation logic in the serializer ensures that the
-        # field isn't left as "Unknown" and admins use a more meaningful
-        # value.
         default="Unknown",
     )
+
+    def clean(self):
+        """
+        Custom validation to ensure that the default value of "Unknown" isn't left in the "main_plant_parts_used" field.
+        If the default value it left, then a ValidationError is raised which prompts the admin to replace the default value with something more meaningful.
+        """
+        if self.main_plant_parts_used == "Unknown":
+            raise ValidationError(
+                "You must specify the plant parts used, 'Unknown' is not allowed."
+            )
 
     main_plant_warnings = models.TextField(
         verbose_name="Plant warnings",
