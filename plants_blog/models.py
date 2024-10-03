@@ -104,6 +104,24 @@ class PlantInFocusPost(models.Model):
         "main plant.",
         default="",
     )
+
+    main_plant_parts_used = models.TextField(
+        verbose_name="Usable plant parts",
+        help_text="Specify parts of the plant that are of use",
+        # Default is set to avoid migration issues, but it's kept after
+        # migration and Validation logic in the serializer ensures that the
+        # field isn't left as "Unknown" and admins use a more meaningful
+        # value.
+        default="Unknown",
+    )
+
+    main_plant_warnings = models.TextField(
+        verbose_name="Plant warnings",
+        help_text="Mention any warnings related to the plant that users should be aware of.",
+        null=True,
+        blank=True,
+    )
+
     main_plant_image = models.ImageField(
         upload_to="images/",
         verbose_name="Main Plant Image",
