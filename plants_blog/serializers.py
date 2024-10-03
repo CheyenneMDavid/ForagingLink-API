@@ -30,6 +30,18 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
     # Returns the count for comments on the post.
     comments_count = serializers.ReadOnlyField()
 
+    # Custom field validation for 'main_plant_parts_used'
+    def validate_main_plant_parts_used(self, value):
+        """
+        Validates the "main_plant_parts_used" field, ensuring the field isn't left with the default value of "Unknown", prompting the admins who creates the post to provide a more meaningful value.
+        If the field isn't changed from "Unknown", a ValidationError is raised.
+        """
+        if value == "Unknown":
+            raise serializers.ValidationError(
+                "You must specify the plant parts used, 'Unknown' is not allowed."
+            )
+        return value
+
     # Method to check if the currently logged in user is the owner of the post
     def get_is_owner(self, obj):
         """
@@ -90,6 +102,8 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
             "medicinal_uses",
             "folklore",
             "main_plant_image",
+            "main_plant_parts_used",
+            "main_plant_warnings",
             "confusable_plant_name",
             "confusable_plant_information",
             "confusable_plant_warnings",
