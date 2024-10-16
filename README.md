@@ -151,7 +151,7 @@ These diagrams show the structure and relationships of key components within the
 ### User Interaction and Authentication ERD
 
 This shows the structure of the the applications's main models and their relationships within the application. It provides an overview of the models that facilitate users to engage with one another.
-![User Interaction ERD](https://res.cloudinary.com/cheymd/image/upload/v1717661021/forage/Foraging_API_README_images/user_interaction_and_authentication_erd_yll12s.png)
+![User Interaction ERD](https://res.cloudinary.com/cheymd/image/upload/v1729046691/forage/Foraging_API_README_images/user_interaction_and_authentication_erd_dvn9u9.png)
 
 ### Course Management ERD
 
@@ -226,6 +226,11 @@ Realising the inaccuracy of my generalised back-end descriptions, I've since gon
 ### Limiting Comment Nesting
 
 - It was only when I was creating wireframes for the front end that I realized I had not placed a limit on the comments. As things stood, the nesting could have gotten out of hand. To guard against this, I added a restriction that limits comments to two levels, along with a test with the raising of a `ValueError` if a user attempts to create a third-level comment.
+
+### Field Name Update
+
+- While creating data to populate the database, I recognized that a more suitable field name for `folklore`
+  in the `plants_blog` app was `history_and_folklore`. I updated the field name accordingly and brought all the other relevant files into alignment with the change.
 
 ---
 

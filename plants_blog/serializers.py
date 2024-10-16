@@ -33,12 +33,16 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
     # Custom field validation for 'main_plant_parts_used'
     def validate_main_plant_parts_used(self, value):
         """
-        Validates the "main_plant_parts_used" field, ensuring the field isn't left with the default value of "Unknown", prompting the admins who creates the post to provide a more meaningful value.
-        If the field isn't changed from "Unknown", a ValidationError is raised.
+        Validates the "main_plant_parts_used" field, ensuring the field isn't
+        left with the default value of "Unknown", prompting the admins who
+        creates the post to provide a more meaningful value.
+        If the field isn't changed from "Unknown", a ValidationError is
+        raised.
         """
         if value == "Unknown":
             raise serializers.ValidationError(
-                "You must specify the plant parts used, 'Unknown' is not allowed."
+                "You must specify the plant parts used, 'Unknown' is not"
+                "allowed."
             )
         return value
 
@@ -100,7 +104,7 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
             "main_plant_environment",
             "culinary_uses",
             "medicinal_uses",
-            "folklore",
+            "history_and_folklore",
             "main_plant_image",
             "main_plant_parts_used",
             "main_plant_warnings",

@@ -61,7 +61,7 @@ class PlantInFocusPostList(generics.ListAPIView):
         "main_plant_environment",
         "culinary_uses",
         "medicinal_uses",
-        "folklore",
+        "history_and_folklore",
         "confusable_plant_name",
     ]
 

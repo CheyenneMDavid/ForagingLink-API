@@ -1,10 +1,10 @@
 """
 This module defines the PlantInFocusPost model, which represents a monthly
 featured plant along with details about its, common name, environment,
-culinary uses, medicinal uses, folklore, and images to help identify it.
-The model also has fields for plants that may be mistaken for the plant in
-focus.
-These fields are optional because there may not always be a plant that is
+culinary uses, medicinal uses, history and folklore, and images to help
+identify it. The model also has fields for plants that may be mistaken for
+the plant in focus. These fields are optional because there may not always be
+a plant that is
 confusable.  The fields for the confusable plant are fewer as it only needs
 sufficient description to differentiate it from the plant that is in focus and
 discount it from what is wanted.
@@ -99,9 +99,10 @@ class PlantInFocusPost(models.Model):
         help_text="Describe the medicinal uses of the main plant.",
         default="",
     )
-    folklore = models.TextField(
-        verbose_name="Folklore",
-        help_text="Provide any folklore or historical information about the "
+
+    history_and_folklore = models.TextField(
+        verbose_name="History and Folklore",
+        help_text="Provide any historical and folklore information about the"
         "main plant.",
         default="",
     )
@@ -114,17 +115,22 @@ class PlantInFocusPost(models.Model):
 
     def clean(self):
         """
-        Custom validation to ensure that the default value of "Unknown" isn't left in the "main_plant_parts_used" field.
-        If the default value it left, then a ValidationError is raised which prompts the admin to replace the default value with something more meaningful.
+        Custom validation to ensure that the default value of "Unknown" isn't
+        left in the "main_plant_parts_used" field.
+        If the default value it left, then a ValidationError is raised which
+        prompts the admin to replace the default value with something more
+        meaningful.
         """
         if self.main_plant_parts_used == "Unknown":
             raise ValidationError(
-                "You must specify the plant parts used, 'Unknown' is not allowed."
+                "You must specify the plant parts used, 'Unknown' is not"
+                "allowed."
             )
 
     main_plant_warnings = models.TextField(
         verbose_name="Plant warnings",
-        help_text="Mention any warnings related to the plant that users should be aware of.",
+        help_text="Mention any warnings related to the plant that users"
+        "should be aware of.",
         null=True,
         blank=True,
     )
