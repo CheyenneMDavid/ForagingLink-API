@@ -579,6 +579,13 @@ For detailed instructions on how to fork and clone a repository, please refer to
 
   - [Django REST Framework API Guide](https://www.django-rest-framework.org/api-guide) for guidance on implementing API endpoints and understanding DRF concepts.
 
+### Image Attribution:
+
+- Some images used on this site are sourced from Pixabay, Pexels or similar free image sites.
+- Any other images are original (taken by myself) or used with permission.
+- The image of _Rumex obtusifolius_ is licensed under CC BY-SA 3.0. You can view the original image [here](https://en.wikipedia.org/wiki/Rumex_obtusifolius#/media/File:Rumex-obtusifolius-foliage.JPG).
+- All images are only displayed for the purpose of demonstrating the project.
+
 ## Acknowledgment of AI Assistance
 
 Throughout the development of this project, I utilized OpenAI's ChatGPT for various aspects of the project, including planning, structuring tasks, and code-related queries. Discussions on prioritizing tasks and explanations and guidance for using third-party software in developing the project.
