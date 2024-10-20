@@ -63,7 +63,8 @@ class CourseAPITest(TestCase):
     def test_valid_course_creation(self):
         """
         Tests the CourseCreate view with valid data to ensure a new course can
-        be created and returns a http status of 201 as confirmation, it's done.
+        be created and returns a http status of 201 as confirmation, it's
+        done.
         """
         # Data for testing a valid course creation.
         valid_course_data = {

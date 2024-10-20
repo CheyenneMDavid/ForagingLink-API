@@ -26,7 +26,8 @@ urlpatterns = [
         name="course_create",
     ),
     path(
-        # Endpoint for updating and deleting specific courses, only available to admins.
+        # Endpoint for updating and deleting specific courses, only available
+        # to admins.
         "<int:pk>/",
         views.CourseUpdateDelete.as_view(),
         name="course_update_delete",

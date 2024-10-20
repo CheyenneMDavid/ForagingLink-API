@@ -31,7 +31,11 @@ class LikeList(generics.ListCreateAPIView):
     # Backend handling the filtering of querysets
     filter_backends = [DjangoFilterBackend]
     # Specific fields that are used for filtering requests.
-    filterset_fields = ["owner", "plant_in_focus_post", "comment"]
+    filterset_fields = [
+        "owner",
+        "plant_in_focus_post",
+        "comment",
+    ]
 
 
 class LikeDetail(generics.RetrieveDestroyAPIView):

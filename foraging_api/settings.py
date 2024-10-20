@@ -36,7 +36,8 @@ REST_FRAMEWORK = {
             else "dj_rest_auth.jwt_auth.JWTCookieAuthentication"
         )
     ],
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination."
+    "PageNumberPagination",
     "PAGE_SIZE": 10,
     "DATETIME_FORMAT": "%d %b %Y",
 }
@@ -57,7 +58,8 @@ JWT_AUTH_SAMESITE = "None"
 
 # Custom user details serializer
 REST_AUTH_SERIALIZERS = {
-    "USER_DETAILS_SERIALIZER": "foraging_api.serializers.CurrentUserSerializer"
+    "USER_DETAILS_SERIALIZER": "foraging_api.serializers."
+    "CurrentUserSerializer"
 }
 
 
@@ -182,16 +184,20 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation."
+        "UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation."
+        "MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation."
+        "CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation."
+        "NumericPasswordValidator",
     },
 ]
 

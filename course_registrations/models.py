@@ -18,26 +18,31 @@ STATUS_CHOICES = [
 
 class CourseRegistration(models.Model):
     """
-    This model represents a user's registration for a course and holds relevant
-    data accordingly. The "status" field defaults to "Pending". This ensures
-    courses aren't over-subscribed. It can be manually controlled via the
-    admin panel.
+    This model represents a user's registration for a course and holds
+    relevant data accordingly. The "status" field defaults to "Pending". This
+    ensures courses aren't over-subscribed. It can be manually controlled via
+    the admin panel.
     """
 
     course_title = models.ForeignKey(
         Course,
-        # Used a default value (3) to ensure smooth migrations when the database lacked courses. Also acts as a support in case of all courses being deleted.
+        # Used a default value (3) to ensure smooth migrations when the
+        # database lacked courses. Also acts as a support in case of all
+        # courses being deleted.
         default=3,
-        # CASCADE to delete the registration if the associated course is deleted.
+        # CASCADE to delete the registration if the associated course is
+        # deleted.
         on_delete=models.CASCADE,
         # Human friendly field name for the backend admin panel
         verbose_name="Course Title",
-        # Help text for the admin to clarify what to input when they're creating a registration
+        # Help text for the admin to clarify what to input when they're
+        # creating a registration
         help_text="Enter the title of the course for this registration.",
     )
     owner = models.ForeignKey(
         User,
-        # CASCADE to delete the registration if the assosciated user is deleted.
+        # CASCADE to delete the registration if the assosciated user is
+        # deleted.
         on_delete=models.CASCADE,
         # Human friendly field name for the backend admin panel
         verbose_name="Owner",
@@ -48,7 +53,8 @@ class CourseRegistration(models.Model):
         max_length=255,
         # Human friendly field name for the backend admin panel
         verbose_name="Email",
-        # Help text for the admin to prompt admin to input user email when creating a registration
+        # Help text for the admin to prompt admin to input user email when
+        # creating a registration
         help_text="The email address of the user.",
     )
     phone = models.CharField(
@@ -108,7 +114,8 @@ class CourseRegistration(models.Model):
     )
 
     def __str__(self):
-        # String representation of the model, shows the username and course title in admin interface.
+        # String representation of the model, shows the username and course
+        # title in admin interface.
         return (
             f"{self.owner.username}'s registration for: {self.course_title}"
         )

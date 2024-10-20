@@ -62,11 +62,15 @@ class CommentList(generics.ListCreateAPIView):
         Creates a new comment.  It sets the currently logged in user as the
         owner of the comment
 
-        If the comment is a reply to another comment, it ensures that replies are
-        not nested beyond that level (i.e., replies to replies are not allowed).
-        If a comment is attempted to be made as a reply to another reply (thus a second-level reply),
-        a ValidationError is raised to maintain a simple and manageable discussion structure.
-        Changed from previous use of ValueError to ValidationError to provide more specific feedback.
+        If the comment is a reply to another comment, it ensures that replies
+        are not nested beyond that level
+        (i.e., replies to replies are not allowed).
+        If a comment is attempted to be made as a reply to another reply
+        (thus a second-level reply),
+        a ValidationError is raised to maintain a simple and manageable
+        discussion structure.
+        Changed from previous use of ValueError to ValidationError to provide
+        more specific feedback.
         """
 
         parent_comment = serializer.validated_data.get(
@@ -87,7 +91,8 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     the permission "IsOwnerOrReadOnly".
     """
 
-    # Using Generics to ensure that only the owner of the comment is able to edit or delete
+    # Using Generics to ensure that only the owner of the comment is able to
+    # edit or delete
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = CommentDetailSerializer
     queryset = Comment.objects.annotate(
@@ -119,13 +124,15 @@ class CommentReplyDetail(generics.RetrieveUpdateDestroyAPIView):
     View to retrieve, update, or delete a specific reply to a comment.
     """
 
-    # Using Generics to ensure that only the owner of the comment is able to edit or delete
+    # Using Generics to ensure that only the owner of the comment is able to
+    # edit or delete
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = CommentDetailSerializer
 
     def get_queryset(self):
         """
-        Returns the specific reply for the given comment (pk) and reply (reply_pk).
+        Returns the specific reply for the given comment (pk) and reply
+        (reply_pk).
         """
 
         # Primary Key for the parent coment.

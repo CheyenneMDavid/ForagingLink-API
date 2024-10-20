@@ -2,8 +2,8 @@
 This file has been adapted from the DRF-API walkthrough project
 with Code Institute.
 
-Defining custom permission classes to manage API access based on user ownership
-and request methods.
+Defining custom permission classes to manage API access based on user
+ownership and request methods.
 
 """
 
@@ -12,7 +12,8 @@ from rest_framework import permissions
 
 class IsAdminUserOrReadOnly(permissions.BasePermission):
     """
-    Custom permission that allows only the admin users to Update and Delete, whilst allowing all other users, authenticated or not, to read.
+    Custom permission that allows only the admin users to Update and Delete,
+    whilst allowing all other users, authenticated or not, to read.
     """
 
     def has_permission(self, request, view):

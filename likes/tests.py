@@ -40,13 +40,16 @@ class LikeModelTest(APITestCase):
             owner=self.user,
             plant_in_focus_post=self.post,
         )
+        self.assertIsNotNone(like)
         self.assertEqual(Like.objects.count(), 1)
 
     def test_like_creation_for_comment(self):
         """
         Tests that a like instance can be created for a Comment.
         """
+
         like = Like.objects.create(owner=self.user, comment=self.comment)
+        self.assertIsNotNone(like)
         self.assertEqual(Like.objects.count(), 1)
 
     def test_unique_constraint_for_post(self):
