@@ -1,2 +1,6 @@
 [tool.black]
 line-length = 78
+
+[tool.ruff]
+line-length = 78
+ignore = ["F401"]  # Ignore unused imports
