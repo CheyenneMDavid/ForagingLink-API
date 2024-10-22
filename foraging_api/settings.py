@@ -113,6 +113,7 @@ INSTALLED_APPS = [
     "followers",
     "courses",
     "course_registrations",
+    "phonenumber_field",
 ]
 
 SITE_ID = 1
