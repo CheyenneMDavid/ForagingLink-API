@@ -6,6 +6,7 @@ fields to hold user information.
 
 from django.db import models
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 from courses.models import Course
 
 # Status of registrations selectable by the administrator form the admin panel
@@ -22,6 +23,10 @@ class CourseRegistration(models.Model):
     relevant data accordingly. The "status" field defaults to "Pending". This
     ensures courses aren't over-subscribed. It can be manually controlled via
     the admin panel.
+    Phone numbers are validated using the PhoneNumberField based on
+    regional standards, with the region set to "GB" (United Kingdom).
+    For more information on the "GB" code, refer to:
+    https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB
     """
 
     course_title = models.ForeignKey(
@@ -57,14 +62,16 @@ class CourseRegistration(models.Model):
         # creating a registration
         help_text="The email address of the user.",
     )
-    phone = models.CharField(
-        # Limits the maximum length of the phone number
-        max_length=20,
+
+    phone = PhoneNumberField(
+        # Region set to "GB"
+        region="GB",
         # Human friendly field name for the backend admin panel
         verbose_name="Phone",
         # Prompts the admin to input the user's phone number
         help_text="The phone number of the user.",
     )
+
     registration_date = models.DateTimeField(
         # Automatically sets the registration date and time.
         auto_now=True,
@@ -97,6 +104,7 @@ class CourseRegistration(models.Model):
         # Prompts admin to select whether the user is a driver
         help_text="Indicates if the user is a driver.",
     )
+    # "ICE" stands for "In Case of Emergency"
     ice_name = models.CharField(
         # Limits the maximum length of the emergency contact's name
         max_length=255,
@@ -104,13 +112,11 @@ class CourseRegistration(models.Model):
         verbose_name="Emergency Contact Name",
         help_text="Name of the emergency contact person.",
     )
-    ice_number = models.CharField(
-        # Limits the maximum length of the emergency contact's phone number
-        max_length=20,
+    ice_number = PhoneNumberField(
         # Human friendly field name for the backend admin panel
         verbose_name="Emergency Contact Number",
         # Prompts admin to enter an emergency contact number
-        help_text="Phone number for the emergency contact, person.",
+        help_text="Phone number for the emergency contact person.",
     )
 
     def __str__(self):
