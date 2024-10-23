@@ -232,6 +232,13 @@ Realising the inaccuracy of my generalised back-end descriptions, I've since gon
 - While creating data to populate the database, I recognized that a more suitable field name for `folklore`
   in the `plants_blog` app was `history_and_folklore`. I updated the field name accordingly and brought all the other relevant files into alignment with the change.
 
+### Phone Number Validation
+
+- Initially considered using REGEX to validate phone numbers within the
+  Course_Registrations application, but instead decided upon using the django-phonenumber-field package
+  which uses Google's phonenumbers library. This library, handles the validation and formatting of phone numbers based on regional standards. In this case, the region is set to "GB" (ISO 3166-1 alpha-2 code) which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB).
+  This covered validation of both landlines and mobile number without the overly complex lines of code that REGEX would have created.
+
 ---
 
 ## Prerequisites
@@ -253,6 +260,7 @@ Realising the inaccuracy of my generalised back-end descriptions, I've since gon
 - `dj-rest-auth==2.1.9`
 - `djangorestframework-simplejwt==4.7.2`
 - `django-cloudinary-storage==0.3.0`
+- `django-phonenumber-field==8.0.0`
 - `Pillow==8.2.0`
 - `psycopg2==2.9.9`
 - `dj-database-url==0.5.0`
@@ -484,7 +492,9 @@ Tests to verify that a CourseRegistration instance can be created with all the n
 
 [Course Registrations app tests](course_registrations/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385040/forage/Foraging_API_README_images/course_registrations_uq9m5h.png)
+Phone number validation added using `django-phonenumber-field` and Google's `phonenumbers` library. Re-tested with both mobile and landline number and passed.
+
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1729641181/forage/Foraging_API_README_images/course_registration_tests_jxsdkn.png)
 
 ---
 
@@ -578,6 +588,15 @@ For detailed instructions on how to fork and clone a repository, please refer to
 - **Django REST Framework Documentation:**
 
   - [Django REST Framework API Guide](https://www.django-rest-framework.org/api-guide) for guidance on implementing API endpoints and understanding DRF concepts.
+
+- **Library Attributions**:
+
+  - Google’s libphonenumber:
+
+    - Phone numbers are validated by using uses Google’s libphonenumber library via the django-phonenumber-field package. It ensures proper formatting and validation of phone numbers based on regional standards.
+
+  - django-phonenumber-field:
+    - The django-phonenumber-field package simplifies handling phone numbers in Django applications by using Google’s phonenumbers library to validate and format phone numbers. The region is set to "GB" (ISO 3166-1 alpha-2 code), which you can read more about [here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB)
 
 ### Image Attribution:
 
