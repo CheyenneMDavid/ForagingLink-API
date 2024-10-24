@@ -234,12 +234,14 @@ Realising the inaccuracy of my generalised back-end descriptions, I've since gon
 
 ### Phone Number Validation
 
-- Initially considered using REGEX to validate phone numbers within the
-  Course_Registrations application, but instead decided upon using the django-phonenumber-field package
-  which uses Google's phonenumbers library. This library, handles the validation and formatting of phone numbers based on regional standards. In this case, the region is set to "GB" (ISO 3166-1 alpha-2 code) which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB).
-  This covered validation of both landlines and mobile number without the overly complex lines of code that REGEX would have created.
+Initially considered using REGEX to validate phone numbers within the
+Course_Registrations application, but instead decided upon using the django-phonenumber-field package
+which uses Google's phonenumbers library. This library, handles the validation and formatting of phone numbers based on regional standards. In this case, the region is set to "GB" (ISO 3166-1 alpha-2 code) which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB).
+This covered validation of both landlines and mobile number without the overly complex lines of code that REGEX would have created.
 
----
+### Email Validation
+
+Email validation for the CourseRegistration application is done using Django’s EmailValidator. It ensures the email inputed follows the expected format of an email address. The max_length is set to 254 characters, ensuring compatibility with most systems when handling email addresses. Validation takes place at the model level, ensuring the email is properly formatted before it's saved to the database.
 
 ## Prerequisites
 
@@ -597,6 +599,16 @@ For detailed instructions on how to fork and clone a repository, please refer to
 
   - django-phonenumber-field:
     - The django-phonenumber-field package simplifies handling phone numbers in Django applications by using Google’s phonenumbers library to validate and format phone numbers. The region is set to "GB" (ISO 3166-1 alpha-2 code), which you can read more about [here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB)
+
+### Email Validation
+
+Email validation was implemented using the following resources:
+
+- **Django Documentation**:  
+  For email validation using `EmailValidator`, based on Django’s [EmailField documentation](https://docs.djangoproject.com/en/stable/ref/models/fields/#emailfield), which provides built-in validation mechanisms for email formats. Although when referencing this in `course_registrations/models.py` I left off the "#emailfield" as part of the url because I was unable to make the link work within the maximum line length.
+
+- **RFC 5321**:  
+  For email length limit guidance, based on the [RFC 5321 standard](https://www.rfc-editor.org/rfc/rfc5321), which defines the 254-character limit for email addresses commonly used across the web.
 
 ### Image Attribution:
 
