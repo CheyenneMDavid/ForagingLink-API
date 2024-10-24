@@ -7,6 +7,7 @@ fields to hold user information.
 from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
+from django.core.validators import EmailValidator
 from courses.models import Course
 
 # Status of registrations selectable by the administrator form the admin panel
@@ -54,8 +55,17 @@ class CourseRegistration(models.Model):
         # Prompts the admin to select the user from the dropdown
         help_text="Select the user this registration belongs to.",
     )
-    email = models.EmailField(
-        max_length=255,
+
+    email = models.CharField(
+        # "max_length" set according to standards in Django and commonly used
+        # to ensure compatibility with most systems when handling email
+        # addresses. See Django's documentation:
+        # https://docs.djangoproject.com/en/stable/ref/models/fields/
+        # under the section "EmailField".
+        max_length=254,
+        # The "validators" argument is passed to CharField(). It uses the
+        # "EmailValidator()" to ensure the input is a valid email address.
+        validators=[EmailValidator()],
         # Human friendly field name for the backend admin panel
         verbose_name="Email",
         # Help text for the admin to prompt admin to input user email when
@@ -89,14 +99,24 @@ class CourseRegistration(models.Model):
         # Default status is set to 'Pending', which the admin can change.
         help_text="The current status of the registration.",
     )
+
+    # Use of boolean field to define if the user has any dietary
+    # restrictions, defaulting to False.
+    has_dietary_restrictions = models.BooleanField(
+        default=False,
+        verbose_name="Has Dietary Restrictions",
+        help_text="Indicates if the user has any dietary restrictions.",
+    )
+    # Optional text field to hold any dietary information if it exists.
     dietary_restrictions = models.TextField(
         blank=True,
         null=True,
         # Human friendly field name for the backend admin panel
         verbose_name="Dietary Restrictions",
-        # Prompts admin to enter any food restrictions
-        help_text="Any dietary restrictions of the user.",
+        # Prompts admin to enter any dietary restrictions if applicable.
+        help_text="Details of the user's dietary restrictions, if any.",
     )
+
     is_driver = models.BooleanField(
         default=False,
         # Human friendly field name for the backend admin panel
