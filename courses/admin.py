@@ -27,7 +27,8 @@ class CourseAdmin(admin.ModelAdmin):
         model, ensuring that Django admin correctly distinguishes between the
         model property and "this" method.
         """
-        # Returns the number of available spaces or the message if fully booked
+        # Returns the number of available spaces or the message if fully
+        # booked
         return obj.available_spaces
 
     # Sets a more readable label for the 'available_spaces_display' column in

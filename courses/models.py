@@ -72,3 +72,20 @@ class Course(models.Model):
         readability in the admin panel.
         """
         return self.title
+
+    @property
+    def available_spaces(self):
+        """
+        Calculates the number of available spaces based on "max_capacity"
+        minus the current number of registrations. Returns a message if full.
+        """
+        # Get the count of registrations linked to this course
+        confirmed_registrations = self.courseregistration_set.filter(
+            status="Confirmed"
+        ).count()
+
+        # Calculate available spaces
+        spaces_left = self.max_capacity - confirmed_registrations
+
+        # Return a message if full, otherwise the number of spaces left
+        return "No spaces available" if spaces_left == 0 else spaces_left
