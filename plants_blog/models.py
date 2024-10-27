@@ -13,17 +13,18 @@ admin deleting their account or losing their account privileges, the posts are
 protected.
 """
 
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-# File level global variable for the Cloudinary base URL
-CLOUDINARY_BASE_PATH = "https://res.cloudinary.com/cheymd/image/upload/"
 
 # File level global variable for the default image to be used in the
-# plants_blog application
+# plants_blog application, with the prefix for Cloudinary's version caching,
+# saving the job of updating the URL in the case of an alternative image were
+# to be used as a default image.
 DEFAULT_PLANT_IMAGE_PATH = (
-    "foraging_link/plant_images/default_foraged_image_vev3ib.jpg"
+    "v1706847130/foraging_link/plant_images/default_foraged_image_vev3ib.jpg"
 )
 
 
@@ -53,8 +54,8 @@ class PlantInFocusPost(models.Model):
         (12, "December"),
     ]
 
-    # Although admins create posts, it's concievable that admins can change
-    # So, PROTECT is used to ensure a post is kept if this shoudl happen
+    # Although admins create posts, it's conceivable that admins can change
+    # So, PROTECT is used to ensure a post is kept if this should happen
     owner = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
@@ -191,9 +192,6 @@ class PlantInFocusPost(models.Model):
     @property
     def image_url(self):
         """
-        Concatenates the "CLOUDINARY_BASE_URL" and
-        "DEFAULT_PLANT_IMAGE_PATH", the two file level global variables which
-        are defined at the top of this file as a work around for the the PEP8
-        79 character limit.
+        Concatenates the global variable "CLOUDINARY_BASE_URL" from the "settings.py" which serves as a central point for access to images for all applications and "DEFAULT_PLANT_IMAGE_PATH" defined at the top of this file ensuring that the PEP8 79 character limit is maintained despite the long URLs for default images.
         """
-        return f"{CLOUDINARY_BASE_PATH}{DEFAULT_PLANT_IMAGE_PATH}"
+        return f"{settings.CLOUDINARY_BASE_PATH}{DEFAULT_PLANT_IMAGE_PATH}"

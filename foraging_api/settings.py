@@ -24,6 +24,10 @@ CLOUDINARY_STORAGE = {"CLOUDINARY_URL": os.environ.get("CLOUDINARY_URL")}
 MEDIA_URL = "/media/"
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
+# Cloudinary base URL, centrally placed to enable access to images from all
+# apps
+CLOUDINARY_BASE_PATH = "https://res.cloudinary.com/cheymd/image/upload/"
+
 # Base directory of the project.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
