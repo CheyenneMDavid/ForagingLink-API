@@ -17,6 +17,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
+# File level global variable for the Cloudinary base URL
+CLOUDINARY_BASE_PATH = "https://res.cloudinary.com/cheymd/image/upload/"
+
+# File level global variable for the default image to be used in the
+# plants_blog application
+DEFAULT_PLANT_IMAGE_PATH = (
+    "foraging_link/plant_images/default_foraged_image_vev3ib.jpg"
+)
+
 
 class PlantInFocusPost(models.Model):
     """
@@ -136,10 +145,10 @@ class PlantInFocusPost(models.Model):
     )
 
     main_plant_image = models.ImageField(
-        upload_to="images/",
+        upload_to="foraging_link/plant_images",
+        default=DEFAULT_PLANT_IMAGE_PATH,
         verbose_name="Main Plant Image",
         help_text="Upload an image of the main plant.",
-        default="",
     )
 
     # Details of plants that may be mistaken for the main_plant of interest.
@@ -166,9 +175,11 @@ class PlantInFocusPost(models.Model):
         blank=True,
     )
     confusable_plant_image = models.ImageField(
-        upload_to="images/",
+        # Folder path for storing uploaded plant images in Cloudinary
+        upload_to="foraging_link/plant_images",
+        default=DEFAULT_PLANT_IMAGE_PATH,
         verbose_name="Confusable Plant Image",
-        help_text="Upload an image of the confusable plant.",
+        help_text="Upload an image of the confusable plant, if needed",
         null=True,
         blank=True,
     )
@@ -176,3 +187,13 @@ class PlantInFocusPost(models.Model):
     # String representation, returning the name of the main plant.
     def __str__(self):
         return self.main_plant_name
+
+    @property
+    def image_url(self):
+        """
+        Concatenates the "CLOUDINARY_BASE_URL" and
+        "DEFAULT_PLANT_IMAGE_PATH", the two file level global variables which
+        are defined at the top of this file as a work around for the the PEP8
+        79 character limit.
+        """
+        return f"{CLOUDINARY_BASE_PATH}{DEFAULT_PLANT_IMAGE_PATH}"
