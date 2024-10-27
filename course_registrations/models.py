@@ -12,7 +12,6 @@ from courses.models import Course
 
 # Status of registrations selectable by the administrator form the admin panel
 STATUS_CHOICES = [
-    ("Pending", "Pending"),
     ("Confirmed", "Confirmed"),
     ("Cancelled", "Cancelled"),
 ]
@@ -21,11 +20,20 @@ STATUS_CHOICES = [
 class CourseRegistration(models.Model):
     """
     This model represents a user's registration for a course and holds
-    relevant data accordingly. The "status" field defaults to "Pending". This
-    ensures courses aren't over-subscribed. It can be manually controlled via
-    the admin panel.
-    Phone numbers are validated using the PhoneNumberField based on
+    relevant data accordingly. The "status" field defaults to "Confirmed" and
+    enables Django's built in logic to track available spaces.
+    If the status is changed to "Cancelled" in the admin panel, the available
+    spaces for the course revert accordingly. Personal information is also
+    anonymized for basic analytical retention without compromising privacy.
+
+    Phone numbers are validated using the PhoneNumberField, based on
     regional standards, with the region set to "GB" (United Kingdom).
+
+    The email field follows Django's standard 'max_length' recommendation
+    to ensure compatibility with most systems. See Django's documentation
+    for more information:
+    https://docs.djangoproject.com/en/stable/ref/models/fields/#emailfield
+
     For more information on the "GB" code, refer to:
     https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB
     """
@@ -57,11 +65,6 @@ class CourseRegistration(models.Model):
     )
 
     email = models.CharField(
-        # "max_length" set according to standards in Django and commonly used
-        # to ensure compatibility with most systems when handling email
-        # addresses. See Django's documentation:
-        # https://docs.djangoproject.com/en/stable/ref/models/fields/
-        # under the section "EmailField".
         max_length=254,
         # The "validators" argument is passed to CharField(). It uses the
         # "EmailValidator()" to ensure the input is a valid email address.
@@ -93,10 +96,8 @@ class CourseRegistration(models.Model):
     status = models.CharField(
         max_length=50,
         choices=STATUS_CHOICES,
-        default="Pending",
-        # Human friendly field name for the backend admin panel
+        default="Confirmed",
         verbose_name="Status",
-        # Default status is set to 'Pending', which the admin can change.
         help_text="The current status of the registration.",
     )
 
@@ -133,11 +134,28 @@ class CourseRegistration(models.Model):
         help_text="Name of the emergency contact person.",
     )
     ice_number = PhoneNumberField(
+        region="GB",
         # Human friendly field name for the backend admin panel
         verbose_name="Emergency Contact Number",
         # Prompts admin to enter an emergency contact number
         help_text="Phone number for the emergency contact person.",
     )
+
+    def anonymize(self):
+        """
+        Anonymize all the personal information when a registration is
+        cancelled, making it suitable for keeping for analytical purposes.
+        """
+        self.email = "cancelled@example.com"
+        self.phone = "0000000000"
+        self.ice_name = "N/A"
+        self.ice_number = "0000000000"
+
+    def save(self, *args, **kwargs):
+        # Check if status is set to "Cancelled" and anonymize if so
+        if self.status == "Cancelled":
+            self.anonymize()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         # String representation of the model, shows the username and course
