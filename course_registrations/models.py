@@ -37,6 +37,10 @@ class CourseRegistration(models.Model):
 
     For more information on the "GB" code, refer to:
     https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB
+
+    Validation logic enforces completion of dietary restrictions and
+    emergency contact fields, ensuring that details are provided if either
+    option is selected.
     """
 
     course_title = models.ForeignKey(
@@ -121,24 +125,6 @@ class CourseRegistration(models.Model):
         help_text="Details of the user's dietary restrictions, if any.",
     )
 
-    def clean(self):
-        """
-        If 'has_dietary_restrictions' is ticked but 'dietary_restrictions
-        empty, a ValidationsError is raised, pompting the user to fully fill
-        out the details of any dietary restrictions
-        """
-        # Check if 'has_dietary_restrictions' is True
-        if self.has_dietary_restrictions and not self.dietary_restrictions:
-            # Raises a ValidationError if details of the dietary restrictions
-            # aren't also filled out.
-            raise ValidationError(
-                "Please provide further details of any dietary restrictions"
-            )
-
-        # Superclass clean method called to ensure all previous validation is
-        # applied.
-        super().clean()
-
     is_driver = models.BooleanField(
         default=False,
         # Human friendly field name for the backend admin panel
@@ -146,6 +132,18 @@ class CourseRegistration(models.Model):
         # Prompts admin to select whether the user is a driver
         help_text="Indicates if the user is a driver.",
     )
+
+    # Boolean set to False. Asking if there is a person that can be contacted
+    # in the case of an emergency. Selection between True or False, enforces t
+    # he filling out of further details of 'ice_name' and
+    # 'ice_number' (ICE full explanation:
+    # https://en.wikipedia.org/wiki/In_Case_of_Emergency)
+    has_emergency_contact = models.BooleanField(
+        default=False,
+        verbose_name="Has Emergency Contact",
+        help_text="Tick if the user has an emergency contact.",
+    )
+
     # "ICE" stands for "In Case of Emergency"
     ice_name = models.CharField(
         # Limits the maximum length of the emergency contact's name
@@ -161,6 +159,41 @@ class CourseRegistration(models.Model):
         # Prompts admin to enter an emergency contact number
         help_text="Phone number for the emergency contact person.",
     )
+
+    def clean(self):
+        """
+        Calling the "clean()" method to apply the custom validators based on
+        the user's input:
+        - If 'has_dietary_restrictions' is True, the 'dietary_restrictions'
+        field must be filled.
+        - If 'has_emergency_contact' is True, both 'ice_name' and
+        'ice_number' must be provided.
+        - If 'has_emergency_contact' is False, both 'ice_name' and
+        'ice_number' must be left blank.
+        """
+        # Validate any dietary restrictions.
+        if self.has_dietary_restrictions and not self.dietary_restrictions:
+            raise ValidationError(
+                "Please provide further details of any dietary restrictions."
+            )
+
+        # Validate any emergency contact information
+        if self.has_emergency_contact:
+            if not self.ice_name or not self.ice_number:
+                raise ValidationError(
+                    "Please provide both the emergency contact name and "
+                    "number."
+                )
+        else:
+            if self.ice_name or self.ice_number:
+                raise ValidationError(
+                    "Emergency contact name and number should be blank if"
+                    "Has Emergency Contact' is unchecked."
+                )
+
+        # Superclass clean method called to ensure all previous validation is
+        # applied before saving.
+        super().clean()
 
     def anonymize(self):
         """
