@@ -8,6 +8,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from django.core.validators import EmailValidator
+from django.core.exceptions import ValidationError
 from courses.models import Course
 
 # Status of registrations selectable by the administrator form the admin panel
@@ -108,7 +109,9 @@ class CourseRegistration(models.Model):
         verbose_name="Has Dietary Restrictions",
         help_text="Indicates if the user has any dietary restrictions.",
     )
-    # Optional text field to hold any dietary information if it exists.
+    # Text field to hold any dietary information if it exists.  Set to True,
+    # but enforced by logic based on whether "has_dietary_restrictions" has
+    # been ticked.
     dietary_restrictions = models.TextField(
         blank=True,
         null=True,
@@ -117,6 +120,24 @@ class CourseRegistration(models.Model):
         # Prompts admin to enter any dietary restrictions if applicable.
         help_text="Details of the user's dietary restrictions, if any.",
     )
+
+    def clean(self):
+        """
+        If 'has_dietary_restrictions' is ticked but 'dietary_restrictions
+        empty, a ValidationsError is raised, pompting the user to fully fill
+        out the details of any dietary restrictions
+        """
+        # Check if 'has_dietary_restrictions' is True
+        if self.has_dietary_restrictions and not self.dietary_restrictions:
+            # Raises a ValidationError if details of the dietary restrictions
+            # aren't also filled out.
+            raise ValidationError(
+                "Please provide further details of any dietary restrictions"
+            )
+
+        # Superclass clean method called to ensure all previous validation is
+        # applied.
+        super().clean()
 
     is_driver = models.BooleanField(
         default=False,
