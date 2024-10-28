@@ -14,7 +14,7 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
     """
     Serializes PlantInFocusPost instances to and from JSON format.
     It includes image validation and returns ValidationError messages as
-    strings that include the field_name in a string.
+    strings that include the image_field in a string.
     """
 
     # Read-only field returning the owner's username
@@ -35,7 +35,7 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
         """
         Validates the "main_plant_parts_used" field, ensuring the field isn't
         left with the default value of "Unknown", prompting the admins who
-        creates the post to provide a more meaningful value.
+        create the post to provide a more meaningful value.
         If the field isn't changed from "Unknown", a ValidationError is
         raised.
         """
@@ -54,23 +54,25 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
         request = self.context.get("request", None)
         return request and request.user == obj.owner
 
-    # Validation for image size and dimensions with ValidationError if
-    # dimensions or image size are outside the stated dimensions and size
-    # allowed
-    def validate_image(self, value, field_name):
+    def validate_image(self, value, image_field):
+        """
+        Validates the image size and dimensions, using "image_field" as a
+        placeholder in ValidationErrors, dynamically replaced by the actual
+        field name in the error message.
+        """
         if value.size > 2 * 1024 * 1024:
             raise serializers.ValidationError(
-                f"{field_name} size cannot exceed 2MB.",
+                f"{image_field} size cannot exceed 2MB.",
             )
 
         if value.image.height > 4096:
             raise serializers.ValidationError(
-                f"{field_name} height cannot exceed 4096 pixels."
+                f"{image_field} height cannot exceed 4096 pixels."
             )
 
         if value.image.width > 4096:
             raise serializers.ValidationError(
-                f"{field_name} width cannot exceed 4096 pixels."
+                f"{image_field} width cannot exceed 4096 pixels."
             )
 
         return value
@@ -90,7 +92,7 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
 
         # Specifies the model to be serialized
         model = PlantInFocusPost
-        # Speciifies the fields to be included in the searialization
+        # Specifies the fields to be included in the searialization
         fields = [
             "id",
             "owner",
