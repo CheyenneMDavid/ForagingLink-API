@@ -190,12 +190,12 @@ These diagrams show the structure and relationships of key components within the
 ### User Interaction and Authentication ERD
 
 This shows the structure of the the applications's main models and their relationships within the application. It provides an overview of the models that facilitate users to engage with one another.
-![User Interaction ERD](https://res.cloudinary.com/cheymd/image/upload/v1729046691/forage/Foraging_API_README_images/user_interaction_and_authentication_erd_dvn9u9.png)
+![User Interaction ERD](https://res.cloudinary.com/cheymd/image/upload/v1729046691/foraging_link/readme_images/user_interaction_and_authentication_erd_dvn9u9.png)
 
 ### Course Management ERD
 
 This details the components involved in managing course content and user registrations submitted via contact forms. These are managed by site admins through the Django Admin Panel. This part of the application operates separately from the main user interaction features but is integrated within the same framework. It focuses on the relationships between Profiles, Courses, and Course Registrations.
-![Course Management ERD](https://res.cloudinary.com/cheymd/image/upload/v1717661022/forage/Foraging_API_README_images/course_management_erd_loozlc.png)
+![Course Management ERD](https://res.cloudinary.com/cheymd/image/upload/v1717661022/foraging_link/readme_images/course_management_erd_loozlc.png)
 
 ### API Structure Diagrams
 
@@ -204,12 +204,12 @@ These diagrams show the structure and relationships between the components in th
 ### User Interaction and Authentication Overview
 
 This illustrates the user interaction and authentication structure within the Foraging Link API. It shows how users interact with comments, likes, blog posts, and followers, and includes the authentication component.
-![User Interaction and Authentication](https://res.cloudinary.com/cheymd/image/upload/v1717661023/forage/Foraging_API_README_images/user_interaction_and_authentication_overview_u3v4sf.png)
+![User Interaction and Authentication](https://res.cloudinary.com/cheymd/image/upload/v1717661023/foraging_link/readme_images/user_interaction_and_authentication_overview_u3v4sf.png)
 
 ### Course Management
 
 This Overview illustrates the course management structure within the Foraging Link API. It shows how users can read upcoming courses, fill out registration forms, and how admins can create and manage courses.
-![Course Management Overview](https://res.cloudinary.com/cheymd/image/upload/v1717788223/forage/Foraging_API_README_images/course_management_overview_nnmbfc.png)
+![Course Management Overview](https://res.cloudinary.com/cheymd/image/upload/v1717788223/foraging_link/readme_images/course_management_overview_nnmbfc.png)
 
 ### Wireframes and Mockups
 
@@ -312,7 +312,7 @@ Due to PEP8's 79-character line length restriction, the lengthy URLs needed for 
 - `django-allauth==0.54.0`
 - `django-cors-headers==4.3.1`
 
-You can find the full list of dependencies in the [requirements.txt](ForagingLink-API/requirements.txt)
+You can find the full list of dependencies in the [requirements.txt](requirements.txt)
 
 ---
 
@@ -459,19 +459,19 @@ The project boards were used to track the status of various tasks. Below are sna
 
 Most tasks in the "ToDo" column.
 
-![Most Tasks in the "ToDo" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264077/forage/Foraging_API_README_images/Backlog_1_oh0hlx.png)
+![Most Tasks in the "ToDo" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264077/foraging_link/readme_images/Backlog_1_oh0hlx.png)
 
 #### Midway State
 
 More tasks moved to the "In Progress" column.
 
-![More Tasks Moved to the "In Progress" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264079/forage/Foraging_API_README_images/Backlog_2_akfbey.png)
+![More Tasks Moved to the "In Progress" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264079/foraging_link/readme_images/Backlog_2_akfbey.png)
 
 #### Nearing Final State
 
 Majority of tasks moved to the "Done" column.
 
-![Majority of Tasks Moved to the "Done" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264076/forage/Foraging_API_README_images/Backlog_3_wix3ap.png)
+![Majority of Tasks Moved to the "Done" Column](https://res.cloudinary.com/cheymd/image/upload/v1718264076/foraging_link/readme_images/Backlog_3_wix3ap.png)
 
 **Note (for the purpose of transparency):** These snapshots were taken when the tasks had in fact been completed and moved to the "Done" column. But to illustrate the workflow stages, the tasks were moved back into the "ToDo" and "In Progress" columns. This setup was used to visualize and manage the workflow effectively.
 
@@ -487,7 +487,7 @@ Tests to verify that only an admin user can create a PlantInFocusPost instance a
 
 [Plants Blog app tests](plants_blog/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/plants_blog_tests_irmprb.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/foraging_link/readme_images/plants_blog_tests_irmprb.png)
 
 #### Tests for Profiles Application
 
@@ -495,7 +495,7 @@ Tests to verify Creation, Update, and Deletion of a Profile instance given the a
 
 [Profiles app tests](profiles/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/profiles_tests_icrakl.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/foraging_link/readme_images/profiles_tests_icrakl.png)
 
 #### Tests for the Comments Application
 
@@ -503,7 +503,7 @@ Tests to ensure that a Like instance can be created and that the same instance b
 
 [Comments app tests](comments/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1726204940/forage/Foraging_API_README_images/comments_tests_getldm.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1726204940/foraging_link/readme_images/comments_tests_getldm.png)
 
 #### Tests for the Likes Application
 
@@ -511,7 +511,7 @@ Tests for Creation, Deletion, and Unique Constraints of a Like Instance.
 
 [Likes app tests](likes/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/likes_tests_lypugq.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/foraging_link/readme_images/likes_tests_lypugq.png)
 
 #### Tests for Courses App
 
@@ -529,7 +529,7 @@ Initially, I thought that after creating a test course in the setup, it would al
 
 [Courses app tests](courses/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/forage/Foraging_API_README_images/courses_tests_tnodju.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/foraging_link/readme_images/courses_tests_tnodju.png)
 
 ### Tests for Course Registrations App
 
@@ -539,7 +539,7 @@ Tests to verify that a CourseRegistration instance can be created with all the n
 
 Phone number validation added using `django-phonenumber-field` and Google's `phonenumbers` library. Re-tested with both mobile and landline number and passed.
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1729641181/forage/Foraging_API_README_images/course_registration_tests_jxsdkn.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1729641181/foraging_link/readme_images/course_registration_tests_jxsdkn.png)
 
 ---
 
