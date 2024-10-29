@@ -129,6 +129,16 @@ The Courses app is used to publish and manage upcoming courses in the seasons of
 
 The Course Registrations app manages user registrations for the courses offered. It allows users to register for courses and stores relevant information such as contact details, dietary restrictions, and emergency contact information. The app ensures that courses are not over-subscribed by setting the registration status to "Pending" by default, which can be managed via the admin panel.
 
+#### Dynamic Tracking of Course Spaces
+
+The **Course Registrations** app dynamically tracks the number of available spaces for each course. This ensures up to date information on space availability on courses.
+
+- **Available Spaces**: Each course has a predefined maximum number of participants. As users register for a course, the available spaces count is updated in real-time.
+
+- **Automatic Update on Registration and Cancellation**: When a user registers for a course, one space is deducted from the total. If a user cancels their registration, the space is added back, keeping the count accurate.
+
+- **Admin Panel View**: Admins can view the available spaces directly in the admin panel, making it easier to monitor course capacity and manage the registrations.
+
 ### Models and CRUD Breakdown
 
 Although I have spoken about the individual applications within the project, the following table provides a quick reference allows a quicker understand the individual application's functionalities and their CRUD operations.
@@ -141,6 +151,35 @@ Although I have spoken about the individual applications within the project, the
 | Follower           | /followers/<br>/followers/:id                       | Yes              | Yes      | No     | Yes    | None                                                                                                    | None                                                                                                    |
 | Course             | /courses/<br>/courses/:id                           | Yes              | Yes      | Yes    | Yes    | None                                                                                                    | None                                                                                                    |
 | CourseRegistration | /course_registrations/<br>/course_registrations/:id | Yes              | Yes      | No     | Yes    | None                                                                                                    | None                                                                                                    |
+
+## Validation & Data Integrity
+
+**Avatar Image Validation**:
+In the Profiles application, avatar image validation has been implemented to balance high-quality profile pictures with backend efficiency:
+
+- File Size: Avatar images are restricted to 2MB to prevent excessive storage and ensure the app's performance.
+
+- Dimensions: The maximum size of 512 x 512 pixels keeps images sharp without using excessive space or loading time.
+
+This validation ensures profile images are a reasonable size without becoming pixelated.
+
+### Dietary Restrictions & Emergency Contact Fields
+
+Validation logic in the `CourseRegistration` model ensures that if a user selects "Yes" for dietary restrictions or emergency contact, they must provide relevant details:
+
+- **Dietary Restrictions**:
+
+  If `has_dietary_restrictions` is True, then `dietary_restrictions` is required.
+
+- **ICE - In Case of Emergency Contact**:
+
+  If `has_emergency_contact` is True, `ice_name` and `ice_number` are required; if False, these fields must remain blank.
+
+The conditional logic ensures that necessary information is provided only when relevant, improving data consistency.
+
+### Anonymization of Cancelled Registrations
+
+For canceled course registrations, personal data is anonymized to protect user privacy, whilst the rest is kept for possible analytics.
 
 ## Planning
 
@@ -242,6 +281,10 @@ This covered validation of both landlines and mobile number without the overly c
 ### Email Validation
 
 Email validation for the CourseRegistration application is done using Django’s EmailValidator. It ensures the email inputed follows the expected format of an email address. The max_length is set to 254 characters, ensuring compatibility with most systems when handling email addresses. Validation takes place at the model level, ensuring the email is properly formatted before it's saved to the database.
+
+### Handling Image URL Length Restrictions
+
+Due to PEP8's 79-character line length restriction, the lengthy URLs needed for Cloudinary image storage would either exceed the limit or break if continued on a new line. Although using a backslash `\` at the end of a line typically allows line continuation, these would be removed upon saving. To resolve this, I defined the base URL in settings.py as a global variable, making it accessible across any app that required it. Then, I stored the remainder of the URL, such as the path for a default image, as a global variable at the model level.
 
 ## Prerequisites
 
