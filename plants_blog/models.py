@@ -192,6 +192,10 @@ class PlantInFocusPost(models.Model):
     @property
     def image_url(self):
         """
-        Concatenates the global variable "CLOUDINARY_BASE_URL" from the "settings.py" which serves as a central point for access to images for all applications and "DEFAULT_PLANT_IMAGE_PATH" defined at the top of this file ensuring that the PEP8 79 character limit is maintained despite the long URLs for default images.
+        Concatenates the global variable "CLOUDINARY_BASE_URL" from the
+        "settings.py" which serves as a central point for access to images
+        for all applications and "DEFAULT_PLANT_IMAGE_PATH" defined at the
+        top of this file ensuring that the PEP8 79 character limit is
+        maintained despite the long URLs for default images.
         """
         return f"{settings.CLOUDINARY_BASE_PATH}{DEFAULT_PLANT_IMAGE_PATH}"
