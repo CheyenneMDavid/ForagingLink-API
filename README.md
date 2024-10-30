@@ -125,6 +125,8 @@ The Followers app enables users to stay connected with content authors, includin
 
 The Courses app is used to publish and manage upcoming courses in the seasons of spring, summer, and autumn. It allows all users, whether authenticated or not, to view course listings and details, while only admins have the ability to create, update, or delete courses. Each course detail page includes essential information such as the season, title, date, description, location, and maximum number of participants.
 
+Within the Courses app, "the `CourseList` view" returns courses with future dates, limiting the display to 3. Whilst "the `FullCourseList` view" returns all future courses, making them available for the front end.
+
 ### Course Registrations
 
 The Course Registrations app manages user registrations for the courses offered. It allows users to register for courses and stores relevant information such as contact details, dietary restrictions, and emergency contact information. The app ensures that courses are not over-subscribed by setting the registration status to "Pending" by default, which can be managed via the admin panel.

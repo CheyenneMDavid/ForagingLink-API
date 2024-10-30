@@ -35,7 +35,7 @@ class CourseList(generics.ListAPIView):
 
     The queryset is handled by a function that fetches instances of the
     courses, and filters them so they only include upcoming courses with dates
-    that are greater than now, ordering them by date in ascending order, and
+    that are greater than "now", ordering them by date in ascending order, and
     limits the results to the top three.
     """
 
@@ -47,6 +47,23 @@ class CourseList(generics.ListAPIView):
     def get_queryset(self):
         now = timezone.now()
         return Course.objects.filter(date__gt=now).order_by("date")[:3]
+
+
+class FullCourseList(generics.ListAPIView):
+    """
+    View to retrieve instances in a read-only format.
+    Inherits from "ListAPIView", allowing any user, authenticated or not, to
+    read the content.
+    FullCourseList returns all future courses, but unlik the "CourseList"
+    view, it returns a complete list, making it available for the front end.
+    """
+
+    serializer_class = CourseSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        now = timezone.now()
+        return Course.objects.filter(date__gt=now).order_by("date")
 
 
 class CourseCreate(generics.CreateAPIView):
