@@ -78,7 +78,9 @@ ALLOWED_HOSTS = [
     os.environ.get("ALLOWED_HOST"),
 ]
 
-# Configure CORS for Gitpod development environment.
+# Allow CORS for dynamic Gitpod URLs if CLIENT_ORIGIN_DEV is set.
+# Extracts the base URL to match all Gitpod workspace variations,
+# allowing access during development.
 if "CLIENT_ORIGIN_DEV" in os.environ:
     extracted_url = re.match(
         r"^.+-", os.environ.get("CLIENT_ORIGIN_DEV", ""), re.IGNORECASE
@@ -87,9 +89,10 @@ if "CLIENT_ORIGIN_DEV" in os.environ:
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
+# Set trusted CSRF origins from a comma-separated env variable.
+# Used for fixed URLs like deployed frontend and IDE.
+CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS", "").split(",")
 
-# CSRF trusted origins.
-CSRF_TRUSTED_ORIGINS = [os.environ.get("CSRF_TRUSTED_ORIGINS")]
 
 # Installed apps
 INSTALLED_APPS = [
