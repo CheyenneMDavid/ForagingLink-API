@@ -87,6 +87,12 @@ if "CLIENT_ORIGIN_DEV" in os.environ:
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
+
+# Direct access to Gitpod URL for testing
+CORS_ALLOWED_ORIGINS = [
+    "https://3000-cheyennemda-foraginglin-pqwapcegga7.ws.codeinstitute-ide.net",
+]
+
 # Temporary to see connection:
 print("CORS_ALLOWED_ORIGIN_REGEXES:", CORS_ALLOWED_ORIGIN_REGEXES)
 
