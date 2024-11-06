@@ -88,13 +88,6 @@ if "CLIENT_ORIGIN_DEV" in os.environ:
     ]
 
 
-import axios from "axios";
-
-axios.defaults.baseURL = "https://foraging-api-5bc654d11954.herokuapp.com";
-axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
-axios.defaults.withCredentials = true;
-
-
 # CSRF trusted origins.
 CSRF_TRUSTED_ORIGINS = [os.environ.get("CSRF_TRUSTED_ORIGINS")]
 
