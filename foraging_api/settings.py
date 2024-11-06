@@ -88,13 +88,12 @@ if "CLIENT_ORIGIN_DEV" in os.environ:
     ]
 
 
-# Direct access to Gitpod URL for testing
-CORS_ALLOWED_ORIGINS = [
-    "https://3000-cheyennemda-foraginglin-pqwapcegga7.ws.codeinstitute-ide.net",
-]
+import axios from "axios";
 
-# Temporary to see connection:
-print("CORS_ALLOWED_ORIGIN_REGEXES:", CORS_ALLOWED_ORIGIN_REGEXES)
+axios.defaults.baseURL = "https://foraging-api-5bc654d11954.herokuapp.com";
+axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
+axios.defaults.withCredentials = true;
+
 
 # CSRF trusted origins.
 CSRF_TRUSTED_ORIGINS = [os.environ.get("CSRF_TRUSTED_ORIGINS")]
