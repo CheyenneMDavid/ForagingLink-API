@@ -78,6 +78,11 @@ ALLOWED_HOSTS = [
     os.environ.get("ALLOWED_HOST"),
 ]
 
+
+# CORS allowed origins for production
+CORS_ALLOWED_ORIGINS = os.environ.get("CLIENT_ORIGIN", "").split(",")
+
+
 # Allow CORS for dynamic Gitpod URLs if CLIENT_ORIGIN_DEV is set.
 # Extracts the base URL to match all Gitpod workspace variations,
 # allowing access during development.
