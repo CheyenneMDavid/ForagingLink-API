@@ -6,7 +6,6 @@ It defines the user profile models and automatically creates a profile when a
 new user is registered.
 """
 
-from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
@@ -61,17 +60,6 @@ class Profile(models.Model):
         help_text="Profile image of the user. Defaults to generic image if "
         "one is not provided",
     )
-
-    @property
-    def image_url(self):
-        """
-        Concatenates the global variable "CLOUDINARY_BASE_URL" from the
-        "settings.py" which serves as a central point for access to images
-        for allapplications and "DEFAULT_USER_AVATAR_PATH" defined at the of
-        this file ensuring that the PEP8 79 character limit is maintained
-        despite the long URLs for default avatar image.
-        """
-        return f"{settings.CLOUDINARY_BASE_PATH}{DEFAULT_USER_AVATAR_PATH}"
 
     class Meta:
         """
