@@ -13,19 +13,9 @@ admin deleting their account or losing their account privileges, the posts are
 protected.
 """
 
-from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-
-
-# File level global variable for the default image to be used in the
-# plants_blog application, with the prefix for Cloudinary's version caching,
-# saving the job of updating the URL in the case of an alternative image were
-# to be used as a default image.
-DEFAULT_PLANT_IMAGE_PATH = (
-    "v1706847130/foraging_link/plant_images/default_foraged_image_vev3ib.jpg"
-)
 
 
 class PlantInFocusPost(models.Model):
@@ -146,8 +136,8 @@ class PlantInFocusPost(models.Model):
     )
 
     main_plant_image = models.ImageField(
-        upload_to="foraging_link/plant_images",
-        default=DEFAULT_PLANT_IMAGE_PATH,
+        upload_to="images/",
+        default="../default_plant_image_rvlqpb.jpg",
         verbose_name="Main Plant Image",
         help_text="Upload an image of the main plant.",
     )
@@ -177,8 +167,8 @@ class PlantInFocusPost(models.Model):
     )
     confusable_plant_image = models.ImageField(
         # Folder path for storing uploaded plant images in Cloudinary
-        upload_to="foraging_link/plant_images",
-        default=DEFAULT_PLANT_IMAGE_PATH,
+        upload_to="images/",
+        default="../default_plant_image_rvlqpb.jpg",
         verbose_name="Confusable Plant Image",
         help_text="Upload an image of the confusable plant, if needed",
         null=True,
@@ -188,14 +178,3 @@ class PlantInFocusPost(models.Model):
     # String representation, returning the name of the main plant.
     def __str__(self):
         return self.main_plant_name
-
-    @property
-    def image_url(self):
-        """
-        Concatenates the global variable "CLOUDINARY_BASE_URL" from the
-        "settings.py" which serves as a central point for access to images
-        for all applications and "DEFAULT_PLANT_IMAGE_PATH" defined at the
-        top of this file ensuring that the PEP8 79 character limit is
-        maintained despite the long URLs for default images.
-        """
-        return f"{settings.CLOUDINARY_BASE_PATH}{DEFAULT_PLANT_IMAGE_PATH}"

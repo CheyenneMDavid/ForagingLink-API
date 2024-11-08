@@ -284,10 +284,6 @@ This covered validation of both landlines and mobile number without the overly c
 
 Email validation for the CourseRegistration application is done using Django’s EmailValidator. It ensures the email inputed follows the expected format of an email address. The max_length is set to 254 characters, ensuring compatibility with most systems when handling email addresses. Validation takes place at the model level, ensuring the email is properly formatted before it's saved to the database.
 
-### Handling Image URL Length Restrictions
-
-Due to PEP8's 79-character line length restriction, the lengthy URLs needed for Cloudinary image storage would either exceed the limit or break if continued on a new line. Although using a backslash `\` at the end of a line typically allows line continuation, these would be removed upon saving. To resolve this, I defined the base URL in settings.py as a global variable, making it accessible across any app that required it. Then, I stored the remainder of the URL, such as the path for a default image, as a global variable at the model level.
-
 ## Prerequisites
 
 - Python 3.9.19
