@@ -59,6 +59,11 @@ class Profile(models.Model):
         verbose_name="Profile Image",
         help_text="Profile image of the user. Defaults to generic image if "
         "one is not provided",
+        # Specified character length limit to prevent automatic truncation
+        # issues that caused deployment failure.
+        max_length=255,
+        null=True,
+        blank=True,
     )
 
     class Meta:
