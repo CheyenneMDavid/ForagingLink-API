@@ -55,15 +55,13 @@ class Profile(models.Model):
     # is used if one isn't uploaded
     avatar = models.ImageField(
         upload_to="images/",
-        default=(
-            "https://res.cloudinary.com/cheymd/image/upload/v1731062989/media/images/default_avatar_pfb93f.jpg"
-        ),
+        default=("images/default_avatar_pfb93f.jpg"),
         verbose_name="Profile Image",
         help_text="Profile image of the user. Defaults to generic image if "
         "one is not provided",
         # Specified character length limit to prevent automatic truncation
         # issues that caused deployment failure.
-        max_length=500,
+        max_length=255,
         null=True,
         blank=True,
     )

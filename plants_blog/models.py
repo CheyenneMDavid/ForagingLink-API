@@ -144,7 +144,7 @@ class PlantInFocusPost(models.Model):
         help_text="Upload an image of the main plant.",
         # Specified character length limit to prevent automatic truncation
         # issues that caused deployment failure.
-        max_length=500,
+        max_length=255,
     )
 
     # Details of plants that may be mistaken for the main_plant of interest.
@@ -183,7 +183,7 @@ class PlantInFocusPost(models.Model):
         blank=True,
         # Specified character length limit to prevent automatic truncation
         # issues that caused deployment failure.
-        max_length=500,
+        max_length=255,
     )
 
     # String representation, returning the name of the main plant.
