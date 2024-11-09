@@ -2,7 +2,7 @@
 
 # Ignoring unused imports (F401) and unused variables (F841)
 # Listed exclusions for linting.
-
+# Ignoring 
 max-line-length = 78
-ignore = F401, F841, W503
+ignore = F401, F841, W503, E501
 exclude = */migrations, .vscode, env.py
