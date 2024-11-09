@@ -138,13 +138,13 @@ class PlantInFocusPost(models.Model):
     main_plant_image = models.ImageField(
         upload_to="images/",
         default=(
-            "https://res.cloudinary.com/cheymd/image/upload/v1731062989/media/images/default_avatar_pfb93f.jpg"
+            "https://res.cloudinary.com/cheymd/image/upload/v1731064102/media/images/default_plant_image_rvlqpb.jpg"
         ),
         verbose_name="Main Plant Image",
         help_text="Upload an image of the main plant.",
         # Specified character length limit to prevent automatic truncation
         # issues that caused deployment failure.
-        max_length=255,
+        max_length=500,
     )
 
     # Details of plants that may be mistaken for the main_plant of interest.
@@ -170,11 +170,12 @@ class PlantInFocusPost(models.Model):
         null=True,
         blank=True,
     )
+
     confusable_plant_image = models.ImageField(
         # Folder path for storing uploaded plant images in Cloudinary
         upload_to="images/",
         default=(
-            "https://res.cloudinary.com/cheymd/image/upload/v1731062989/media/images/default_avatar_pfb93f.jpg"
+            "https://res.cloudinary.com/cheymd/image/upload/v1731064102/media/images/default_plant_image_rvlqpb.jpg"
         ),
         verbose_name="Confusable Plant Image",
         help_text="Upload an image of the confusable plant, if needed",

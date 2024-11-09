@@ -51,8 +51,8 @@ class Profile(models.Model):
         verbose_name="Content",
         help_text="About the user.",
     )
-    # Stores the image used as user's avatar. Default image is used if one
-    # isn't uploaded
+    # Stores the image used as user's avatar. Default image
+    # is used if one isn't uploaded
     avatar = models.ImageField(
         upload_to="images/",
         default=(
@@ -63,7 +63,7 @@ class Profile(models.Model):
         "one is not provided",
         # Specified character length limit to prevent automatic truncation
         # issues that caused deployment failure.
-        max_length=255,
+        max_length=500,
         null=True,
         blank=True,
     )
