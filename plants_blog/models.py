@@ -137,7 +137,7 @@ class PlantInFocusPost(models.Model):
 
     main_plant_image = models.ImageField(
         upload_to="images/",
-        default="../default_plant_image_rvlqpb.jpg",
+        default="images/default_plant_image_rvlqpb.jpg",
         verbose_name="Main Plant Image",
         help_text="Upload an image of the main plant.",
     )
@@ -168,7 +168,7 @@ class PlantInFocusPost(models.Model):
     confusable_plant_image = models.ImageField(
         # Folder path for storing uploaded plant images in Cloudinary
         upload_to="images/",
-        default="../default_plant_image_rvlqpb.jpg",
+        default="images/default_plant_image_rvlqpb.jpg",
         verbose_name="Confusable Plant Image",
         help_text="Upload an image of the confusable plant, if needed",
         null=True,
