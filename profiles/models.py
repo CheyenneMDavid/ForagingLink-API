@@ -59,8 +59,6 @@ class Profile(models.Model):
         verbose_name="Profile Image",
         help_text="Profile image of the user. Defaults to generic image "
         "if one is not provided",
-        null=True,
-        blank=True,
     )
 
     class Meta:
