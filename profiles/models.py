@@ -55,7 +55,7 @@ class Profile(models.Model):
     # is used if one isn't uploaded
     avatar = models.ImageField(
         upload_to="images/",
-        default="default_avatar_pfb93f",
+        default="images/default_avatar_pfb93f",
         verbose_name="Profile Image",
         help_text="Profile image of the user. Defaults to generic image "
         "if one is not provided",
