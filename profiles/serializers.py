@@ -46,7 +46,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             return following.id if following else None
         return None
 
-    def validate_avatar(self, value):
+    def validate_image(self, value):
         """
         Validates the image being used as an avatar's size and dimensions,
         raising a ValidationError message if the the image is outside the
@@ -55,22 +55,20 @@ class ProfileSerializer(serializers.ModelSerializer):
 
         # Ensure that file size is not over 2MB
         if value.size > 2 * 1024 * 1024:
-            raise serializers.ValidationError(
-                "Avatar size cannot exceed 2MB."
-            )
+            raise serializers.ValidationError("Image size cannot exceed 2MB.")
 
         # Keeps image size to an expected size for an avatar without
         # compromising quality.
         if value.image.height > 512:
             raise serializers.ValidationError(
-                "Avatar height cannot exceed 512 pixels."
+                "Image height cannot exceed 512 pixels."
             )
 
         # Keeps image size to an expected size for an avatar without
         # compromising quality.
         if value.image.width > 512:
             raise serializers.ValidationError(
-                "Avatar width cannot exceed 512 pixels."
+                "Image width cannot exceed 512 pixels."
             )
 
         return value
@@ -88,7 +86,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             "updated_at",
             "name",
             "content",
-            "avatar",
+            "image",
             "is_owner",
             "following_id",
             "total_comments_count",

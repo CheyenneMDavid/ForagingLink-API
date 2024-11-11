@@ -53,7 +53,7 @@ class Profile(models.Model):
     )
     # Stores the image used as user's avatar. Default image
     # is used if one isn't uploaded
-    avatar = models.ImageField(
+    image = models.ImageField(
         upload_to="images/",
         default="images/default_avatar_pfb93f",
         verbose_name="Profile Image",
