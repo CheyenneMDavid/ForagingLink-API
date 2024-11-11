@@ -302,7 +302,15 @@ To provide a clean, working setup for assessment, I chose to reset the migration
 
 5. **Database Reset**: Finally, I used `python manage.py flush` to clear out any data in the database, ensuring a clean slate with the newly structured schema.
 
-This reset process allowed me to resolve the Cloudinary path issues and simplify the migration history.
+I hoped that this reset process would allow me to resolve the problems, which I believed to be Cloudinary path issues.
+
+However, after completing this entire reset, I discovered that the issue was not related to Cloudinary paths or migrations. The root cause was an incorrect string in the `USER_DETAILS_SERIALIZER` configuration in `settings.py`. Fixing this string by formatting it in a manner which passed PEP8 rules and also kept it in tact allowed the `profile_image` field to display correctly, making the previous efforts with migrations unnecessary.
+
+## Lessons Learned: Simple Fixes Can Be the Most Elusive
+
+After a journey through migration resets, Cloudinary path adjustments, and database reconfigurations, the final resolution turned out to be… a single misplaced string format in `settings.py`. Sometimes, even the smallest details can have us chasing our tails. Lesson learned: double-check the simple stuff!
+
+The good news? At least we now have a perfectly clean migration history and a newfound respect for careful string formatting!
 
 ## Prerequisites
 
