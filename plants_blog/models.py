@@ -152,12 +152,14 @@ class PlantInFocusPost(models.Model):
         null=True,
         blank=True,
     )
+
     confusable_plant_information = models.TextField(
         verbose_name="Confusable Plant Environment",
         help_text="Describe distinguishing features",
         null=True,
         blank=True,
     )
+
     confusable_plant_warnings = models.TextField(
         verbose_name="warnings",
         help_text="Describe any dangers of mistaking this plant for the "

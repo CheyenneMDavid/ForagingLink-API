@@ -284,6 +284,26 @@ This covered validation of both landlines and mobile number without the overly c
 
 Email validation for the CourseRegistration application is done using Django’s EmailValidator. It ensures the email inputed follows the expected format of an email address. The max_length is set to 254 characters, ensuring compatibility with most systems when handling email addresses. Validation takes place at the model level, ensuring the email is properly formatted before it's saved to the database.
 
+### Database Migration Reset and Cloudinary Path Adjustments
+
+Initially, I organized my Cloudinary images into folders such as **Planning**, **Avatars**, and **Database Population** to keep the project’s media assets organized. However, this structure created issues when setting up the front end. The folder structure didn’t integrate well with the way images were accessed, so I decided to revert the Cloudinary upload and default image paths to a simpler setup.
+
+This change led to complications with the database. Although I updated the image paths in the model fields, I encountered difficulties getting the database to reflect these new values correctly. This process required multiple attempts to adjust the Cloudinary paths, which led to a series of migrations that cluttered the migration history and still didn’t fully resolve the display issues with the default avatar image.
+
+To provide a clean, working setup for assessment, I chose to reset the migrations and create a single, cohesive migration reflecting the final state of the models. The steps taken were:
+
+1. **Path Adjustments for Cloudinary Avatar**: I experimented with different configurations for the Cloudinary avatar image path to ensure it would display correctly. Eventually, I simplified the setup by using only the Cloudinary public ID.
+
+2. **Removing Previous Migration Files**: To eliminate migration clutter and start fresh, I deleted all existing migration files in each app’s `migrations` folder, except for the `__init__.py` file required by Django.
+
+3. **Creating New Migrations**: With the Cloudinary configuration finalized, I ran `python manage.py makemigrations` to create a single, clean migration file for each app, reflecting the final state of the database models.
+
+4. **Applying Migrations to the Database**: I applied these fresh migrations with `python manage.py migrate` to ensure the database schema matched the current models without any residual migration history.
+
+5. **Database Reset**: Finally, I used `python manage.py flush` to clear out any data in the database, ensuring a clean slate with the newly structured schema.
+
+This reset process allowed me to resolve the Cloudinary path issues and simplify the migration history.
+
 ## Prerequisites
 
 - Python 3.9.19
