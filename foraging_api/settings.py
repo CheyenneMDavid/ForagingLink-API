@@ -57,10 +57,11 @@ JWT_AUTH_COOKIE = "my-app-auth"
 JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 JWT_AUTH_SAMESITE = "None"
 
-# Custom user details serializer
+# Custom user details serializer.
 REST_AUTH_SERIALIZERS = {
-    "USER_DETAILS_SERIALIZER": "foraging_api.serializers."
-    "CurrentUserSerializer"
+    "USER_DETAILS_SERIALIZER": (
+        "foraging_api.serializers.CurrentUserSerializer"
+    )
 }
 
 
