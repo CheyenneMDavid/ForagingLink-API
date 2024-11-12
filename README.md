@@ -344,34 +344,48 @@ You can find the full list of dependencies in the [requirements.txt](requirement
 
 ## Deployment Instructions
 
-1. **Forking or Cloning a Repository:**
-   - **Forking:** Creates your own copy of the repository on your GitHub account.
-     - Navigate to the chosen repository on GitHub.
-     - Click the "Fork" button in the top-right corner.
-     - For detailed instructions, check GitHub's documentation on [forking repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
-       <br>
-   - **Cloning:** Downloads a copy of the repository to your local machine.
-     - Open your Gitpod console.
-     - Use the `git clone` command followed by the URL of the repository you wish to clone.
-     - For detailed instructions, check GitHub's documentation on [cloning repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
-       <br>
-2. **Cloudinary Account:**
-   - Signup for a Cloudinary account on the [Cloudinary website](https://console.cloudinary.com/pm/c-22b4346b808568adb23133ede29fc9/getting-started).
-   - Follow the instructions to sign up for an account and obtain your API key.
-   - For more detailed instructions, check [Cloudinary's documentation](https://cloudinary.com/documentation).
-     <br>
-3. **Heroku Setup:**
-   - Go to Heroku and sign up if you haven't already.
-   - Create a new app from the Heroku dashboard.
-   - Configure your app's settings, including region and environment variables.
-   - Add the necessary environment variables:
-     - CLOUDINARY_URL: Your Cloudinary URL.
-     - DATABASE_URL: Your Postgres database URL.
-     - SECRET_KEY: Generate a secret key for your Django project using a tool like [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/).
-     - ALLOWED_HOSTS: URL of your API hosted on Heroku (without 'https://').
-   - Heroku provides detailed documentation for each step of the setup process.
-     <br>
-4. **Database Configuration:**
+1.  **Forking or Cloning a Repository:**
+    - **Forking:** Creates your own copy of the repository on your GitHub account.
+      - Navigate to the chosen repository on GitHub.
+      - Click the "Fork" button in the top-right corner.
+      - For detailed instructions, check GitHub's documentation on [forking repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+        <br>
+    - **Cloning:** Downloads a copy of the repository to your local machine.
+      - Open your Gitpod console.
+      - Use the `git clone` command followed by the URL of the repository you wish to clone.
+      - For detailed instructions, check GitHub's documentation on [cloning repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+        <br>
+2.  **Cloudinary Account:**
+    - Signup for a Cloudinary account on the [Cloudinary website](https://console.cloudinary.com/pm/c-22b4346b808568adb23133ede29fc9/getting-started).
+    - Follow the instructions to sign up for an account and obtain your API key.
+    - For more detailed instructions, check [Cloudinary's documentation](https://cloudinary.com/documentation).
+      <br>
+3.  **Summernote Installation**
+
+    The django-summernote package is added to enhance the Django admin panel for the Plants Blog app, allowing admins to style text with formatting, links, and images directly in certain fields.
+
+    - Installation command: pip install django-summernote
+    - Add to dependencies with: pip freeze > requirements.txt
+    - Add django_summernote to INSTALLED_APPS in settings.py
+    - Include Summernote's URLs in urls.py within the application's main folder.
+    - Add Summernote's URL into the main application folder.
+      - Summernote's URL:
+        - `path("summernote/", include("django_summernote.urls"))`
+
+4.  **Heroku Setup:**
+
+- Go to Heroku and sign up if you haven't already.
+- Create a new app from the Heroku dashboard.
+- Configure your app's settings, including region and environment variables.
+- Add the necessary environment variables:
+  - CLOUDINARY_URL: Your Cloudinary URL.
+  - DATABASE_URL: Your Postgres database URL.
+  - SECRET_KEY: Generate a secret key for your Django project using a tool like [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/).
+  - ALLOWED_HOSTS: URL of your API hosted on Heroku (without 'https://').
+- Heroku provides detailed documentation for each step of the setup process.
+  <br>
+
+5. **Database Configuration:**
    - Set up a PostgreSQL database instance with an appropriate provider. Some recommended options include:
      - [Heroku Postgres](https://www.heroku.com/postgres)
      - [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/)
