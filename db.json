@@ -1,1 +1,1316 @@
-[{"model": "admin.logentry", "pk": 1, "fields": {"action_time": "2024-09-11T00:04:09.746Z", "user": 1, "content_type": 16, "object_id": "1", "object_repr": "Test Plant - Oxeyed Daisy", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 2, "fields": {"action_time": "2024-09-18T02:53:41.074Z", "user": 1, "content_type": 20, "object_id": "1", "object_repr": "Spring Foraging Workshop", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 3, "fields": {"action_time": "2024-09-18T03:01:31.243Z", "user": 1, "content_type": 20, "object_id": "2", "object_repr": "Summer Foraging Workshop", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 4, "fields": {"action_time": "2024-09-18T03:16:02.064Z", "user": 1, "content_type": 20, "object_id": "3", "object_repr": "Autumn Foraging Workshop", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 5, "fields": {"action_time": "2024-10-03T04:45:54.973Z", "user": 2, "content_type": 16, "object_id": "1", "object_repr": "Test Plant - Oxeyed Daisy", "action_flag": 2, "change_message": "[]"}}, {"model": "admin.logentry", "pk": 6, "fields": {"action_time": "2024-10-03T04:47:50.123Z", "user": 2, "content_type": 16, "object_id": "1", "object_repr": "Test Plant - Oxeyed Daisy", "action_flag": 2, "change_message": "[]"}}, {"model": "admin.logentry", "pk": 7, "fields": {"action_time": "2024-10-03T04:50:02.876Z", "user": 2, "content_type": 16, "object_id": "1", "object_repr": "Test Plant - Oxeyed Daisy", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Culinary Uses\", \"Plant warnings\"]}}]"}}, {"model": "admin.logentry", "pk": 8, "fields": {"action_time": "2024-10-03T05:24:50.860Z", "user": 2, "content_type": 16, "object_id": "1", "object_repr": "Test Plant - Oxeyed Daisy", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Usable plant parts\", \"Plant warnings\"]}}]"}}, {"model": "admin.logentry", "pk": 9, "fields": {"action_time": "2024-10-03T06:58:27.633Z", "user": 2, "content_type": 16, "object_id": "1", "object_repr": "Test Plant - Oxeyed Daisy", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Usable plant parts\"]}}]"}}, {"model": "admin.logentry", "pk": 10, "fields": {"action_time": "2024-10-20T18:48:50.810Z", "user": 2, "content_type": 16, "object_id": "2", "object_repr": "Stinging Nettles", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 11, "fields": {"action_time": "2024-10-20T18:54:40.744Z", "user": 2, "content_type": 16, "object_id": "3", "object_repr": "Alexanders, Horse Parsley", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 12, "fields": {"action_time": "2024-10-20T18:54:58.014Z", "user": 2, "content_type": 16, "object_id": "3", "object_repr": "Alexanders, Horse Parsley", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Main Plant Month\"]}}]"}}, {"model": "admin.logentry", "pk": 13, "fields": {"action_time": "2024-10-20T18:58:32.128Z", "user": 2, "content_type": 16, "object_id": "4", "object_repr": "Wild Garlic /Ramsons Leaves", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 14, "fields": {"action_time": "2024-10-20T19:20:09.767Z", "user": 2, "content_type": 16, "object_id": "5", "object_repr": "Dock Leaves", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 15, "fields": {"action_time": "2024-10-20T19:22:00.811Z", "user": 2, "content_type": 16, "object_id": "6", "object_repr": "Back breaking to dig out from the ground", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 16, "fields": {"action_time": "2024-10-20T19:23:38.334Z", "user": 2, "content_type": 16, "object_id": "7", "object_repr": "Chicken Of The Woods / COTW", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 17, "fields": {"action_time": "2024-10-20T19:28:45.069Z", "user": 2, "content_type": 16, "object_id": "8", "object_repr": "Alpine / Strawberries", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 18, "fields": {"action_time": "2024-10-20T19:31:38.885Z", "user": 2, "content_type": 16, "object_id": "9", "object_repr": "Yew Tree", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 19, "fields": {"action_time": "2024-10-27T06:52:54.045Z", "user": 2, "content_type": 20, "object_id": "4", "object_repr": "Spring Foraging Basics", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 20, "fields": {"action_time": "2024-10-27T06:54:30.875Z", "user": 2, "content_type": 20, "object_id": "5", "object_repr": "Introduction to Wild Herbs", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 21, "fields": {"action_time": "2024-10-27T06:55:14.813Z", "user": 2, "content_type": 20, "object_id": "6", "object_repr": "Wildflower Foraging Workshop", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 22, "fields": {"action_time": "2024-10-27T06:57:51.463Z", "user": 2, "content_type": 20, "object_id": "1", "object_repr": "Spring Foraging Workshop", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 23, "fields": {"action_time": "2024-10-27T06:58:02.254Z", "user": 2, "content_type": 20, "object_id": "3", "object_repr": "Autumn Foraging Workshop", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 24, "fields": {"action_time": "2024-10-27T06:58:02.255Z", "user": 2, "content_type": 20, "object_id": "6", "object_repr": "Wildflower Foraging Workshop", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 25, "fields": {"action_time": "2024-10-27T06:58:02.255Z", "user": 2, "content_type": 20, "object_id": "2", "object_repr": "Summer Foraging Workshop", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 26, "fields": {"action_time": "2024-10-27T06:58:02.256Z", "user": 2, "content_type": 20, "object_id": "5", "object_repr": "Introduction to Wild Herbs", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 27, "fields": {"action_time": "2024-10-27T06:58:02.257Z", "user": 2, "content_type": 20, "object_id": "4", "object_repr": "Spring Foraging Basics", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 28, "fields": {"action_time": "2024-10-27T06:59:40.608Z", "user": 2, "content_type": 20, "object_id": "7", "object_repr": "Spring Foraging Basics", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 29, "fields": {"action_time": "2024-10-27T07:00:25.138Z", "user": 2, "content_type": 20, "object_id": "8", "object_repr": "Introduction to Wild Herbs", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 30, "fields": {"action_time": "2024-10-27T07:01:07.273Z", "user": 2, "content_type": 20, "object_id": "9", "object_repr": "Wildflower Foraging Workshop", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 31, "fields": {"action_time": "2024-10-27T07:02:06.719Z", "user": 2, "content_type": 20, "object_id": "10", "object_repr": "Seaside Edibles Walk", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 32, "fields": {"action_time": "2024-10-27T07:03:13.046Z", "user": 2, "content_type": 20, "object_id": "11", "object_repr": "Mushroom Identification & Foraging", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 33, "fields": {"action_time": "2024-10-27T07:03:56.989Z", "user": 2, "content_type": 20, "object_id": "12", "object_repr": "Autumn Hedgerow Bounty", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 34, "fields": {"action_time": "2024-10-27T08:30:34.216Z", "user": 2, "content_type": 21, "object_id": "1", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 35, "fields": {"action_time": "2024-10-27T08:31:12.179Z", "user": 2, "content_type": 21, "object_id": "1", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 2, "change_message": "[]"}}, {"model": "admin.logentry", "pk": 36, "fields": {"action_time": "2024-10-27T08:31:46.912Z", "user": 2, "content_type": 21, "object_id": "1", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"}}, {"model": "admin.logentry", "pk": 37, "fields": {"action_time": "2024-10-27T08:48:25.069Z", "user": 2, "content_type": 21, "object_id": "1", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"}}, {"model": "admin.logentry", "pk": 38, "fields": {"action_time": "2024-10-27T08:48:51.189Z", "user": 2, "content_type": 21, "object_id": "1", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"}}, {"model": "admin.logentry", "pk": 39, "fields": {"action_time": "2024-10-27T08:49:27.556Z", "user": 2, "content_type": 21, "object_id": "1", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 3, "change_message": ""}}, {"model": "admin.logentry", "pk": 40, "fields": {"action_time": "2024-10-27T08:52:03.123Z", "user": 2, "content_type": 21, "object_id": "2", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 41, "fields": {"action_time": "2024-10-27T09:33:07.955Z", "user": 2, "content_type": 21, "object_id": "2", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"}}, {"model": "admin.logentry", "pk": 42, "fields": {"action_time": "2024-10-27T09:33:24.872Z", "user": 2, "content_type": 21, "object_id": "2", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"}}, {"model": "admin.logentry", "pk": 43, "fields": {"action_time": "2024-10-27T09:39:53.191Z", "user": 2, "content_type": 21, "object_id": "2", "object_repr": "testuser's registration for: Autumn Hedgerow Bounty", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Phone\", \"Status\", \"Dietary Restrictions\", \"Emergency Contact Number\"]}}]"}}, {"model": "admin.logentry", "pk": 44, "fields": {"action_time": "2024-10-27T10:32:32.366Z", "user": 2, "content_type": 20, "object_id": "13", "object_repr": "Sample Course", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Maximum Capacity\"]}}]"}}, {"model": "admin.logentry", "pk": 45, "fields": {"action_time": "2024-10-28T01:32:43.523Z", "user": 2, "content_type": 20, "object_id": "13", "object_repr": "Sample Course", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Maximum Capacity\"]}}]"}}, {"model": "admin.logentry", "pk": 46, "fields": {"action_time": "2024-10-28T01:35:24.328Z", "user": 2, "content_type": 21, "object_id": "3", "object_repr": "unique_testuser's registration for: Sample Course", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "admin.logentry", "pk": 47, "fields": {"action_time": "2024-10-28T01:36:55.253Z", "user": 2, "content_type": 21, "object_id": "3", "object_repr": "unique_testuser's registration for: Sample Course", "action_flag": 2, "change_message": "[{\"changed\": {\"fields\": [\"Has Dietary Restrictions\", \"Dietary Restrictions\"]}}]"}}, {"model": "admin.logentry", "pk": 48, "fields": {"action_time": "2024-11-15T19:12:10.109Z", "user": 2, "content_type": 17, "object_id": "3", "object_repr": "They're tiny!", "action_flag": 1, "change_message": "[{\"added\": {}}]"}}, {"model": "auth.user", "pk": 1, "fields": {"password": "pbkdf2_sha256$260000$Kn2ZyBoVYioxFdoEfjv6zV$lnU9bbue6/FaG16u/SCXvsx7WfiMIbGQA0o09h8x/AU=", "last_login": "2024-09-18T02:25:06.824Z", "is_superuser": true, "username": "admin3", "first_name": "", "last_name": "", "email": "admin3@email.com", "is_staff": true, "is_active": true, "date_joined": "2024-09-10T23:57:01.557Z", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 2, "fields": {"password": "pbkdf2_sha256$260000$8NDq2GLaM7H6bXzRXo8E62$BY0SkUPrQqtZXLQzzVTa9cSCVCnRQok37D4iiPst5LE=", "last_login": "2024-11-15T18:56:57.129Z", "is_superuser": true, "username": "admin", "first_name": "", "last_name": "", "email": "admin@email.com", "is_staff": true, "is_active": true, "date_joined": "2024-09-23T04:03:26.678Z", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 3, "fields": {"password": "", "last_login": null, "is_superuser": false, "username": "testuser", "first_name": "", "last_name": "", "email": "", "is_staff": false, "is_active": true, "date_joined": "2024-10-27T04:45:13.440Z", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 4, "fields": {"password": "", "last_login": null, "is_superuser": false, "username": "unique_testuser", "first_name": "", "last_name": "", "email": "", "is_staff": false, "is_active": true, "date_joined": "2024-10-27T05:01:29.668Z", "groups": [], "user_permissions": []}}, {"model": "auth.user", "pk": 5, "fields": {"password": "", "last_login": null, "is_superuser": false, "username": "unique_testuser_2", "first_name": "", "last_name": "", "email": "", "is_staff": false, "is_active": true, "date_joined": "2024-10-27T05:22:25.739Z", "groups": [], "user_permissions": []}}, {"model": "sessions.session", "pk": "5e4je3zzz2byum04aysazjie6m226u5k", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG8yoBL934DGWCQqoGktCvjv2uTLnR7zzn3xQJuaw3boCXMmZ2ZZKffLWJ6UNtBvmO7dZ56W5c58l3hBx382jM9L4f7d1Bx1G_ttUtKKy2SicVoiFG4kpWyPpO3gADFkkiT0yiNz4iy2OQ8UQSFEwB7fwDX2zfl:1sqkNO:iSVOiVVsgUZkt1ygTNMCcLfk9Cf1T-Nrv1Z3k6DzaEs", "expire_date": "2024-10-02T02:25:06.825Z"}}, {"model": "sessions.session", "pk": "7960lryv01q5lyhrfycqqyl6zbmfhwzh", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t9co7:igZ8BuPYYJiwzk06sSnLG4EMf_9UUyzY8qrkOrHyxUY", "expire_date": "2024-11-23T04:10:43.272Z"}}, {"model": "sessions.session", "pk": "gwqqgsrplajf1qavrc9s1ctyxwxdm5q5", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1tAMtT:En3gUPm0ksRHczXpJLDl1bO43B_wOVJo4BQxid0CmPc", "expire_date": "2024-11-25T05:23:19.790Z"}}, {"model": "sessions.session", "pk": "j7uyig6h524l729vw531ddyzb6xotr8r", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1suI26:axgh-Hn9o4Z5Y0TJNdZPymzx8EVVkAjyc1vU_5SUf8Y", "expire_date": "2024-10-11T20:57:46.939Z"}}, {"model": "sessions.session", "pk": "jzy7gw7mc28ittjnqwyzgixhdp8g8r5u", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t2Z8Y:LMpHfOFqKcprbdhlbXpJa0iX8fBTuqCaBfDTWTkRNzA", "expire_date": "2024-11-03T16:50:38.109Z"}}, {"model": "sessions.session", "pk": "p1sspb5txq9kcya7mytvwv7h9wcwmxha", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG8yoBL934DGWCQqoGktCvjv2uTLnR7zzn3xQJuaw3boCXMmZ2ZZKffLWJ6UNtBvmO7dZ56W5c58l3hBx382jM9L4f7d1Bx1G_ttUtKKy2SicVoiFG4kpWyPpO3gADFkkiT0yiNz4iy2OQ8UQSFEwB7fwDX2zfl:1soAjT:OZOt_7ok0G55LeDBkEdRUAD_kERMuFcX38f66FkHFW8", "expire_date": "2024-09-24T23:57:15.631Z"}}, {"model": "sessions.session", "pk": "qfyafs8nktald6gwbfxzo2rm27yrjhb4", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1swCHB:wUBT6mrlnru1Hw3dpJpZZkbUhn6GMC1FrcWUWptFBSA", "expire_date": "2024-10-17T03:13:13.871Z"}}, {"model": "sessions.session", "pk": "rwo39enl6aydpvhld5g01hn4augsc806", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t9bZF:Ta4PEz9_UkP9YqfqZbsryltvoEWI2_Rfwurcc2tfUk4", "expire_date": "2024-11-23T02:51:17.533Z"}}, {"model": "sessions.session", "pk": "z604kf8j1sfsodcpvjvsbcyhqmmmd3qs", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t4TBh:oxhQY1SG1Nxb00gpilZVV7vTOxO4Bn0t3axNWE20DPo", "expire_date": "2024-11-08T22:53:45.659Z"}}, {"model": "sessions.session", "pk": "zjzy1u41hes97dtcsrq35c1w7gib0uxi", "fields": {"session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t4x51:3jHzyata57ui7wFBQ-FgveOXJsWobGHM30FDCxtmSY4", "expire_date": "2024-11-10T06:48:51.370Z"}}, {"model": "sites.site", "pk": 1, "fields": {"domain": "example.com", "name": "example.com"}}, {"model": "profiles.profile", "pk": 1, "fields": {"owner": 1, "created_at": "2024-09-10T23:57:01.635Z", "updated_at": "2024-09-10T23:57:01.635Z", "name": "", "content": "", "image": "images/default_avatar_pfb93f.jpg"}}, {"model": "profiles.profile", "pk": 2, "fields": {"owner": 2, "created_at": "2024-09-23T04:03:26.758Z", "updated_at": "2024-09-23T04:03:26.758Z", "name": "", "content": "", "image": "images/default_avatar_pfb93f.jpg"}}, {"model": "profiles.profile", "pk": 3, "fields": {"owner": 3, "created_at": "2024-10-27T04:45:13.444Z", "updated_at": "2024-10-27T04:45:13.444Z", "name": "", "content": "", "image": "images/default_avatar_pfb93f.jpg"}}, {"model": "profiles.profile", "pk": 4, "fields": {"owner": 4, "created_at": "2024-10-27T05:01:29.671Z", "updated_at": "2024-10-27T05:01:29.671Z", "name": "", "content": "", "image": "images/default_avatar_pfb93f.jpg"}}, {"model": "profiles.profile", "pk": 5, "fields": {"owner": 5, "created_at": "2024-10-27T05:22:25.743Z", "updated_at": "2024-10-27T05:22:25.743Z", "name": "", "content": "", "image": "images/default_avatar_pfb93f.jpg"}}, {"model": "plants_blog.plantinfocuspost", "pk": 1, "fields": {"owner": 1, "created_at": "2024-09-11T00:04:08.732Z", "updated_at": "2024-09-11T00:04:08.732Z", "main_plant_name": "Test Plant - Oxeyed Daisy", "main_plant_month": 1, "main_plant_environment": "Banks and grassland", "culinary_uses": "The leaves have a sweet taste and can be candied.", "medicinal_uses": "The oxeye daisy (Chrysanthemum leucanthemum) has been used in traditional medicine for a variety of conditions, including: \r\n \r\nAsthma and coughs: The leaves and flowers were used to make tea to relax the bronchials. \r\n \r\nBruises: The leaves were used in a poultice in England. \r\n \r\nConjunctivitis: Distilled water from the flowers was used to treat this condition. \r\n \r\nDry skin: Dried flowers and stems were used to minimize symptoms. \r\n \r\nStomach ulcers: The tea was used as a cure for stomach ulcers. \r\n \r\nJaundice: The juice was infused in beer and consumed as a remedy. \r\n \r\nNight sweats: The roots were used to reduce night sweats in tuberculosis patients. \r\n \r\nHowever, there is no good scientific evidence to support any of these uses. Oxeye daisy may also cause an allergic reaction in people who are sensitive to the Asteraceae/Compositae family. \r\n \r\nOxeye daisies can also be eaten raw in salads or sandwiches, or added to soups and stews. The flower heads can be used for decorating salads and other dishes. However, oxeye daisy can be bitter, so it's recommended to pick the youngest specimens.", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": "", "confusable_plant_warnings": "", "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 2, "fields": {"owner": 2, "created_at": "2024-10-20T18:48:49.785Z", "updated_at": "2024-10-20T18:48:49.785Z", "main_plant_name": "Stinging Nettles", "main_plant_month": 1, "main_plant_environment": "Pretty much everywhere.  Whether it be wasteland or gardens.  Country lanes and pathways.", "culinary_uses": "Nettle pesto is tasty. Boil the nettle tops for a few minutes and then whizz with olive oil, garlic, grated Parmesan or other hard Italian cheese – salt to taste. Pine nuts or other nuts can also be added. Eat with pasta in the traditional way.", "medicinal_uses": "\"Nettles, known for their anti-inflammatory properties, they've been used to treat arthritis and muscle aches.\r\nSome people even use them fresh purposely utilizing their stinging qualities to stimulate the skin as pain relief.\"", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": "Roadside verges and waste ground, field edges.", "confusable_plant_warnings": "", "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 3, "fields": {"owner": 2, "created_at": "2024-10-20T18:54:39.025Z", "updated_at": "2024-10-20T18:54:39.025Z", "main_plant_name": "Alexanders, Horse Parsley", "main_plant_month": 2, "main_plant_environment": "Being less prone to frosts coastal areas hold most of theses unusual plants, so in order to find Alexanders, it is said that you need to be within 15 - 20 miles of the coast (or in an area that isn’t prone to frost). That being said, I have found them a long way in land. Hedge banks and roadsides seem to be the most common place to find this unusual plant. Once you know how to identify this plant, you will see it everywhere.", "culinary_uses": "The leaves can be used in salads or cooked – Roman Parsley suggests that the Romans did indeed use it as a herb for seasoning their foods. The flowers can be pickled or used in a salad and the root (if you can get permission) can be treated the same as Parsnip. The stalk is where you will find the most value! The thick stems near the bottom of the plant are best.\r\nIt’s as good a green as any other, containing vitamin C and fibre. The little black fruits are particularly tasty and when dried make an interesting alternative to peppercorns. You can use the leaves like spinach and the stalk like a celery. I like to put in my green goddess soup. It adds a slightly floral coriander-ish flavour and is also great in stir-fries.", "medicinal_uses": "The leaves can be used in salads or cooked – Roman Parsley suggests that the Romans did indeed use it as a herb for seasoning their foods. The flowers can be pickled or used in a salad and the root (if you can get permission) can be treated the same as Parsnip. The stalk is where you will find the most value! The thick stems near the bottom of the plant are best.\r\nIt’s as good a green as any other, containing vitamin C and fibre. The little black fruits are particularly tasty and when dried make an interesting alternative to peppercorns. You can use the leaves like spinach and the stalk like a celery. I like to put in my green goddess soup. It adds a slightly floral coriander-ish flavour and is also great in stir-fries.", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": "Bright green and shiny, a bit fern like with two to four pinnate divisions, the whole looking triangular in shape.", "confusable_plant_warnings": "\"Extremely poisonous!\r\nThe most poisonous plant in the UK and very common along most of our waterways!\r\nPart of the carrot family which several highly poisonous species like hemlock and hemlock water-dropwort.\r\nNo forager, novice or other wise takes the carrot family for granted.\"", "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 4, "fields": {"owner": 2, "created_at": "2024-10-20T18:58:30.910Z", "updated_at": "2024-10-20T18:58:30.910Z", "main_plant_name": "Wild Garlic /Ramsons Leaves", "main_plant_month": 3, "main_plant_environment": "Woodland, well drained soil.", "culinary_uses": "Pesto, Soups, Stirred into Pasta dishes and stir-fries.  You can dry the leaves and eat them like crisps or simply chop them up into an Omelette!", "medicinal_uses": "The juice from ramsons when squeezed would be used as a household disinfectant, whilst the pungent aroma was useful for keeping the midges away.", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": "Growing a month or so later, the new leaves can be mistaken for Ramsons. One people should be aware of as it can be fatal if eaten.  Key thing to note, this plant does not smell of garlic.", "confusable_plant_warnings": "Contains \"Cardiac Glycosides\" similar to \"foxgloves\", causing nausea, vomiting, blurry vision, and disruption to the heartbeat that can be fatal.", "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 5, "fields": {"owner": 2, "created_at": "2024-10-20T19:20:08.824Z", "updated_at": "2024-10-20T19:20:08.824Z", "main_plant_name": "Dock Leaves", "main_plant_month": 4, "main_plant_environment": "Pretty much any land that has been left to nature", "culinary_uses": "Dock leaves can be eaten raw or cooked. But leave it too long and the leaves can be bitter and come with certain provisions.  The stems can be eaten raw or blanched, tasting like broad beans, sauteed in butter! Better yet, pickle it!  As the plant flowers and seeds, the seed can be harvested and treated as buckwheat.", "medicinal_uses": "High in Iron as a food source, believed to help skin irritations and aids digestion.", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": "Easy to mistaken, but it's no hardship. Many would happily take it home instead.", "confusable_plant_warnings": "Happily, the only warning to be had for the mistakable plant is that Horse Radish is \"back breaking\" to dig out from the ground.  And many people would rather go home with this rather than Dock!", "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 6, "fields": {"owner": 2, "created_at": "2024-10-20T19:22:00.080Z", "updated_at": "2024-10-20T19:22:00.080Z", "main_plant_name": "Back breaking to dig out from the ground", "main_plant_month": 5, "main_plant_environment": "Fields and hedgerows, often used as naturally growing fences", "culinary_uses": "The young leaves, flower buds and young flowers are all edible. They can be added to green salads and grated root salads. The developing flower buds are particularly good. The haws can be eaten raw but may cause mild stomach upset.", "medicinal_uses": "Young leaf shoots, flowers and the berries known as \"haws\", traditionally and right up to modern day. The berries are known to support heart health, circulation, and lowering blood pressure.", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": "", "confusable_plant_warnings": "", "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 7, "fields": {"owner": 2, "created_at": "2024-10-20T19:23:37.392Z", "updated_at": "2024-10-20T19:23:37.392Z", "main_plant_name": "Chicken Of The Woods / COTW", "main_plant_month": 6, "main_plant_environment": "Grows in large tiers on the trunk and stumps of Oak,  Cherry, Sweet Chestnut, Willow and Yew.", "culinary_uses": "Great in stews and casseroles in place of chicken, stir fries or marinated in a satay sauce and skewered.  Always must be cooked.", "medicinal_uses": "Ongoing studying of the antioxidant compounds and long-chained sugars called \"polysaccharides\" that seem to encourage the immune system.", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": "", "confusable_plant_warnings": "", "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 8, "fields": {"owner": 2, "created_at": "2024-10-20T19:28:43.937Z", "updated_at": "2024-10-20T19:28:43.937Z", "main_plant_name": "Alpine / Strawberries", "main_plant_month": 7, "main_plant_environment": "Hedgerows and forest edges, preferring slight shade.", "culinary_uses": "As lovely a treat as these are, there's never enough to take home.  But as a small snack on a summer's day, their taste out do their cultivated cousins!", "medicinal_uses": "Strawberries have long been mentioned in ancient herbal concoctions. Acting as a cleanser to the liver and blood, rich in Vitamin C", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": "", "confusable_plant_warnings": "", "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 9, "fields": {"owner": 2, "created_at": "2024-10-20T19:31:37.481Z", "updated_at": "2024-10-20T19:31:37.481Z", "main_plant_name": "Yew Tree", "main_plant_month": 9, "main_plant_environment": "Woodland, Parks and Cemeteries.", "culinary_uses": "\"The berries from the Yew tree are more of a trail snack, but the determined forager could gather sufficient to make a conserve.\r\nOther than the flesh of the berry, EVERY PART of the Yew tree is toxic, so the berries MUST be spat out!\"", "medicinal_uses": "As with many toxic substances, the Yew, when used in small amounts and properly handled, has been utilized in medicine, even up to the present day. Most notably, it led to the development of a drug called Paclitaxel, marketed under the name Taxol, which is used as a chemotherapy treatment for cancer.  But all this is in the fringes of medicine, and although interesting, it should be left to the scientists!", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": "", "confusable_plant_warnings": "", "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 10, "fields": {"owner": null, "created_at": "2024-10-26T03:15:55.083Z", "updated_at": "2024-10-26T03:15:55.083Z", "main_plant_name": "Example Plant", "main_plant_month": 1, "main_plant_environment": "Forest", "culinary_uses": "Edible leaves", "medicinal_uses": "Used in teas", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": null, "confusable_plant_warnings": null, "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 11, "fields": {"owner": null, "created_at": "2024-10-26T03:47:03.792Z", "updated_at": "2024-10-26T03:47:03.792Z", "main_plant_name": "A plant", "main_plant_month": 1, "main_plant_environment": "In fields", "culinary_uses": "Nice in a soup", "medicinal_uses": "Useful tinctures", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": null, "confusable_plant_warnings": null, "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 12, "fields": {"owner": null, "created_at": "2024-10-26T04:00:01.900Z", "updated_at": "2024-10-26T04:00:01.900Z", "main_plant_name": "A plant", "main_plant_month": 1, "main_plant_environment": "In fields", "culinary_uses": "Nice in a soup", "medicinal_uses": "Useful tinctures", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": null, "confusable_plant_warnings": null, "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 13, "fields": {"owner": null, "created_at": "2024-10-26T04:10:25.822Z", "updated_at": "2024-10-26T04:10:25.822Z", "main_plant_name": "A plant", "main_plant_month": 1, "main_plant_environment": "In fields", "culinary_uses": "Nice in a soup", "medicinal_uses": "Useful tinctures", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": null, "confusable_plant_warnings": null, "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 14, "fields": {"owner": null, "created_at": "2024-10-26T04:25:29.499Z", "updated_at": "2024-10-26T04:25:29.499Z", "main_plant_name": "A plant", "main_plant_month": 1, "main_plant_environment": "In fields", "culinary_uses": "Nice in a soup", "medicinal_uses": "Useful tinctures", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": null, "confusable_plant_warnings": null, "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 15, "fields": {"owner": null, "created_at": "2024-10-27T02:19:29.288Z", "updated_at": "2024-10-27T02:19:29.288Z", "main_plant_name": "A plant", "main_plant_month": 1, "main_plant_environment": "In fields", "culinary_uses": "Nice in a soup", "medicinal_uses": "Useful tinctures", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": null, "confusable_plant_warnings": null, "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 16, "fields": {"owner": null, "created_at": "2024-10-27T02:35:14.784Z", "updated_at": "2024-10-27T02:35:14.784Z", "main_plant_name": "A plant", "main_plant_month": 1, "main_plant_environment": "In fields", "culinary_uses": "Nice in a soup", "medicinal_uses": "Useful tinctures", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": null, "confusable_plant_warnings": null, "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 17, "fields": {"owner": null, "created_at": "2024-10-27T03:05:38.815Z", "updated_at": "2024-10-27T03:05:38.816Z", "main_plant_name": "A plant", "main_plant_month": 1, "main_plant_environment": "In fields", "culinary_uses": "Nice in a soup", "medicinal_uses": "Useful tinctures", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": null, "confusable_plant_warnings": null, "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "plants_blog.plantinfocuspost", "pk": 18, "fields": {"owner": null, "created_at": "2024-10-27T04:08:59.933Z", "updated_at": "2024-10-27T04:08:59.933Z", "main_plant_name": "A plant", "main_plant_month": 1, "main_plant_environment": "In fields", "culinary_uses": "Nice in a soup", "medicinal_uses": "Useful tinctures", "history_and_folklore": "", "main_plant_parts_used": "Unknown", "main_plant_warnings": null, "main_plant_image": "images/default_plant_image_rvlqpb", "confusable_plant_name": null, "confusable_plant_information": null, "confusable_plant_warnings": null, "confusable_plant_image": "images/default_plant_image_rvlqpb"}}, {"model": "comments.comment", "pk": 1, "fields": {"owner": 1, "plant_in_focus_post": 1, "replying_comment": null, "created_at": "2024-09-11T00:06:56.791Z", "updated_at": "2024-09-11T00:06:56.791Z", "content": "Pretty.  But it stinks to high heaven!"}}, {"model": "comments.comment", "pk": 2, "fields": {"owner": 1, "plant_in_focus_post": 1, "replying_comment": null, "created_at": "2024-09-11T00:07:01.074Z", "updated_at": "2024-09-11T00:07:01.074Z", "content": "Pretty.  But it stinks to high heaven!"}}, {"model": "comments.comment", "pk": 3, "fields": {"owner": 2, "plant_in_focus_post": 8, "replying_comment": null, "created_at": "2024-11-15T19:12:10.108Z", "updated_at": "2024-11-15T19:12:10.108Z", "content": "They're tiny!"}}, {"model": "courses.course", "pk": 7, "fields": {"season": "Spring", "title": "Spring Foraging Basics", "date": "2025-04-12", "description": "Dive into the vibrant world of spring foraging with an immersive woodland experience. This course introduces you to a variety of fresh spring greens, including wild garlic, dandelion, and nettles, while teaching sustainable foraging practices and plant safety essentials. Guided by experienced instructors, you’ll learn how to gather these plants responsibly and get inspired with simple recipes that highlight their unique flavors. Suitable for beginners, this workshop provides hands-on learning to help you identify and use spring’s bounty confidently in your cooking.", "location": "Ashdown Forest, East Sussex", "max_capacity": 10}}, {"model": "courses.course", "pk": 8, "fields": {"season": "Spring", "title": "Introduction to Wild Herbs", "date": "2025-05-17", "description": "Uncover the secrets of wild herbs in this introductory course, perfect for anyone eager to enhance their kitchen with natural flavors. Focusing on herbs like sorrel, chickweed, and cleavers, you’ll be guided through identification and harvesting techniques that protect the environment. With hands-on practice, you’ll gain confidence in gathering and using these herbs, plus get inspired by recipes that incorporate their fresh flavors. This session covers foraging ethics, sustainable practices, and the sensory qualities of herbs, making it a well-rounded experience for beginners.", "location": "Box Hill, Surrey", "max_capacity": 10}}, {"model": "courses.course", "pk": 9, "fields": {"season": "Summer", "title": "Wildflower Foraging Workshop", "date": "2025-07-19", "description": "Explore the vibrant world of wildflowers with an expert-led foraging session in meadows filled with elderflower, yarrow, and meadowsweet. You’ll gain insights into identifying edible blooms, understanding their unique properties, and using them to enhance dishes, teas, and syrups. Our workshop emphasizes sustainable foraging and flower preservation tips, with plenty of time to practice in a beautiful natural setting. You’ll leave with both the skills and knowledge to enjoy wildflowers sustainably, transforming them into culinary ingredients or natural decorations at home.", "location": "South Downs, West Sussex", "max_capacity": 10}}, {"model": "courses.course", "pk": 10, "fields": {"season": "Summer", "title": "Seaside Edibles Walk", "date": "2025-08-09", "description": "Experience coastal foraging with this immersive seaside walk focused on discovering edible treasures such as rock samphire, sea kale, and seaweed varieties. You’ll learn about tidal foraging and responsible harvesting techniques to minimize impact on marine ecosystems. This course provides hands-on guidance for identifying coastal plants and understanding their culinary applications, with tips on how to clean, preserve, and cook with these unique ingredients. Perfect for adventurous cooks, this session opens up new possibilities in incorporating seaside flavors into your meals.", "location": "Reculver, Kent", "max_capacity": 10}}, {"model": "courses.course", "pk": 11, "fields": {"season": "Autumn", "title": "Mushroom Identification & Foraging", "date": "2025-10-11", "description": "Dive into the fascinating world of fungi with this in-depth mushroom foraging course, designed to teach you the essentials of identifying and safely harvesting wild mushrooms. From chanterelles to boletes, you’ll explore different habitats and learn how to recognize key features of edible and inedible species. Guided by experienced mycologists, this course emphasizes ethical foraging, habitat preservation, and safe handling. You’ll come away with the confidence to forage responsibly and a deeper appreciation for these unique forest organisms.", "location": "Epping Forest, Essex", "max_capacity": 10}}, {"model": "courses.course", "pk": 12, "fields": {"season": "Autumn", "title": "Autumn Hedgerow Bounty", "date": "2025-10-18", "description": "Celebrate autumn’s abundance with a hands-on exploration of hedgerow foraging, where you’ll gather berries, nuts, and roots such as hawthorn, rose hips, and hazelnuts. This course guides you through sustainable gathering practices, plant identification, and practical preservation techniques like drying, pickling, and making syrups. Ideal for those interested in self-sufficiency and seasonal eating, this session offers rich insights into preparing hedgerow finds for long-term use. Learn how to transform your harvest into delightful preserves, teas, and even medicinal remedies.", "location": "New Forest, Hampshire", "max_capacity": 10}}, {"model": "courses.course", "pk": 13, "fields": {"season": "Spring", "title": "Sample Course", "date": "2024-10-30", "description": "A test course", "location": "Test Location", "max_capacity": 3}}, {"model": "course_registrations.courseregistration", "pk": 2, "fields": {"course_title": 12, "owner": 3, "email": "cancelled@example.com", "phone": "+447885433411", "registration_date": "2024-10-27T09:39:53.155Z", "status": "Confirmed", "has_dietary_restrictions": false, "dietary_restrictions": "Dairy Free", "is_driver": false, "has_emergency_contact": false, "ice_name": "N/A", "ice_number": "+447885433418"}}, {"model": "course_registrations.courseregistration", "pk": 3, "fields": {"course_title": 13, "owner": 4, "email": "inique_testuser@email.com", "phone": "+447885344122", "registration_date": "2024-10-28T01:36:55.252Z", "status": "Confirmed", "has_dietary_restrictions": true, "dietary_restrictions": "Testing enforced entries if diet restrictions is selected", "is_driver": false, "has_emergency_contact": false, "ice_name": "Mrs test unique user", "ice_number": "+447885433418"}}]
+[{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2024-09-11T00:04:09.746Z",
+        "user": 1,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "Test Plant - Oxeyed Daisy",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2024-09-18T02:53:41.074Z",
+        "user": 1,
+        "content_type": 20,
+        "object_id": "1",
+        "object_repr": "Spring Foraging Workshop",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2024-09-18T03:01:31.243Z",
+        "user": 1,
+        "content_type": 20,
+        "object_id": "2",
+        "object_repr": "Summer Foraging Workshop",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2024-09-18T03:16:02.064Z",
+        "user": 1,
+        "content_type": 20,
+        "object_id": "3",
+        "object_repr": "Autumn Foraging Workshop",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2024-10-03T04:45:54.973Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "Test Plant - Oxeyed Daisy",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2024-10-03T04:47:50.123Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "Test Plant - Oxeyed Daisy",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2024-10-03T04:50:02.876Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "Test Plant - Oxeyed Daisy",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Culinary Uses\", \"Plant warnings\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2024-10-03T05:24:50.860Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "Test Plant - Oxeyed Daisy",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Usable plant parts\", \"Plant warnings\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2024-10-03T06:58:27.633Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "1",
+        "object_repr": "Test Plant - Oxeyed Daisy",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Usable plant parts\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2024-10-20T18:48:50.810Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "2",
+        "object_repr": "Stinging Nettles",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2024-10-20T18:54:40.744Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "3",
+        "object_repr": "Alexanders, Horse Parsley",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2024-10-20T18:54:58.014Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "3",
+        "object_repr": "Alexanders, Horse Parsley",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Main Plant Month\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2024-10-20T18:58:32.128Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "4",
+        "object_repr": "Wild Garlic /Ramsons Leaves",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2024-10-20T19:20:09.767Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "5",
+        "object_repr": "Dock Leaves",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2024-10-20T19:22:00.811Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "6",
+        "object_repr": "Back breaking to dig out from the ground",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2024-10-20T19:23:38.334Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "7",
+        "object_repr": "Chicken Of The Woods / COTW",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2024-10-20T19:28:45.069Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "8",
+        "object_repr": "Alpine / Strawberries",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2024-10-20T19:31:38.885Z",
+        "user": 2,
+        "content_type": 16,
+        "object_id": "9",
+        "object_repr": "Yew Tree",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2024-10-27T06:52:54.045Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "4",
+        "object_repr": "Spring Foraging Basics",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2024-10-27T06:54:30.875Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "5",
+        "object_repr": "Introduction to Wild Herbs",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2024-10-27T06:55:14.813Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "6",
+        "object_repr": "Wildflower Foraging Workshop",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2024-10-27T06:57:51.463Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "1",
+        "object_repr": "Spring Foraging Workshop",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2024-10-27T06:58:02.254Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "3",
+        "object_repr": "Autumn Foraging Workshop",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2024-10-27T06:58:02.255Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "6",
+        "object_repr": "Wildflower Foraging Workshop",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2024-10-27T06:58:02.255Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "2",
+        "object_repr": "Summer Foraging Workshop",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2024-10-27T06:58:02.256Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "5",
+        "object_repr": "Introduction to Wild Herbs",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2024-10-27T06:58:02.257Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "4",
+        "object_repr": "Spring Foraging Basics",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2024-10-27T06:59:40.608Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "7",
+        "object_repr": "Spring Foraging Basics",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2024-10-27T07:00:25.138Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "8",
+        "object_repr": "Introduction to Wild Herbs",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2024-10-27T07:01:07.273Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "9",
+        "object_repr": "Wildflower Foraging Workshop",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2024-10-27T07:02:06.719Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "10",
+        "object_repr": "Seaside Edibles Walk",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2024-10-27T07:03:13.046Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "11",
+        "object_repr": "Mushroom Identification & Foraging",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2024-10-27T07:03:56.989Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "12",
+        "object_repr": "Autumn Hedgerow Bounty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2024-10-27T08:30:34.216Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "1",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2024-10-27T08:31:12.179Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "1",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2024-10-27T08:31:46.912Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "1",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2024-10-27T08:48:25.069Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "1",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2024-10-27T08:48:51.189Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "1",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2024-10-27T08:49:27.556Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "1",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2024-10-27T08:52:03.123Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "2",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2024-10-27T09:33:07.955Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "2",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2024-10-27T09:33:24.872Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "2",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2024-10-27T09:39:53.191Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "2",
+        "object_repr": "testuser's registration for: Autumn Hedgerow Bounty",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Phone\", \"Status\", \"Dietary Restrictions\", \"Emergency Contact Number\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2024-10-27T10:32:32.366Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "13",
+        "object_repr": "Sample Course",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Maximum Capacity\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2024-10-28T01:32:43.523Z",
+        "user": 2,
+        "content_type": 20,
+        "object_id": "13",
+        "object_repr": "Sample Course",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Maximum Capacity\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2024-10-28T01:35:24.328Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "3",
+        "object_repr": "unique_testuser's registration for: Sample Course",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2024-10-28T01:36:55.253Z",
+        "user": 2,
+        "content_type": 21,
+        "object_id": "3",
+        "object_repr": "unique_testuser's registration for: Sample Course",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Has Dietary Restrictions\", \"Dietary Restrictions\"]}}]"
+    }
+}, {
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2024-11-15T19:12:10.109Z",
+        "user": 2,
+        "content_type": 17,
+        "object_id": "3",
+        "object_repr": "They're tiny!",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+}, {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$Kn2ZyBoVYioxFdoEfjv6zV$lnU9bbue6/FaG16u/SCXvsx7WfiMIbGQA0o09h8x/AU=",
+        "last_login": "2024-09-18T02:25:06.824Z",
+        "is_superuser": true,
+        "username": "admin3",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin3@email.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-09-10T23:57:01.557Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$8NDq2GLaM7H6bXzRXo8E62$BY0SkUPrQqtZXLQzzVTa9cSCVCnRQok37D4iiPst5LE=",
+        "last_login": "2024-11-15T18:56:57.129Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@email.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-09-23T04:03:26.678Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "testuser",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-27T04:45:13.440Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "unique_testuser",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-27T05:01:29.668Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+        "password": "",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "unique_testuser_2",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-10-27T05:22:25.739Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "5e4je3zzz2byum04aysazjie6m226u5k",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG8yoBL934DGWCQqoGktCvjv2uTLnR7zzn3xQJuaw3boCXMmZ2ZZKffLWJ6UNtBvmO7dZ56W5c58l3hBx382jM9L4f7d1Bx1G_ttUtKKy2SicVoiFG4kpWyPpO3gADFkkiT0yiNz4iy2OQ8UQSFEwB7fwDX2zfl:1sqkNO:iSVOiVVsgUZkt1ygTNMCcLfk9Cf1T-Nrv1Z3k6DzaEs",
+        "expire_date": "2024-10-02T02:25:06.825Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "7960lryv01q5lyhrfycqqyl6zbmfhwzh",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t9co7:igZ8BuPYYJiwzk06sSnLG4EMf_9UUyzY8qrkOrHyxUY",
+        "expire_date": "2024-11-23T04:10:43.272Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "gwqqgsrplajf1qavrc9s1ctyxwxdm5q5",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1tAMtT:En3gUPm0ksRHczXpJLDl1bO43B_wOVJo4BQxid0CmPc",
+        "expire_date": "2024-11-25T05:23:19.790Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "j7uyig6h524l729vw531ddyzb6xotr8r",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1suI26:axgh-Hn9o4Z5Y0TJNdZPymzx8EVVkAjyc1vU_5SUf8Y",
+        "expire_date": "2024-10-11T20:57:46.939Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "jzy7gw7mc28ittjnqwyzgixhdp8g8r5u",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t2Z8Y:LMpHfOFqKcprbdhlbXpJa0iX8fBTuqCaBfDTWTkRNzA",
+        "expire_date": "2024-11-03T16:50:38.109Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "p1sspb5txq9kcya7mytvwv7h9wcwmxha",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG8yoBL934DGWCQqoGktCvjv2uTLnR7zzn3xQJuaw3boCXMmZ2ZZKffLWJ6UNtBvmO7dZ56W5c58l3hBx382jM9L4f7d1Bx1G_ttUtKKy2SicVoiFG4kpWyPpO3gADFkkiT0yiNz4iy2OQ8UQSFEwB7fwDX2zfl:1soAjT:OZOt_7ok0G55LeDBkEdRUAD_kERMuFcX38f66FkHFW8",
+        "expire_date": "2024-09-24T23:57:15.631Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "qfyafs8nktald6gwbfxzo2rm27yrjhb4",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1swCHB:wUBT6mrlnru1Hw3dpJpZZkbUhn6GMC1FrcWUWptFBSA",
+        "expire_date": "2024-10-17T03:13:13.871Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "rwo39enl6aydpvhld5g01hn4augsc806",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t9bZF:Ta4PEz9_UkP9YqfqZbsryltvoEWI2_Rfwurcc2tfUk4",
+        "expire_date": "2024-11-23T02:51:17.533Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "z604kf8j1sfsodcpvjvsbcyhqmmmd3qs",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t4TBh:oxhQY1SG1Nxb00gpilZVV7vTOxO4Bn0t3axNWE20DPo",
+        "expire_date": "2024-11-08T22:53:45.659Z"
+    }
+}, {
+    "model": "sessions.session",
+    "pk": "zjzy1u41hes97dtcsrq35c1w7gib0uxi",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSG0QwFduu83kGGYkaqBpI-V8d-1SRe6veec-1IRt7XEbeE5TlldVK9Ov1tCenDdQb5jvTVNra7zlPSu6IMuemyZn9fD_TsouJRvDcCCHYCwIwECMjgM52TRk6cgHknYOwboJBgRY60DgMFL6C0GG9T7AwJrOA8:1t4x51:3jHzyata57ui7wFBQ-FgveOXJsWobGHM30FDCxtmSY4",
+        "expire_date": "2024-11-10T06:48:51.370Z"
+    }
+}, {
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+        "domain": "example.com",
+        "name": "example.com"
+    }
+}, {
+    "model": "profiles.profile",
+    "pk": 1,
+    "fields": {
+        "owner": 1,
+        "created_at": "2024-09-10T23:57:01.635Z",
+        "updated_at": "2024-09-10T23:57:01.635Z",
+        "name": "",
+        "content": "",
+        "image": "images/default_avatar_pfb93f.jpg"
+    }
+}, {
+    "model": "profiles.profile",
+    "pk": 2,
+    "fields": {
+        "owner": 2,
+        "created_at": "2024-09-23T04:03:26.758Z",
+        "updated_at": "2024-09-23T04:03:26.758Z",
+        "name": "",
+        "content": "",
+        "image": "images/default_avatar_pfb93f.jpg"
+    }
+}, {
+    "model": "profiles.profile",
+    "pk": 3,
+    "fields": {
+        "owner": 3,
+        "created_at": "2024-10-27T04:45:13.444Z",
+        "updated_at": "2024-10-27T04:45:13.444Z",
+        "name": "",
+        "content": "",
+        "image": "images/default_avatar_pfb93f.jpg"
+    }
+}, {
+    "model": "profiles.profile",
+    "pk": 4,
+    "fields": {
+        "owner": 4,
+        "created_at": "2024-10-27T05:01:29.671Z",
+        "updated_at": "2024-10-27T05:01:29.671Z",
+        "name": "",
+        "content": "",
+        "image": "images/default_avatar_pfb93f.jpg"
+    }
+}, {
+    "model": "profiles.profile",
+    "pk": 5,
+    "fields": {
+        "owner": 5,
+        "created_at": "2024-10-27T05:22:25.743Z",
+        "updated_at": "2024-10-27T05:22:25.743Z",
+        "name": "",
+        "content": "",
+        "image": "images/default_avatar_pfb93f.jpg"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 1,
+    "fields": {
+        "owner": 1,
+        "created_at": "2024-09-11T00:04:08.732Z",
+        "updated_at": "2024-09-11T00:04:08.732Z",
+        "main_plant_name": "Test Plant - Oxeyed Daisy",
+        "main_plant_month": 1,
+        "main_plant_environment": "Banks and grassland",
+        "culinary_uses": "The leaves have a sweet taste and can be candied.",
+        "medicinal_uses": "The oxeye daisy (Chrysanthemum leucanthemum) has been used in traditional medicine for a variety of conditions, including: \r\n \r\nAsthma and coughs: The leaves and flowers were used to make tea to relax the bronchials. \r\n \r\nBruises: The leaves were used in a poultice in England. \r\n \r\nConjunctivitis: Distilled water from the flowers was used to treat this condition. \r\n \r\nDry skin: Dried flowers and stems were used to minimize symptoms. \r\n \r\nStomach ulcers: The tea was used as a cure for stomach ulcers. \r\n \r\nJaundice: The juice was infused in beer and consumed as a remedy. \r\n \r\nNight sweats: The roots were used to reduce night sweats in tuberculosis patients. \r\n \r\nHowever, there is no good scientific evidence to support any of these uses. Oxeye daisy may also cause an allergic reaction in people who are sensitive to the Asteraceae/Compositae family. \r\n \r\nOxeye daisies can also be eaten raw in salads or sandwiches, or added to soups and stews. The flower heads can be used for decorating salads and other dishes. However, oxeye daisy can be bitter, so it's recommended to pick the youngest specimens.",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": "",
+        "confusable_plant_warnings": "",
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 2,
+    "fields": {
+        "owner": 2,
+        "created_at": "2024-10-20T18:48:49.785Z",
+        "updated_at": "2024-10-20T18:48:49.785Z",
+        "main_plant_name": "Stinging Nettles",
+        "main_plant_month": 1,
+        "main_plant_environment": "Pretty much everywhere.  Whether it be wasteland or gardens.  Country lanes and pathways.",
+        "culinary_uses": "Nettle pesto is tasty. Boil the nettle tops for a few minutes and then whizz with olive oil, garlic, grated Parmesan or other hard Italian cheese – salt to taste. Pine nuts or other nuts can also be added. Eat with pasta in the traditional way.",
+        "medicinal_uses": "\"Nettles, known for their anti-inflammatory properties, they've been used to treat arthritis and muscle aches.\r\nSome people even use them fresh purposely utilizing their stinging qualities to stimulate the skin as pain relief.\"",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": "Roadside verges and waste ground, field edges.",
+        "confusable_plant_warnings": "",
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 3,
+    "fields": {
+        "owner": 2,
+        "created_at": "2024-10-20T18:54:39.025Z",
+        "updated_at": "2024-10-20T18:54:39.025Z",
+        "main_plant_name": "Alexanders, Horse Parsley",
+        "main_plant_month": 2,
+        "main_plant_environment": "Being less prone to frosts coastal areas hold most of theses unusual plants, so in order to find Alexanders, it is said that you need to be within 15 - 20 miles of the coast (or in an area that isn’t prone to frost). That being said, I have found them a long way in land. Hedge banks and roadsides seem to be the most common place to find this unusual plant. Once you know how to identify this plant, you will see it everywhere.",
+        "culinary_uses": "The leaves can be used in salads or cooked – Roman Parsley suggests that the Romans did indeed use it as a herb for seasoning their foods. The flowers can be pickled or used in a salad and the root (if you can get permission) can be treated the same as Parsnip. The stalk is where you will find the most value! The thick stems near the bottom of the plant are best.\r\nIt’s as good a green as any other, containing vitamin C and fibre. The little black fruits are particularly tasty and when dried make an interesting alternative to peppercorns. You can use the leaves like spinach and the stalk like a celery. I like to put in my green goddess soup. It adds a slightly floral coriander-ish flavour and is also great in stir-fries.",
+        "medicinal_uses": "The leaves can be used in salads or cooked – Roman Parsley suggests that the Romans did indeed use it as a herb for seasoning their foods. The flowers can be pickled or used in a salad and the root (if you can get permission) can be treated the same as Parsnip. The stalk is where you will find the most value! The thick stems near the bottom of the plant are best.\r\nIt’s as good a green as any other, containing vitamin C and fibre. The little black fruits are particularly tasty and when dried make an interesting alternative to peppercorns. You can use the leaves like spinach and the stalk like a celery. I like to put in my green goddess soup. It adds a slightly floral coriander-ish flavour and is also great in stir-fries.",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": "Bright green and shiny, a bit fern like with two to four pinnate divisions, the whole looking triangular in shape.",
+        "confusable_plant_warnings": "\"Extremely poisonous!\r\nThe most poisonous plant in the UK and very common along most of our waterways!\r\nPart of the carrot family which several highly poisonous species like hemlock and hemlock water-dropwort.\r\nNo forager, novice or other wise takes the carrot family for granted.\"",
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 4,
+    "fields": {
+        "owner": 2,
+        "created_at": "2024-10-20T18:58:30.910Z",
+        "updated_at": "2024-10-20T18:58:30.910Z",
+        "main_plant_name": "Wild Garlic /Ramsons Leaves",
+        "main_plant_month": 3,
+        "main_plant_environment": "Woodland, well drained soil.",
+        "culinary_uses": "Pesto, Soups, Stirred into Pasta dishes and stir-fries.  You can dry the leaves and eat them like crisps or simply chop them up into an Omelette!",
+        "medicinal_uses": "The juice from ramsons when squeezed would be used as a household disinfectant, whilst the pungent aroma was useful for keeping the midges away.",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": "Growing a month or so later, the new leaves can be mistaken for Ramsons. One people should be aware of as it can be fatal if eaten.  Key thing to note, this plant does not smell of garlic.",
+        "confusable_plant_warnings": "Contains \"Cardiac Glycosides\" similar to \"foxgloves\", causing nausea, vomiting, blurry vision, and disruption to the heartbeat that can be fatal.",
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 5,
+    "fields": {
+        "owner": 2,
+        "created_at": "2024-10-20T19:20:08.824Z",
+        "updated_at": "2024-10-20T19:20:08.824Z",
+        "main_plant_name": "Dock Leaves",
+        "main_plant_month": 4,
+        "main_plant_environment": "Pretty much any land that has been left to nature",
+        "culinary_uses": "Dock leaves can be eaten raw or cooked. But leave it too long and the leaves can be bitter and come with certain provisions.  The stems can be eaten raw or blanched, tasting like broad beans, sauteed in butter! Better yet, pickle it!  As the plant flowers and seeds, the seed can be harvested and treated as buckwheat.",
+        "medicinal_uses": "High in Iron as a food source, believed to help skin irritations and aids digestion.",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": "Easy to mistaken, but it's no hardship. Many would happily take it home instead.",
+        "confusable_plant_warnings": "Happily, the only warning to be had for the mistakable plant is that Horse Radish is \"back breaking\" to dig out from the ground.  And many people would rather go home with this rather than Dock!",
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 6,
+    "fields": {
+        "owner": 2,
+        "created_at": "2024-10-20T19:22:00.080Z",
+        "updated_at": "2024-10-20T19:22:00.080Z",
+        "main_plant_name": "Back breaking to dig out from the ground",
+        "main_plant_month": 5,
+        "main_plant_environment": "Fields and hedgerows, often used as naturally growing fences",
+        "culinary_uses": "The young leaves, flower buds and young flowers are all edible. They can be added to green salads and grated root salads. The developing flower buds are particularly good. The haws can be eaten raw but may cause mild stomach upset.",
+        "medicinal_uses": "Young leaf shoots, flowers and the berries known as \"haws\", traditionally and right up to modern day. The berries are known to support heart health, circulation, and lowering blood pressure.",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": "",
+        "confusable_plant_warnings": "",
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 7,
+    "fields": {
+        "owner": 2,
+        "created_at": "2024-10-20T19:23:37.392Z",
+        "updated_at": "2024-10-20T19:23:37.392Z",
+        "main_plant_name": "Chicken Of The Woods / COTW",
+        "main_plant_month": 6,
+        "main_plant_environment": "Grows in large tiers on the trunk and stumps of Oak,  Cherry, Sweet Chestnut, Willow and Yew.",
+        "culinary_uses": "Great in stews and casseroles in place of chicken, stir fries or marinated in a satay sauce and skewered.  Always must be cooked.",
+        "medicinal_uses": "Ongoing studying of the antioxidant compounds and long-chained sugars called \"polysaccharides\" that seem to encourage the immune system.",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": "",
+        "confusable_plant_warnings": "",
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 8,
+    "fields": {
+        "owner": 2,
+        "created_at": "2024-10-20T19:28:43.937Z",
+        "updated_at": "2024-10-20T19:28:43.937Z",
+        "main_plant_name": "Alpine / Strawberries",
+        "main_plant_month": 7,
+        "main_plant_environment": "Hedgerows and forest edges, preferring slight shade.",
+        "culinary_uses": "As lovely a treat as these are, there's never enough to take home.  But as a small snack on a summer's day, their taste out do their cultivated cousins!",
+        "medicinal_uses": "Strawberries have long been mentioned in ancient herbal concoctions. Acting as a cleanser to the liver and blood, rich in Vitamin C",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": "",
+        "confusable_plant_warnings": "",
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 9,
+    "fields": {
+        "owner": 2,
+        "created_at": "2024-10-20T19:31:37.481Z",
+        "updated_at": "2024-10-20T19:31:37.481Z",
+        "main_plant_name": "Yew Tree",
+        "main_plant_month": 9,
+        "main_plant_environment": "Woodland, Parks and Cemeteries.",
+        "culinary_uses": "\"The berries from the Yew tree are more of a trail snack, but the determined forager could gather sufficient to make a conserve.\r\nOther than the flesh of the berry, EVERY PART of the Yew tree is toxic, so the berries MUST be spat out!\"",
+        "medicinal_uses": "As with many toxic substances, the Yew, when used in small amounts and properly handled, has been utilized in medicine, even up to the present day. Most notably, it led to the development of a drug called Paclitaxel, marketed under the name Taxol, which is used as a chemotherapy treatment for cancer.  But all this is in the fringes of medicine, and although interesting, it should be left to the scientists!",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": "",
+        "confusable_plant_warnings": "",
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 10,
+    "fields": {
+        "owner": null,
+        "created_at": "2024-10-26T03:15:55.083Z",
+        "updated_at": "2024-10-26T03:15:55.083Z",
+        "main_plant_name": "Example Plant",
+        "main_plant_month": 1,
+        "main_plant_environment": "Forest",
+        "culinary_uses": "Edible leaves",
+        "medicinal_uses": "Used in teas",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": null,
+        "confusable_plant_warnings": null,
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 11,
+    "fields": {
+        "owner": null,
+        "created_at": "2024-10-26T03:47:03.792Z",
+        "updated_at": "2024-10-26T03:47:03.792Z",
+        "main_plant_name": "A plant",
+        "main_plant_month": 1,
+        "main_plant_environment": "In fields",
+        "culinary_uses": "Nice in a soup",
+        "medicinal_uses": "Useful tinctures",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": null,
+        "confusable_plant_warnings": null,
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 12,
+    "fields": {
+        "owner": null,
+        "created_at": "2024-10-26T04:00:01.900Z",
+        "updated_at": "2024-10-26T04:00:01.900Z",
+        "main_plant_name": "A plant",
+        "main_plant_month": 1,
+        "main_plant_environment": "In fields",
+        "culinary_uses": "Nice in a soup",
+        "medicinal_uses": "Useful tinctures",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": null,
+        "confusable_plant_warnings": null,
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 13,
+    "fields": {
+        "owner": null,
+        "created_at": "2024-10-26T04:10:25.822Z",
+        "updated_at": "2024-10-26T04:10:25.822Z",
+        "main_plant_name": "A plant",
+        "main_plant_month": 1,
+        "main_plant_environment": "In fields",
+        "culinary_uses": "Nice in a soup",
+        "medicinal_uses": "Useful tinctures",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": null,
+        "confusable_plant_warnings": null,
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 14,
+    "fields": {
+        "owner": null,
+        "created_at": "2024-10-26T04:25:29.499Z",
+        "updated_at": "2024-10-26T04:25:29.499Z",
+        "main_plant_name": "A plant",
+        "main_plant_month": 1,
+        "main_plant_environment": "In fields",
+        "culinary_uses": "Nice in a soup",
+        "medicinal_uses": "Useful tinctures",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": null,
+        "confusable_plant_warnings": null,
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 15,
+    "fields": {
+        "owner": null,
+        "created_at": "2024-10-27T02:19:29.288Z",
+        "updated_at": "2024-10-27T02:19:29.288Z",
+        "main_plant_name": "A plant",
+        "main_plant_month": 1,
+        "main_plant_environment": "In fields",
+        "culinary_uses": "Nice in a soup",
+        "medicinal_uses": "Useful tinctures",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": null,
+        "confusable_plant_warnings": null,
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 16,
+    "fields": {
+        "owner": null,
+        "created_at": "2024-10-27T02:35:14.784Z",
+        "updated_at": "2024-10-27T02:35:14.784Z",
+        "main_plant_name": "A plant",
+        "main_plant_month": 1,
+        "main_plant_environment": "In fields",
+        "culinary_uses": "Nice in a soup",
+        "medicinal_uses": "Useful tinctures",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": null,
+        "confusable_plant_warnings": null,
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 17,
+    "fields": {
+        "owner": null,
+        "created_at": "2024-10-27T03:05:38.815Z",
+        "updated_at": "2024-10-27T03:05:38.816Z",
+        "main_plant_name": "A plant",
+        "main_plant_month": 1,
+        "main_plant_environment": "In fields",
+        "culinary_uses": "Nice in a soup",
+        "medicinal_uses": "Useful tinctures",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": null,
+        "confusable_plant_warnings": null,
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "plants_blog.plantinfocuspost",
+    "pk": 18,
+    "fields": {
+        "owner": null,
+        "created_at": "2024-10-27T04:08:59.933Z",
+        "updated_at": "2024-10-27T04:08:59.933Z",
+        "main_plant_name": "A plant",
+        "main_plant_month": 1,
+        "main_plant_environment": "In fields",
+        "culinary_uses": "Nice in a soup",
+        "medicinal_uses": "Useful tinctures",
+        "history_and_folklore": "",
+        "main_plant_parts_used": "Unknown",
+        "main_plant_warnings": null,
+        "main_plant_image": "images/default_plant_image_rvlqpb",
+        "confusable_plant_name": null,
+        "confusable_plant_information": null,
+        "confusable_plant_warnings": null,
+        "confusable_plant_image": "images/default_plant_image_rvlqpb"
+    }
+}, {
+    "model": "comments.comment",
+    "pk": 1,
+    "fields": {
+        "owner": 1,
+        "plant_in_focus_post": 1,
+        "replying_comment": null,
+        "created_at": "2024-09-11T00:06:56.791Z",
+        "updated_at": "2024-09-11T00:06:56.791Z",
+        "content": "Pretty.  But it stinks to high heaven!"
+    }
+}, {
+    "model": "comments.comment",
+    "pk": 2,
+    "fields": {
+        "owner": 1,
+        "plant_in_focus_post": 1,
+        "replying_comment": null,
+        "created_at": "2024-09-11T00:07:01.074Z",
+        "updated_at": "2024-09-11T00:07:01.074Z",
+        "content": "Pretty.  But it stinks to high heaven!"
+    }
+}, {
+    "model": "comments.comment",
+    "pk": 3,
+    "fields": {
+        "owner": 2,
+        "plant_in_focus_post": 8,
+        "replying_comment": null,
+        "created_at": "2024-11-15T19:12:10.108Z",
+        "updated_at": "2024-11-15T19:12:10.108Z",
+        "content": "They're tiny!"
+    }
+}, {
+    "model": "courses.course",
+    "pk": 7,
+    "fields": {
+        "season": "Spring",
+        "title": "Spring Foraging Basics",
+        "date": "2025-04-12",
+        "description": "Dive into the vibrant world of spring foraging with an immersive woodland experience. This course introduces you to a variety of fresh spring greens, including wild garlic, dandelion, and nettles, while teaching sustainable foraging practices and plant safety essentials. Guided by experienced instructors, you’ll learn how to gather these plants responsibly and get inspired with simple recipes that highlight their unique flavors. Suitable for beginners, this workshop provides hands-on learning to help you identify and use spring’s bounty confidently in your cooking.",
+        "location": "Ashdown Forest, East Sussex",
+        "max_capacity": 10
+    }
+}, {
+    "model": "courses.course",
+    "pk": 8,
+    "fields": {
+        "season": "Spring",
+        "title": "Introduction to Wild Herbs",
+        "date": "2025-05-17",
+        "description": "Uncover the secrets of wild herbs in this introductory course, perfect for anyone eager to enhance their kitchen with natural flavors. Focusing on herbs like sorrel, chickweed, and cleavers, you’ll be guided through identification and harvesting techniques that protect the environment. With hands-on practice, you’ll gain confidence in gathering and using these herbs, plus get inspired by recipes that incorporate their fresh flavors. This session covers foraging ethics, sustainable practices, and the sensory qualities of herbs, making it a well-rounded experience for beginners.",
+        "location": "Box Hill, Surrey",
+        "max_capacity": 10
+    }
+}, {
+    "model": "courses.course",
+    "pk": 9,
+    "fields": {
+        "season": "Summer",
+        "title": "Wildflower Foraging Workshop",
+        "date": "2025-07-19",
+        "description": "Explore the vibrant world of wildflowers with an expert-led foraging session in meadows filled with elderflower, yarrow, and meadowsweet. You’ll gain insights into identifying edible blooms, understanding their unique properties, and using them to enhance dishes, teas, and syrups. Our workshop emphasizes sustainable foraging and flower preservation tips, with plenty of time to practice in a beautiful natural setting. You’ll leave with both the skills and knowledge to enjoy wildflowers sustainably, transforming them into culinary ingredients or natural decorations at home.",
+        "location": "South Downs, West Sussex",
+        "max_capacity": 10
+    }
+}, {
+    "model": "courses.course",
+    "pk": 10,
+    "fields": {
+        "season": "Summer",
+        "title": "Seaside Edibles Walk",
+        "date": "2025-08-09",
+        "description": "Experience coastal foraging with this immersive seaside walk focused on discovering edible treasures such as rock samphire, sea kale, and seaweed varieties. You’ll learn about tidal foraging and responsible harvesting techniques to minimize impact on marine ecosystems. This course provides hands-on guidance for identifying coastal plants and understanding their culinary applications, with tips on how to clean, preserve, and cook with these unique ingredients. Perfect for adventurous cooks, this session opens up new possibilities in incorporating seaside flavors into your meals.",
+        "location": "Reculver, Kent",
+        "max_capacity": 10
+    }
+}, {
+    "model": "courses.course",
+    "pk": 11,
+    "fields": {
+        "season": "Autumn",
+        "title": "Mushroom Identification & Foraging",
+        "date": "2025-10-11",
+        "description": "Dive into the fascinating world of fungi with this in-depth mushroom foraging course, designed to teach you the essentials of identifying and safely harvesting wild mushrooms. From chanterelles to boletes, you’ll explore different habitats and learn how to recognize key features of edible and inedible species. Guided by experienced mycologists, this course emphasizes ethical foraging, habitat preservation, and safe handling. You’ll come away with the confidence to forage responsibly and a deeper appreciation for these unique forest organisms.",
+        "location": "Epping Forest, Essex",
+        "max_capacity": 10
+    }
+}, {
+    "model": "courses.course",
+    "pk": 12,
+    "fields": {
+        "season": "Autumn",
+        "title": "Autumn Hedgerow Bounty",
+        "date": "2025-10-18",
+        "description": "Celebrate autumn’s abundance with a hands-on exploration of hedgerow foraging, where you’ll gather berries, nuts, and roots such as hawthorn, rose hips, and hazelnuts. This course guides you through sustainable gathering practices, plant identification, and practical preservation techniques like drying, pickling, and making syrups. Ideal for those interested in self-sufficiency and seasonal eating, this session offers rich insights into preparing hedgerow finds for long-term use. Learn how to transform your harvest into delightful preserves, teas, and even medicinal remedies.",
+        "location": "New Forest, Hampshire",
+        "max_capacity": 10
+    }
+}, {
+    "model": "courses.course",
+    "pk": 13,
+    "fields": {
+        "season": "Spring",
+        "title": "Sample Course",
+        "date": "2024-10-30",
+        "description": "A test course",
+        "location": "Test Location",
+        "max_capacity": 3
+    }
+}, {
+    "model": "course_registrations.courseregistration",
+    "pk": 2,
+    "fields": {
+        "course_title": 12,
+        "owner": 3,
+        "email": "cancelled@example.com",
+        "phone": "+447885433411",
+        "registration_date": "2024-10-27T09:39:53.155Z",
+        "status": "Confirmed",
+        "has_dietary_restrictions": false,
+        "dietary_restrictions": "Dairy Free",
+        "is_driver": false,
+        "has_emergency_contact": false,
+        "ice_name": "N/A",
+        "ice_number": "+447885433418"
+    }
+}, {
+    "model": "course_registrations.courseregistration",
+    "pk": 3,
+    "fields": {
+        "course_title": 13,
+        "owner": 4,
+        "email": "inique_testuser@email.com",
+        "phone": "+447885344122",
+        "registration_date": "2024-10-28T01:36:55.252Z",
+        "status": "Confirmed",
+        "has_dietary_restrictions": true,
+        "dietary_restrictions": "Testing enforced entries if diet restrictions is selected",
+        "is_driver": false,
+        "has_emergency_contact": false,
+        "ice_name": "Mrs test unique user",
+        "ice_number": "+447885433418"
+    }
+}]
