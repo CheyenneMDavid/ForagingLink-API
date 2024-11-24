@@ -37,6 +37,7 @@ class PlantInFocusPostList(generics.ListAPIView):
         # Using `distinct=True`` to ensure a single comment is only counted
         # the once.
         comments_count=Count("comment", distinct=True),
+        likes_count=Count("likes", distinct=True),
     ).order_by("-created_at")
 
     # Filters for the search and ordering functionality in the backend.

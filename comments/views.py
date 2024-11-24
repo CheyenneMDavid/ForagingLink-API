@@ -35,7 +35,8 @@ class CommentList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = Comment.objects.annotate(
         # Counts the number of replies each comment has.
-        replies_count=Count("replies", distinct=True)
+        replies_count=Count("replies", distinct=True),
+        likes_count=Count("likes", distinct=True),
         # Orders comments starting with the newest first.
     ).order_by("-created_at")
     # Allows filtering and searching within the comments.
@@ -97,7 +98,8 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CommentDetailSerializer
     queryset = Comment.objects.annotate(
         # Adds a reply count to each comment
-        replies_count=Count("replies", distinct=True)
+        replies_count=Count("replies", distinct=True),
+        likes_count=Count("likes", distinct=True),
     ).order_by("-created_at")
 
 

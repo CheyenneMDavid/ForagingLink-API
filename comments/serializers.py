@@ -38,6 +38,7 @@ class CommentSerializer(serializers.ModelSerializer):
     updated_at = serializers.SerializerMethodField()
     replies = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     replies_count = serializers.ReadOnlyField()
+    likes_count = serializers.ReadOnlyField()
 
     # Defines a field that can link this comment to another comment as a reply
     replying_comment = serializers.PrimaryKeyRelatedField(
@@ -115,6 +116,7 @@ class CommentSerializer(serializers.ModelSerializer):
             "replies",
             "replies_count",
             "replying_comment",
+            "likes_count",
         ]
 
 
