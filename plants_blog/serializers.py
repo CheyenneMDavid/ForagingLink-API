@@ -115,4 +115,5 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
             "confusable_plant_warnings",
             "confusable_plant_image",
             "comments_count",
+            "likes_count",
         ]
