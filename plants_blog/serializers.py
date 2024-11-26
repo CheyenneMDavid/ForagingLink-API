@@ -8,6 +8,7 @@ and from JSON format.
 
 from rest_framework import serializers
 from plants_blog.models import PlantInFocusPost
+from likes.models import Like
 
 
 class PlantInFocusPostSerializer(serializers.ModelSerializer):
@@ -19,15 +20,25 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
 
     # Read-only field returning the owner's username
     owner = serializers.ReadOnlyField(source="owner.username")
+
     # Checks if the current user is the post owner.
     is_owner = serializers.SerializerMethodField()
+
     # Returns owner's profile ID
     profile_id = serializers.ReadOnlyField(source="owner.profile.id")
+
     # Returns the URL for the owner's profile image.
     profile_image = serializers.ReadOnlyField(
         source="owner.profile.image.url"
     )
-    # Returns the count for comments on the post.
+    # ID of the like by the current user, if it exists, enabling toggling
+    # between like and unlike.
+    like_id = serializers.SerializerMethodField()
+
+    # Returns the total number of likes on the post.
+    likes_count = serializers.ReadOnlyField()
+
+    # Returns the total number of comments on the post.
     comments_count = serializers.ReadOnlyField()
 
     # Custom field validation for 'main_plant_parts_used'
@@ -53,6 +64,20 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
         """
         request = self.context.get("request", None)
         return request and request.user == obj.owner
+
+    # Method to get the ID of the like by the current user, if it exists
+    def get_like_id(self, obj):
+        """
+        Returns the ID of the Like object for the current user and the
+        specified post, enabling toggling between like and unlike.
+        """
+        user = self.context["request"].user
+        if user.is_authenticated:
+            like = Like.objects.filter(
+                owner=user, plant_in_focus_post=obj
+            ).first()
+            return like.id if like else None
+        return None
 
     def validate_image(self, value, image_field):
         """
@@ -116,4 +141,5 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
             "confusable_plant_image",
             "comments_count",
             "likes_count",
+            "like_id",
         ]
