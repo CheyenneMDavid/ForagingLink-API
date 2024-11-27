@@ -25,6 +25,10 @@ class PlantInFocusPost(models.Model):
     historical significance. Includes information on any similar-looking plant
     that could be mistaken for the main plant, providing images and basic
     details, along with necessary warnings.
+    Some fields, such as 'Medicinal Uses' or 'Confusable Plant Details,' are
+    optional because the content may not always be known or relevant.
+    Using 'null=True' and 'blank=True' ensures the database remains consistent
+    without unnecessary placeholders taking up space.
     """
 
     # Month choices in admin panel dropdown, when creating a plant in focus
@@ -68,7 +72,7 @@ class PlantInFocusPost(models.Model):
         help_text="Automatically adds date  time of update.",
     )
 
-    # Details for main post.
+    # Details for main plant.
     main_plant_name = models.CharField(
         max_length=255,
         verbose_name="Main Plant Name",
@@ -76,13 +80,35 @@ class PlantInFocusPost(models.Model):
         default="",
     )
 
-    # Information for main plant in post
+    # Using a dropdown list for selecting a valid month.
     main_plant_month = models.IntegerField(
         choices=MONTH_CHOICES,
         verbose_name="Main Plant Month",
         help_text="Select month when the main plant is likely to be found.",
-        default=1,
     )
+
+    def clean(self):
+        """
+        Ensures the 'main_plant_month' field is valid.
+        If the month is anything other than the choices offered, it raises
+        a validation error.
+        """
+
+        # Using `dict` to convert MONTH_CHOICES into a dictionary, allowing easy access
+        # to valid month numbers (keys) for validation.
+        if self.main_plant_month not in dict(self.MONTH_CHOICES).keys():
+            raise ValidationError(
+                "You must select a valid month for the main plant!"
+            )
+
+    def save(self, *args, **kwargs):
+        """
+        Custom save method, calls `clean()` to ensure the data is valid.
+        If it passes validation, it's then saved using 'super()'.
+        """
+        self.clean()
+        super().save(*args, **kwargs)
+
     main_plant_environment = models.TextField(
         verbose_name="Main Plant Environment",
         help_text="Describe the environment where the main plant is likely "
@@ -94,10 +120,15 @@ class PlantInFocusPost(models.Model):
         help_text="Describe the culinary uses of the main plant.",
         default="",
     )
+
+    # Purposeful use of True being applied to null and blank because  content
+    # for this field may be unknown
     medicinal_uses = models.TextField(
         verbose_name="Medicinal Uses",
         help_text="Describe the medicinal uses of the main plant.",
         default="",
+        null=True,
+        blank=True,
     )
 
     history_and_folklore = models.TextField(
@@ -110,22 +141,8 @@ class PlantInFocusPost(models.Model):
     main_plant_parts_used = models.TextField(
         verbose_name="Usable plant parts",
         help_text="Specify parts of the plant that are of use",
-        default="Unknown",
+        default="",
     )
-
-    def clean(self):
-        """
-        Custom validation to ensure that the default value of "Unknown" isn't
-        left in the "main_plant_parts_used" field.
-        If the default value it left, then a ValidationError is raised which
-        prompts the admin to replace the default value with something more
-        meaningful.
-        """
-        if self.main_plant_parts_used == "Unknown":
-            raise ValidationError(
-                "You must specify the plant parts used, 'Unknown' is not"
-                "allowed."
-            )
 
     main_plant_warnings = models.TextField(
         verbose_name="Plant warnings",
@@ -170,8 +187,8 @@ class PlantInFocusPost(models.Model):
 
     confusable_plant_image = models.ImageField(
         # Folder path for storing uploaded plant images in Cloudinary
+        # Purposely no default image as
         upload_to="images/",
-        default="images/default_plant_image_rvlqpb",
         verbose_name="Confusable Plant Image",
         help_text="Upload an image of the confusable plant, if needed",
         null=True,
