@@ -67,7 +67,7 @@ class PlantInFocusPost(models.Model):
     )
     # Timestamp for when a post is updated/changed
     updated_at = models.DateTimeField(
-        auto_now_add=True,
+        auto_now=True,
         verbose_name="Updated date & time.",
         help_text="Automatically adds date  time of update.",
     )
@@ -86,28 +86,6 @@ class PlantInFocusPost(models.Model):
         verbose_name="Main Plant Month",
         help_text="Select month when the main plant is likely to be found.",
     )
-
-    def clean(self):
-        """
-        Ensures the 'main_plant_month' field is valid.
-        If the month is anything other than the choices offered, it raises
-        a validation error.
-        """
-
-        # Using `dict` to convert MONTH_CHOICES into a dictionary, allowing easy access
-        # to valid month numbers (keys) for validation.
-        if self.main_plant_month not in dict(self.MONTH_CHOICES).keys():
-            raise ValidationError(
-                "You must select a valid month for the main plant!"
-            )
-
-    def save(self, *args, **kwargs):
-        """
-        Custom save method, calls `clean()` to ensure the data is valid.
-        If it passes validation, it's then saved using 'super()'.
-        """
-        self.clean()
-        super().save(*args, **kwargs)
 
     main_plant_environment = models.TextField(
         verbose_name="Main Plant Environment",
@@ -186,14 +164,50 @@ class PlantInFocusPost(models.Model):
     )
 
     confusable_plant_image = models.ImageField(
-        # Folder path for storing uploaded plant images in Cloudinary
-        # Purposely no default image as
         upload_to="images/",
         verbose_name="Confusable Plant Image",
         help_text="Upload an image of the confusable plant, if needed",
         null=True,
         blank=True,
     )
+    # Other fields...
+
+    def clean(self):
+        """
+        Validates the model's data before saving by doing the following:
+
+        Validates the `main_plant_month` field:
+        Ensures a valid month is selected. Raises a `ValidationError` if it is not.
+
+        Handles the `confusable_plant_image` field:
+        Sometimes a `confusable_plant_image` is not required. If there is no
+        `confusable_plant_name` (indicating no confusable plant is associated
+        with the main plant), the `confusable_plant_image` field is set to `None`.
+        This ensures no default or unnecessary image is displayed when not needed.
+        """
+
+        # Validate main_plant_month
+        if self.main_plant_month not in dict(self.MONTH_CHOICES).keys():
+            raise ValidationError(
+                "You must select a valid month for the main plant!"
+            )
+
+        # If there's no confusable_plant_name, the confusable_plant_image is
+        # set to `None`
+        if not self.confusable_plant_name:
+            self.confusable_plant_image = None
+
+    def save(self, *args, **kwargs):
+        """
+        Validates the model and saves it to the database.
+        Running a `full_clean()`, it ensures all fields and custom validation
+        is correct. If everything is valid, the model is saved using Django's
+        default process.
+
+        """
+
+        self.full_clean()
+        super().save(*args, **kwargs)
 
     # String representation, returning the name of the main plant.
     def __str__(self):
