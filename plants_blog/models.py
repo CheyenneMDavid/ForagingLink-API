@@ -185,15 +185,15 @@ class PlantInFocusPost(models.Model):
         blank=True,
     )
 
-    confusable_plant_image = models.ImageField(
-        # Folder path for storing uploaded plant images in Cloudinary
-        # Purposely no default image as
-        upload_to="images/",
-        verbose_name="Confusable Plant Image",
-        help_text="Upload an image of the confusable plant, if needed",
-        null=True,
-        blank=True,
-    )
+    # confusable_plant_image = models.ImageField(
+    #     # Folder path for storing uploaded plant images in Cloudinary
+    #     # Purposely no default image as
+    #     upload_to="images/",
+    #     verbose_name="Confusable Plant Image",
+    #     help_text="Upload an image of the confusable plant, if needed",
+    #     null=True,
+    #     blank=True,
+    # )
 
     # String representation, returning the name of the main plant.
     def __str__(self):
