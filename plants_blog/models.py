@@ -137,76 +137,76 @@ class PlantInFocusPost(models.Model):
         help_text="Upload an image of the main plant.",
     )
 
-    # # Details of plants that may be mistaken for the main_plant of interest.
-    # # Optional to be filled in as it may not always be applicable.
-    # confusable_plant_name = models.CharField(
-    #     max_length=255,
-    #     verbose_name="Confusable Plant Name",
-    #     help_text="Enter the common name of the plant that can be confused "
-    #     "with the main plant.",
-    #     null=True,
-    #     blank=True,
-    # )
+    # Details of plants that may be mistaken for the main_plant of interest.
+    # Optional to be filled in as it may not always be applicable.
+    confusable_plant_name = models.CharField(
+        max_length=255,
+        verbose_name="Confusable Plant Name",
+        help_text="Enter the common name of the plant that can be confused "
+        "with the main plant.",
+        null=True,
+        blank=True,
+    )
 
-    # confusable_plant_information = models.TextField(
-    #     verbose_name="Confusable Plant Environment",
-    #     help_text="Describe distinguishing features",
-    #     null=True,
-    #     blank=True,
-    # )
+    confusable_plant_information = models.TextField(
+        verbose_name="Confusable Plant Environment",
+        help_text="Describe distinguishing features",
+        null=True,
+        blank=True,
+    )
 
-    # confusable_plant_warnings = models.TextField(
-    #     verbose_name="warnings",
-    #     help_text="Describe any dangers of mistaking this plant for the "
-    #     "main_plant of interest",
-    #     null=True,
-    #     blank=True,
-    # )
+    confusable_plant_warnings = models.TextField(
+        verbose_name="warnings",
+        help_text="Describe any dangers of mistaking this plant for the "
+        "main_plant of interest",
+        null=True,
+        blank=True,
+    )
 
-    # confusable_plant_image = models.ImageField(
-    #     upload_to="images/",
-    #     verbose_name="Confusable Plant Image",
-    #     help_text="Upload an image of the confusable plant, if needed",
-    #     null=True,
-    #     blank=True,
-    # )
+    confusable_plant_image = models.ImageField(
+        upload_to="images/",
+        verbose_name="Confusable Plant Image",
+        help_text="Upload an image of the confusable plant, if needed",
+        null=True,
+        blank=True,
+    )
 
-    # def clean(self):
-    #     """
-    #     Validates the model's data before saving by doing the following:
+    def clean(self):
+        """
+        Validates the model's data before saving by doing the following:
 
-    #     Validates the `main_plant_month` field:
-    #     Ensures a valid month is selected. Raises a `ValidationError` if it is not.
+        Validates the `main_plant_month` field:
+        Ensures a valid month is selected. Raises a `ValidationError` if it is not.
 
-    #     Handles the `confusable_plant_image` field:
-    #     Sometimes a `confusable_plant_image` is not required. If there is no
-    #     `confusable_plant_name` (indicating no confusable plant is associated
-    #     with the main plant), the `confusable_plant_image` field is set to `None`.
-    #     This ensures no default or unnecessary image is displayed when not needed.
-    #     """
+        Handles the `confusable_plant_image` field:
+        Sometimes a `confusable_plant_image` is not required. If there is no
+        `confusable_plant_name` (indicating no confusable plant is associated
+        with the main plant), the `confusable_plant_image` field is set to `None`.
+        This ensures no default or unnecessary image is displayed when not needed.
+        """
 
-    #     # Validate main_plant_month
-    #     if self.main_plant_month not in dict(self.MONTH_CHOICES).keys():
-    #         raise ValidationError(
-    #             "You must select a valid month for the main plant!"
-    #         )
+        # Validate main_plant_month
+        if self.main_plant_month not in dict(self.MONTH_CHOICES).keys():
+            raise ValidationError(
+                "You must select a valid month for the main plant!"
+            )
 
-    #     # If there's no confusable_plant_name, the confusable_plant_image is
-    #     # set to `None`
-    #     if not self.confusable_plant_name:
-    #         self.confusable_plant_image = None
+        # If there's no confusable_plant_name, the confusable_plant_image is
+        # set to `None`
+        if not self.confusable_plant_name:
+            self.confusable_plant_image = None
 
-    # def save(self, *args, **kwargs):
-    #     """
-    #     Validates the model and saves it to the database.
-    #     Running a `full_clean()`, it ensures all fields and custom validation
-    #     is correct. If everything is valid, the model is saved using Django's
-    #     default process.
+    def save(self, *args, **kwargs):
+        """
+        Validates the model and saves it to the database.
+        Running a `full_clean()`, it ensures all fields and custom validation
+        is correct. If everything is valid, the model is saved using Django's
+        default process.
 
-    #     """
+        """
 
-    #     self.full_clean()
-    #     super().save(*args, **kwargs)
+        self.full_clean()
+        super().save(*args, **kwargs)
 
     # String representation, returning the name of the main plant.
     def __str__(self):
