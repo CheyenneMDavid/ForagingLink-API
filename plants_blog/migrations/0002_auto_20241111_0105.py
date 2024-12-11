@@ -6,21 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('plants_blog', '0001_initial'),
+        ("plants_blog", "0001_initial"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='plantinfocuspost',
-            name='confusable_plant_image',
-        ),
-        migrations.RemoveField(
-            model_name='plantinfocuspost',
-            name='confusable_plant_name',
-        ),
         migrations.AlterField(
-            model_name='plantinfocuspost',
-            name='main_plant_image',
-            field=models.ImageField(default='images/default_plant_image_rvlqpb', help_text='Upload an image of the main plant.', upload_to='images/', verbose_name='Main Plant Image'),
+            model_name="plantinfocuspost",
+            name="main_plant_image",
+            field=models.ImageField(
+                default="images/default_plant_image_rvlqpb",
+                help_text="Upload an image of the main plant.",
+                upload_to="images/",
+                verbose_name="Main Plant Image",
+            ),
         ),
     ]
