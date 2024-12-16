@@ -46,6 +46,7 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Email Validation](#email-validation)
     - [Database Migration Reset and Cloudinary Path Adjustments](#database-migration-reset-and-cloudinary-path-adjustments)
     - [README Writeup for Likes Issue](#readme-writeup-for-likes-issue)
+    - [Logging for Debugging](#logging-for-debugging)
   - [Lessons Learned: Simple Fixes Can Be the Most Elusive](#lessons-learned-simple-fixes-can-be-the-most-elusive)
   - [Prerequisites](#prerequisites)
   - [Dependency Management](#dependency-management)
@@ -352,6 +353,24 @@ However, after completing this entire reset, I discovered that the issue was not
 ### README Writeup for Likes Issue
 
 Whilst creating the front end, I found that the number of likes wasn’t displaying. The issue was that the backend wasn’t including the `likes_count` as part of the querysets. To fix this, I added `likes_count` to the posts views for the number of likes on each post and to the comments views for the number of likes on comments and replies.
+
+### Logging for Debugging
+
+When implementing the conditional display for the Most followed profiles, I had issues with the token refresh workinbg correctly. So additionally to adding console.logs throughout the front end's logic, I also added basic logging configuration to the settings.py
+
+```
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {"class": "logging.StreamHandler"},
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "DEBUG",
+    },
+}
+```
 
 ## Lessons Learned: Simple Fixes Can Be the Most Elusive
 
@@ -734,10 +753,10 @@ For detailed instructions on how to fork and clone a repository, please refer to
 
 Email validation was implemented using the following resources:
 
-- **Django Documentation**:  
+- **Django Documentation**:
   For email validation using `EmailValidator`, based on Django’s [EmailField documentation](https://docs.djangoproject.com/en/stable/ref/models/fields/#emailfield), which provides built-in validation mechanisms for email formats. Although when referencing this in `course_registrations/models.py` I left off the "#emailfield" as part of the url because I was unable to make the link work within the maximum line length.
 
-- **RFC 5321**:  
+- **RFC 5321**:
   For email length limit guidance, based on the [RFC 5321 standard](https://www.rfc-editor.org/rfc/rfc5321), which defines the 254-character limit for email addresses commonly used across the web.
 
 ### Image Attribution:
@@ -766,3 +785,7 @@ Some specific examples of how ChatGPT contributed to this project:
 - **Use of Third-Party Tools**: ChatGPT provided instructions and guidance on how to utilize third-party tools like **Draw.io** for creating diagrams, such as **Entity-Relationship Diagrams (ERDs)**, which helped in planning and structuring the database models and relationships.
 
 I believe that utilizing ChatGPT has enhanced my understanding of the development process and contributed to maintaining a clear focus throughout the project. While ChatGPT provided advice and assistance, all final decisions and implementations were done by me as part of my learning process.
+
+```
+
+```

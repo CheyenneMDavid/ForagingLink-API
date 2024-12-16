@@ -15,25 +15,172 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='PlantInFocusPost',
+            name="PlantInFocusPost",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True, help_text='Automatically sets date & time when the record is created', verbose_name='Creation Date and Time')),
-                ('updated_at', models.DateTimeField(auto_now=True, help_text='Automatically adds date  time of update.', verbose_name='Updated date & time.')),
-                ('main_plant_name', models.CharField(default='', help_text='Enter the common name of the main plant.', max_length=255, verbose_name='Main Plant Name')),
-                ('main_plant_month', models.IntegerField(choices=[(1, 'January'), (2, 'February'), (3, 'March'), (4, 'April'), (5, 'May'), (6, 'June'), (7, 'July'), (8, 'August'), (9, 'September'), (10, 'October'), (11, 'November'), (12, 'December')], help_text='Select month when the main plant is likely to be found.', verbose_name='Main Plant Month')),
-                ('main_plant_environment', models.TextField(default='', help_text='Describe the environment where the main plant is likely to be found.', verbose_name='Main Plant Environment')),
-                ('culinary_uses', models.TextField(default='', help_text='Describe the culinary uses of the main plant.', verbose_name='Culinary Uses')),
-                ('medicinal_uses', models.TextField(blank=True, default='', help_text='Describe the medicinal uses of the main plant.', null=True, verbose_name='Medicinal Uses')),
-                ('history_and_folklore', models.TextField(default='', help_text='Provide any historical and folklore information about themain plant.', verbose_name='History and Folklore')),
-                ('main_plant_parts_used', models.TextField(default='', help_text='Specify parts of the plant that are of use', verbose_name='Usable plant parts')),
-                ('main_plant_warnings', models.TextField(blank=True, help_text='Mention any warnings related to the plant that usersshould be aware of.', null=True, verbose_name='Plant warnings')),
-                ('main_plant_image', models.ImageField(default='images/default_plant_image_rvlqpb', help_text='Upload an image of the main plant.', upload_to='images/', verbose_name='Main Plant Image')),
-                ('confusable_plant_name', models.CharField(blank=True, help_text='Enter the common name of the plant that can be confused with the main plant.', max_length=255, null=True, verbose_name='Confusable Plant Name')),
-                ('confusable_plant_information', models.TextField(blank=True, help_text='Describe distinguishing features', null=True, verbose_name='Confusable Plant Environment')),
-                ('confusable_plant_warnings', models.TextField(blank=True, help_text='Describe any dangers of mistaking this plant for the main_plant of interest', null=True, verbose_name='warnings')),
-                ('confusable_plant_image', models.ImageField(blank=True, help_text='Upload an image of the confusable plant, if needed', null=True, upload_to='images/', verbose_name='Confusable Plant Image')),
-                ('owner', models.ForeignKey(blank=True, help_text='The user/admin that created the article.', null=True, on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL, verbose_name='Owner')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        help_text="Automatically sets date & time when the record is created",
+                        verbose_name="Creation Date and Time",
+                    ),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(
+                        auto_now=True,
+                        help_text="Automatically adds date  time of update.",
+                        verbose_name="Updated date & time.",
+                    ),
+                ),
+                (
+                    "main_plant_name",
+                    models.CharField(
+                        default="",
+                        help_text="Enter the common name of the main plant.",
+                        max_length=255,
+                        verbose_name="Main Plant Name",
+                    ),
+                ),
+                (
+                    "main_plant_month",
+                    models.IntegerField(
+                        choices=[
+                            (1, "January"),
+                            (2, "February"),
+                            (3, "March"),
+                            (4, "April"),
+                            (5, "May"),
+                            (6, "June"),
+                            (7, "July"),
+                            (8, "August"),
+                            (9, "September"),
+                            (10, "October"),
+                            (11, "November"),
+                            (12, "December"),
+                        ],
+                        help_text="Select month when the main plant is likely to be found.",
+                        verbose_name="Main Plant Month",
+                    ),
+                ),
+                (
+                    "main_plant_environment",
+                    models.TextField(
+                        default="",
+                        help_text="Describe the environment where the main plant is likely to be found.",
+                        verbose_name="Main Plant Environment",
+                    ),
+                ),
+                (
+                    "culinary_uses",
+                    models.TextField(
+                        default="",
+                        help_text="Describe the culinary uses of the main plant.",
+                        verbose_name="Culinary Uses",
+                    ),
+                ),
+                (
+                    "medicinal_uses",
+                    models.TextField(
+                        blank=True,
+                        default="",
+                        help_text="Describe the medicinal uses of the main plant.",
+                        null=True,
+                        verbose_name="Medicinal Uses",
+                    ),
+                ),
+                (
+                    "history_and_folklore",
+                    models.TextField(
+                        default="",
+                        help_text="Provide any historical and folklore information about themain plant.",
+                        verbose_name="History and Folklore",
+                    ),
+                ),
+                (
+                    "main_plant_parts_used",
+                    models.TextField(
+                        default="",
+                        help_text="Specify parts of the plant that are of use",
+                        verbose_name="Usable plant parts",
+                    ),
+                ),
+                (
+                    "main_plant_warnings",
+                    models.TextField(
+                        blank=True,
+                        help_text="Mention any warnings related to the plant that usersshould be aware of.",
+                        null=True,
+                        verbose_name="Plant warnings",
+                    ),
+                ),
+                (
+                    "main_plant_image",
+                    models.ImageField(
+                        default="images/default_plant_image_rvlqpb",
+                        help_text="Upload an image of the main plant.",
+                        upload_to="images/",
+                        verbose_name="Main Plant Image",
+                    ),
+                ),
+                (
+                    "confusable_plant_name",
+                    models.CharField(
+                        blank=True,
+                        help_text="Enter the common name of the plant that can be confused with the main plant.",
+                        max_length=255,
+                        null=True,
+                        verbose_name="Confusable Plant Name",
+                    ),
+                ),
+                (
+                    "confusable_plant_information",
+                    models.TextField(
+                        blank=True,
+                        help_text="Describe distinguishing features",
+                        null=True,
+                        verbose_name="Confusable Plant Environment",
+                    ),
+                ),
+                (
+                    "confusable_plant_warnings",
+                    models.TextField(
+                        blank=True,
+                        help_text="Describe any dangers of mistaking this plant for the main_plant of interest",
+                        null=True,
+                        verbose_name="warnings",
+                    ),
+                ),
+                (
+                    "confusable_plant_image",
+                    models.ImageField(
+                        blank=True,
+                        help_text="Upload an image of the confusable plant, if needed",
+                        null=True,
+                        upload_to="images/",
+                        verbose_name="Confusable Plant Image",
+                    ),
+                ),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        blank=True,
+                        help_text="The user/admin that created the article.",
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Owner",
+                    ),
+                ),
             ],
         ),
     ]

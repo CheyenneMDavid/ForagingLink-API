@@ -174,6 +174,7 @@ else:
             )
         )
     }
+    print("connected")
 
 
 # Password validation
