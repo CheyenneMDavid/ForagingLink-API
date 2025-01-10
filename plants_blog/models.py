@@ -16,6 +16,8 @@ protected.
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from likes.models import Like
+from comments.models import Comment
 
 
 class PlantInFocusPost(models.Model):
@@ -207,6 +209,24 @@ class PlantInFocusPost(models.Model):
 
         self.full_clean()
         super().save(*args, **kwargs)
+
+    @property
+    def likes_count(self):
+        """
+        Dynamically calculates the total number of likes for the current post.
+        Queries the Like model to count all likes associated with the post
+        and returns the count.
+        """
+        return Like.objects.filter(plant_in_focus_post=self).count()
+
+    @property
+    def comments_count(self):
+        """
+        Dynamically calculates the total number of comments for the current post.
+        Queries the Comment model to count all comments associated with the post
+        and returns the count.
+        """
+        return Comment.objects.filter(plant_in_focus_post=self).count()
 
     # String representation, returning the name of the main plant.
     def __str__(self):

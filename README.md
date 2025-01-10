@@ -72,10 +72,10 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
 - [](#-4)
 - [](#-5)
 - [](#-6)
-    - [Example Project Boards](#example-project-boards)
-      - [Starting State](#starting-state)
-      - [Midway State](#midway-state)
-      - [Nearing Final State](#nearing-final-state)
+  - [Example Project Boards](#example-project-boards)
+    - [Starting State](#starting-state)
+    - [Midway State](#midway-state)
+    - [Nearing Final State](#nearing-final-state)
   - [Testing](#testing)
     - [Written Tests](#written-tests-1)
       - [Tests for Plants Blog Application](#tests-for-plants-blog-application)
@@ -353,6 +353,7 @@ However, after completing this entire reset, I discovered that the issue was not
 ### README Writeup for Likes Issue
 
 Whilst creating the front end, I found that the number of likes wasn’t displaying. The issue was that the backend wasn’t including the `likes_count` as part of the querysets. To fix this, I added `likes_count` to the posts views for the number of likes on each post and to the comments views for the number of likes on comments and replies.
+Also, the likes_count and comments_count weren't included in the PlantInFocusModel, but have since been added and now both dynamically calculate the total counts associated with a specific post.
 
 ### Logging for Debugging
 
