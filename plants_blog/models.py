@@ -17,7 +17,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from likes.models import Like
-from comments.models import Comment
 
 
 class PlantInFocusPost(models.Model):
@@ -226,6 +225,11 @@ class PlantInFocusPost(models.Model):
         Queries the Comment model to count all comments associated with the post
         and returns the count.
         """
+
+        # Moved import of the Comment model to enable lazy importing and avoid
+        # circular imports.
+        from comments.models import Comment
+
         return Comment.objects.filter(plant_in_focus_post=self).count()
 
     # String representation, returning the name of the main plant.
