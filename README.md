@@ -45,7 +45,7 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Phone Number Validation](#phone-number-validation)
     - [Email Validation](#email-validation)
     - [Database Migration Reset and Cloudinary Path Adjustments](#database-migration-reset-and-cloudinary-path-adjustments)
-    - [README Writeup for Likes Issue](#readme-writeup-for-likes-issue)
+    - [Counts for Likes and Comments](#counts-for-likes-and-comments)
     - [Logging for Debugging](#logging-for-debugging)
   - [Lessons Learned: Simple Fixes Can Be the Most Elusive](#lessons-learned-simple-fixes-can-be-the-most-elusive)
   - [Prerequisites](#prerequisites)
@@ -350,10 +350,11 @@ I hoped that this reset process would allow me to resolve the problems, which I 
 
 However, after completing this entire reset, I discovered that the issue was not related to Cloudinary paths or migrations. The root cause was an incorrect string in the `USER_DETAILS_SERIALIZER` configuration in `settings.py`. Fixing this string by formatting it in a manner which passed PEP8 rules and also kept it in tact allowed the `profile_image` field to display correctly, making the previous efforts with migrations unnecessary.
 
-### README Writeup for Likes Issue
+### Counts for Likes and Comments
 
-Whilst creating the front end, I found that the number of likes wasn’t displaying. The issue was that the backend wasn’t including the `likes_count` as part of the querysets. To fix this, I added `likes_count` to the posts views for the number of likes on each post and to the comments views for the number of likes on comments and replies.
-Also, the likes_count and comments_count weren't included in the PlantInFocusModel, but have since been added and now both dynamically calculate the total counts associated with a specific post.
+Whilst creating the front end, I found that the number of likes wasn’t displaying. After a lot of console logging, I realised that counts for likes and comments weren't included in the models for them. Previously including them in the Serializers.py files in both the Comments app and the Likes app, I had initially been following the structure of the walkthrough projects, but as I developed my individual applications, the manner in which the likes_count and comments_count were delivered to the React front end fell short. To fix this, I added the counts as properties, where their totals were then able to be dynamically calculated and made available for the React front end.
+
+Additionally, the manner in which the imports were handled has been restructured, so as to avoid circular imports, and replies_count was added to the Comment model to dynamically track the number of nested replies.
 
 ### Logging for Debugging
 

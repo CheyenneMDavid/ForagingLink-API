@@ -33,9 +33,11 @@ class Like(models.Model):
     )
 
     # Foreign key relationship to the PlantInFocusPost model to track which
-    # post was liked
+    # post was liked.
     plant_in_focus_post = models.ForeignKey(
-        PlantInFocusPost,
+        # Using a string reference in order to allow for lazy importing of the
+        # PlantInFocusPost model.
+        "plants_blog.PlantInFocusPost",
         related_name="likes",
         on_delete=models.CASCADE,
         null=True,
@@ -44,7 +46,9 @@ class Like(models.Model):
         help_text="The plant in focus post that's liked.",
     )
     comment = models.ForeignKey(
-        Comment,
+        # Using a string reference in order to allow for lazy importing of the
+        # Comment model
+        "comments.Comment",
         related_name="likes",
         on_delete=models.CASCADE,
         null=True,

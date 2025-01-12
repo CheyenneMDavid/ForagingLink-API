@@ -35,7 +35,8 @@ class Comment(models.Model):
     )
 
     plant_in_focus_post = models.ForeignKey(
-        PlantInFocusPost,
+        # Using a string reference to allow lazy importing
+        "plants_blog.PlantInFocusPost",
         # Ensures that the comments are also deleted when the post that
         # they're associated to is deleted.
         on_delete=models.CASCADE,
@@ -74,6 +75,18 @@ class Comment(models.Model):
         verbose_name="Content",
         help_text="The text content of the comment.",
     )
+
+    @property
+    def replies_count(self):
+        """
+        Calculates and returns the total number of replies for this comment.
+        Uses a lazy import of the Comment model to avoid circular imports.
+        """
+
+        # Lazy import to avoid circular import issues
+        from comments.models import Comment
+
+        return Comment.objects.filter(replying_comment=self).count()
 
     class Meta:
         """

@@ -175,15 +175,15 @@ class PlantInFocusPost(models.Model):
     def clean(self):
         """
         Validates the model's data before saving by doing the following:
+        Validates the `main_plant_month` field. Ensures a valid month is
+        selected. Raises a `ValidationError` if it is not.
 
-        Validates the `main_plant_month` field:
-        Ensures a valid month is selected. Raises a `ValidationError` if it is not.
-
-        Handles the `confusable_plant_image` field:
-        Sometimes a `confusable_plant_image` is not required. If there is no
+        Handles the `confusable_plant_image` field. Sometimes a
+        `confusable_plant_image` is not required. If there is no
         `confusable_plant_name` (indicating no confusable plant is associated
-        with the main plant), the `confusable_plant_image` field is set to `None`.
-        This ensures no default or unnecessary image is displayed when not needed.
+        with the main plant), the `confusable_plant_image` field is set to
+        `None`. This ensures no default or unnecessary image is displayed when
+        not needed.
         """
 
         # Validate main_plant_month
@@ -221,13 +221,12 @@ class PlantInFocusPost(models.Model):
     @property
     def comments_count(self):
         """
-        Dynamically calculates the total number of comments for the current post.
-        Queries the Comment model to count all comments associated with the post
-        and returns the count.
+        Dynamically calculates the total number of comments for the current
+        post. Queries the Comment model to count all comments associated with
+        the post and returns the count. Lazy import of the Comment model to
+        avoid circular imports.
         """
-
-        # Moved import of the Comment model to enable lazy importing and avoid
-        # circular imports.
+        # Lazy import to avoid circular import issues with the Comment model.
         from comments.models import Comment
 
         return Comment.objects.filter(plant_in_focus_post=self).count()
