@@ -8,11 +8,10 @@ from .models import Course
 class CourseAPITest(TestCase):
     """
     Tests for the Course API views.
-    This includes setting up all the data that is needed for the test
-    environment. A test client, an admin user, and a sample course with  data
-    for the fields.
-    It then tests the listing, creating, updating, and the deleting of courses
-    and returns the relevant http status codes.
+    This includes setting up the data needed for the test environment:
+    a test client, an admin user, and a sample course with data for the fields.
+    It then tests the listing, creating, updating, and deleting of courses,
+    ensuring the correct HTTP status codes are returned.
     """
 
     def setUp(self):
@@ -37,16 +36,12 @@ class CourseAPITest(TestCase):
 
     def test_course_list(self):
         """
-        Tests the CourseList view to ensure it can return a list of courses
-        and returns a HTTP status of 200 OK.
+        Tests the CourseList view to ensure it returns a list of courses
+        with an HTTP 200 OK status.
 
         The test asserts that the response contains at least one course.
-        If the response is empty, "Response data is empty" is printed in the
-        test output and the test fails. If the response contains courses, the
-        title of the first course in the response is compared to the title of
-        the course created in the setup method.
+        If the response is empty, the test fails with "Response data is empty."
         """
-
         response = self.client.get("/courses/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertGreater(
@@ -63,10 +58,8 @@ class CourseAPITest(TestCase):
     def test_valid_course_creation(self):
         """
         Tests the CourseCreate view with valid data to ensure a new course can
-        be created and returns a http status of 201 as confirmation, it's
-        done.
+        be created and returns an HTTP 201 CREATED status.
         """
-        # Data for testing a valid course creation.
         valid_course_data = {
             "season": "Summer",
             "title": "Valid Test Course",
@@ -80,12 +73,13 @@ class CourseAPITest(TestCase):
 
     def test_invalid_course_creation(self):
         """
-        Tests the CourseCreate view with invalid data to ensure that a course
-        can NOT be created with max_capacity EXCEEDING 10 and returns a http
-        code of 400 BAD REQUEST.
+        Tests the CourseCreate view with invalid data to ensure a course
+        cannot be created with max_capacity exceeding 10, resulting in an
+        HTTP 400 BAD REQUEST response.
+
+        Note: This test intentionally triggers a "Bad Request" log due to
+        the invalid data.
         """
-        # Data for testing a INVALID course creation. Namely, the max_capacity
-        # figure of 12 that exceeds the 10, allowed.
         invalid_course_data = {
             "season": "Summer",
             "title": "Invalid Test Course",
@@ -99,11 +93,9 @@ class CourseAPITest(TestCase):
 
     def test_valid_course_update(self):
         """
-        Tests the CourseUpdateDelete view with valid data to ensure that a
-        course can be updated and returns a http status code of 200 OK to show
-        success.
+        Tests the CourseUpdateDelete view with valid data to ensure a course
+        can be updated and returns an HTTP 200 OK status.
         """
-        # Data for testing a valid course update.
         valid_update_data = {
             "season": "Summer",
             "title": "Updated Valid Course",
@@ -120,11 +112,13 @@ class CourseAPITest(TestCase):
 
     def test_course_update_invalid(self):
         """
-        Test the CourseUpdateDelete view with invalid data to ensure a course
-        can't be updated with max_capacity exceeding 10.
+        Tests the CourseUpdateDelete view with invalid data to ensure a course
+        cannot be updated with max_capacity exceeding 10, resulting in an
+        HTTP 400 BAD REQUEST response.
+
+        Note: This test intentionally triggers a "Bad Request" log due to
+        the invalid data.
         """
-        # Data for testing a INVALID course update. Namely, the max_capacity
-        # figure of 20 that exceeds the 10, allowed.
         invalid_update_data = {
             "season": "Summer",
             "title": "Updated Invalid Course",
@@ -141,9 +135,9 @@ class CourseAPITest(TestCase):
 
     def test_course_delete(self):
         """
-        Test the CourseUpdateDelete view to ensure a course can be deleted and
-        returns a http status of 204 confirming that the content is no longer
-        there.
+        Tests the CourseUpdateDelete view to ensure a course can be deleted,
+        returning an HTTP 204 NO CONTENT status, confirming the course is
+        removed.
         """
         response = self.client.delete(f"/courses/{self.course.id}/")
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
