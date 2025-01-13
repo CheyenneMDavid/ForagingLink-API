@@ -46,9 +46,16 @@ class PlantInFocusPostListViewTests(APITestCase):
         """
         self.client.force_authenticate(user=self.admin_user)
         response = self.client.post(
-            "/plants_blog/create/",
-            # Generic plant name "Test Plant" for testing purposes.
-            data={"main_plant_name": "Test Plant"},
+            "/plants_blog/posts/create/",
+            # Data for creating a test post
+            data={
+                "main_plant_name": "Dandelion",
+                "main_plant_month": 5,
+                "main_plant_environment": "Meadows and fields",
+                "culinary_uses": "Can be used in salads and teas",
+                "history_and_folklore": "Symbol of resilience in folklore",
+                "main_plant_parts_used": "Leaves, roots, flowers",
+            },
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -62,8 +69,18 @@ class PlantInFocusPostListViewTests(APITestCase):
         """
         self.client.force_authenticate(user=self.normal_user)
         response = self.client.post(
-            "/plants_blog/create/",
-            # Generic plant name "Test Plant" for testing purposes.
-            data={"main_plant_name": "Test Plant"},
+            "/plants_blog/posts/create/",
+            # Data for creating a test post.
+            data={
+                "main_plant_name": "Dandelion",
+                "main_plant_month": 5,
+                "main_plant_environment": "Meadows and fields",
+                "culinary_uses": "Can be used in salads and teas",
+                "history_and_folklore": "Named 'Wet your bed' by children",
+                "main_plant_parts_used": "Leaves, roots, flowers",
+            },
         )
+        print("Response Status Code:", response.status_code)
+        print("Response Content:", response.content)
+
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
