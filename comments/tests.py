@@ -25,7 +25,13 @@ class CommentModelTest(TestCase):
         )
 
         self.post = PlantInFocusPost.objects.create(
-            main_plant_name="Test Plant", owner=self.user
+            main_plant_name="Test Plant",
+            main_plant_month="1",
+            main_plant_environment="Forest",
+            culinary_uses="Edible leaves",
+            history_and_folklore="Used in traditional medicine",
+            main_plant_parts_used="Leaves and stems",
+            owner=self.user,
         )
 
         self.comment = Comment.objects.create(
