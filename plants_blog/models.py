@@ -1,39 +1,25 @@
 """
 This module defines the PlantInFocusPost model, which represents a monthly
-featured plant along with details about its, common name, environment,
+featured plant along with details about its common name, environment,
 culinary uses, medicinal uses, history and folklore, and images to help
-identify it. The model also has fields for plants that may be mistaken for
-the plant in focus. These fields are optional because there may not always be
-a plant that is
-confusable.  The fields for the confusable plant are fewer as it only needs
-sufficient description to differentiate it from the plant that is in focus and
-discount it from what is wanted.
-Authors of the articles are site admins.  But in the unlikely event of an
-admin deleting their account or losing their account privileges, the posts are
-protected.
+identify it. Optional fields allow for details about confusable plants.
+Site admins create these posts, and they are protected if an admin's
+account is deleted or privileges are removed.
 """
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from likes.models import Like
 
 
 class PlantInFocusPost(models.Model):
     """
-    Represents a monthly featured plant of interest with details on its
-    appearance, environment, culinary and medicinal uses, folklore, and
-    historical significance. Includes information on any similar-looking plant
-    that could be mistaken for the main plant, providing images and basic
-    details, along with necessary warnings.
-    Some fields, such as 'Medicinal Uses' or 'Confusable Plant Details,' are
-    optional because the content may not always be known or relevant.
-    Using 'null=True' and 'blank=True' ensures the database remains consistent
-    without unnecessary placeholders taking up space.
+    Represents a monthly featured plant with details about its appearance,
+    environment, uses, history, and any similar plants that may be mistaken
+    for it. Includes fields for warnings and images to help differentiate.
     """
 
-    # Month choices in admin panel dropdown, when creating a plant in focus
-    # post for the blog
+    # Dropdown menu for selecting the month when the plant is featured.
     MONTH_CHOICES = [
         (1, "January"),
         (2, "February"),
@@ -49,49 +35,43 @@ class PlantInFocusPost(models.Model):
         (12, "December"),
     ]
 
-    # Although admins create posts, it's conceivable that admins can change
-    # So, PROTECT is used to ensure a post is kept if this should happen
+    # Links the post to the admin user who created it
     owner = models.ForeignKey(
         User,
-        on_delete=models.PROTECT,
+        on_delete=models.PROTECT,  # Keeps posts if the admin is deleted.
         null=True,
         blank=True,
         verbose_name="Owner",
         help_text="The user/admin that created the article.",
     )
 
-    # Timestamp for when the post was first created.
+    # Automatically sets timestamps for creation and updates.
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name="Creation Date and Time",
-        help_text="Automatically sets date & time when the record is created",
+        help_text="Automatically sets date & time when the record is created.",
     )
-    # Timestamp for when a post is updated/changed
     updated_at = models.DateTimeField(
         auto_now=True,
-        verbose_name="Updated date & time.",
-        help_text="Automatically adds date  time of update.",
+        verbose_name="Updated Date and Time",
+        help_text="Automatically sets the date and time of the last update.",
     )
 
-    # Details for main plant.
+    # Main plant details.
     main_plant_name = models.CharField(
         max_length=255,
         verbose_name="Main Plant Name",
         help_text="Enter the common name of the main plant.",
         default="",
     )
-
-    # Using a dropdown list for selecting a valid month.
     main_plant_month = models.IntegerField(
-        choices=MONTH_CHOICES,
+        choices=MONTH_CHOICES,  # Ensures a valid month is chosen.
         verbose_name="Main Plant Month",
         help_text="Select month when the main plant is likely to be found.",
     )
-
     main_plant_environment = models.TextField(
         verbose_name="Main Plant Environment",
-        help_text="Describe the environment where the main plant is likely "
-        "to be found.",
+        help_text="Describe likely environment of plant",
         default="",
     )
     culinary_uses = models.TextField(
@@ -99,38 +79,29 @@ class PlantInFocusPost(models.Model):
         help_text="Describe the culinary uses of the main plant.",
         default="",
     )
-
-    # Purposeful use of True being applied to null and blank because  content
-    # for this field may be unknown
     medicinal_uses = models.TextField(
         verbose_name="Medicinal Uses",
-        help_text="Describe the medicinal uses of the main plant.",
+        help_text="Describe the medicinal uses of main plant",
         default="",
         null=True,
         blank=True,
     )
-
     history_and_folklore = models.TextField(
         verbose_name="History and Folklore",
-        help_text="Provide any historical and folklore information about the"
-        "main plant.",
+        help_text="Provide any historical and folklore information for plant.",
         default="",
     )
-
     main_plant_parts_used = models.TextField(
-        verbose_name="Usable plant parts",
-        help_text="Specify parts of the plant that are of use",
+        verbose_name="Usable Plant Parts",
+        help_text="Specify the parts of the plant that are useful.",
         default="",
     )
-
     main_plant_warnings = models.TextField(
-        verbose_name="Plant warnings",
-        help_text="Mention any warnings related to the plant that users"
-        "should be aware of.",
+        verbose_name="Plant Warnings",
+        help_text="Potential warnings related to the plant",
         null=True,
         blank=True,
     )
-
     main_plant_image = models.ImageField(
         upload_to="images/",
         default="images/default_plant_image_rvlqpb",
@@ -138,99 +109,78 @@ class PlantInFocusPost(models.Model):
         help_text="Upload an image of the main plant.",
     )
 
-    # Details of plants that may be mistaken for the main_plant of interest.
-    # Optional to be filled in as it may not always be applicable.
+    # Fields for plants that may be mistaken for the main plant.
+    # Optionally filled in as it may not always be applicable.
     confusable_plant_name = models.CharField(
         max_length=255,
         verbose_name="Confusable Plant Name",
-        help_text="Enter the common name of the plant that can be confused "
-        "with the main plant.",
+        help_text="Common name of confuseable plant.",
         null=True,
         blank=True,
     )
-
     confusable_plant_information = models.TextField(
         verbose_name="Confusable Plant Environment",
-        help_text="Describe distinguishing features",
+        help_text="Describe distinguishing features of the confusable plant.",
         null=True,
         blank=True,
     )
-
     confusable_plant_warnings = models.TextField(
-        verbose_name="warnings",
-        help_text="Describe any dangers of mistaking this plant for the "
-        "main_plant of interest",
+        verbose_name="Confusable Plant Warnings",
+        help_text="Dangers of mistaking this plant for the main plant",
         null=True,
         blank=True,
     )
-
     confusable_plant_image = models.ImageField(
         upload_to="images/",
         verbose_name="Confusable Plant Image",
-        help_text="Upload an image of the confusable plant, if needed",
+        help_text="Upload an image of the confusable plant, if applicable.",
         null=True,
         blank=True,
     )
 
     def clean(self):
         """
-        Validates the model's data before saving by doing the following:
-        Validates the `main_plant_month` field. Ensures a valid month is
-        selected. Raises a `ValidationError` if it is not.
-
-        Handles the `confusable_plant_image` field. Sometimes a
-        `confusable_plant_image` is not required. If there is no
-        `confusable_plant_name` (indicating no confusable plant is associated
-        with the main plant), the `confusable_plant_image` field is set to
-        `None`. This ensures no default or unnecessary image is displayed when
-        not needed.
+        Validates the model's data before saving:
+        Ensures a valid month is selected for the `main_plant_month` field.
+        If no `confusable_plant_name` is provided, it sets
+        `confusable_plant_image` to None.
         """
-
-        # Validate main_plant_month
         if self.main_plant_month not in dict(self.MONTH_CHOICES).keys():
             raise ValidationError(
                 "You must select a valid month for the main plant!"
             )
-
-        # If there's no confusable_plant_name, the confusable_plant_image is
-        # set to `None`
         if not self.confusable_plant_name:
             self.confusable_plant_image = None
 
     def save(self, *args, **kwargs):
         """
-        Validates the model and saves it to the database.
-        Running a `full_clean()`, it ensures all fields and custom validation
-        is correct. If everything is valid, the model is saved using Django's
-        default process.
-
+        Runs full validation before saving the model instance.
         """
-
         self.full_clean()
         super().save(*args, **kwargs)
 
     @property
     def likes_count(self):
         """
-        Dynamically calculates the total number of likes for the current post.
-        Queries the Like model to count all likes associated with the post
-        and returns the count.
+        Returns the total number of likes for this post.
+        Uses a lazy import to avoid circular imports.
         """
+        from likes.models import Like
+
         return Like.objects.filter(plant_in_focus_post=self).count()
 
     @property
     def comments_count(self):
         """
-        Dynamically calculates the total number of comments for the current
-        post. Queries the Comment model to count all comments associated with
-        the post and returns the count. Lazy import of the Comment model to
-        avoid circular imports.
+        Returns the total number of comments for this post.
+        Uses a lazy import to avoid circular imports.
         """
-        # Lazy import to avoid circular import issues with the Comment model.
         from comments.models import Comment
 
         return Comment.objects.filter(plant_in_focus_post=self).count()
 
-    # String representation, returning the name of the main plant.
     def __str__(self):
+        """
+        Returns the name of the main plant as a string.
+        """
         return self.main_plant_name
