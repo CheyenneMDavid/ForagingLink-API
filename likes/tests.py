@@ -26,8 +26,14 @@ class LikeModelTest(APITestCase):
             username="test_user", password="test_password"
         )
         self.post = PlantInFocusPost.objects.create(
-            main_plant_name="Test Plant",
+            main_plant_name="Dandelion",
+            main_plant_month=5,
+            main_plant_environment="Meadows and fields",
+            culinary_uses="Can be used in salads and teas",
+            history_and_folklore="Believed to make people wet their beds",
+            main_plant_parts_used="Leaves, roots, flowers",
         )
+
         self.comment = Comment.objects.create(
             content="Test Comment", plant_in_focus_post=self.post
         )
