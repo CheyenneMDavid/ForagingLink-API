@@ -73,13 +73,20 @@ class CommentModelTest(TestCase):
         )
 
         with self.assertRaises(ValueError):
-            # Expecting a ValueError when trying to create a third-level
-            # reply, which should be disallowed by model validation.
-            # The variable 'third_level_comment' is used only for this purpose
-            # and shows as an error because it appears not to be used.
-            third_level_reply = Comment.objects.create(
+            Comment.objects.create(
                 owner=self.user,
                 plant_in_focus_post=self.post,
                 replying_comment=second_level_reply,
                 content="Third level reply",
             )
+
+        # Confirms that there is no third-level comment was saved.
+        # Checks to see the number of comments replying to the
+        # 'second_level_reply' is 0, thereby ensuring that no third-level
+        # comments were saved in the database.
+        self.assertEqual(
+            Comment.objects.filter(
+                replying_comment=second_level_reply
+            ).count(),
+            0,
+        )
