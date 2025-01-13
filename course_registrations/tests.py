@@ -1,3 +1,10 @@
+# The tests for Course Registrations expect the status of a registration
+# to default to "Confirmed".
+# Upon registration, if spaces are available on a
+# course, they are dynamically calculated and updated to reflect the remaining
+# availability.
+
+
 from django.test import TestCase
 from django.contrib.auth.models import User
 from courses.models import Course
@@ -61,7 +68,7 @@ class CourseRegistrationModelTest(TestCase):
 
     def test_default_status(self):
         """
-        Tests that the default status of "Pending" is applied to a new
+        Tests that the default status of "Confirmed" is applied to a new
         instance when it's created.
         """
         registration = CourseRegistration.objects.create(
@@ -72,4 +79,4 @@ class CourseRegistrationModelTest(TestCase):
             ice_name="Emergency Contact",
             ice_number="0987654321",
         )
-        self.assertEqual(registration.status, "Pending")
+        self.assertEqual(registration.status, "Confirmed")
