@@ -59,7 +59,6 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
       - [Task Management](#task-management)
       - [Handling Unexpected Obstacles](#handling-unexpected-obstacles)
       - [Exploring Solutions and Enhancements](#exploring-solutions-and-enhancements)
-      - [Written Tests](#written-tests)
       - [Reflective Development](#reflective-development)
       - [Continuous Integration and Documentation](#continuous-integration-and-documentation)
     - [Examples of Agile Practices in Backend Development](#examples-of-agile-practices-in-backend-development)
@@ -77,11 +76,12 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Midway State](#midway-state)
     - [Nearing Final State](#nearing-final-state)
   - [Testing](#testing)
-    - [Written Tests](#written-tests-1)
+    - [Written Tests](#written-tests)
       - [Tests for Plants Blog Application](#tests-for-plants-blog-application)
       - [Tests for Profiles Application](#tests-for-profiles-application)
       - [Tests for the Comments Application](#tests-for-the-comments-application)
       - [Tests for the Likes Application](#tests-for-the-likes-application)
+      - [Tests for the Followers App](#tests-for-the-followers-app)
       - [Tests for Courses App](#tests-for-courses-app)
     - [Tests for Course Registrations App](#tests-for-course-registrations-app)
   - [Future Developments](#future-developments)
@@ -509,10 +509,6 @@ Changed how things were implemented when issues arose unexpectedly. For example,
 
 Initially followed a structure similar to the DRF-API walkthrough project, which focused on posts and comments. My intent was to create a subject-focused blog where only administrators could author posts while allowing users to comment on one another's contributions. This required a deeper understanding of the requirements and how to meet them effectively.
 
-#### Written Tests
-
-The writing of tests to ensure applications were functioning correctly. This process helped identify and resolve issues, such as adjusting the pagination settings to meet the specific requirements of the courses app. This issue, which did not initially affect the application's functionality, highlighted an aspect of the logic that needed refinement and more nuanced handling for the courses app.
-
 #### Reflective Development
 
 Regularly revisiting the naming conventions used across models and endpoints to ensure consistency and clarity, which enhanced maintainability.
@@ -589,13 +585,18 @@ Majority of tasks moved to the "Done" column.
 
 ### Written Tests
 
+Initially, basic tests were written for each application, and all tests passed successfully. However, during the development of the React frontend, I identified shortcomings in how counts for comments and likes were handled. These counts were managed solely on the frontend, with no corresponding values stored or fetched from the database. This approach, while functional in the lesson-based examples provided by Code Institute, proved inadequate as the project grew beyond the original lesson content. To address this, likes and comments counts were integrated into the backend, and tests were updated accordingly to validate these changes.
+
+Additionally, database-related issues required starting afresh, which resulted in some migrations not being fully applied. To ensure the application's stability, I revisited and re-tested various aspects of the project. This process led to updates in models, tests, and migration files to align with the new backend functionality and resolve any inconsistencies.
+
 #### Tests for Plants Blog Application
 
 Tests to verify that only an admin user can create a PlantInFocusPost instance and that a regular user can't.
+The tests confirm that a regular user attempting to perform this action receives a 403 Forbidden response, ensuring proper access control is enforced.
 
 [Plants Blog app tests](plants_blog/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/foraging_link/readme_images/plants_blog_tests_irmprb.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1736824991/foraging_link/readme_images/plants_blog_tests_tnozz5.png)
 
 #### Tests for Profiles Application
 
@@ -603,7 +604,7 @@ Tests to verify Creation, Update, and Deletion of a Profile instance given the a
 
 [Profiles app tests](profiles/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/foraging_link/readme_images/profiles_tests_icrakl.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1736824992/foraging_link/readme_images/profiles_tests_qzi86i.png)
 
 #### Tests for the Comments Application
 
@@ -611,7 +612,7 @@ Tests to ensure that a Like instance can be created and that the same instance b
 
 [Comments app tests](comments/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1726204940/foraging_link/readme_images/comments_tests_getldm.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1736824990/foraging_link/readme_images/comments_tests_kgckwc.png)
 
 #### Tests for the Likes Application
 
@@ -619,7 +620,17 @@ Tests for Creation, Deletion, and Unique Constraints of a Like Instance.
 
 [Likes app tests](likes/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/foraging_link/readme_images/likes_tests_lypugq.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1736824991/foraging_link/readme_images/likes_tests_eeokls.png)
+
+#### Tests for the Followers App
+
+Tests were written to verify the creation and uniqueness of follower relationships between users. The FollowerModelTest ensures that a follower relationship can be created successfully and checks that duplicate relationships between the same users are not allowed. This is achieved through the UniqueConstraint defined in the model.
+
+During testing, it was discovered that the UniqueConstraint hadn't been applied due to an earlier migration issue. To resolve this, the migration file was updated to include the constraint, and tests were re-run to confirm that duplicate relationships are now correctly prevented.
+
+[Followers app tests](followers/tests.py)
+
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1736824991/foraging_link/readme_images/followers_tests_juskhi.png)
 
 #### Tests for Courses App
 
@@ -637,7 +648,7 @@ Initially, I thought that after creating a test course in the setup, it would al
 
 [Courses app tests](courses/tests.py)
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1717385041/foraging_link/readme_images/courses_tests_tnodju.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1736824991/foraging_link/readme_images/courses_tests_geeuli.png)
 
 ### Tests for Course Registrations App
 
@@ -647,7 +658,7 @@ Tests to verify that a CourseRegistration instance can be created with all the n
 
 Phone number validation added using `django-phonenumber-field` and Google's `phonenumbers` library. Re-tested with both mobile and landline number and passed.
 
-![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1729641181/foraging_link/readme_images/course_registration_tests_jxsdkn.png)
+![Pass Screenshot](https://res.cloudinary.com/cheymd/image/upload/v1736824991/foraging_link/readme_images/course_registrations_tests_tzpf9n.png)
 
 ---
 
