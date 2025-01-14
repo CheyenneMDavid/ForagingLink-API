@@ -23,7 +23,7 @@ class Follower(models.Model):
         related_name="following",
         on_delete=models.CASCADE,
         verbose_name="Owner",
-        help_text="The user who is following another user.",
+        help_text="The user following another user.",
     )
 
     # "Followed" is the user that is being followed by the owner.
