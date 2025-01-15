@@ -71,12 +71,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # DEBUG sets to True if in development.
 DEBUG = "DEV" in os.environ
 
-# ALLOWED_HOSTS = [
-#     "localhost",
-#     os.environ.get("ALLOWED_HOST"),
-# ]
-
-ALLOWED_HOSTS = ["foraging-api-b287953c9098.herokuapp.com"]
+ALLOWED_HOSTS = [
+    "localhost",
+    os.environ.get("ALLOWED_HOST"),
+]
 
 
 if "CLIENT_ORIGIN" in os.environ:
