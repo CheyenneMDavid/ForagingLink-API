@@ -1,51 +1,70 @@
 """
-This module defines the Comment model, enabling users to comment on posts
-and reply to other comments. Replies are limited to two levels of depth
-to prevent overly complex nesting.
+This module defines the Comments model and related functionalities.
+
+For much of the code in this file, I've used the drf-api walkthrough projects
+with Code Institute as a guide.
 """
 
 from django.db import models
 from django.contrib.auth.models import User
+from plants_blog.models import PlantInFocusPost
 
 
 class Comment(models.Model):
     """
-    Represents a user-generated comment associated with a specific post.
-    Supports replying to comments with a restriction to two levels of depth.
+    Comments are associated with the User who made the comment and the
+    the posts that the comments are on.
+
+    Using SET_NULL to ensure plant_in_focus_posts are retained when an author
+    deletes their account.
+    their account, setting the username to inactive user.
+    If the plant_in_focus_post its self deleted, then comments also delete
+    using CASCADE
+    Using "main_comment" as a foreign key in order to enable commenting on
+    comments.
     """
 
     owner = models.ForeignKey(
         User,
-        on_delete=models.SET_NULL,  # Keeps comments if account is deleted
+        # If a user deletes their account, the comment remains but isn't
+        # associated with the deleted user.
+        on_delete=models.SET_NULL,
         null=True,
         verbose_name="Owner",
         help_text="The user who made the comment.",
     )
 
     plant_in_focus_post = models.ForeignKey(
-        "plants_blog.PlantInFocusPost",
-        on_delete=models.CASCADE,  # Deletes comments if post is deleted
-        verbose_name="Plant in Focus Post",
+        PlantInFocusPost,
+        # Ensures that the comments are also deleted when the post that
+        # they're associated to is deleted.
+        on_delete=models.CASCADE,
+        default=None,
+        verbose_name="Plant in Focus Posts",
         help_text="The post about the plant that this comment is related to.",
     )
 
     replying_comment = models.ForeignKey(
+        # Using 'self' as a foreign key, allowing the comments to reference
+        # one another which enables nested replies
         "self",
-        on_delete=models.CASCADE,  # Deletes replies if comment is deleted
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
-        related_name="replies",  # Enables reverse lookup for replies
+        related_name="replies",
         verbose_name="Main Comment",
         help_text="The main comment to which this comment is a reply.",
     )
 
     created_at = models.DateTimeField(
+        # Sets the comment creation time to 'now'
         auto_now_add=True,
         verbose_name="Created At",
         help_text="The timestamp indicating when the comment was created.",
     )
 
     updated_at = models.DateTimeField(
+        # Sets the comment update time to 'now'
         auto_now=True,
         verbose_name="Updated At",
         help_text="The timestamp for the last update of the comment.",
@@ -56,36 +75,45 @@ class Comment(models.Model):
         help_text="The text content of the comment.",
     )
 
-    @property
-    def replies_count(self):
-        """
-        Calculates the number of replies for this comment.
-        """
-        from comments.models import (
-            Comment,
-        )  # Lazy import to avoid circular imports
-
-        return Comment.objects.filter(replying_comment=self).count()
-
     class Meta:
         """
-        Specifies model options, such as default ordering by creation date.
+        Meta class for specifying model options.
+        Ensures that the newest comments are shown first.
         """
 
-        ordering = ["-created_at"]  # Newest comments appear first
+        # Orders comments by creation time, with newest first
+        ordering = ["-created_at"]
         verbose_name = "Comment"
         verbose_name_plural = "Comments"
 
     def __str__(self):
         """
-        Returns the comment content for better readability in the admin panel.
+        Returning the comment as a string so that the comment can be read in
+        the admin panel, making it easier to moderate.
         """
         return str(self.content)
 
     def save(self, *args, **kwargs):
         """
-        Overrides save to ensure replies do not exceed two levels of nesting.
+        Custom save method with an added check to ensure replies can only go
+        two levels deep. Restricting the replies to this depth avoids the
+        nesting of comments becoming overly complex which would be harder to
+        display.
         """
-        if self.replying_comment and self.replying_comment.replying_comment:
-            raise ValueError("You cannot reply to a reply beyond two levels.")
+        if (
+            # Checks if this comment is a reply to another comment
+            self.replying_comment
+        ):
+            if (
+                # Checks if the parent comment is also a reply to another
+                # comment.
+                self.replying_comment.replying_comment
+            ):  # If it's proven to be a reply to a reply, then that's the
+                # limit and a ValueError is raised.
+                raise ValueError(
+                    "You cannot reply to a reply beyond two levels."
+                )
+
+        # Call the superclass's save method to handle saving after applying
+        # the custom logic that limits comments to only 2 levels deep.
         super().save(*args, **kwargs)
