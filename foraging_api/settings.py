@@ -90,6 +90,9 @@ if "CLIENT_ORIGIN_DEV" in os.environ:
         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
     ]
 
+# Temporarily allowed all origins for CORS debugging
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 CORS_ALLOW_CREDENTIALS = True
 
