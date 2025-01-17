@@ -77,6 +77,7 @@ class Like(models.Model):
                 fields=["owner", "comment"], name="unique_like_per_comment"
             ),
         ]
+
         # Most recent listed first.
         ordering = ["-created_at"]
 
