@@ -37,11 +37,13 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
   - [Development Process](#development-process)
     - [Refining the User Story Table](#refining-the-user-story-table)
   - [Development Challenges \& Solutions](#development-challenges--solutions)
+    - [Detail Page Like Count Discrepancy](#detail-page-like-count-discrepancy)
     - [Version Conflicts](#version-conflicts)
     - [Naming Conventions](#naming-conventions)
     - [Pagination Conflict in Courses App](#pagination-conflict-in-courses-app)
     - [Limiting Comment Nesting](#limiting-comment-nesting)
     - [Field Name Update](#field-name-update)
+    - [Database and Migration Issues](#database-and-migration-issues)
     - [Phone Number Validation](#phone-number-validation)
     - [Email Validation](#email-validation)
     - [Database Migration Reset and Cloudinary Path Adjustments](#database-migration-reset-and-cloudinary-path-adjustments)
@@ -64,17 +66,10 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Examples of Agile Practices in Backend Development](#examples-of-agile-practices-in-backend-development)
       - [Task Lists and Prioritization:](#task-lists-and-prioritization)
       - [Adapting to Changes and Enhancements to the Applications:](#adapting-to-changes-and-enhancements-to-the-applications)
-- [](#)
-- [](#-1)
-- [](#-2)
-- [](#-3)
-- [](#-4)
-- [](#-5)
-- [](#-6)
-  - [Example Project Boards](#example-project-boards)
-    - [Starting State](#starting-state)
-    - [Midway State](#midway-state)
-    - [Nearing Final State](#nearing-final-state)
+    - [Example Project Boards](#example-project-boards)
+      - [Starting State](#starting-state)
+      - [Midway State](#midway-state)
+      - [Nearing Final State](#nearing-final-state)
   - [Testing](#testing)
     - [Written Tests](#written-tests)
       - [Tests for Plants Blog Application](#tests-for-plants-blog-application)
@@ -290,6 +285,21 @@ Realising the inaccuracy of my generalised back-end descriptions, I've since gon
 
 ## Development Challenges & Solutions
 
+### Detail Page Like Count Discrepancy
+
+**Cause of the Discrepancy:**
+
+1. The LikeAndUnlike component on the detail page focused solely on the like_id (whether the user had liked the post) and did not initialize or maintain the total likes_count fetched from the backend.
+2. The likes_count value was being overwritten dynamically during like/unlike actions instead of being updated while preserving the backend-provided total.
+
+**Steps Taken to Resolve:**
+
+1. Verified that the likes_count from the backend was correctly passed to the LikeAndUnlike component on the detail page by adding console logs with statements of what was beiong delivered for use in the front end.
+
+2. Updated the LikeAndUnlike component to:
+   - Initialize with the total likes_count fetched from the backend.
+   - Dynamically update likes_count during like/unlike actions without overwriting the backend value.
+
 ### Version Conflicts
 
 - Upgraded to a newer version of Django to use `django_filter` so that the admin panel could utilize advanced filtering for the comments application. A compromise was found by using Django 4.2 and the newer version of `django_filter` 24.2, which provided the advanced filtering capabilities. However, this caused huge compatibility issues elsewhere, so I reverted to `Django==3.2.4` and `django-filter==2.4.0`.
@@ -316,6 +326,32 @@ Realising the inaccuracy of my generalised back-end descriptions, I've since gon
 
 - While creating data to populate the database, I recognized that a more suitable field name for `folklore`
   in the `plants_blog` app was `history_and_folklore`. I updated the field name accordingly and brought all the other relevant files into alignment with the change.
+
+### Database and Migration Issues
+
+Significant challenges related to the database and migrations, often stemming from overcomplicating aspects of the backend and attempts to fix percieved issues.
+
+**Key Issues Encountered**:
+Unnecessary Model Changes: An attempt to add likes_count and comments_count directly to the PlantInFocusPost model created migration conflicts. These fields were present in the serializers.py and managed by the front end.
+
+-
+-
+-
+-
+
+Accidental Deletion of Heroku Apps: While troubleshooting, both the backend and frontend Heroku apps were mistakenly deleted at different points, necessitating the creation of new apps and databases.
+Migration Conflicts: Repeated migrations caused mismatched histories, leading to inconsistencies between the codebase and the database schema.
+Data Loss: Missteps during migrations resulted in the loss of data, further complicating the debugging process.
+Forking the Repository: Efforts to roll back changes by forking the repository and reverting to an earlier state added complexity without resolving the underlying issues.
+Steps Taken to Resolve:
+Rebuilding the Backend: A new Heroku backend app was created, and fresh migrations were applied after resetting the database schema.
+Manual Data Restoration: Where possible, data was restored manually using backups or re-created in the admin panel.
+Simplification: The likes_count and comments_count fields were removed from the model, and their logic was returned to the serializers, allowing the frontend to manage counts dynamically.
+Refocusing on Core Functionality: Efforts were redirected toward ensuring the original intended features were restored, such as displaying posts and handling comments and likes effectively.
+Key Takeaways:
+Avoid Unnecessary Complexity: Trust existing functionality unless there is a clear need for change.
+Backup Data Regularly: Backups are essential to mitigate the impact of data loss during troubleshooting.
+Understand Dependencies: Changes to models should be carefully considered, as they can have far-reaching implications across the project.
 
 ### Phone Number Validation
 
@@ -539,21 +575,7 @@ Plans were adjusted as new requirements emerged or challenges were encountered. 
 
 **In the Courses App**: To allow unauthenticated users to view course details. Previously, this was restricted to authenticated users, but by allowing open access to course information, the app became more user-friendly and accessible to a broader audience.
 
-#
-
-#
-
-#
-
-#
-
 PROJECT BOARDS
-
-#
-
-#
-
-#
 
 ### Example Project Boards
 
