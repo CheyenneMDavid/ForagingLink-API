@@ -97,6 +97,7 @@ class PlantInFocusPostDetail(generics.RetrieveUpdateDestroyAPIView):
     # Fetches the post and includes a distinct count of comments.
     queryset = PlantInFocusPost.objects.annotate(
         comments_count=Count("comment", distinct=True),
+        likes_count=Count("likes", distinct=True),
     ).order_by("-created_at")
 
     # Specifies serializer to be used.
