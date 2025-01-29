@@ -74,6 +74,11 @@ class CommentList(generics.ListCreateAPIView):
         more specific feedback.
         """
 
+        print("Validated data being saved:", serializer.validated_data)
+        print("Validated data being saved:", serializer.validated_data)
+        serializer.save(owner=self.request.user)
+        print("Comment successfully saved.")
+
         parent_comment = serializer.validated_data.get(
             "replying_comment", None
         )

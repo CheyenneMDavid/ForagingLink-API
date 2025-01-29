@@ -230,7 +230,8 @@ STATIC_URL = "/static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# Basic logging added to debug token refresh failures and API errors.
+# Logging setup to track API requests, errors, and debugging details.
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -242,3 +243,6 @@ LOGGING = {
         "level": "DEBUG",
     },
 }
+
+# confirming that DEBUG is definitely set to True, locally.,
+print("DEBUG mode is:", DEBUG)

@@ -59,9 +59,11 @@ class CommentSerializer(serializers.ModelSerializer):
         0 is the first level.
         """
 
+        print("Validating the replying_comment:", value)
+
         # Nested replies beyond one level one are prevented.
         if value and value.replying_comment:
-
+            print("Validation failed because nested replies aren't allowed.")
             raise serializers.ValidationError(
                 "You can't reply to a comment that's already a reply."
             )

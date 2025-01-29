@@ -100,18 +100,13 @@ class Comment(models.Model):
         nesting of comments becoming overly complex which would be harder to
         display.
         """
-        if (
-            # Checks if this comment is a reply to another comment
-            self.replying_comment
-        ):
-            if (
-                # Checks if the parent comment is also a reply to another
-                # comment.
-                self.replying_comment.replying_comment
-            ):  # If it's proven to be a reply to a reply, then that's the
-                # limit and a ValueError is raised.
+        if self.replying_comment:
+            print("Replying to the comment ID:", self.replying_comment.id)
+
+            if self.replying_comment.replying_comment:
+                print("Additional nested reply detected! Raising error.")
                 raise ValueError(
-                    "You cannot reply to a reply beyond two levels."
+                    "You can't reply to a reply beyond two levels."
                 )
 
         # Call the superclass's save method to handle saving after applying
