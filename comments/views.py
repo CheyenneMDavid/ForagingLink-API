@@ -60,34 +60,31 @@ class CommentList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         """
-        Creates a new comment.  It sets the currently logged in user as the
-        owner of the comment
+        Creates a new comment. It sets the currently logged-in user as the
+        owner of the comment.
 
         If the comment is a reply to another comment, it ensures that replies
-        are not nested beyond that level
-        (i.e., replies to replies are not allowed).
+        are not nested beyond that level (i.e., replies to replies are not allowed).
         If a comment is attempted to be made as a reply to another reply
-        (thus a second-level reply),
-        a ValidationError is raised to maintain a simple and manageable
-        discussion structure.
-        Changed from previous use of ValueError to ValidationError to provide
-        more specific feedback.
+        (thus a second-level reply), a ValidationError is raised to maintain
+        a simple and manageable discussion structure.
+
+        Also, if the comment is a reply, it automatically inherits the
+        'plant_in_focus_post' from the parent comment to prevent database errors.
         """
 
-        print("Validated data being saved:", serializer.validated_data)
-        print("Validated data being saved:", serializer.validated_data)
-        serializer.save(owner=self.request.user)
-        print("Comment successfully saved.")
+        parent_comment = serializer.validated_data.get("replying_comment")
 
-        parent_comment = serializer.validated_data.get(
-            "replying_comment", None
-        )
-        if parent_comment and parent_comment.replying_comment:
-            raise serializers.ValidationError(
-                "You cannot reply to a reply beyond two levels."
+        if parent_comment:
+            serializer.save(
+                owner=self.request.user,
+                # Inherits "plant_in_focus_post" from the parent comment
+                plant_in_focus_post=parent_comment.plant_in_focus_post,
             )
-        # Assigns the logged-in user as the owner of the comment.
-        serializer.save(owner=self.request.user)
+        else:
+            serializer.save(owner=self.request.user)
+
+        print("Comment successfully saved.")
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
