@@ -18,37 +18,20 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
     strings that include the image_field in a string.
     """
 
-    # Read-only field returning the owner's username
     owner = serializers.ReadOnlyField(source="owner.username")
-
-    # Checks if the current user is the post owner.
     is_owner = serializers.SerializerMethodField()
-
-    # Returns owner's profile ID
     profile_id = serializers.ReadOnlyField(source="owner.profile.id")
-
-    # Returns the URL for the owner's profile image.
     profile_image = serializers.ReadOnlyField(
         source="owner.profile.image.url"
     )
-    # ID of the like by the current user, if it exists, enabling toggling
-    # between like and unlike.
     like_id = serializers.SerializerMethodField()
-
-    # Returns the total number of likes on the post.
     likes_count = serializers.ReadOnlyField()
-
-    # Returns the total number of comments on the post.
     comments_count = serializers.ReadOnlyField()
 
-    # Custom field validation for 'main_plant_parts_used'
     def validate_main_plant_parts_used(self, value):
         """
-        Validates the "main_plant_parts_used" field, ensuring the field isn't
-        left with the default value of "Unknown", prompting the admins who
-        create the post to provide a more meaningful value.
-        If the field isn't changed from "Unknown", a ValidationError is
-        raised.
+        Ensures "main_plant_parts_used" is not left as "Unknown" to prompt
+        admins to provide a meaningful value.
         """
         if value == "Unknown":
             raise serializers.ValidationError(
@@ -57,7 +40,6 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
             )
         return value
 
-    # Method to check if the currently logged in user is the owner of the post
     def get_is_owner(self, obj):
         """
         Returns True if the current request user is the owner of the object.
@@ -65,7 +47,6 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
         request = self.context.get("request", None)
         return request and request.user == obj.owner
 
-    # Method to get the ID of the like by the current user, if it exists
     def get_like_id(self, obj):
         """
         Returns the ID of the Like object for the current user and the
@@ -81,9 +62,8 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
 
     def validate_image(self, value, image_field):
         """
-        Validates the image size and dimensions, using "image_field" as a
-        placeholder in ValidationErrors, dynamically replaced by the actual
-        field name in the error message.
+        Validates the image size and dimensions, replacing "image_field" with
+        the actual field name in the error message.
         """
         if value.size > 2 * 1024 * 1024:
             raise serializers.ValidationError(
@@ -102,11 +82,9 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
 
         return value
 
-    # Validates the main plant image.
     def validate_main_plant_image(self, value):
         return self.validate_image(value, "Main Plant Image")
 
-    # Validates the confusable plant image.
     def validate_confusable_plant_image(self, value):
         return self.validate_image(value, "Confusable Plant Image")
 
@@ -115,9 +93,8 @@ class PlantInFocusPostSerializer(serializers.ModelSerializer):
         Specifies the model and the fields that will be serialized.
         """
 
-        # Specifies the model to be serialized
         model = PlantInFocusPost
-        # Specifies the fields to be included in the searialization
+
         fields = [
             "id",
             "owner",
