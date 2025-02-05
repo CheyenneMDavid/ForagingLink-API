@@ -35,6 +35,7 @@ class CommentSerializer(serializers.ModelSerializer):
     replies = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     replies_count = serializers.ReadOnlyField()
     likes_count = serializers.ReadOnlyField()
+    like_id = serializers.SerializerMethodField()
 
     replying_comment = serializers.PrimaryKeyRelatedField(
         queryset=Comment.objects.all(),
