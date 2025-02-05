@@ -19,17 +19,13 @@ from .models import Comment
 class CommentSerializer(serializers.ModelSerializer):
     """
     Serializer for the Comment model handles the conversion of comments
-    to and from JSON format.  Using 'naturaltime' for a more user friendly
+    to and from JSON format. Using 'naturaltime' for a more user-friendly
     format on the timestamps.
     """
 
-    # Ensure the owner is read only.
     owner = serializers.ReadOnlyField(source="owner.username")
-    # Field for checking if the logged-in user is the owner of the comment
     is_owner = serializers.SerializerMethodField()
-    # Profile ID associated with the comment's owner
     profile_id = serializers.ReadOnlyField(source="owner.profile.id")
-    # URL for the profile image.
     profile_image = serializers.ReadOnlyField(
         source="owner.profile.image.url"
     )
@@ -40,30 +36,17 @@ class CommentSerializer(serializers.ModelSerializer):
     replies_count = serializers.ReadOnlyField()
     likes_count = serializers.ReadOnlyField()
 
-    # Defines a field that can link this comment to another comment as a reply
     replying_comment = serializers.PrimaryKeyRelatedField(
-        # Allows any comment in the database to be referenced as the parent
-        # comment.
         queryset=Comment.objects.all(),
-        # Makes providing a reply optional, because not all the comments are
-        # replies.
         required=False,
-        # Permits the field to be null if the comment is not a reply.
         allow_null=True,
     )
 
     def validate_replying_comment(self, value):
         """
-        Ensure that replies don't go more than 2 levels of comments. Level 1
-        being the second because they start at 0.
-        0 is the first level.
+        Ensure that replies don't go more than 2 levels deep.
         """
-
-        print("Validating the replying_comment:", value)
-
-        # Nested replies beyond one level one are prevented.
         if value and value.replying_comment:
-            print("Validation failed because nested replies aren't allowed.")
             raise serializers.ValidationError(
                 "You can't reply to a comment that's already a reply."
             )
@@ -74,29 +57,28 @@ class CommentSerializer(serializers.ModelSerializer):
         """
         Returns "True" if the requesting user is the owner of the comment.
         """
+        return self.context["request"].user == obj.owner
 
-        # Checks if the logged-in user is the owner of the comment.
-        request = self.context["request"]
-        return request.user == obj.owner
+    def get_like_id(self, obj):
+        """
+        Returns the like ID if the current user has liked the comment.
+        """
+        user = self.context["request"].user
+        if user.is_authenticated:
+            like = obj.likes.filter(owner=user).first()
+            return like.id if like else None
+        return None
 
     def get_created_at(self, obj):
         """
-        Returns time using "naturaltime" from Django's "humanize" module to
-        display the timestamp in a more user-friendly way.
+        Returns a user-friendly timestamp using "naturaltime".
         """
-
-        # Converts the creation time of the comment into a more readable
-        # user-friendly format using 'naturaltime'.
         return naturaltime(obj.created_at)
 
     def get_updated_at(self, obj):
         """
-        Returns time using "naturaltime" from Django's "humanize" module to
-        display the timestamp in a more user-friendly way.
+        Returns a user-friendly timestamp using "naturaltime".
         """
-
-        # Converts the time that a comment is updated into a more readable
-        # user-friendly format using 'naturaltime'.
         return naturaltime(obj.updated_at)
 
     class Meta:
@@ -119,6 +101,7 @@ class CommentSerializer(serializers.ModelSerializer):
             "replies_count",
             "replying_comment",
             "likes_count",
+            "like_id",
         ]
 
 
@@ -127,11 +110,9 @@ class CommentDetailSerializer(CommentSerializer):
     Serializer for the Comment model, used in the Detail view context.
 
     Inherits from CommentSerializer and makes the 'plant_in_focus_post' field
-    read-only. This
-    ensures that the associated post of a comment is not altered during update
-    operations in the detail view.
+    read-only to prevent changes in update operations.
     """
 
     plant_in_focus_post = serializers.ReadOnlyField(
-        source="plant_in_focus_post.id",
+        source="plant_in_focus_post.id"
     )
