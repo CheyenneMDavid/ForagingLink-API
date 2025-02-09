@@ -32,7 +32,8 @@ class CommentSerializer(serializers.ModelSerializer):
 
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
-    replies = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    replies = serializers.SerializerMethodField()
+
     replies_count = serializers.ReadOnlyField()
     likes_count = serializers.ReadOnlyField()
     like_id = serializers.SerializerMethodField()
@@ -81,6 +82,16 @@ class CommentSerializer(serializers.ModelSerializer):
         Returns a user-friendly timestamp using "naturaltime".
         """
         return naturaltime(obj.updated_at)
+
+    def get_replies(self, obj):
+        """
+        Returns serialized replies instead of just reply IDs.
+        This allows full reply details to be included in the response
+        rather than requiring an extra API call to fetch them.
+        """
+        return CommentSerializer(
+            obj.replies.all(), many=True, read_only=True
+        ).data
 
     class Meta:
         """
