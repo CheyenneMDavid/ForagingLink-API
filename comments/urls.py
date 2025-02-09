@@ -28,4 +28,10 @@ urlpatterns = [
         views.CommentReplyDetail.as_view(),
         name="comment_reply_detail",
     ),
+    # Endpoint for listing comments made by an owner of a specific profile.
+    path(
+        "profiles/<int:profile_id>/comments/",
+        views.ProfileCommentsList.as_view(),
+        name="profile_comments",
+    ),
 ]
