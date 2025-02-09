@@ -114,7 +114,7 @@ class ProfileCommentsList(generics.ListAPIView):
 
     def get_queryset(self):
         """
-        Returns comments created by the user associated with the given profile ID.
+        Returns comments created by the user associated with given profile ID.
         """
         profile_id = self.kwargs.get("profile_id")
         return Comment.objects.filter(owner__profile__id=profile_id).order_by(

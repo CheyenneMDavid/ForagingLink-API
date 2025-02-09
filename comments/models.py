@@ -39,7 +39,7 @@ class Comment(models.Model):
         default=None,
         verbose_name="Plant in Focus Posts",
         help_text="The post about the plant that this comment is related to.",
-        related_name="comments",  # Allows retrieval of all comments for a post.
+        related_name="comments",  # Allows retrieval of all comments for a post
     )
 
     replying_comment = models.ForeignKey(
