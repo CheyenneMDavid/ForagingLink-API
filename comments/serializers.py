@@ -90,7 +90,7 @@ class CommentSerializer(serializers.ModelSerializer):
         rather than requiring an extra API call to fetch them.
         """
         return CommentSerializer(
-            obj.replies.all(), many=True, read_only=True
+            obj.replies.all(), many=True, read_only=True, context=self.context
         ).data
 
     class Meta:
