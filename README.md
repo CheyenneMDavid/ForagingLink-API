@@ -42,6 +42,7 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Naming Conventions](#naming-conventions)
     - [Pagination Conflict in Courses App](#pagination-conflict-in-courses-app)
     - [Limiting Comment Nesting](#limiting-comment-nesting)
+    - [Handling Comments and Replies](#handling-comments-and-replies)
     - [Field Name Update](#field-name-update)
     - [Database and Migration Issues](#database-and-migration-issues)
     - [Phone Number Validation](#phone-number-validation)
@@ -121,8 +122,6 @@ During the development process, user stories were initially tracked in GitHub pr
 | Profiles             | user  | read user's profiles details             | engage with my fellow users                   | `list()` via `ProfileList()`, `retrieve()` via `ProfileDetail()`   |
 | Profiles             | owner | update and delete my profile             | update my info or delete my account           | `ProfileDetail()`                                                  |
 
-<br>
-
 You can find the Project with fuller details for the stories [here](https://github.com/users/CheyenneMDavid/projects/38/views/1)
 
 ---
@@ -150,7 +149,7 @@ The Plants Blog application provides the landing page which displays an image of
 
 ### Comments
 
-The Comments app facilitates user engagement by allowing authenticated users to comment on posts and also other user's comments. It enables enables users to engage by asking and answering questions related to the posts. Reading and creation of comments is restricted to authenticated users only and also restricted to to two levels deep so that comments are easier to manage.
+The Comments app allows authenticated users to engage with posts and each other through a structured discussion format. Users can comment on posts and reply to other users' comments. To maintain clarity, nesting is limited to two levels.
 
 ### Likes
 
@@ -312,15 +311,30 @@ Realising the inaccuracy of my generalised back-end descriptions, I've since gon
 
 ### Pagination Conflict in Courses App
 
-- When initially writing the tests for the Courses app, all tests passed. However, during final testing, they started to fail. I traced the issue back to the implementation of global pagination settings in the main app's `settings.py` which I had copied from the DRF-API walkthrough project with Code Institute, because it was a good fit with the page structures. Specifically, these lines:<br>`"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+- When initially writing the tests for the Courses app, all tests passed. However, during final testing, they started to fail. I traced the issue back to the implementation of global pagination settings in the main app's `settings.py` which I had copied from the DRF-API walkthrough project with Code Institute, because it was a good fit with the page structures. Specifically, these lines:
+- `"DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
 "PAGE_SIZE": 10,`
-  However, these settings applied pagination structure to all list views, including the CourseList view. This changed the response data structure, placing the results within a results key and expecting 10 items per page due to this being globally set.<br>
+  However, these settings applied pagination structure to all list views, including the CourseList view. This changed the response data structure, placing the results within a results key and expecting 10 items per page due to this being globally set.
   This conflicted with the Courses app tests, which expected a simpler list of courses. The tests failed because they didn't account for the results key in the paginated response.
   For a detailed explanation of the solution, please refer to the [Testing](#testing) section and scroll to "Tests for courses app".
 
 ### Limiting Comment Nesting
 
 - It was only when I was creating wireframes for the front end that I realized I had not placed a limit on the comments. As things stood, the nesting could have gotten out of hand. To guard against this, I added a restriction that limits comments to two levels, along with a test with the raising of a `ValueError` if a user attempts to create a third-level comment.
+
+### Handling Comments and Replies
+
+**Challenge**:
+
+Comments and replies were not displaying correctly due to issues in API responses. Replies were missing, and the nesting structure needed refining.
+
+**Solution**:
+
+- Adjusted CommentSerializer to return full reply details instead of just IDs, reducing extra API calls.
+- Limited nesting to two levels to maintain clarity and prevent excessive replies.
+- Added replies_count as a read-only field in CommentSerializer to track the number of replies per comment.
+- Ensured likes_count and replying_comment were properly included in serialized data for frontend use.
+- Fixed queryset logic in views.py to correctly filter and return all comments and replies.
 
 ### Field Name Update
 
@@ -453,30 +467,18 @@ You can find the full list of dependencies in the [requirements.txt](requirement
       - Navigate to the chosen repository on GitHub.
       - Click the "Fork" button in the top-right corner.
       - For detailed instructions, check GitHub's documentation on [forking repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
-        <br>
-    - **Cloning:** Downloads a copy of the repository to your local machine.
+    - **Cloning**: Downloads a copy of the repository to your local machine.
       - Open your Gitpod console.
       - Use the `git clone` command followed by the URL of the repository you wish to clone.
       - For detailed instructions, check GitHub's documentation on [cloning repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
-        <br>
-2.  **Cloudinary Account:**
+2.  **Cloudinary Account**:
+
     - Signup for a Cloudinary account on the [Cloudinary website](https://console.cloudinary.com/pm/c-22b4346b808568adb23133ede29fc9/getting-started).
     - Follow the instructions to sign up for an account and obtain your API key.
     - For more detailed instructions, check [Cloudinary's documentation](https://cloudinary.com/documentation).
       <br>
-3.  **Summernote Installation**
 
-    The django-summernote package is added to enhance the Django admin panel for the Plants Blog app, allowing admins to style text with formatting, links, and images directly in certain fields.
-
-    - Installation command: pip install django-summernote
-    - Add to dependencies with: pip freeze > requirements.txt
-    - Add django_summernote to INSTALLED_APPS in settings.py
-    - Include Summernote's URLs in urls.py within the application's main folder.
-    - Add Summernote's URL into the main application folder.
-      - Summernote's URL:
-        - `path("summernote/", include("django_summernote.urls"))`
-
-4.  **Heroku Setup:**
+3.  **Heroku Setup:**
 
 - Go to Heroku and sign up if you haven't already.
 - Create a new app from the Heroku dashboard.
