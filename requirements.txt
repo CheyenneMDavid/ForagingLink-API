@@ -27,7 +27,7 @@ oauthlib==3.2.2
 packaging==24.0
 pathspec==0.12.1
 phonenumbers==8.13.48
-Pillow==8.2.0
+Pillow==11.1.0
 platformdirs==4.3.6
 psycopg2==2.9.9
 pycodestyle==2.12.1
