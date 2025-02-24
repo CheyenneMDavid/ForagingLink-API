@@ -71,29 +71,21 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # DEBUG sets to True if in development.
 DEBUG = "DEV" in os.environ
 
+
+# Defines which domains can make requests to the Django app.
 ALLOWED_HOSTS = [
-    "localhost",
     os.environ.get("ALLOWED_HOST"),
+    os.environ.get("LOCAL_HOST", "localhost"),
 ]
 
-# Comment pointing at removal of hardcoded "Allowed Host" and focring
-# git to recognize change in file, thus allowing commit and push.
 
+# Defines which frontend origins can communicate with the API.
 if "CLIENT_ORIGIN" in os.environ:
-    CORS_ALLOWED_ORIGINS = [os.environ.get("CLIENT_ORIGIN")]
-
-if "CLIENT_ORIGIN_DEV" in os.environ:
-    extracted_url = re.match(
-        r"^.+-", os.environ.get("CLIENT_ORIGIN_DEV", ""), re.IGNORECASE
-    ).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
-    ]
-
-# Temporarily allowed all origins for CORS debugging
-CORS_ALLOW_ALL_ORIGINS = True
+    CORS_ALLOWED_ORIGINS = [os.environ["CLIENT_ORIGIN"]]
 
 
+# Allows cookie authentication credentials to be included in cross-origin
+# requests.
 CORS_ALLOW_CREDENTIALS = True
 
 
