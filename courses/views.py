@@ -27,7 +27,7 @@ from foraging_api.permissions import IsAdminUserOrReadOnly
 # django-correctly-retrieve-data-where-date-and-time-are-greater-than-now
 # The code isn't copied but the understanding was grasped and tailored using
 # the docs here: https://docs.djangoproject.com/en/5.0/topics/db/queries/
-class CourseList(generics.ListAPIView):
+class UpComingCourses(generics.ListAPIView):
     """
     View to retrieve instances in a read-only format.
     Inherits from "ListAPIView", allowing any user, authenticated or not, to

@@ -16,8 +16,8 @@ urlpatterns = [
     # Endpoint for listing all courses
     path(
         "",
-        views.CourseList.as_view(),
-        name="course_list",
+        views.UpComingCourses.as_view(),
+        name="up_coming_courses",
     ),
     path(
         # Endpoint for creation of courses, only available to admins
@@ -33,3 +33,9 @@ urlpatterns = [
         name="course_update_delete",
     ),
 ]
+path(
+    # Endpoint for the full list of courses.
+    "full-list/",
+    views.FullCourseList.as_view(),
+    name="full_course_list",
+),
