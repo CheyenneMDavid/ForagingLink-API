@@ -78,13 +78,15 @@ ALLOWED_HOSTS = [
     os.environ.get("LOCAL_HOST", "localhost"),
 ]
 
-
 # Defines which frontend origins can communicate with the API.
 if "CLIENT_ORIGIN" in os.environ:
-    CORS_ALLOWED_ORIGINS = [os.environ["CLIENT_ORIGIN"]]
+    CORS_ALLOWED_ORIGINS = [
+        os.environ["CLIENT_ORIGIN"],
+        os.environ.get("CLIENT_ORIGIN_2"),
+    ]
 
-
-# Allows cookie authentication credentials to be included in cross-origin
+# Allows cookie authentication credentials to be
+# included in cross-origin
 # requests.
 CORS_ALLOW_CREDENTIALS = True
 
