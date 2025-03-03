@@ -15,6 +15,7 @@ import os
 import re
 import dj_database_url
 
+
 # Import environment variables if the env.py the file exists.
 if os.path.exists("env.py"):
     import env
@@ -81,9 +82,9 @@ ALLOWED_HOSTS = [
 # Defines which frontend origins can communicate with the API.
 if "CLIENT_ORIGIN" in os.environ:
     CORS_ALLOWED_ORIGINS = [
-        os.environ["CLIENT_ORIGIN"],
-        os.environ.get("CLIENT_ORIGIN_2"),
+        os.environ.get("CLIENT_ORIGIN"),
     ]
+
 
 # Allows cookie authentication credentials to be
 # included in cross-origin
