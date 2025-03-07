@@ -76,7 +76,7 @@ DEBUG = "DEV" in os.environ
 # Defines which domains can make requests to the Django app.
 ALLOWED_HOSTS = [
     os.environ.get("ALLOWED_HOST"),
-    os.environ.get("LOCAL_HOST", "localhost"),
+    "localhost",
 ]
 
 # Defines which frontend origins can communicate with the API.
@@ -84,6 +84,10 @@ if "CLIENT_ORIGIN" in os.environ:
     CORS_ALLOWED_ORIGINS = [
         os.environ.get("CLIENT_ORIGIN"),
     ]
+
+
+if "CLIENT_ORIGIN_DEV" in os.environ:
+    CORS_ALLOWED_ORIGINS.append(os.environ.get("CLIENT_ORIGIN_DEV"))
 
 
 # Allows cookie authentication credentials to be
