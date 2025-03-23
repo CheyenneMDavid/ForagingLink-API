@@ -32,10 +32,10 @@ urlpatterns = [
         views.CourseUpdateDelete.as_view(),
         name="course_update_delete",
     ),
+    path(
+        # Endpoint for the full list of courses.
+        "full-list/",
+        views.FullCourseList.as_view(),
+        name="full_course_list",
+    ),
 ]
-path(
-    # Endpoint for the full list of courses.
-    "full-list/",
-    views.FullCourseList.as_view(),
-    name="full_course_list",
-),
