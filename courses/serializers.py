@@ -11,9 +11,13 @@ class CourseSerializer(serializers.ModelSerializer):
     """
     Serializer for the Course model.
 
-    It's responsible for converting Course model data
-    to and from JSON format.
+    It includes a field called 'available_spaces'. It's not saved in the
+    database, but is worked out when the data is sent to the frontend.
+    It shows how many places are left by taking the course's max size and
+    subtracting the number of confirmed bookings.
     """
+
+    available_spaces = serializers.SerializerMethodField()
 
     class Meta:
         """
@@ -32,4 +36,8 @@ class CourseSerializer(serializers.ModelSerializer):
             "description",
             "location",
             "max_capacity",
+            "available_spaces",
         ]
+
+    def get_available_spaces(self, obj):
+        return obj.available_spaces
