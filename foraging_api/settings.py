@@ -77,14 +77,14 @@ DEBUG = "DEV" in os.environ
 ALLOWED_HOSTS = [
     os.environ.get("ALLOWED_HOST"),
     "localhost",
+    "127.0.0.1",
 ]
 
 # Defines which frontend origins can communicate with the API.
-if "CLIENT_ORIGIN" in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get("CLIENT_ORIGIN"),
-    ]
+CORS_ALLOWED_ORIGINS = []
 
+if "CLIENT_ORIGIN" in os.environ:
+    CORS_ALLOWED_ORIGINS.append(os.environ.get("CLIENT_ORIGIN"))
 
 if "CLIENT_ORIGIN_DEV" in os.environ:
     CORS_ALLOWED_ORIGINS.append(os.environ.get("CLIENT_ORIGIN_DEV"))
