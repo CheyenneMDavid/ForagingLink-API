@@ -9,7 +9,7 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
 - [The Foraging API](#the-foraging-api)
   - [Project description](#project-description)
   - [Table of Contents](#table-of-contents)
-  - [User Stories:](#user-stories)
+  - [User Stories](#user-stories)
     - [User Stories Clarification](#user-stories-clarification)
   - [Applications in the Project](#applications-in-the-project)
     - [Profiles](#profiles)
@@ -65,8 +65,8 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
       - [Reflective Development](#reflective-development)
       - [Continuous Integration and Documentation](#continuous-integration-and-documentation)
     - [Examples of Agile Practices in Backend Development](#examples-of-agile-practices-in-backend-development)
-      - [Task Lists and Prioritization:](#task-lists-and-prioritization)
-      - [Adapting to Changes and Enhancements to the Applications:](#adapting-to-changes-and-enhancements-to-the-applications)
+      - [Task Lists and Prioritization](#task-lists-and-prioritization)
+      - [Adapting to Changes and Enhancements to the Applications](#adapting-to-changes-and-enhancements-to-the-applications)
     - [Example Project Boards](#example-project-boards)
       - [Starting State](#starting-state)
       - [Midway State](#midway-state)
@@ -85,13 +85,13 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Making Your Changes](#making-your-changes)
     - [Submit Pull Request](#submit-pull-request)
   - [Credits](#credits)
-    - [Email Validation](#email-validation-1)
-    - [Image Attribution:](#image-attribution)
+    - [Email Validation: Source Reference](#email-validation-source-reference)
+    - [Image Attribution](#image-attribution)
   - [Acknowledgment of AI Assistance](#acknowledgment-of-ai-assistance)
 
 ---
 
-## User Stories:
+## User Stories
 
 The user stories utilized in this project align with those listed in the associated frontend project. This decision was made because both frontend and backend components contribute to fulfilling these user stories, albeit in different capacities. The frontend is responsible for presenting information in the user interface, while the backend manages the storage and retrieval of data.
 
@@ -122,7 +122,7 @@ During the development process, user stories were initially tracked in GitHub pr
 | Profiles             | user  | read user's profiles details             | engage with my fellow users                   | `list()` via `ProfileList()`, `retrieve()` via `ProfileDetail()`   |
 | Profiles             | owner | update and delete my profile             | update my info or delete my account           | `ProfileDetail()`                                                  |
 
-You can find the Project with fuller details for the stories [here](https://github.com/users/CheyenneMDavid/projects/38/views/1)
+You can find the Project with fuller details for the [stories](https://github.com/users/CheyenneMDavid/projects/38/views/1)
 
 ---
 
@@ -163,15 +163,17 @@ The Followers app enables users to stay connected with content authors, includin
 
 The Courses app is used to publish and manage upcoming courses in the seasons of spring, summer, and autumn. It allows all users, whether authenticated or not, to view course listings and details, while only admins have the ability to create, update, or delete courses. Each course detail page includes essential information such as the season, title, date, description, location, and maximum number of participants.
 
-Within the Courses app, "the `CourseList` view" returns courses with future dates, limiting the display to 3. Whilst "the `FullCourseList` view" returns all future courses, making them available for the front end.
+Within the Courses app, "the `UpComingCourse` view" returns courses with future dates, limiting the display to the 3 most immediate. Whilst "the `FullCourseList` view" returns all future courses, making them available for the front end.
+Available spaces for the course are set to 10 by default and then managed by calculating the Maximum Capacity, minus the number of registrations.
 
 ### Course Registrations
 
-The Course Registrations app manages user registrations for the courses offered. It allows users to register for courses and stores relevant information such as contact details, dietary restrictions, and emergency contact information. The app ensures that courses are not over-subscribed by setting the registration status to "Pending" by default, which can be managed via the admin panel.
+The Course Registrations app manages user registrations for the courses offered. It allows users to register for courses and stores relevant information such as contact details, dietary restrictions, and emergency contact information.
+Due to only authenticated users being able to submit a registration.
 
 #### Dynamic Tracking of Course Spaces
 
-The **Course Registrations** app dynamically tracks the number of available spaces for each course. This ensures up to date information on space availability on courses.
+The combination of the **Course Registration** app supplying the registrations and the **Courses** app validating the number of spaces allows dynamic tracking of the number of available spaces for each course. This ensures up to date information on space availability.
 
 - **Available Spaces**: Each course has a predefined maximum number of participants. As users register for a course, the available spaces count is updated in real-time.
 
@@ -185,7 +187,7 @@ Although I have spoken about the individual applications within the project, the
 
 | Model              | Endpoints                                           | Create           | Retrieve | Update | Delete | Filter                                                                                                  | Text Search                                                                                             |
 | ------------------ | --------------------------------------------------- | ---------------- | -------- | ------ | ------ | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| PlantInFocusPost   | /plants_blog/<br>/plants_blog/:id/                  | Yes(Admins only) | Yes      | Yes    | Yes    | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name |
+| PlantInFocusPost   | /plants_blog/<br>/plants_blog/ :id/                 | Yes(Admins only) | Yes      | Yes    | Yes    | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name | main_plant_name, main_plant_environment, culinary_uses, medicinal_uses, folklore, confusable_plant_name |
 | Comment            | /comments/<br>/comments/:id/                        | Yes              | Yes      | Yes    | Yes    | plant_in_focus_post, replying_comment, owner\_\_username                                                | content, owner**username, plant_in_focus_post**main_plant_name                                          |
 | Like               | /likes/<br>/likes/:id                               | Yes              | Yes      | No     | Yes    | owner, plant_in_focus_post, comment                                                                     | None                                                                                                    |
 | Follower           | /followers/<br>/followers/:id                       | Yes              | Yes      | No     | Yes    | None                                                                                                    | None                                                                                                    |
@@ -253,7 +255,7 @@ This Overview illustrates the course management structure within the Foraging Li
 
 ### Wireframes and Mockups
 
-Wireframes and Mockups can be found in a separate repository which handles the React based User Interface [here](https://github.com/CheyenneMDavid/foraging-link-ui)
+Wireframes and Mockups can be found in a separate repository which handles [the React based User Interface](https://github.com/CheyenneMDavid/foraging-link-ui)
 
 ---
 
@@ -371,12 +373,22 @@ Understand Dependencies: Changes to models should be carefully considered, as th
 
 Initially considered using REGEX to validate phone numbers within the
 Course_Registrations application, but instead decided upon using the django-phonenumber-field package
-which uses Google's phonenumbers library. This library, handles the validation and formatting of phone numbers based on regional standards. In this case, the region is set to "GB" (ISO 3166-1 alpha-2 code) which can be found [here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB).
+which uses Google's phonenumbers library. This library, handles the validation and formatting of phone numbers based on regional standards. In this case, the region is set to ["GB" (ISO 3166-1 alpha-2 code)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB).
 This covered validation of both landlines and mobile number without the overly complex lines of code that REGEX would have created.
 
 ### Email Validation
 
 Email validation for the CourseRegistration application is done using Django’s EmailValidator. It ensures the email inputed follows the expected format of an email address. The max_length is set to 254 characters, ensuring compatibility with most systems when handling email addresses. Validation takes place at the model level, ensuring the email is properly formatted before it's saved to the database.
+Whilst the email is collected at the stage of signup, it plays no other part. This is purely to collect the address which allows it to be used by the front end when users are registering for a course.
+
+During development, emails are printed to the console for testing only and are not actually delivered. It avoids accidently sending real emails, allowing email related features to be tested safely.
+
+```python
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+```
 
 ### Database Migration Reset and Cloudinary Path Adjustments
 
@@ -410,7 +422,8 @@ Additionally, the manner in which the imports were handled has been restructured
 
 When implementing the conditional display for the Most followed profiles, I had issues with the token refresh workinbg correctly. So additionally to adding console.logs throughout the front end's logic, I also added basic logging configuration to the settings.py
 
-```
+```python
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -462,36 +475,35 @@ You can find the full list of dependencies in the [requirements.txt](requirement
 
 ## Deployment Instructions
 
-1.  **Forking or Cloning a Repository:**
-    - **Forking:** Creates your own copy of the repository on your GitHub account.
-      - Navigate to the chosen repository on GitHub.
-      - Click the "Fork" button in the top-right corner.
-      - For detailed instructions, check GitHub's documentation on [forking repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
-    - **Cloning**: Downloads a copy of the repository to your local machine.
-      - Open your Gitpod console.
-      - Use the `git clone` command followed by the URL of the repository you wish to clone.
-      - For detailed instructions, check GitHub's documentation on [cloning repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
-2.  **Cloudinary Account**:
+1. **Forking or Cloning a Repository:**
+   - **Forking:** Creates your own copy of the repository on your GitHub account.
+     - Navigate to the chosen repository on GitHub.
+     - Click the "Fork" button in the top-right corner.
+     - For detailed instructions, check GitHub's documentation on [forking repositories](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
+   - **Cloning**: Downloads a copy of the repository to your local machine.
+     - Open your Gitpod console.
+     - Use the `git clone` command followed by the URL of the repository you wish to clone.
+     - For detailed instructions, check GitHub's documentation on [cloning repositories](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+2. **Cloudinary Account**:
 
-    - Signup for a Cloudinary account on the [Cloudinary website](https://console.cloudinary.com/pm/c-22b4346b808568adb23133ede29fc9/getting-started).
-    - Follow the instructions to sign up for an account and obtain your API key.
-    - For more detailed instructions, check [Cloudinary's documentation](https://cloudinary.com/documentation).
-      <br>
+   - Signup for a Cloudinary account on the [Cloudinary website](https://console.cloudinary.com/pm/c-22b4346b808568adb23133ede29fc9/getting-started).
+   - Follow the instructions to sign up for an account and obtain your API key.
+   - For more detailed instructions, check [Cloudinary's documentation](https://cloudinary.com/documentation).
 
-3.  **Heroku Setup:**
+3. **Heroku Setup:**
 
-- Go to Heroku and sign up if you haven't already.
-- Create a new app from the Heroku dashboard.
-- Configure your app's settings, including region and environment variables.
-- Add the necessary environment variables:
-  - CLOUDINARY_URL: Your Cloudinary URL.
-  - DATABASE_URL: Your Postgres database URL.
-  - SECRET_KEY: Generate a secret key for your Django project using a tool like [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/).
-  - ALLOWED_HOSTS: URL of your API hosted on Heroku (without 'https://').
-- Heroku provides detailed documentation for each step of the setup process.
-  <br>
+   - Go to Heroku and sign up if you haven't already.
+   - Create a new app from the Heroku dashboard.
+   - Configure your app's settings, including region and environment variables.
+   - Add the necessary environment variables:
 
-5. **Database Configuration:**
+   - CLOUDINARY_URL: Your Cloudinary URL.
+   - DATABASE_URL: Your Postgres database URL.
+   - SECRET_KEY: Generate a secret key for your Django project using a tool like [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/).
+   - ALLOWED_HOSTS: URL of your API hosted on Heroku (without 'https://').
+   - Heroku provides detailed documentation for each step of the setup process.
+
+4. **Database Configuration:**
    - Set up a PostgreSQL database instance with an appropriate provider. Some recommended options include:
      - [Heroku Postgres](https://www.heroku.com/postgres)
      - [AWS RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/)
@@ -563,11 +575,11 @@ It was only upon reading discussions in Slack that I realised that a balance bet
 
 ### Examples of Agile Practices in Backend Development
 
-#### Task Lists and Prioritization:
+#### Task Lists and Prioritization
 
 Managed tasks based on logical dependencies and the order in which lessons were followed, not strictly based on importance and urgency.
 
-#### Adapting to Changes and Enhancements to the Applications:
+#### Adapting to Changes and Enhancements to the Applications
 
 Plans were adjusted as new requirements emerged or challenges were encountered. For instance, the initial goal was to enable users to comment on posts. However, I later expanded this functionality to allow users to comment on other comments, adding complexity to the models and views to support nested comments.
 
@@ -784,9 +796,9 @@ For detailed instructions on how to fork and clone a repository, please refer to
     - Phone numbers are validated by using uses Google’s libphonenumber library via the django-phonenumber-field package. It ensures proper formatting and validation of phone numbers based on regional standards.
 
   - django-phonenumber-field:
-    - The django-phonenumber-field package simplifies handling phone numbers in Django applications by using Google’s phonenumbers library to validate and format phone numbers. The region is set to "GB" (ISO 3166-1 alpha-2 code), which you can read more about [here](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB)
+    - The django-phonenumber-field package simplifies handling phone numbers in Django applications by using Google’s phonenumbers library to validate and format phone numbers. The region is set to "GB" (ISO 3166-1 alpha-2 code), which you can [read more about](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB)
 
-### Email Validation
+### Email Validation: Source Reference
 
 Email validation was implemented using the following resources:
 
@@ -796,11 +808,11 @@ Email validation was implemented using the following resources:
 - **RFC 5321**:
   For email length limit guidance, based on the [RFC 5321 standard](https://www.rfc-editor.org/rfc/rfc5321), which defines the 254-character limit for email addresses commonly used across the web.
 
-### Image Attribution:
+### Image Attribution
 
 - Some images used on this site are sourced from Pixabay, Pexels or similar free image sites.
 - Any other images are original (taken by myself) or used with permission.
-- The image of _Rumex obtusifolius_ is licensed under CC BY-SA 3.0. You can view the original image [here](https://en.wikipedia.org/wiki/Rumex_obtusifolius#/media/File:Rumex-obtusifolius-foliage.JPG).
+- The image of _Rumex obtusifolius_ is licensed under CC BY-SA 3.0. You can view the [original image](https://en.wikipedia.org/wiki/Rumex_obtusifolius#/media/File:Rumex-obtusifolius-foliage.JPG).
 - All images are only displayed for the purpose of demonstrating the project.
 
 ## Acknowledgment of AI Assistance
@@ -822,7 +834,3 @@ Some specific examples of how ChatGPT contributed to this project:
 - **Use of Third-Party Tools**: ChatGPT provided instructions and guidance on how to utilize third-party tools like **Draw.io** for creating diagrams, such as **Entity-Relationship Diagrams (ERDs)**, which helped in planning and structuring the database models and relationships.
 
 I believe that utilizing ChatGPT has enhanced my understanding of the development process and contributed to maintaining a clear focus throughout the project. While ChatGPT provided advice and assistance, all final decisions and implementations were done by me as part of my learning process.
-
-```
-
-```

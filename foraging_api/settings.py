@@ -243,5 +243,10 @@ LOGGING = {
     },
 }
 
-# confirming that DEBUG is definitely set to True, locally.,
-print("DEBUG mode is:", DEBUG)
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+
+# Only sends emails to the console for testing during development
+# Emails aren't actually sent to users, so delivery can't be verified
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
