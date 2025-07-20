@@ -47,6 +47,7 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Database and Migration Issues](#database-and-migration-issues)
     - [Phone Number Validation](#phone-number-validation)
     - [Email Validation](#email-validation)
+    - [CSRF Trusted Origins Issue and Legacy data](#csrf-trusted-origins-issue-and-legacy-data)
     - [Database Migration Reset and Cloudinary Path Adjustments](#database-migration-reset-and-cloudinary-path-adjustments)
     - [Counts for Likes and Comments](#counts-for-likes-and-comments)
     - [Logging for Debugging](#logging-for-debugging)
@@ -389,6 +390,27 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ```
+
+### CSRF Trusted Origins Issue and Legacy data
+
+After adding the new parts for user emails, I was left with legacy user data which still did not have this information. When I tried to update users, with the addition of an email address, I recieved: **403 Forbidden – CSRF verification failed.**
+
+This error blocked changes made through the Django admin site. Although CORS_ALLOWED_ORIGINS and CORS_ALLOW_CREDENTIALS were correctly configured, this did not cover CSRF protection for POST requests from the admin panel.
+
+The walkthrough used a similar configuration, but did not include explicit CSRF_TRUSTED_ORIGINS. In this project, we resolved the issue by adding the deployed API URL directly:
+
+```python
+Copy
+Edit
+CSRF_TRUSTED_ORIGINS = [
+    "https://foraging-api-b287953c9098.herokuapp.com/",
+]
+```
+
+This ensures Django trusts cross-origin POST requests from that specific domain, enabling admin edits (such as updating emails) without CSRF failures.
+
+Guidance from:
+<https://docs.djangoproject.com/en/3.2/ref/settings/#csrf-trusted-origins>
 
 ### Database Migration Reset and Cloudinary Path Adjustments
 
