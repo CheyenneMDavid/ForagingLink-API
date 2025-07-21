@@ -47,7 +47,6 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Database and Migration Issues](#database-and-migration-issues)
     - [Phone Number Validation](#phone-number-validation)
     - [Email Validation](#email-validation)
-    - [Email Validation](#email-validation-1)
     - [CSRF Trusted Origins Issue and Legacy data](#csrf-trusted-origins-issue-and-legacy-data)
     - [Database Migration Reset and Cloudinary Path Adjustments](#database-migration-reset-and-cloudinary-path-adjustments)
     - [Counts for Likes and Comments](#counts-for-likes-and-comments)
@@ -377,22 +376,6 @@ Initially considered using REGEX to validate phone numbers within the
 Course_Registrations application, but instead decided upon using the django-phonenumber-field package
 which uses Google's phonenumbers library. This library, handles the validation and formatting of phone numbers based on regional standards. In this case, the region is set to ["GB" (ISO 3166-1 alpha-2 code)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB).
 This covered validation of both landlines and mobile number without the overly complex lines of code that REGEX would have created.
-
-### Email Validation
-
-Email validation for the CourseRegistration application is done using Django’s EmailValidator. It ensures the email inputed follows the expected format of an email address. The max_length is set to 254 characters, ensuring compatibility with most systems when handling email addresses. Validation takes place at the model level, ensuring the email is properly formatted before it's saved to the database.
-
-This project uses Django’s built-in EmailValidator for checking email fields. It ensures email addresses follow a valid format (e.g. `user@example.com`) and enforces character lengths consistent with RFC 5321.
-
-Advanced validation features such as:
-
-- Domain existence checks
-
-- MX record lookups
-
-- Third-party services
-
-are not implemented at this stage.
 
 ### Email Validation
 
