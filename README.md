@@ -47,6 +47,7 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Database and Migration Issues](#database-and-migration-issues)
     - [Phone Number Validation](#phone-number-validation)
     - [Email Validation](#email-validation)
+    - [Email Validation](#email-validation-1)
     - [CSRF Trusted Origins Issue and Legacy data](#csrf-trusted-origins-issue-and-legacy-data)
     - [Database Migration Reset and Cloudinary Path Adjustments](#database-migration-reset-and-cloudinary-path-adjustments)
     - [Counts for Likes and Comments](#counts-for-likes-and-comments)
@@ -380,9 +381,44 @@ This covered validation of both landlines and mobile number without the overly c
 ### Email Validation
 
 Email validation for the CourseRegistration application is done using Django’s EmailValidator. It ensures the email inputed follows the expected format of an email address. The max_length is set to 254 characters, ensuring compatibility with most systems when handling email addresses. Validation takes place at the model level, ensuring the email is properly formatted before it's saved to the database.
-Whilst the email is collected at the stage of signup, it plays no other part. This is purely to collect the address which allows it to be used by the front end when users are registering for a course.
 
-During development, emails are printed to the console for testing only and are not actually delivered. It avoids accidently sending real emails, allowing email related features to be tested safely.
+This project uses Django’s built-in EmailValidator for checking email fields. It ensures email addresses follow a valid format (e.g. `user@example.com`) and enforces character lengths consistent with RFC 5321.
+
+Advanced validation features such as:
+
+- Domain existence checks
+
+- MX record lookups
+
+- Third-party services
+
+are not implemented at this stage.
+
+### Email Validation
+
+Email validation for the CourseRegistration application is done using Django’s EmailValidator. It ensures the email inputed follows the expected format of an email address. The max_length is set to 254 characters, ensuring compatibility with most systems when handling email addresses. Validation takes place at the model level, ensuring the email is properly formatted before it's saved to the database.
+
+This project uses Django’s built-in EmailValidator for checking email fields. It ensures email addresses follow a valid format (e.g. `user@example.com`) and enforces character lengths consistent with RFC 5321.
+
+Advanced validation features such as:
+
+- Domain existence checks
+
+- MX record lookups
+
+- Third-party services
+
+are not implemented at this stage.
+
+Originally, whilst allauth does automatically collect such things, the front end didn't request it. The project being focused on advanced front-end, I was of the mind that users who register have a much smoother process and fewer hurdles if only needing to register with a unique username.
+
+But because I stretched what would have been a purely information and social platform to include the ability to register on courses that were offered, an email address had to be added. By adding email addresses into the equation, better validation became necessary by default.
+
+As the application now relies on email addresses in course registrations, a more robust validation may be added to ensure better data integrity.
+
+To maintain consistency, all legacy user accounts were manually updated through the Django admin panel to include email addresses. This involved adding values to both the User model and the related EmailAddress model from django-allauth.
+
+During development, email functionality is tested safely using Django’s console backend. Emails are printed to the terminal rather than sent, preventing accidental delivery while allowing email-related features to be fully tested within the limited scope required by the application at this stage.
 
 ```python
 
