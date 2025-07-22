@@ -20,12 +20,12 @@ STATUS_CHOICES = [
 
 class CourseRegistration(models.Model):
     """
-    This model represents a user's registration for a course and holds
-    relevant data accordingly. The "status" field defaults to "Confirmed" and
-    enables Django's built in logic to track available spaces.
-    If the status is changed to "Cancelled" in the admin panel, the available
-    spaces for the course revert accordingly. Personal information is also
-    anonymized for basic analytical retention without compromising privacy.
+    This model represents a user's registration for a course and stores all relevant data.
+    The 'status' field defaults to 'Confirmed' and works in tandem with custom logic in the Course model to determine available spaces.
+
+    If the status is changed to 'Cancelled' in the admin panel, the registration is
+    excluded from space calculations, and the user's personal details are anonymized
+    to retain minimal information for analytics without compromising privacy.
 
     Phone numbers are validated using the PhoneNumberField, based on
     regional standards, with the region set to "GB" (United Kingdom).
@@ -149,12 +149,16 @@ class CourseRegistration(models.Model):
         # Limits the maximum length of the emergency contact's name
         max_length=255,
         # Human friendly field name for the backend admin panel
+        blank=True,  # explicitly set so django treats as such.
+        null=True,  # explicitly set so django treats as such.
         verbose_name="Emergency Contact Name",
         help_text="Name of the emergency contact person.",
     )
     ice_number = PhoneNumberField(
         region="GB",
         # Human friendly field name for the backend admin panel
+        blank=True,  # explicitly set so django treats as such.
+        null=True,  # explicitly set so django treats as such.
         verbose_name="Emergency Contact Number",
         # Prompts admin to enter an emergency contact number
         help_text="Phone number for the emergency contact person.",
