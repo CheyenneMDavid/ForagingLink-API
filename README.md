@@ -46,6 +46,7 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Field Name Update](#field-name-update)
     - [Database and Migration Issues](#database-and-migration-issues)
     - [Phone Number Validation](#phone-number-validation)
+    - [Course Registration Form Validation](#course-registration-form-validation)
     - [Email Validation](#email-validation)
     - [CSRF Trusted Origins Issue and Legacy data](#csrf-trusted-origins-issue-and-legacy-data)
     - [Database Migration Reset and Cloudinary Path Adjustments](#database-migration-reset-and-cloudinary-path-adjustments)
@@ -376,6 +377,33 @@ Initially considered using REGEX to validate phone numbers within the
 Course_Registrations application, but instead decided upon using the django-phonenumber-field package
 which uses Google's phonenumbers library. This library, handles the validation and formatting of phone numbers based on regional standards. In this case, the region is set to ["GB" (ISO 3166-1 alpha-2 code)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#GB).
 This covered validation of both landlines and mobile number without the overly complex lines of code that REGEX would have created.
+
+### Course Registration Form Validation
+
+Even after wiring up conditional logic in the model’s clean() method, form submissions failed under certain conditions.
+
+By inspecting the response using DevTools → Network tab, I saw the backend return validation errors like:
+
+```json
+{
+  "ice_name": ["This field may not be null."],
+  "ice_number": ["This field may not be null."],
+  "dietary_restrictions": ["This field may not be null."]
+}
+```
+
+This confirmed Django was treating these fields as required, regardless of whether the related checkbox was ticked.
+
+Although the clean() method handled the logic correctly, it wasn’t enough on its own — Django’s model-level validation happens before clean() runs.
+
+Solved by explicitly allowing empty values by adding:
+
+```python
+  blank=True,
+  null=True,
+```
+
+to the `ice_name`, `ice_number`, and `dietary_restrictions` fields.
 
 ### Email Validation
 
