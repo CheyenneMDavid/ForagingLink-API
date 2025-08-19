@@ -102,7 +102,7 @@ CORS_ALLOW_CREDENTIALS = True
 # See "CSRF Trusted Origins Issue" in the README for explanation and
 # resolution.
 CSRF_TRUSTED_ORIGINS = [
-    "https://foraging-api-b287953c9098.herokuapp.com/",
+    "https://foraging-api-b287953c9098.herokuapp.com",
 ]
 
 
