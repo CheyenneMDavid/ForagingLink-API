@@ -255,6 +255,9 @@ LOGGING = {
 
 
 ACCOUNT_EMAIL_REQUIRED = True
+
+# Enforcing unique emails so that users can safely change their email addresses
+ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 
 # Only sends emails to the console for testing during development

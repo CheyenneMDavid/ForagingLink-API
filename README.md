@@ -48,6 +48,7 @@ The **Foraging API** is a Django REST Framework Application Programming Interfac
     - [Phone Number Validation](#phone-number-validation)
     - [Course Registration Form Validation](#course-registration-form-validation)
     - [Email Validation](#email-validation)
+    - [Editable Email](#editable-email)
     - [CSRF Trusted Origins Issue and Legacy data](#csrf-trusted-origins-issue-and-legacy-data)
     - [Database Migration Reset and Cloudinary Path Adjustments](#database-migration-reset-and-cloudinary-path-adjustments)
     - [Counts for Likes and Comments](#counts-for-likes-and-comments)
@@ -329,7 +330,6 @@ Realising the inaccuracy of my generalised back-end descriptions, I've since gon
 ### Handling Comments and Replies
 
 **Challenge**:
-
 Comments and replies were not displaying correctly due to issues in API responses. Replies were missing, and the nesting structure needed refining.
 
 **Solution**:
@@ -437,6 +437,10 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "optional"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ```
+
+### Editable Email
+
+Course registrations needed reliable contact emails. Emails were collected at signup but weren’t editable. To allow safe edits, I set `ACCOUNT_UNIQUE_EMAIL = True` in `settings.py` and updated `CurrentUserSerializer` (a child of dj-rest-auth’s `UserDetailsSerializer`) to omit `email` from `read_only_fields`, keeping only `profile_id` and `profile_image` read-only.
 
 ### CSRF Trusted Origins Issue and Legacy data
 
