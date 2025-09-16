@@ -2,7 +2,9 @@
 
 ## Project description
 
-The **Foraging API** is a Django REST Framework Application Programming Interface for ["The Foraging Link"](https://github.com/CheyenneMDavid/foraging-link-ui), which serves as an online community, monthly foraging blog, and platform to promote seasonal foraging courses. It aims to connect people with nature and to one another whilst sharing information about the free edible delights available all around us.
+The **Foraging API** is a Django REST Framework backend for [The Foraging Link UI](https://github.com/CheyenneMDavid/foraging-link-ui).  
+It provides endpoints for blog posts, comments, user interactions, and seasonal course management, supporting a community platform that promotes nature connection and foraging education.
+
 
 ## Table of Contents
 
