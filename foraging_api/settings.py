@@ -102,13 +102,11 @@ if "CLIENT_ORIGIN_DEV" in os.environ:
 CORS_ALLOW_CREDENTIALS = True
 
 
-# Note: I recieved a CSRF verification error when updating legacy user emails
-# via the deployed admin panel. This was due to expanding the project beyond
-# the original walkthrough's scope, which didn’t require CSRF_TRUSTED_ORIGINS.
-# See "CSRF Trusted Origins Issue" in the README for explanation and
-# resolution.
+# Note: Added both backend and frontend URLs to CSRF Trusted Origins
+# to allow authentication requests from the deployed frontend.
 CSRF_TRUSTED_ORIGINS = [
     "https://foraging-api-b287953c9098.herokuapp.com",
+    "https://the-foraging-link-fd9e4fdfa5bc.herokuapp.com",
 ]
 
 
