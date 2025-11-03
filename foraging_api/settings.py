@@ -62,6 +62,8 @@ JWT_AUTH_SAMESITE = "None"
 SESSION_COOKIE_SAMESITE = None
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+# Allows CSRF cookie to be sent cross-site (mobile login fix)
+CSRF_COOKIE_SAMESITE = None
 
 
 # Custom user details serializer.
