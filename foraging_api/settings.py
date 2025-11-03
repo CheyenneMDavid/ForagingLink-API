@@ -58,6 +58,12 @@ JWT_AUTH_COOKIE = "my-app-auth"
 JWT_AUTH_REFRESH_COOKIE = "my-refresh-token"
 JWT_AUTH_SAMESITE = "None"
 
+# Secure cookies for JWT and CSRF (mobile support)
+SESSION_COOKIE_SAMESITE = None
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+
 # Custom user details serializer.
 REST_AUTH_SERIALIZERS = {
     "USER_DETAILS_SERIALIZER": (
